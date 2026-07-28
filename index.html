@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Lab | ホーム</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", "Noto Sans JP", sans-serif;
+    background: radial-gradient(circle at top, #001a33, #000000 60%);
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* 背景アニメーション */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/cubes.png');
+    opacity: 0.08;
+    animation: bgMove 20s linear infinite;
+    z-index: -1;
+  }
+
+  @keyframes bgMove {
+    from { transform: translateY(0); }
+    to { transform: translateY(-1000px); }
+  }
+
+  header {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #00aaff, #0066ff);
+    color: white;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 20px rgba(0,150,255,0.5);
+  }
+
+  /* PC 上部タブ */
+  nav.pc-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    background: #0d0d0d;
+    padding: 1rem;
+    border-bottom: 1px solid #222;
+  }
+
+  nav.pc-tabs a {
+    color: #00aaff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  /* スマホ下部タブ */
+  nav.mobile-tabs {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 100%;
+    background: #0d0d0d;
+    padding: 0.5rem 0;
+    border-top: 1px solid #222;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  nav.mobile-tabs a {
+    color: #00aaff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  /* スマホ表示切り替え */
+  @media (max-width: 768px) {
+    nav.pc-tabs { display: none; }
+    nav.mobile-tabs { display: flex; }
+  }
+
+  .container {
+    width: 90%;
+    max-width: 900px;
+    margin: 2rem auto;
+  }
+
+  /* ガラスカード */
+  .card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 20px rgba(0,150,255,0.25);
+    transition: 0.3s;
+    text-align: center;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0,150,255,0.45);
+  }
+
+  .card h2 {
+    color: #00aaff;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .card a {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background: #00aaff;
+    color: #000;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(0,150,255,0.4);
+  }
+
+  .card a:hover {
+    background: #33bbff;
+  }
+
+  /* ラベル */
+  .label {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .label-30 { background: #ff4444; color: #fff; }
+  .label-5 { background: #ffaa00; color: #000; }
+  .label-hit { background: #00ffcc; color: #000; }
+
+</style>
+</head>
+
+<body>
+
+<header>Math Lab | ホーム</header>
+
+<!-- PC 上部タブ -->
+<nav class="pc-tabs">
+  <a href="index.html">🏠 ホーム</a>
+  <a href="Math_I.html">📐 数学 I</a>
+  <a href="Math_II.html">📊 数学 II</a>
+  <a href="#">📈 数学 III</a>
+</nav>
+
+<!-- スマホ下部タブ -->
+<nav class="mobile-tabs">
+  <a href="index.html">🏠<br>ホーム</a>
+  <a href="Math_I.html">📐<br>数I</a>
+  <a href="Math_II.html">📊<br>数II</a>
+  <a href="#">📈<br>数III</a>
+</nav>
+
+<div class="container">
+
+  <div class="card">
+    <span class="label label-30">⏱ 試験前30分</span>
+    <h2>数学 I（Math_I）</h2>
+    <p>試験前に絶対確認したい公式をまとめています。</p>
+    <a href="Math_I.html">▶ Math I ページへ</a>
+  </div>
+
+  <div class="card">
+    <span class="label label-hit">🔥 頻出（過去10年）</span>
+    <h2>数学 II（Math_II）</h2>
+    <p>頻出度バッジ付き。共通テスト対策に最適。</p>
+    <a href="Math_II.html">▶ Math II ページへ</a>
+  </div>
+
+  <div class="card">
+    <span class="label label-5">⚡ 5分で確認</span>
+    <h2>数学 III（Math_III）</h2>
+    <p>※今後追加予定。拡張しやすい構成です。</p>
+    <a href="#">▶ Coming Soon</a>
+  </div>
+
+</div>
+
+</body>
+</html>
