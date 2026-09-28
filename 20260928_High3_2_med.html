@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>数学 中間テスト前チェック（赤枠公式つき）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f5fa; --panel:#ffffff; --ink:#16233b; --sub:#54627c; --line:#d3dce8;
+  --red:#d0212f; --red-bg:#fff1f2; --red-ink:#ffffff;
+  --blue:#1d5fa8; --blue-bg:#eaf3fc;
+  --mark:#ffe873; --mark-bg:#fff8d6; --mark-line:#e0b400;
+  --ans-bg:#16233b; --ans-ink:#ffffff;
+  --grid:rgba(29,95,168,.08);
+  --shadow:0 1px 0 rgba(22,35,59,.06), 0 8px 24px -14px rgba(22,35,59,.35);
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  --math:"STIX Two Text","Times New Roman","Noto Serif JP","Yu Mincho",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+    --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+    --blue:#82bbff; --blue-bg:#13263b;
+    --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+    --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+    --grid:rgba(130,187,255,.07);
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+  --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+  --blue:#82bbff; --blue-bg:#13263b;
+  --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+  --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+  --grid:rgba(130,187,255,.07);
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:auto;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--sans);font-size:16px;line-height:1.85;
+}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+/* ---------- hero ---------- */
+.hero{max-width:920px;margin:0 auto;padding:34px 18px 8px}
+.hero h1{margin:0;font-size:clamp(1.7rem,6vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:.02em}
+.hero h1 span{display:inline-block;border:4px solid var(--red);border-radius:12px;padding:0 .35em;margin-right:.2em;color:var(--red);transform:rotate(-1.5deg)}
+.hero p{margin:12px 0 0;color:var(--sub);max-width:36em}
+.legend{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:22px 0 4px}
+.legend > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.88rem;line-height:1.6;box-shadow:var(--shadow)}
+.legend b{display:block;margin-bottom:4px;font-size:.92rem}
+.swatch{display:inline-block;width:1.6em;height:1em;vertical-align:-.15em;margin-right:.4em;border-radius:3px}
+.sw-red{border:2.5px solid var(--red);background:var(--red-bg)}
+.sw-blue{border-left:5px solid var(--blue);background:var(--blue-bg)}
+.sw-mark{border-left:5px solid var(--mark-line);background:var(--mark-bg)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:920px;margin:0 auto;padding:8px 18px;display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 12px;line-height:1.7}
+.nav a:hover{border-color:var(--red);color:var(--red)}
+.tools{margin-left:auto;display:flex;gap:8px;flex:none;padding-left:8px}
+.btn{font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:3px 12px;line-height:1.7}
+.btn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.progress{font-size:.82rem;font-weight:700;color:var(--sub);white-space:nowrap;align-self:center}
+
+/* ---------- problems ---------- */
+main{max-width:920px;margin:0 auto;padding:12px 18px 60px}
+.prob{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:26px 0;padding:0 0 18px;box-shadow:var(--shadow);overflow:hidden}
+.ph{display:flex;align-items:stretch;gap:0;border-bottom:2px solid var(--ink);margin-bottom:16px}
+.ph .no{flex:none;min-width:4.4rem;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--panel);font-weight:900;font-size:1.25rem;padding:8px 12px;letter-spacing:.03em}
+.ph h2{margin:0;padding:10px 16px;font-size:1.08rem;font-weight:700;line-height:1.5;flex:1;align-self:center}
+.ph .done{margin:8px 12px 8px 0;align-self:center}
+.body{padding:0 clamp(14px,3vw,24px)}
+.body > *:first-child{margin-top:0}
+h3{font-size:1rem;font-weight:900;margin:22px 0 6px;padding-bottom:3px;border-bottom:2px dotted var(--line)}
+p{margin:8px 0}
+.q{border:2px dashed var(--line);border-radius:10px;padding:10px 14px;margin:0 0 14px;background:transparent}
+.q::before{content:"問題";display:inline-block;font-weight:900;font-size:.8rem;background:var(--ink);color:var(--panel);border-radius:4px;padding:0 8px;margin-right:8px;line-height:1.6}
+
+/* math */
+.m{font-family:var(--math);font-size:1.12em;line-height:1.9}
+.m i{font-style:italic}
+sup,sub{line-height:0;font-size:.72em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.25;margin:0 .18em;font-size:.95em}
+.fr > b{font-weight:inherit;padding:0 .25em}
+.fr > b:first-child{border-bottom:1.5px solid currentColor}
+.rt{border-top:1.5px solid currentColor;padding:0 .12em;margin-left:.04em}
+
+/* red-framed formula box */
+.fb{position:relative;margin:24px 0 14px;padding:16px 16px 10px;border:3px solid var(--red);border-radius:12px;background:var(--red-bg)}
+.fb::before{content:attr(data-label);position:absolute;top:-.95em;left:14px;background:var(--red);color:var(--red-ink);font-weight:900;font-size:.82rem;line-height:1.7;padding:0 12px;border-radius:999px}
+.fb .m{display:block;overflow-x:auto;padding:1px 0}
+.fb .m + .m{margin-top:2px}
+.fb.soft{border-style:dashed;border-width:2.5px}
+.box{font-family:var(--math);display:inline-block;border:2.5px solid var(--red);border-radius:6px;padding:0 .4em;background:var(--panel)}
+
+/* easy explanation */
+.easy{margin:14px 0;padding:12px 16px 12px;background:var(--blue-bg);border-left:6px solid var(--blue);border-radius:0 10px 10px 0}
+.easy > .t{display:block;font-weight:900;color:var(--blue);font-size:.92rem;margin-bottom:2px}
+.easy > .t::before{content:"💡 "}
+.easy ul,.easy ol{margin:6px 0;padding-left:1.3em}
+.easy li{margin:3px 0}
+
+/* test point */
+.pt{margin:14px 0;padding:10px 16px;background:var(--mark-bg);border-left:6px solid var(--mark-line);border-radius:0 10px 10px 0}
+.pt > .t{font-weight:900}
+.hl{background:linear-gradient(transparent 55%,var(--mark) 55%);font-weight:700}
+
+/* answer */
+.ans{margin:16px 0 4px;background:var(--ans-bg);color:var(--ans-ink);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.ans .al{flex:none;font-weight:900;font-size:.85rem;background:var(--red);color:var(--red-ink);border-radius:999px;padding:0 12px;line-height:1.7}
+.ans .av{font-weight:700;font-size:1.05rem;flex:1;min-width:0}
+.ans .av .m{font-size:1.15em}
+body.hide .ans{cursor:pointer}
+body.hide .ans:not(.shown) .av{filter:blur(9px);user-select:none}
+body.hide .ans:not(.shown)::after{content:"タップで答えを見る";font-size:.78rem;opacity:.75;margin-left:auto}
+
+/* checks */
+.check{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 12px;margin:10px 0;font-size:.92rem}
+.check b{color:var(--blue)}
+.done{font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--panel);color:var(--sub);border-radius:999px;padding:0 12px;line-height:1.9}
+.done[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--panel)}
+.done[aria-pressed="true"]::before{content:"✓ "}
+.fig{margin:14px 0;text-align:center}
+.fig svg{max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.fig figcaption{font-size:.82rem;color:var(--sub);margin-top:4px}
+.sumlist{list-style:none;margin:0;padding:0;counter-reset:s}
+.sumlist li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px dotted var(--line)}
+.sumlist li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--red);color:var(--red);font-weight:900;text-align:center;line-height:25px}
+.sumlist li:last-child{border-bottom:0}
+footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-size:.82rem}
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .ph .no{min-width:3.6rem;font-size:1.05rem}
+  .ph h2{font-size:1rem;padding:8px 10px}
+  .fb{padding:16px 12px 8px}
+  .tools{padding-left:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .nav,.done,.tools{display:none}
+  body{background:#fff;color:#000}
+  .prob{break-inside:avoid;box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1><span>数学</span>中間テスト前チェック</h1>
+  <p>答えだけでなく「なぜそうなるか」まで確認できる版です。<strong>赤枠の公式</strong>は、テストで使う道具。まずここを覚えて、青いところで理由を確認しましょう。</p>
+  <div class="legend" aria-label="この資料の見かた">
+    <div><b><span class="swatch sw-red"></span>赤枠＝覚える公式・式変形</b>テストで書く式です。</div>
+    <div><b><span class="swatch sw-blue"></span>青＝やさしい解説</b>中学の知識でわかるように説明します。</div>
+    <div><b><span class="swatch sw-mark"></span>黄＝テストでのポイント</b>減点されやすいところ・書き忘れ注意。</div>
+  </div>
+</div>
+
+<nav class="nav" aria-label="目次">
+  <div class="nav-in">
+    <a href="#s0">公式</a><a href="#s204">204</a><a href="#s229">229</a><a href="#s251">251</a><a href="#s261">261</a><a href="#s320a">320</a><a href="#s341a">341</a><a href="#s355">355</a><a href="#sd1">桁数</a><a href="#sfinal">直前</a>
+    <span class="tools">
+      <span class="progress" id="progress" aria-live="polite"></span>
+      <button class="btn" id="hideBtn" aria-pressed="false" type="button">答えをかくす</button>
+    </span>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= 相加相乗平均 ================= -->
+<section class="prob" id="s0" data-key="s0">
+  <div class="ph"><span class="no">公式</span><h2>まず覚える：相加相乗平均</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <div class="fb" data-label="相加相乗平均">
+      <span class="m"><i>a</i> ＞ 0，<i>b</i> ＞ 0 のとき　<span class="fr"><b><i>a</i> ＋ <i>b</i></b><b>2</b></span> ≧ √(<i>ab</i>)　（等号は <i>a</i> ＝ <i>b</i> のとき）</span>
+      <span class="m">とくに <i>b</i> ＝ 1/<i>a</i> のとき：　<span class="box"><i>a</i> ＋ 1/<i>a</i> ≧ 2</span>　（等号は <i>a</i> ＝ 1）</span>
+    </div>
+
+    <div class="easy"><span class="t">やさしい解説：2種類の「平均」</span>
+      <ul>
+        <li><b>相加平均</b>＝ふつうの平均。足して2で割る（<i>a</i>＋<i>b</i>）÷2。</li>
+        <li><b>相乗平均</b>＝かけ算してルートをとる √(<i>ab</i>)。</li>
+      </ul>
+      <p>例：<i>a</i>＝1，<i>b</i>＝9 のとき、相加平均は (1＋9)÷2＝5、相乗平均は √9＝3。<strong>いつも 相加 ≧ 相乗</strong> になります。</p>
+      <p><b>なぜ成り立つ？</b>　2乗は 0 以上なので (√<i>a</i>−√<i>b</i>)² ≧ 0。展開すると <i>a</i>−2√(<i>ab</i>)＋<i>b</i> ≧ 0、移項して <i>a</i>＋<i>b</i> ≧ 2√(<i>ab</i>)。等号は √<i>a</i>＝√<i>b</i>、つまり <i>a</i>＝<i>b</i> のとき。</p>
+      <p><b>a + 1/a ≧ 2 の場合：</b><i>a</i>×(1/<i>a</i>)＝1 なので、√1＝1。両辺を2倍して <i>a</i>＋1/<i>a</i> ≧ 2。</p>
+    </div>
+
+    <div class="pt"><span class="t">⚠ 使える条件：</span>かならず <span class="hl"><i>a</i> ＞ 0</span>。たとえば <i>a</i>＝−1 だと <i>a</i>＋1/<i>a</i>＝−2 で、2以上になりません。<br>
+    2<sup><i>x</i></sup>＋2<sup>−<i>x</i></sup> の問題では、まず <i>a</i>＝2<sup><i>x</i></sup> ＞ 0 とおく（2の何乗も、かならず正の数）のがカギ。</div>
+  </div>
+</section>
+
+<!-- ================= 204 ================= -->
+<section class="prob" id="s204" data-key="s204">
+  <div class="ph"><span class="no">204</span><h2>次数を下げて、式を短くする</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q"><i class="m">x</i> ＝ 1 − √5，<i class="m">x</i><sup>2</sup> − 2<i>x</i> − <i>y</i> ＝ 0，<i>y</i> ＝ 4 のとき、<i>x</i><sup>4</sup> − 5<i>x</i><sup>3</sup> − 14<i>x</i> ＋ 3 の値を求める。</p>
+
+    <div class="easy"><span class="t">やさしい解説：4乗を直接計算しない</span>
+      <p>(1−√5)⁴ をそのまま展開するとたいへん。そこで「<i>x</i> がみたす2次方程式」を使って、<i>x</i>³, <i>x</i>⁴ を <b>「<i>x</i> の1次式」</b>に書き換えます。これを<b>次数下げ</b>といいます。</p>
+    </div>
+
+    <h3>① x がみたす2次方程式を作る</h3>
+    <div class="fb" data-label="式変形">
+      <span class="m"><i>y</i>＝4 を代入：<i>x</i><sup>2</sup> − 2<i>x</i> − 4 ＝ 0</span>
+      <span class="m"><span class="box"><i>x</i><sup>2</sup> ＝ 2<i>x</i> ＋ 4</span>　← これが「次数下げの道具」</span>
+    </div>
+    <p class="small" style="color:var(--sub);font-size:.9rem">確認：<i>x</i>−1＝−√5 の両辺を2乗すると <i>x</i>²−2<i>x</i>＋1＝5、つまり <i>x</i>²−2<i>x</i>−4＝0 になります。</p>
+
+    <h3>② x³ と x⁴ を1次式にする</h3>
+    <div class="fb" data-label="次数下げ">
+      <span class="m"><i>x</i><sup>3</sup> ＝ <i>x</i>·<i>x</i><sup>2</sup> ＝ <i>x</i>(2<i>x</i>＋4) ＝ 2<i>x</i><sup>2</sup>＋4<i>x</i> ＝ 2(2<i>x</i>＋4)＋4<i>x</i> ＝ <span class="box">8<i>x</i> ＋ 8</span></span>
+      <span class="m"><i>x</i><sup>4</sup> ＝ <i>x</i>·<i>x</i><sup>3</sup> ＝ <i>x</i>(8<i>x</i>＋8) ＝ 8<i>x</i><sup>2</sup>＋8<i>x</i> ＝ 8(2<i>x</i>＋4)＋8<i>x</i> ＝ <span class="box">24<i>x</i> ＋ 32</span></span>
+    </div>
+    <div class="easy"><span class="t">コツ</span>「<i>x</i>² が出てきたら (2<i>x</i>＋4) に置きかえる」をくり返すだけ。</div>
+
+    <h3>③ 式に代入してまとめる</h3>
+    <div class="fb soft" data-label="計算">
+      <span class="m"><i>x</i><sup>4</sup>−5<i>x</i><sup>3</sup>−14<i>x</i>＋3</span>
+      <span class="m">＝ (24<i>x</i>＋32) − 5(8<i>x</i>＋8) − 14<i>x</i> ＋ 3</span>
+      <span class="m">＝ 24<i>x</i>＋32 − 40<i>x</i> − 40 − 14<i>x</i> ＋ 3 ＝ −30<i>x</i> − 5</span>
+      <span class="m">ここへ <i>x</i>＝1−√5 を代入：−30(1−√5) − 5 ＝ −30＋30√5 − 5</span>
+    </div>
+    <div class="ans"><span class="al">答え</span><span class="av m">30√5 − 35</span></div>
+    <div class="check"><b>検算：</b>√5≒2.236 なので <i>x</i>≒−1.236。30√5−35≒32.08。もとの式に入れても <i>x</i>⁴≒2.33，−5<i>x</i>³≒9.44，−14<i>x</i>≒17.30，＋3 で合計≒32.07。ほぼ一致します。</div>
+  </div>
+</section>
+
+<!-- ================= 229 ================= -->
+<section class="prob" id="s229" data-key="s229">
+  <div class="ph"><span class="no">229</span><h2>複素数が等しい ⇒ 実部と虚部を比べる</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">(<i class="m">a</i><sup>2</sup>−3<i>ab</i><sup>2</sup>) ＋ (3<i>a</i><sup>2</sup><i>b</i>−<i>b</i><sup>2</sup>)<i>i</i> ＝ −<i>i</i> となる実数 <i>a</i>, <i>b</i> を求める。</p>
+
+    <div class="fb" data-label="複素数の相等">
+      <span class="m"><i>a</i>, <i>b</i>, <i>c</i>, <i>d</i> が実数のとき　<span class="box"><i>a</i>＋<i>bi</i> ＝ <i>c</i>＋<i>di</i> ⇔ <i>a</i>＝<i>c</i> かつ <i>b</i>＝<i>d</i></span></span>
+      <span class="m"><i>i</i> ＝ √(−1)，<i>i</i><sup>2</sup> ＝ −1</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：複素数ってなに？</span>
+      <p>「<b>実部（ふつうの数の部分）＋ 虚部（<i>i</i> がついた部分）</b>」の形の数です。たとえば 3＋2<i>i</i> の実部は 3、虚部は 2。</p>
+      <p>2つの複素数が等しいとは、<b>実部どうし・虚部どうしがそれぞれ等しい</b>ということ。右辺の −<i>i</i> は「0 ＋ (−1)<i>i</i>」なので、実部は 0、虚部は −1 です。</p>
+    </div>
+
+    <h3>① 実部と虚部を比べる</h3>
+    <div class="fb" data-label="連立方程式">
+      <span class="m">実部：<i>a</i><sup>2</sup> − 3<i>ab</i><sup>2</sup> ＝ 0　…(1)</span>
+      <span class="m">虚部：3<i>a</i><sup>2</sup><i>b</i> − <i>b</i><sup>2</sup> ＝ −1　…(2)</span>
+      <span class="m">(1) を因数分解：<i>a</i>(<i>a</i> − 3<i>b</i><sup>2</sup>) ＝ 0　⇒　<i>a</i>＝0 または <i>a</i>＝3<i>b</i><sup>2</sup></span>
+    </div>
+
+    <h3>② a＝0 の場合</h3>
+    <div class="fb soft" data-label="場合分け ①">
+      <span class="m">(2) に代入：−<i>b</i><sup>2</sup> ＝ −1　⇒　<i>b</i><sup>2</sup>＝1　⇒　<i>b</i>＝±1</span>
+    </div>
+
+    <h3>③ a＝3b² の場合</h3>
+    <p>(2) に代入すると 3·(3<i>b</i><sup>2</sup>)<sup>2</sup>·<i>b</i> − <i>b</i><sup>2</sup> ＝ −1、つまり <span class="m">27<i>b</i><sup>5</sup> − <i>b</i><sup>2</sup> ＋ 1 ＝ 0</span>。5次方程式になり、きれいな解は見つかりません。</p>
+    <div class="ans"><span class="al">答え</span><span class="av m">(<i>a</i>, <i>b</i>) ＝ (0, 1), (0, −1)　（③の5次方程式はきれいに解けない）</span></div>
+
+    <div class="pt"><span class="t">⚠ 式の写し間違いに注意：</span>③がきれいに解けないのは、問題の式が <span class="hl">(<i>a</i>＋<i>bi</i>)³ ＝ −<i>i</i></span> の展開形 <i>a</i>³−3<i>ab</i>²＋(3<i>a</i>²<i>b</i>−<i>b</i>³)<i>i</i> の写し間違い（2乗と3乗）かもしれないからです。教科書で確認してください。<br>
+    もしそうなら： <i>a</i>³−3<i>ab</i>²＝0 ⇒ <i>a</i>(<i>a</i>²−3<i>b</i>²)＝0。<i>a</i>＝0 なら −<i>b</i>³＝−1 で <i>b</i>＝1。<i>a</i>²＝3<i>b</i>² なら 8<i>b</i>³＝−1 で <i>b</i>＝−1/2，<i>a</i>＝±√3/2。</div>
+  </div>
+</section>
+
+<!-- ================= 251 ================= -->
+<section class="prob" id="s251" data-key="s251">
+  <div class="ph"><span class="no">251</span><h2>放物線と直線が交わる2点の距離</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">放物線 <i class="m">y</i>＝<i>x</i><sup>2</sup>−6<i>x</i>＋10 と直線 <i>y</i>＝3<i>x</i>＋<i>k</i> が P, Q で交わる。PQ ＝ 5√10 のとき、<i>k</i> を求める。</p>
+
+    <div class="fb" data-label="使う公式 2つ">
+      <span class="m">2点間の距離：A(<i>x</i><sub>1</sub>, <i>y</i><sub>1</sub>)，B(<i>x</i><sub>2</sub>, <i>y</i><sub>2</sub>) のとき　<span class="box">AB<sup>2</sup> ＝ (<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>)<sup>2</sup> ＋ (<i>y</i><sub>1</sub>−<i>y</i><sub>2</sub>)<sup>2</sup></span></span>
+      <span class="m">2次方程式 <i>ax</i><sup>2</sup>＋<i>bx</i>＋<i>c</i>＝0 の解の差：<span class="box">|<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>| ＝ √<i>D</i> / |<i>a</i>|</span>　（<i>D</i>＝<i>b</i><sup>2</sup>−4<i>ac</i>）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>
+      <ul>
+        <li>距離の公式は中3の<b>三平方の定理</b>そのもの。横の差と縦の差を2乗して足すと、斜めの距離の2乗になります。</li>
+        <li>解の差の公式は<b>解の公式</b>から出ます。解は <i>x</i>＝(−<i>b</i>±√<i>D</i>)/2<i>a</i>。＋とーの差をとると √<i>D</i> ÷ |<i>a</i>| だけ残ります。</li>
+      </ul>
+    </div>
+
+    <h3>① 交点の x 座標を x₁, x₂ とおく</h3>
+    <div class="fb soft" data-label="式変形">
+      <span class="m"><i>x</i><sup>2</sup>−6<i>x</i>＋10 ＝ 3<i>x</i>＋<i>k</i>　⇒　<span class="box"><i>x</i><sup>2</sup> − 9<i>x</i> ＋ 10 − <i>k</i> ＝ 0</span></span>
+      <span class="m">P(<i>x</i><sub>1</sub>, 3<i>x</i><sub>1</sub>＋<i>k</i>)，Q(<i>x</i><sub>2</sub>, 3<i>x</i><sub>2</sub>＋<i>k</i>)　← 直線 <i>y</i>＝3<i>x</i>＋<i>k</i> 上の点だから</span>
+    </div>
+
+    <h3>② 距離 PQ を x₁−x₂ で表す</h3>
+    <div class="fb" data-label="距離の計算">
+      <span class="m">PQ<sup>2</sup> ＝ (<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>)<sup>2</sup> ＋ {(3<i>x</i><sub>1</sub>＋<i>k</i>)−(3<i>x</i><sub>2</sub>＋<i>k</i>)}<sup>2</sup></span>
+      <span class="m">＝ (<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>)<sup>2</sup> ＋ {3(<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>)}<sup>2</sup> ＝ 10(<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>)<sup>2</sup></span>
+      <span class="m"><span class="box">PQ ＝ √10 |<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>|</span></span>
+    </div>
+    <div class="easy"><span class="t">なぜ 10 になる？</span>直線の傾きが 3 なので、横に 1 進むと縦に 3 進みます。斜めの長さは √(1²＋3²)＝√10。つまり<b>「横の差 × √10」</b>が距離です（<i>k</i> は消えます）。</div>
+    <p>PQ＝5√10 より √10|<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>|＝5√10、よって <span class="m"><span class="box">|<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>| ＝ 5</span></span></p>
+
+    <h3>③ 判別式から k を求める</h3>
+    <div class="fb" data-label="判別式">
+      <span class="m"><i>D</i> ＝ (−9)<sup>2</sup> − 4(10−<i>k</i>) ＝ 81 − 40 ＋ 4<i>k</i> ＝ 41 ＋ 4<i>k</i></span>
+      <span class="m"><i>a</i>＝1 なので |<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>| ＝ √(41＋4<i>k</i>) ＝ 5</span>
+      <span class="m">両辺を2乗：41＋4<i>k</i> ＝ 25　⇒　4<i>k</i> ＝ −16</span>
+    </div>
+    <div class="ans"><span class="al">答え</span><span class="av m"><i>k</i> ＝ −4</span></div>
+    <div class="check"><b>検算：</b><i>k</i>＝−4 なら <i>x</i>²−9<i>x</i>＋14＝0，(<i>x</i>−2)(<i>x</i>−7)＝0 で <i>x</i>＝2, 7。P(2, 2)，Q(7, 17)。PQ²＝5²＋15²＝250，PQ＝√250＝5√10 ✓。<br>
+    また <i>D</i>＝25＞0 なので、たしかに異なる2点で交わっています。</div>
+
+    <div class="pt"><span class="t">テストでの流れ：</span>①交点の <i>x</i> 座標を <i>x</i>₁, <i>x</i>₂ とおく → ②P, Q の座標を書く → ③距離の公式で PQ を出す → ④|<i>x</i>₁−<i>x</i>₂|＝5 → ⑤判別式で |<i>x</i>₁−<i>x</i>₂|＝√(41＋4<i>k</i>) → ⑥<i>k</i>＝−4</div>
+    <div class="easy"><span class="t">別解：解と係数の関係</span>(<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>)<sup>2</sup> ＝ (<i>x</i><sub>1</sub>＋<i>x</i><sub>2</sub>)<sup>2</sup> − 4<i>x</i><sub>1</sub><i>x</i><sub>2</sub> ＝ 9² − 4(10−<i>k</i>) ＝ 41＋4<i>k</i>。同じ式になります。こちらで覚えている人はこちらでもOK。</div>
+  </div>
+</section>
+
+<!-- ================= 261 ================= -->
+<section class="prob" id="s261" data-key="s261">
+  <div class="ph"><span class="no">261</span><h2>2つの円の共通接線：中心から直線までの距離＝半径</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">円 (<i class="m">x</i>＋1)<sup>2</sup>＋<i>y</i><sup>2</sup>＝1 と (<i>x</i>−4)<sup>2</sup>＋<i>y</i><sup>2</sup>＝4 の両方に直線 <i>y</i>＝<i>mx</i>＋<i>n</i> が接するとき、<i>n</i> を <i>m</i> で表す。</p>
+
+    <div class="fb" data-label="点と直線の距離">
+      <span class="m">点 (<i>p</i>, <i>q</i>) と直線 <i>ax</i>＋<i>by</i>＋<i>c</i>＝0 の距離：<span class="box"><span class="fr"><b>|<i>ap</i>＋<i>bq</i>＋<i>c</i>|</b><b>√(<i>a</i><sup>2</sup>＋<i>b</i><sup>2</sup>)</b></span></span></span>
+      <span class="m">円と直線が接する ⇔ <span class="box">中心から直線までの距離 ＝ 半径</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>接線は円に「ちょうど1点で触れる」直線。触れる点では、中心からの最短距離（垂直に下ろした長さ）が半径と同じになります。だから距離＝半径で式が作れます。</div>
+
+    <h3>① 2つの式を作る</h3>
+    <p>直線を <i>mx</i>−<i>y</i>＋<i>n</i>＝0 と書き、分母の √(<i>m</i>²＋1) をそろえます（<i>a</i>＝<i>m</i>, <i>b</i>＝−1, <i>c</i>＝<i>n</i>）。</p>
+    <div class="fb soft" data-label="接する条件">
+      <span class="m">円1：中心 (−1, 0)，半径 1　⇒　<span class="fr"><b>|−<i>m</i>＋<i>n</i>|</b><b>√(<i>m</i><sup>2</sup>＋1)</b></span> ＝ 1　…(1)</span>
+      <span class="m">円2：中心 (4, 0)，半径 2　⇒　<span class="fr"><b>|4<i>m</i>＋<i>n</i>|</b><b>√(<i>m</i><sup>2</sup>＋1)</b></span> ＝ 2　…(2)</span>
+    </div>
+
+    <h3>② 割り算のかわりに「分母を消す」</h3>
+    <div class="fb" data-label="式変形">
+      <span class="m">(1) より √(<i>m</i>²＋1)＝|<i>n</i>−<i>m</i>|。(2) に入れると　|4<i>m</i>＋<i>n</i>| ＝ 2|<i>n</i>−<i>m</i>|</span>
+      <span class="m">絶対値をはずす（＋と−の2通り）：4<i>m</i>＋<i>n</i> ＝ ±2(<i>n</i>−<i>m</i>)</span>
+      <span class="m">＋のとき：4<i>m</i>＋<i>n</i> ＝ 2<i>n</i>−2<i>m</i>　⇒　<span class="box"><i>n</i> ＝ 6<i>m</i></span></span>
+      <span class="m">−のとき：4<i>m</i>＋<i>n</i> ＝ −2<i>n</i>＋2<i>m</i>　⇒　3<i>n</i> ＝ −2<i>m</i>　⇒　<span class="box"><i>n</i> ＝ −<span class="fr"><b>2</b><b>3</b></span><i>m</i></span></span>
+    </div>
+    <div class="ans"><span class="al">答え</span><span class="av m"><i>n</i> ＝ 6<i>m</i>　または　<i>n</i> ＝ −(2/3)<i>m</i></span></div>
+
+    <div class="pt"><span class="t">⚠ 接線の本数は「4本」：</span>元の資料には「共通接線は2本」とありましたが、2つの円の中心の距離は 5、半径の和は 1＋2＝3 で、円は離れています。離れた2円の共通接線は<span class="hl">4本（外側2本＋内側2本）</span>です。</div>
+
+    <h3>③ どの直線？（確認）</h3>
+    <div class="easy"><span class="t">4本の中身</span>
+      <ul>
+        <li><b><i>n</i>＝6<i>m</i></b>：(1) に代入すると 5|<i>m</i>|＝√(<i>m</i>²＋1)、<i>m</i>²＝1/24。<i>m</i>＝±√6/12、<i>n</i>＝±√6/2（<b>外側</b>の接線2本。2つの円が同じ側にある）</li>
+        <li><b><i>n</i>＝−(2/3)<i>m</i></b>：(1) に代入すると (5/3)|<i>m</i>|＝√(<i>m</i>²＋1)、<i>m</i>²＝9/16。<i>m</i>＝±3/4、<i>n</i>＝∓1/2（<b>内側</b>の接線2本。2つの円の間を交差して通る）</li>
+      </ul>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 540 360" role="img" aria-label="2つの円と4本の共通接線">
+        <line x1="0" y1="180" x2="540" y2="180" stroke="var(--line)" stroke-width="1"/>
+        <line x1="150" y1="0" x2="150" y2="360" stroke="var(--line)" stroke-width="1"/>
+        <circle cx="90" cy="180" r="60" fill="var(--blue-bg)" stroke="var(--blue)" stroke-width="3"/>
+        <circle cx="390" cy="180" r="120" fill="var(--blue-bg)" stroke="var(--blue)" stroke-width="3"/>
+        <circle cx="90" cy="180" r="3" fill="var(--blue)"/>
+        <circle cx="390" cy="180" r="3" fill="var(--blue)"/>
+        <line x1="0" y1="137.1" x2="540" y2="26.9" stroke="var(--red)" stroke-width="2.5"/>
+        <line x1="0" y1="222.9" x2="540" y2="333.1" stroke="var(--red)" stroke-width="2.5"/>
+        <line x1="0" y1="322.5" x2="430" y2="0" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="7 5"/>
+        <line x1="0" y1="37.5" x2="430" y2="360" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="7 5"/>
+        <text x="72" y="184" font-size="13" fill="var(--blue)" font-family="sans-serif" text-anchor="end" dy="20">中心(−1,0) 半径1</text>
+        <text x="390" y="200" font-size="13" fill="var(--blue)" font-family="sans-serif" text-anchor="middle">中心(4,0) 半径2</text>
+        <text x="500" y="52" font-size="13" fill="var(--red)" font-family="sans-serif" text-anchor="end" font-weight="700">外側 n＝6m</text>
+        <text x="10" y="352" font-size="13" fill="var(--ink)" font-family="sans-serif" font-weight="700">内側 n＝−(2/3)m</text>
+      </svg>
+      <figcaption>赤の実線＝外側の接線2本、黒の点線＝内側の接線2本（どの直線も x 軸に垂直ではないので y＝mx＋n の形で表せる）</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= 320 (t) ================= -->
+<section class="prob" id="s320a" data-key="s320a">
+  <div class="ph"><span class="no">320</span><h2>t ＝ 2<sup>x</sup> ＋ 2<sup>−x</sup> の最小値（相加相乗平均）</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q"><i class="m">t</i> ＝ 2<sup><i>x</i></sup> ＋ 2<sup>−<i>x</i></sup> とおいて、<i>t</i> の最小値を求める。</p>
+    <div class="pt"><span class="t">中間テストの重要ポイント：</span>「相加相乗平均より」と<span class="hl">必ず書く</span>。<i>a</i>＞0 の確認と、等号成立の条件もセットで書く。</div>
+
+    <div class="fb" data-label="手順">
+      <span class="m"><i>a</i> ＝ 2<sup><i>x</i></sup> ＞ 0 とおく。すると 2<sup>−<i>x</i></sup> ＝ 1/<i>a</i>。　<i>t</i> ＝ <i>a</i> ＋ 1/<i>a</i></span>
+      <span class="m">相加相乗平均より　<span class="fr"><b><i>a</i>＋1/<i>a</i></b><b>2</b></span> ≧ √(<i>a</i>·1/<i>a</i>) ＝ 1　⇒　<span class="box"><i>t</i> ≧ 2</span></span>
+      <span class="m">等号成立：<i>a</i> ＝ 1/<i>a</i> ⇒ <i>a</i>＝1 ⇒ 2<sup><i>x</i></sup>＝1 ⇒ <i>x</i>＝0</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>
+      <p>2<sup>−<i>x</i></sup> は「2<sup><i>x</i></sup> の逆数」です（例：2<sup>−3</sup>＝1/8）。だから <i>a</i> とその逆数の和 <i>a</i>＋1/<i>a</i> の形になります。</p>
+      <p>「等号成立」は、<b>最小値が本当にその値になる瞬間があるか</b>の確認。<i>x</i>＝0 のとき 2⁰＋2⁰＝1＋1＝2 で、たしかに 2 になります。</p>
+    </div>
+    <div class="ans"><span class="al">答え</span><span class="av m"><i>t</i> の最小値は 2（そのとき <i>x</i>＝0）</span></div>
+  </div>
+</section>
+
+<section class="prob" id="s320b" data-key="s320b">
+  <div class="ph"><span class="no">320</span><h2>f(x) の最小値：t の範囲つき2次関数</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">上の <i class="m">t</i> を使って <i>f</i>(<i>x</i>) の最小値を求める。ここでも「<i>t</i> ≧ 2」を忘れない。<span style="color:var(--sub);font-size:.85rem">（<i>f</i>(<i>x</i>) の元の式は資料になく、<i>t</i> で表した式から解説しています）</span></p>
+
+    <div class="fb" data-label="t で表す">
+      <span class="m"><i>t</i><sup>2</sup> ＝ (2<sup><i>x</i></sup>＋2<sup>−<i>x</i></sup>)<sup>2</sup> ＝ 2<sup>2<i>x</i></sup> ＋ 2 ＋ 2<sup>−2<i>x</i></sup></span>
+      <span class="m"><span class="box">2<sup>2<i>x</i></sup> ＋ 2<sup>−2<i>x</i></sup> ＝ <i>t</i><sup>2</sup> − 2</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>(2<sup><i>x</i></sup>＋2<sup>−<i>x</i></sup>)² は (<i>A</i>＋<i>B</i>)² の展開。真ん中の 2·2<sup><i>x</i></sup>·2<sup>−<i>x</i></sup> は 2·1＝2 になるので「＋2」が出てきます。</div>
+
+    <div class="fb" data-label="平方完成">
+      <span class="m"><i>f</i>(<i>x</i>) ＝ <i>t</i><sup>2</sup> − 3√2 <i>t</i> ＋ 2</span>
+      <span class="m">＝ (<i>t</i> − <span class="fr"><b>3√2</b><b>2</b></span>)<sup>2</sup> − <span class="fr"><b>9</b><b>2</b></span> ＋ 2 ＝ <span class="box">(<i>t</i> − <span class="fr"><b>3√2</b><b>2</b></span>)<sup>2</sup> − <span class="fr"><b>5</b><b>2</b></span></span></span>
+    </div>
+    <div class="easy"><span class="t">平方完成のしくみ</span><i>t</i>² − 3√2<i>t</i> は、係数 3√2 の半分 (3√2/2) を使って (<i>t</i>−3√2/2)² にできます。ただし余分に出る (3√2/2)²＝18/4＝9/2 を引いておく必要があります。</div>
+
+    <div class="pt"><span class="t">重要：範囲のチェック</span>頂点（一番低い所）は <i>t</i>＝3√2/2 ≒ 2.12。<span class="hl"><i>t</i> ≧ 2 の範囲内</span>なので、ここで最小になり、最小値は −5/2。<br>
+    （もし頂点が <i>t</i>≧2 の範囲の外なら、最小値は端の <i>t</i>＝2 でとります。）</div>
+
+    <h3>そのときの x を求める</h3>
+    <div class="fb soft" data-label="逆算">
+      <span class="m"><i>a</i>＝2<sup><i>x</i></sup> とおくと <i>a</i>＋1/<i>a</i> ＝ 3√2/2。両辺に 2<i>a</i> をかけて　2<i>a</i><sup>2</sup> − 3√2<i>a</i> ＋ 2 ＝ 0</span>
+      <span class="m">解の公式：<i>a</i> ＝ <span class="fr"><b>3√2 ± √(18−16)</b><b>4</b></span> ＝ <span class="fr"><b>3√2 ± √2</b><b>4</b></span> ＝ √2　または　1/√2</span>
+      <span class="m">2<sup><i>x</i></sup>＝√2＝2<sup>1/2</sup> ⇒ <i>x</i>＝1/2　／　2<sup><i>x</i></sup>＝1/√2＝2<sup>−1/2</sup> ⇒ <i>x</i>＝−1/2</span>
+    </div>
+    <div class="ans"><span class="al">答え</span><span class="av m">最小値 −5/2（そのとき <i>x</i> ＝ 1/2, −1/2）</span></div>
+  </div>
+</section>
+
+<!-- ================= 341 ================= -->
+<section class="prob" id="s341a" data-key="s341a">
+  <div class="ph"><span class="no">341①</span><h2>指数法則：2<sup>x</sup>・2<sup>−x</sup> は定数</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q"><i class="m">f</i>(<i>x</i>) ＝ 2<sup><i>x</i></sup>・2<sup>−<i>x</i></sup> の最小値と、そのときの <i>x</i>。</p>
+    <div class="fb" data-label="指数法則">
+      <span class="m"><i>a</i><sup><i>p</i></sup> · <i>a</i><sup><i>q</i></sup> ＝ <i>a</i><sup><i>p</i>＋<i>q</i></sup>　　<i>a</i><sup>0</sup> ＝ 1</span>
+      <span class="m">2<sup><i>x</i></sup>·2<sup>−<i>x</i></sup> ＝ 2<sup><i>x</i>＋(−<i>x</i>)</sup> ＝ 2<sup>0</sup> ＝ <span class="box">1</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>かけ算では、2の右上の数（指数）が<b>足し算</b>になります。<i>x</i> と −<i>x</i> を足すと 0。どんな数でも0乗は 1 です。<i>x</i> がなくなるので、この関数はいつも 1 の<b>定数関数</b>です。</div>
+    <div class="ans"><span class="al">答え</span><span class="av m">最小値 1（すべての実数 <i>x</i> でこの値）</span></div>
+  </div>
+</section>
+
+<section class="prob" id="s341b" data-key="s341b">
+  <div class="ph"><span class="no">341②</span><h2>2<sup>x</sup> ＋ 2<sup>−x</sup> の最小値（320と同じ形）</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q"><i class="m">f</i>(<i>x</i>) ＝ 2<sup><i>x</i></sup> ＋ 2<sup>−<i>x</i></sup> の最小値と、そのときの <i>x</i>。</p>
+    <div class="fb" data-label="相加相乗平均">
+      <span class="m"><i>a</i>＝2<sup><i>x</i></sup>＞0 とおくと <i>f</i>(<i>x</i>)＝<i>a</i>＋1/<i>a</i></span>
+      <span class="m"><span class="fr"><b><i>a</i>＋1/<i>a</i></b><b>2</b></span> ≧ 1　⇒　<span class="box"><i>f</i>(<i>x</i>) ≧ 2</span>　等号：<i>a</i>＝1/<i>a</i> ⇒ <i>a</i>＝1 ⇒ 2<sup><i>x</i></sup>＝1 ⇒ <i>x</i>＝0</span>
+    </div>
+    <div class="pt">①と②の違い：①は<b>かけ算</b>（＝定数 1）、②は<b>足し算</b>（＝相加相乗平均で最小値 2）。符号を見間違えないこと。</div>
+    <div class="ans"><span class="al">答え</span><span class="av m">最小値 2（そのとき <i>x</i>＝0）</span></div>
+  </div>
+</section>
+
+<!-- ================= 355 ================= -->
+<section class="prob" id="s355" data-key="s355">
+  <div class="ph"><span class="no">355</span><h2>積分を含む関数：定積分を「文字A」とおく</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">積分を含む関数 <i class="m">f</i>(<i>x</i>) について、<i>f</i>(0)，<i>f</i>(2)，<i>f</i>(<i>x</i>)，<i>f</i>(<i>x</i>)＝0 の解を求める。<span style="color:var(--sub);font-size:.85rem">（元の問題文は資料になく、資料にある式から先を解説しています）</span></p>
+
+    <div class="fb" data-label="定積分の考え方">
+      <span class="m">上下の端が<b>数字</b>の定積分 ∫<sub>−2</sub><sup>2</sup> <i>f</i>(<i>t</i>) <i>dt</i> は<span class="box">ただの数（定数）</span>　⇒　<i>A</i> とおく</span>
+      <span class="m">∫<sub>0</sub><sup><i>x</i></sup>(3<i>t</i><sup>2</sup>＋2<i>t</i>−6) <i>dt</i> ＝ [<i>t</i><sup>3</sup>＋<i>t</i><sup>2</sup>−6<i>t</i>]<sub>0</sub><sup><i>x</i></sup> ＝ <i>x</i><sup>3</sup>＋<i>x</i><sup>2</sup>−6<i>x</i></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>積分は「<i>t</i> の式を <i>t</i> のべき乗ごとに1つ次数を上げる」計算（3<i>t</i>²→<i>t</i>³，2<i>t</i>→<i>t</i>²，−6→−6<i>t</i>）。上端が <i>x</i> なら答えは <i>x</i> の式、両端が数字なら答えはただの数になります。この「ただの数」を文字 <i>A</i> に置くと、<i>f</i>(<i>x</i>) が <i>A</i> を含む式で書けて、あとで <i>A</i> を決められます。</div>
+
+    <div class="fb soft" data-label="f(x) の形">
+      <span class="m"><i>f</i>(<i>x</i>) ＝ 2<i>x</i><sup>3</sup> ＋ (<i>A</i>−2)<i>x</i><sup>2</sup> ＋ (12−2<i>A</i>)<i>x</i> − 32</span>
+      <span class="m">積分条件から <span class="box"><i>A</i> ＝ 32</span></span>
+      <span class="m"><i>f</i>(<i>x</i>) ＝ 2<i>x</i><sup>3</sup> ＋ 30<i>x</i><sup>2</sup> − 52<i>x</i> − 32</span>
+    </div>
+    <div class="check"><b><i>A</i>＝32 の確かめ方：</b>∫<sub>−2</sub><sup>2</sup> で、<i>x</i>³ と <i>x</i> の項（奇関数）は 0 になり、<i>x</i>² と定数の項（偶関数）は 0 から 2 までの2倍になります。<br>
+    <i>A</i> ＝ 2∫<sub>0</sub><sup>2</sup>{(<i>A</i>−2)<i>t</i>²−32}<i>dt</i> ＝ 16(<i>A</i>−2)/3 − 128　⇒　3<i>A</i>＝16<i>A</i>−416　⇒　13<i>A</i>＝416　⇒　<i>A</i>＝32 ✓</div>
+
+    <h3>f(0)，f(2)，f(x)＝0 の解</h3>
+    <div class="fb" data-label="計算">
+      <span class="m"><i>f</i>(0) ＝ −32</span>
+      <span class="m"><i>f</i>(2) ＝ 16＋120−104−32 ＝ 0　← <i>x</i>＝2 が解だとわかる</span>
+      <span class="m"><i>f</i>(<i>x</i>) ＝ (<i>x</i>−2)(2<i>x</i><sup>2</sup>＋34<i>x</i>＋16) ＝ 2(<i>x</i>−2)(<i>x</i><sup>2</sup>＋17<i>x</i>＋8)</span>
+      <span class="m"><i>x</i><sup>2</sup>＋17<i>x</i>＋8＝0 を解の公式で：<i>x</i> ＝ <span class="fr"><b>−17 ± √(289−32)</b><b>2</b></span> ＝ <span class="fr"><b>−17 ± √257</b><b>2</b></span></span>
+    </div>
+    <div class="easy"><span class="t">因数定理のコツ</span><i>f</i>(2)＝0 なら (<i>x</i>−2) で割り切れます。3次方程式は「代入して0になる値を1つ見つける → 因数分解 → 残りの2次を解く」の流れです。</div>
+    <div class="ans"><span class="al">答え</span><span class="av m"><i>f</i>(0)＝−32，<i>f</i>(2)＝0　／　<i>f</i>(<i>x</i>)＝0 の解：<i>x</i>＝2，(−17±√257)/2</span></div>
+  </div>
+</section>
+
+<!-- ================= 桁数 ================= -->
+<section class="prob" id="sd1" data-key="sd1">
+  <div class="ph"><span class="no">桁数</span><h2>15<sup>15</sup> は何桁？（log の使い方）</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">15<sup>15</sup> の桁数を求める。ただし log<sub>10</sub>2＝0.3010，log<sub>10</sub>3＝0.4771 とする。<span style="color:var(--sub);font-size:.85rem">（資料に問題番号の記載なし）</span></p>
+
+    <div class="fb" data-label="log の意味と3つのルール">
+      <span class="m">log<sub>10</sub><i>N</i> ＝ <i>a</i>　⇔　<span class="box">10<sup><i>a</i></sup> ＝ <i>N</i></span>　（例：log<sub>10</sub>1000＝3）</span>
+      <span class="m">log(<i>AB</i>) ＝ log<i>A</i> ＋ log<i>B</i>　　log(<i>A</i>/<i>B</i>) ＝ log<i>A</i> − log<i>B</i>　　log(<i>A</i><sup><i>n</i></sup>) ＝ <i>n</i> log<i>A</i></span>
+      <span class="m"><span class="box">桁数 ＝ ⌊log<sub>10</sub><i>N</i>⌋ ＋ 1</span>　（⌊ ⌋ は小数点以下を切り捨て）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>
+      <p>log<sub>10</sub><i>N</i> は「<b>10を何乗すると N になるか</b>」を表す数。10¹＝10（2桁），10²＝100（3桁），10³＝1000（4桁）…と、<b>指数＋1</b>が桁数です。</p>
+      <p>だから log<sub>10</sub><i>N</i>＝17.6415 なら、<i>N</i>＝10<sup>17.6415</sup> は 10¹⁷ 以上 10¹⁸ 未満。10¹⁷ は18桁の数なので、<i>N</i> も<b>18桁</b>。小数部分は切り捨てて、1を足せばOK。</p>
+    </div>
+
+    <h3>① log₁₀15 を、与えられた値で作る</h3>
+    <div class="fb soft" data-label="分解">
+      <span class="m">15 ＝ 3 × 5 ＝ 3 × <span class="fr"><b>10</b><b>2</b></span></span>
+      <span class="m">log<sub>10</sub>15 ＝ log<sub>10</sub>3 ＋ log<sub>10</sub>10 − log<sub>10</sub>2 ＝ 1 ＋ log<sub>10</sub>3 − log<sub>10</sub>2</span>
+    </div>
+    <h3>② 代入する</h3>
+    <div class="fb" data-label="計算">
+      <span class="m">log<sub>10</sub>15 ＝ 1＋0.4771−0.3010 ＝ 1.1761</span>
+      <span class="m">log<sub>10</sub>15<sup>15</sup> ＝ 15 × 1.1761 ＝ <span class="box">17.6415</span>　⇒　10<sup>17</sup> ≦ 15<sup>15</sup> ＜ 10<sup>18</sup></span>
+    </div>
+    <div class="ans"><span class="al">答え</span><span class="av m">18桁</span></div>
+    <div class="check"><b>おまけ（先頭の数字）：</b>0.6415 は log<sub>10</sub>4＝2×0.3010＝0.6020 と log<sub>10</sub>5＝1−0.3010＝0.6990 の間なので、先頭の数字は 4（15<sup>15</sup>≒4.38×10<sup>17</sup>）。</div>
+  </div>
+</section>
+
+<section class="prob" id="sd2" data-key="sd2">
+  <div class="ph"><span class="no">桁数</span><h2>25<sup>26</sup> は何桁？　先頭の数字は？</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">25<sup>26</sup> の桁数と先頭の数字を求める（log<sub>10</sub>2＝0.3010，log<sub>10</sub>3＝0.4771）。<span style="color:var(--sub);font-size:.85rem">（資料に問題番号の記載なし）</span></p>
+
+    <h3>① まず底を 5 にそろえる</h3>
+    <div class="fb" data-label="変形">
+      <span class="m">25 ＝ 5<sup>2</sup> なので　25<sup>26</sup> ＝ (5<sup>2</sup>)<sup>26</sup> ＝ <span class="box">5<sup>52</sup></span>　（指数のかけ算：2×26）</span>
+      <span class="m">5 ＝ 10/2 なので　log<sub>10</sub>5 ＝ 1 − log<sub>10</sub>2 ＝ 1−0.3010 ＝ 0.6990</span>
+    </div>
+    <h3>② 桁数</h3>
+    <div class="fb" data-label="計算">
+      <span class="m">log<sub>10</sub>25<sup>26</sup> ＝ 52 × log<sub>10</sub>5 ＝ 52 × 0.6990 ＝ <span class="box">36.348</span>　⇒　10<sup>36</sup> ≦ 25<sup>26</sup> ＜ 10<sup>37</sup></span>
+    </div>
+    <div class="ans"><span class="al">答え</span><span class="av m">37桁</span></div>
+
+    <h3>③ 先頭の数字</h3>
+    <div class="fb soft" data-label="先頭の数字">
+      <span class="m">25<sup>26</sup> ＝ 10<sup>36.348</sup> ＝ 10<sup>36</sup> × 10<sup>0.348</sup></span>
+      <span class="m">log<sub>10</sub>2＝0.3010 ＜ 0.348 ＜ 0.4771＝log<sub>10</sub>3　⇒　2 ＜ 10<sup>0.348</sup> ＜ 3</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>10<sup>36</sup> は「1のあとに0が36個」の数。そこに 10<sup>0.348</sup>（＝1と10の間の数）をかけたのが 25<sup>26</sup> です。この 10<sup>0.348</sup> が 2 と 3 の間にあるので、先頭の数字は <b>2</b>（実際は約 2.23）。</div>
+    <div class="ans"><span class="al">答え</span><span class="av m">先頭の数字：2</span></div>
+  </div>
+</section>
+
+<!-- ================= まとめ ================= -->
+<section class="prob" id="sfinal" data-key="sfinal">
+  <div class="ph"><span class="no">直前</span><h2>テスト直前：ここだけ確認</h2><button class="done" type="button" aria-pressed="false">確認した</button></div>
+  <div class="body">
+    <ol class="sumlist">
+      <li><b>相加相乗平均：</b><i>a</i>＞0 なら <span class="box"><i>a</i>＋1/<i>a</i> ≧ 2</span>。等号は <i>a</i>＝1。</li>
+      <li><b>2<sup><i>x</i></sup>＋2<sup>−<i>x</i></sup>：</b><i>a</i>＝2<sup><i>x</i></sup>＞0 とおく。</li>
+      <li><b>問題320：</b><i>t</i>≧2 を必ず書く。最小値 −5/2、そのとき <i>x</i>＝±1/2。</li>
+      <li><b>問題341：</b>①は定数 1。②は相加相乗平均で最小値 2、<i>x</i>＝0。</li>
+      <li><b>問題204：</b><i>x</i>²＝2<i>x</i>＋4 で次数下げ。答え 30√5−35。</li>
+      <li><b>問題251：</b>PQ＝√10|<i>x</i>₁−<i>x</i>₂|、|<i>x</i>₁−<i>x</i>₂|＝√<i>D</i>。答え <i>k</i>＝−4。</li>
+      <li><b>問題261（接線）：</b>中心から直線までの距離＝半径。<i>n</i>＝6<i>m</i>，−(2/3)<i>m</i>。共通接線は4本。</li>
+      <li><b>問題229（複素数）：</b>実部と虚部をそれぞれ比較。</li>
+      <li><b>問題355：</b>定積分は定数 <i>A</i> とおく。<i>f</i>(2)＝0 で因数分解。</li>
+      <li><b>桁数：</b><span class="box">⌊log<sub>10</sub><i>N</i>⌋＋1</span>。15<sup>15</sup> は 18桁（log15＝1＋log3−log2）、25<sup>26</sup>＝5<sup>52</sup> は 37桁（log5＝1−log2）。</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+<footer>「答えをかくす」をオンにすると、答えがぼやけて表示されます。タップすると1つずつ見られます。「できた」の記録はこの端末のブラウザに保存されます。</footer>
+
+<script>
+(function(){
+  var KEY='math-midterm-done';
+  var done={};
+  function load(){try{var v=localStorage.getItem(KEY);done=v?JSON.parse(v)||{}:{};}catch(e){done={};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  var sections=[].slice.call(document.querySelectorAll('.prob'));
+  var progress=document.getElementById('progress');
+  function refresh(){
+    var n=0;
+    sections.forEach(function(s){
+      var b=s.querySelector('.done');var k=s.getAttribute('data-key');
+      var on=!!done[k];if(on)n++;
+      if(b)b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    progress.textContent=n+' / '+sections.length;
+  }
+  load();refresh();
+  sections.forEach(function(s){
+    var b=s.querySelector('.done');if(!b)return;
+    b.addEventListener('click',function(){
+      var k=s.getAttribute('data-key');
+      if(done[k])delete done[k];else done[k]=1;
+      save();refresh();
+    });
+  });
+  var hideBtn=document.getElementById('hideBtn');
+  hideBtn.addEventListener('click',function(){
+    var on=hideBtn.getAttribute('aria-pressed')!=='true';
+    hideBtn.setAttribute('aria-pressed',on?'true':'false');
+    document.body.classList.toggle('hide',on);
+    if(!on){[].forEach.call(document.querySelectorAll('.ans.shown'),function(a){a.classList.remove('shown');});}
+  });
+  [].forEach.call(document.querySelectorAll('.ans'),function(a){
+    a.addEventListener('click',function(){if(document.body.classList.contains('hide'))a.classList.toggle('shown');});
+  });
+})();
+</script>
+</body>
+</html>
