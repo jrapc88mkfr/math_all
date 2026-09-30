@@ -166,7 +166,7 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
 
 <nav class="nav" aria-label="目次">
   <div class="nav-in">
-    <a href="#p1">① 確率</a><a href="#p2">② 展開</a><a href="#p3">③ 領域</a><a href="#p4">④ 三角関数</a><a href="#pfinal">直前</a>
+    <a href="#p1">148</a><a href="#p2">202</a><a href="#p3">283</a><a href="#p4">302</a><a href="#pfinal">直前</a>
     <span class="tools">
       <span class="progress" id="progress" aria-live="polite"></span>
       <button class="btn" id="hideBtn" aria-pressed="false" type="button">答えをかくす</button>
@@ -184,98 +184,107 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
       <span class="sub">(1) ちょうど6回目のゲームで A が優勝する確率を求めよ。</span>
       <span class="sub">(2) A が優勝する確率を求めよ。</span></p>
 
-    <div class="fb" data-label="使う公式">
-      <span class="m">同じものを含む順列：<span class="box"><span class="fr"><b><i>n</i>!</b><b><i>p</i>! <i>q</i>! <i>r</i>!</b></span></span>　（<i>p</i>＋<i>q</i>＋<i>r</i>＝<i>n</i>）</span>
-      <span class="m">1つの並び方の確率 ＝ 各回の確率の<span class="box">積</span>　　全体の確率 ＝（並び方の数）×（1つの並び方の確率）</span>
+    <div class="fb" data-label="使う公式：二項係数（組み合わせ）">
+      <span class="m">同じ試行を <i>n</i> 回くり返し、「当たり」が <i>r</i> 回・「はずれ」が <i>n</i>−<i>r</i> 回となる並べ方の数：<span class="box"><sub><i>n</i></sub>C<sub><i>r</i></sub></span></span>
+      <span class="m">当たりの確率が <i>p</i> のとき、その並び方1通りの確率 ＝ <i>p</i><sup><i>r</i></sup>(1−<i>p</i>)<sup><i>n</i>−<i>r</i></sup>　⇒　全体 ＝ <span class="box"><sub><i>n</i></sub>C<sub><i>r</i></sub> <i>p</i><sup><i>r</i></sup>(1−<i>p</i>)<sup><i>n</i>−<i>r</i></sup></span></span>
     </div>
-    <div class="easy"><span class="t">やさしい解説：まず「引き分け」の確率</span>
-      <p>1回のゲームの結果は「A勝ち・B勝ち・引き分け」の3通りで、確率の合計は1。だから引き分けは <span class="m">1 − 1/3 − 1/3 ＝ 1/3</span>。3通りとも 1/3 です。</p>
-      <p>「先に4勝」なので、<b>引き分けは勝ち数に数えません</b>。</p>
+    <div class="easy"><span class="t">やさしい解説：2種類に「まとめて」しまう</span>
+      <p>1回の結果は「A勝ち（1/3）・B勝ち（1/3）・引き分け（1/3）」の3通り。でも今回知りたいのは<b>Aが何回勝ったか</b>だけなので、「B勝ち」と「引き分け」は区別せずに、まとめて<b>「Aが勝たなかった」</b>という1つのグループにしてしまいます。</p>
+      <p>「Aが勝たなかった」確率 ＝ 1/3（B勝ち）＋1/3（引き分け）＝ <b>2/3</b>。こうすると、1回ごとに「Aが勝つ（1/3）」か「Aが勝たない（2/3）」かの<b>2通りだけ</b>になり、<sub><i>n</i></sub>C<sub><i>r</i></sub> を使う普通の確率計算ができます。</p>
     </div>
 
     <h3>(1) ちょうど6回目に A が優勝する</h3>
     <div class="easy"><span class="t">状況を言いかえる</span>
-      <ul>
-        <li>6回目に A が4勝目 ⇒ <b>5回目までに A がちょうど3勝</b>、6回目は A の勝ち。</li>
-        <li>5回目までの残り2回は「B勝ち」か「引き分け」。B が4勝に届くことはないので、B の勝ち数 <i>b</i> は 0, 1, 2 の3通りに分けて数えます。</li>
-      </ul>
+      <p>6回目にAが4勝目 ⇒ <b>5回目までにAがちょうど3勝</b>（残り2回はどちらも「Aが勝たない」）、そして6回目はAの勝ち。</p>
     </div>
-    <div class="fb soft" data-label="場合分け（5回目まで）">
-      <span class="m">A：3勝，B：<i>b</i> 勝，引き分け：(2−<i>b</i>) 回　（合計5回）</span>
+    <div class="fb soft" data-label="5回のうち3回がA勝ちの並べ方">
+      <span class="m">5回のうち、どの3回がAの勝ちかを選ぶ：<span class="box"><sub>5</sub>C<sub>3</sub> ＝ <sub>5</sub>C<sub>2</sub> ＝ 10</span> 通り</span>
+      <span class="m">1つの並び方の確率：(1/3)<sup>3</sup> × (2/3)<sup>2</sup>　（A勝ち3回 × Aが勝たない2回）</span>
     </div>
+    <div class="easy"><span class="t">なぜ ₅C₃ と ₅C₂ は同じ？</span>「5回のうちAが勝つ3回を選ぶ」のと「5回のうちAが勝たない2回を選ぶ」のは<b>同じ選び方を裏返しただけ</b>。だから ₅C₃＝₅C₂＝10 になります（どちらを使ってもOK）。</div>
+    <div class="fb" data-label="計算">
+      <span class="m"><i>P</i> ＝ <sub>5</sub>C<sub>3</sub> (1/3)<sup>3</sup>(2/3)<sup>2</sup> × (1/3)　　　← 最後の×(1/3)は「6回目にAが勝つ」確率</span>
+      <span class="m">＝ 10 × <span class="fr"><b>1</b><b>27</b></span> × <span class="fr"><b>4</b><b>9</b></span> × <span class="fr"><b>1</b><b>3</b></span> ＝ <span class="fr"><b>40</b><b>729</b></span></span>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av m">40/729</span></div>
+    <div class="pt"><span class="t">テストで書く一言：</span>「B勝ちと引き分けをまとめて『Aが勝たない』（確率2/3）として扱う」と一言書いておくと、なぜ3通りなのに2通りの計算でよいのかが伝わります。</div>
+
+    <h3>(2) A が優勝する確率</h3>
+    <div class="easy"><span class="t">引き分けは「先送り」にすぎない</span>
+      <p>引き分けは、AにもBにも勝ち星がつかないので、<b>誰が優勝するかには影響しません</b>。ただゲームが1回分長引くだけです。だから「引き分けを全部とばして、AかBが決着した回（＝勝負がついた回）だけを見る」と考えても、最終的にどちらが先に4勝するかは変わりません。</p>
+      <p>「勝負がついた回」だけを見ると、Aが勝つかBが勝つかの確率はそれぞれ (1/3)：(1/3) ＝ <b>1：1</b>。つまりAが勝つ条件付き確率は <span class="box">1/2</span>（五分五分のコイン投げと同じ）になります。</p>
+    </div>
+    <div class="fb" data-label="五分五分のコイン投げで「先に4勝」">
+      <span class="m">「勝負がついた回」を1回のコイン投げ（A勝ち確率 1/2）とみなすと、Aが<i>ちょうどk</i>回目の決着で4勝目をあげる確率は</span>
+      <span class="m"><span class="box"><sub><i>k</i>−1</sub>C<sub>3</sub> (1/2)<sup><i>k</i>−1</sup> × (1/2)</span>　（<i>k</i>＝4, 5, 6, 7）</span>
+    </div>
+    <div class="easy"><span class="t">なぜ k は4〜7だけ？</span>4勝するには最低4回の決着が必要（<i>k</i>＝4）。また、相手Bも4勝すれば終わるので、決着は最大でも7回（4勝3敗）まで。だから <i>k</i>＝4,5,6,7 の4通りを全部たせば、Aが優勝するすべての場合をもれなく数えられます。</div>
     <div class="tblwrap">
       <table class="tbl">
-        <thead><tr><th>B の勝ち数</th><th>内訳（5回）</th><th>並び方</th><th>6回目まで含めた確率</th></tr></thead>
+        <thead><tr><th><i>k</i>（決着の回数）</th><th>4</th><th>5</th><th>6</th><th>7</th></tr></thead>
         <tbody>
-          <tr><td>0勝</td><td>A3勝・引分2回</td><td class="m">5!/(3!·2!) ＝ 10</td><td class="m">10·(1/3)<sup>6</sup></td></tr>
-          <tr><td>1勝</td><td>A3勝・B1勝・引分1回</td><td class="m">5!/(3!·1!·1!) ＝ 20</td><td class="m">20·(1/3)<sup>6</sup></td></tr>
-          <tr><td>2勝</td><td>A3勝・B2勝</td><td class="m">5!/(3!·2!) ＝ 10</td><td class="m">10·(1/3)<sup>6</sup></td></tr>
-          <tr class="total"><td colspan="2">合計</td><td class="m">40</td><td class="m">40·(1/3)<sup>6</sup></td></tr>
+          <tr><td>確率</td><td class="m"><sub>3</sub>C<sub>3</sub>(1/2)<sup>4</sup>＝1/16</td><td class="m"><sub>4</sub>C<sub>3</sub>(1/2)<sup>5</sup>＝1/8</td><td class="m"><sub>5</sub>C<sub>3</sub>(1/2)<sup>6</sup>＝5/32</td><td class="m"><sub>6</sub>C<sub>3</sub>(1/2)<sup>7</sup>＝5/32</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="easy"><span class="t">なぜ (1/3)⁶ ？</span>1つの並び方は6回（5回＋6回目のAの勝ち）の結果が全部そろったもの。どの回の結果も確率 1/3 なので、かけ算して (1/3)⁶。</div>
-    <div class="fb" data-label="計算">
-      <span class="m"><i>P</i> ＝ (10＋20＋10) × (1/3)<sup>6</sup> ＝ 40 × <span class="fr"><b>1</b><b>729</b></span> ＝ <span class="box"><span class="fr"><b>40</b><b>729</b></span></span></span>
+    <div class="fb soft" data-label="合計">
+      <span class="m"><i>P</i>(A優勝) ＝ 1/16＋1/8＋5/32＋5/32 ＝ 2/32＋4/32＋5/32＋5/32 ＝ <span class="box">16/32 ＝ 1/2</span></span>
     </div>
-    <div class="ans"><span class="al">答 (1)</span><span class="av m">40/729</span></div>
-
-    <h3>(2) A が優勝する確率</h3>
-    <div class="fb" data-label="対称性で解く">
-      <span class="m">A と B は勝つ確率が同じ（どちらも 1/3）⇒ <i>P</i>(A優勝) ＝ <i>P</i>(B優勝)</span>
-      <span class="m">どちらかが必ず優勝する ⇒ <i>P</i>(A優勝) ＋ <i>P</i>(B優勝) ＝ 1</span>
-      <span class="m">2<i>P</i>(A優勝) ＝ 1　⇒　<span class="box"><i>P</i>(A優勝) ＝ 1/2</span></span>
-    </div>
-    <div class="easy"><span class="t">やさしい解説</span>「立場が完全に入れかわっても同じ」なら、勝つ確率は同じ。優勝者は必ず1人決まるので、2人で 1 を分け合って 1/2 ずつです。</div>
-    <div class="pt"><span class="t">書いておきたい一言：</span>引き分けがずっと続く確率は (1/3)ⁿ → 0 なので、<span class="hl">ゲームは必ず終わる</span>と考えてよい（だから合計が 1）。<br>
-    ⚠ この方法は A と B の確率が<b>等しいとき</b>だけ使えます。問題の数値（1/3, 1/3）が教科書と同じか確認しておきましょう。</div>
     <div class="ans"><span class="al">答 (2)</span><span class="av m">1/2</span></div>
+    <div class="pt"><span class="t">検算のショートカット：</span>AとBは条件が完全に対称（どちらも勝つ確率1/3）なので、最初から <i>P</i>(A優勝)＋<i>P</i>(B優勝)＝1、<i>P</i>(A優勝)＝<i>P</i>(B優勝) より <span class="hl">1/2</span> と即答することもできます。上の組み合わせの計算は、それが本当に正しいことを確かめる裏付けになっています。</div>
   </div>
 </section>
 
 <!-- ================= ② Exercise 202 ================= -->
 <section class="prob" id="p2" data-key="p2">
-  <div class="ph"><span class="no">202</span><h2>3つの項の6乗の展開：x の項の係数から a を求める</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="ph"><span class="no">202</span><h2>2項定理：x² の係数から a を求め、x⁻⁶ の係数を出す</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
   <div class="body">
-    <p class="q"><span class="m">(<i>ax</i> ＋ <span class="fr"><b>1</b><b><i>ax</i></b></span> ＋ <i>a</i><sup>2</sup><i>x</i><sup>2</sup>)<sup>6</sup></span> を展開したところ、<i>x</i> の項の係数は 560 であった（<i>a</i>＞0）。このとき <i>a</i> の値を求めよ。また、<i>x</i><sup>−1</sup> の項の係数を求めよ。</p>
+    <p class="q"><i class="m">a</i>＞0 とする。<span class="m">(<i>ax</i> ＋ <span class="fr"><b>2</b><b><i>a</i><sup>2</sup><i>x</i></b></span>)<sup>10</sup></span> を展開したとき、<i>x</i><sup>2</sup> の項の係数が 560 であった。<i>a</i> の値を求めよ。また、そのときの <i>x</i><sup>−6</sup>（＝1/<i>x</i><sup>6</sup>）の項の係数を求めよ。</p>
 
-    <div class="fb" data-label="多項定理（3つの項）">
-      <span class="m">(<i>X</i>＋<i>Y</i>＋<i>Z</i>)<sup><i>n</i></sup> の一般項：<span class="box"><span class="fr"><b><i>n</i>!</b><b><i>p</i>! <i>q</i>! <i>r</i>!</b></span> <i>X</i><sup><i>p</i></sup><i>Y</i><sup><i>q</i></sup><i>Z</i><sup><i>r</i></sup></span>　（<i>p</i>＋<i>q</i>＋<i>r</i>＝<i>n</i>）</span>
-      <span class="m">指数法則：<i>a</i><sup><i>p</i></sup>·<i>a</i><sup><i>q</i></sup> ＝ <i>a</i><sup><i>p</i>＋<i>q</i></sup>　　(<i>a</i><sup><i>p</i></sup>)<sup><i>q</i></sup> ＝ <i>a</i><sup><i>pq</i></sup>　　1/<i>a</i> ＝ <i>a</i><sup>−1</sup></span>
+    <div class="fb" data-label="2項定理（公式）">
+      <span class="m">(<i>X</i>＋<i>Y</i>)<sup><i>n</i></sup> の一般項（<i>r</i>＝0,1,…,<i>n</i>）：<span class="box"><sub><i>n</i></sub>C<sub><i>r</i></sub> <i>X</i><sup><i>n</i>−<i>r</i></sup><i>Y</i><sup><i>r</i></sup></span></span>
+      <span class="m">指数法則：<i>a</i><sup><i>p</i></sup>·<i>a</i><sup><i>q</i></sup> ＝ <i>a</i><sup><i>p</i>＋<i>q</i></sup>　　(<i>a</i><sup><i>p</i></sup>)<sup><i>q</i></sup> ＝ <i>a</i><sup><i>pq</i></sup>　　1/<i>a</i><sup><i>k</i></sup> ＝ <i>a</i><sup>−<i>k</i></sup></span>
     </div>
-    <div class="easy"><span class="t">やさしい解説：6個のカッコから1つずつ選ぶ</span>
-      <p>6個のカッコから、それぞれ3つの項 <i>X</i>＝<i>ax</i>，<i>Y</i>＝1/(<i>ax</i>)，<i>Z</i>＝<i>a</i>²<i>x</i>² のどれかを選んでかけ合わせます。<i>X</i> を <i>p</i> 個、<i>Y</i> を <i>q</i> 個、<i>Z</i> を <i>r</i> 個選ぶと、その選び方は 6!/(<i>p</i>!<i>q</i>!<i>r</i>!) 通りです。</p>
+    <div class="easy"><span class="t">やさしい解説：2項定理は「10個のカッコから選ぶ」</span>
+      <p>(<i>X</i>＋<i>Y</i>)<sup>10</sup> は (<i>X</i>＋<i>Y</i>) を10回かけ算したもの。10個のカッコそれぞれから <i>X</i> か <i>Y</i> のどちらかを1つ選んで掛け合わせると考えると、「<i>Y</i> を <i>r</i> 個選ぶ（残り10−<i>r</i>個は<i>X</i>）」の選び方が <sub>10</sub>C<sub><i>r</i></sub> 通りです。これが係数になります。</p>
+      <p>今回は <i>X</i>＝<i>ax</i>，<i>Y</i>＝2/(<i>a</i><sup>2</sup><i>x</i>) です。</p>
     </div>
 
-    <h3>① 使う項をしぼる：x の指数を数える</h3>
-    <div class="fb soft" data-label="指数の条件">
-      <span class="m"><i>X</i>：<i>x</i><sup>1</sup>，<i>Y</i>：<i>x</i><sup>−1</sup>，<i>Z</i>：<i>x</i><sup>2</sup> なので、<i>x</i> の指数は　<span class="box"><i>p</i> − <i>q</i> ＋ 2<i>r</i></span></span>
-      <span class="m"><i>x</i><sup>1</sup> の項：<i>p</i>＋<i>q</i>＋<i>r</i>＝6，<i>p</i>−<i>q</i>＋2<i>r</i>＝1</span>
-      <span class="m"><i>p</i>＝6−<i>q</i>−<i>r</i> を代入 ⇒ 6−2<i>q</i>＋<i>r</i>＝1 ⇒ <i>r</i>＝2<i>q</i>−5</span>
+    <h3>① 一般項を作り、x の指数を整理する</h3>
+    <div class="fb soft" data-label="一般項の計算">
+      <span class="m">一般項 ＝ <sub>10</sub>C<sub><i>r</i></sub> (<i>ax</i>)<sup>10−<i>r</i></sup> <span class="fr"><b>2</b><b><i>a</i><sup>2</sup><i>x</i></b></span><sup><i>r</i></sup> ＝ <sub>10</sub>C<sub><i>r</i></sub> <i>a</i><sup>10−<i>r</i></sup><i>x</i><sup>10−<i>r</i></sup> · 2<sup><i>r</i></sup><i>a</i><sup>−2<i>r</i></sup><i>x</i><sup>−<i>r</i></sup></span>
+      <span class="m">＝ <span class="box"><sub>10</sub>C<sub><i>r</i></sub> 2<sup><i>r</i></sup> <i>a</i><sup>10−3<i>r</i></sup> <i>x</i><sup>10−2<i>r</i></sup></span></span>
     </div>
-    <div class="easy"><span class="t">当てはまる (p, q, r) をもれなく探す</span>
-      <ul>
-        <li><i>r</i>＝2<i>q</i>−5 が 0 以上になる最小は <i>q</i>＝3 → <i>r</i>＝1，<i>p</i>＝6−3−1＝2 ✓</li>
-        <li><i>q</i>＝4 なら <i>r</i>＝3，<i>p</i>＝−1 ✗（負の個数はありえない）。<i>q</i>≦2 なら <i>r</i> が負で ✗。</li>
-      </ul>
-      <p>よって <b>(<i>p</i>, <i>q</i>, <i>r</i>) ＝ (2, 3, 1) の1通りだけ</b>。「もれなく」を確認するのが大事です。</p>
-    </div>
-    <div class="fb" data-label="x の項の係数">
-      <span class="m">選び方の数：6!/(2!·3!·1!) ＝ 720/12 ＝ 60　　<i>a</i> の部分：<i>a</i><sup>2</sup>·<i>a</i><sup>−3</sup>·<i>a</i><sup>2</sup> ＝ <i>a</i></span>
-      <span class="m">係数は <span class="box">60<i>a</i></span> ＝ 560　⇒　<span class="box"><i>a</i> ＝ 28/3</span></span>
-    </div>
-    <div class="ans"><span class="al">答</span><span class="av m"><i>a</i> ＝ 28/3</span></div>
-    <div class="easy"><span class="t">近道：a の指数は x の指数と同じ</span>3つの項は、どれも (<i>ax</i>)<sup><i>k</i></sup>（<i>k</i>＝1, −1, 2）の形です。だから何個かかけても <i>a</i> の指数と <i>x</i> の指数はいつも同じ。<i>x</i><sup>1</sup> の項なら <i>a</i><sup>1</sup>、<i>x</i><sup>−1</sup> の項なら <i>a</i><sup>−1</sup> が自動的についてきます。</div>
+    <div class="easy"><span class="t">やさしい解説：指数だけ集める</span><i>a</i> の指数は「<i>ax</i>から来た(10−<i>r</i>)個」＋「2/(<i>a</i>²<i>x</i>)から来た−2<i>r</i>個」＝10−<i>r</i>−2<i>r</i>＝10−3<i>r</i>。<i>x</i> の指数も同じように「(10−<i>r</i>)−<i>r</i>＝10−2<i>r</i>」とまとめられます。</div>
 
-    <h3>② x⁻¹ の項の係数</h3>
-    <div class="fb" data-label="x⁻¹ の項">
-      <span class="m"><i>p</i>＋<i>q</i>＋<i>r</i>＝6，<i>p</i>−<i>q</i>＋2<i>r</i>＝−1 ⇒ 6−2<i>q</i>＋<i>r</i>＝−1 ⇒ <i>r</i>＝2<i>q</i>−7</span>
-      <span class="m"><i>q</i>＝4 → <i>r</i>＝1，<i>p</i>＝1 ✓　（<i>q</i>＝5 → <i>r</i>＝3，<i>p</i>＝−2 ✗）　⇒　(<i>p</i>, <i>q</i>, <i>r</i>) ＝ (1, 4, 1)</span>
-      <span class="m">選び方：6!/(1!·4!·1!) ＝ 30　　<i>a</i> の部分：<i>a</i>·<i>a</i><sup>−4</sup>·<i>a</i><sup>2</sup> ＝ <i>a</i><sup>−1</sup></span>
-      <span class="m">係数 ＝ 30/<i>a</i> ＝ 30 ÷ (28/3) ＝ 90/28 ＝ <span class="box"><span class="fr"><b>45</b><b>14</b></span></span></span>
+    <h3>② x² の項の r を決める</h3>
+    <div class="fb" data-label="x²の条件">
+      <span class="m">10−2<i>r</i> ＝ 2　⇒　<span class="box"><i>r</i> ＝ 4</span></span>
     </div>
-    <div class="ans"><span class="al">答</span><span class="av m"><i>x</i><sup>−1</sup> の項の係数：45/14</span></div>
-    <div class="pt"><span class="t">確認：</span><i>a</i>＝28/3 はあまりきれいな値ではないので、問題の数字（560 など）が教科書と合っているか確かめておくと安心です。解き方（指数の条件 → (<i>p</i>, <i>q</i>, <i>r</i>) を決める → 多項定理）は変わりません。</div>
+    <div class="fb soft" data-label="係数の計算">
+      <span class="m">係数 ＝ <sub>10</sub>C<sub>4</sub> 2<sup>4</sup> <i>a</i><sup>10−12</sup> ＝ 210 × 16 × <i>a</i><sup>−2</sup> ＝ <span class="box">3360/<i>a</i><sup>2</sup></span></span>
+    </div>
+    <div class="fb" data-label="aを求める">
+      <span class="m">3360/<i>a</i><sup>2</sup> ＝ 560　⇒　<i>a</i><sup>2</sup> ＝ 3360÷560 ＝ 6　⇒　（<i>a</i>＞0 より）<span class="box"><i>a</i> ＝ √6</span></span>
+    </div>
+    <div class="ans"><span class="al">答</span><span class="av m">a ＝ √6</span></div>
+    <div class="pt"><span class="t">テストで書く一言：</span><sub>10</sub>C<sub>4</sub>＝210 の計算は <span class="hl">10·9·8·7／4·3·2·1</span> で出す、と書いておくと計算過程が伝わりやすい（5040／24＝210）。</div>
+
+    <h3>③ x⁻⁶ の項の係数（a＝√6 を使う）</h3>
+    <div class="fb soft" data-label="x⁻⁶の条件">
+      <span class="m">10−2<i>r</i> ＝ −6　⇒　<span class="box"><i>r</i> ＝ 8</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>x²のときと同じ一般項の式に、今度は <i>r</i>＝8 を入れるだけ。式の形はそのまま使い回せます。</div>
+    <div class="fb" data-label="係数の計算">
+      <span class="m">係数 ＝ <sub>10</sub>C<sub>8</sub> 2<sup>8</sup> <i>a</i><sup>10−24</sup> ＝ <sub>10</sub>C<sub>2</sub> × 256 × <i>a</i><sup>−14</sup> ＝ 45×256×<i>a</i><sup>−14</sup> ＝ <span class="box">11520/<i>a</i><sup>14</sup></span></span>
+    </div>
+    <div class="fb soft" data-label="a=√6 を代入">
+      <span class="m"><i>a</i><sup>14</sup> ＝ (√6)<sup>14</sup> ＝ 6<sup>7</sup> ＝ 279936</span>
+      <span class="m">係数 ＝ 11520／279936 ＝ <span class="box">10/243</span>　（分子・分母を1152で約分）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：(√6)¹⁴ の計算</span>√6 を14回かけると、2個ずつペアにして (√6)²＝6 が7セットできる、と考えると (√6)<sup>14</sup>＝6<sup>7</sup> とすぐ分かります。指数が偶数のときはこの「ペアにする」考え方が使えます。</div>
+    <div class="ans"><span class="al">答</span><span class="av m">x⁻⁶ の項の係数：10/243</span></div>
+    <div class="pt"><span class="t">計算の流れのまとめ：</span>①一般項を <sub>10</sub>C<sub><i>r</i></sub>のかたちで作る → ②目標の <i>x</i> の指数から <i>r</i> を決める → ③その <i>r</i> を代入して係数を出す（この流れは <i>r</i>＝4 でも <i>r</i>＝8 でも同じ）。</div>
   </div>
 </section>
 
@@ -293,10 +302,20 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
       <span class="m">|<i>x</i>−<i>a</i>| ＋ |<i>y</i>−<i>b</i>| ≦ <i>r</i> は、中心 (<i>a</i>, <i>b</i>)，中心から頂点までの距離 <i>r</i> の<span class="box">ひし形（内部と周を含む）</span></span>
       <span class="m">この問題：中心 (3, 3)，<i>r</i>＝2　⇒　頂点 <span class="box">(5, 3)　(3, 5)　(1, 3)　(3, 1)</span></span>
     </div>
-    <div class="easy"><span class="t">やさしい解説：なぜひし形？</span>
-      <p>まず |<i>x</i>|＋|<i>y</i>|≦2 を考えます。<i>x</i>≧0, <i>y</i>≧0 の部分では <i>x</i>＋<i>y</i>≦2（直線より下の三角形）。他の3つの象限も同じ形になり、あわせて原点中心のひし形です。それを右へ3、上へ3 ずらしたのが今回の領域です。</p>
-      <p>頂点は、例えば <i>y</i>＝3 のとき |<i>x</i>−3|≦2 なので <i>x</i>＝1 と 5。<i>x</i>＝3 のとき |<i>y</i>−3|≦2 なので <i>y</i>＝1 と 5、と確かめられます。</p>
+    <div class="easy"><span class="t">やさしい解説：絶対値は「場合分け」で外す</span>
+      <p>絶対値の中の符号が分からないので、<i>u</i>＝<i>x</i>−3，<i>v</i>＝<i>y</i>−3 とおいて、|<i>u</i>|＋|<i>v</i>|≦2 を <b>u, v それぞれの符号で4つに場合分け</b>します。</p>
     </div>
+    <div class="fb soft" data-label="4つの場合分け">
+      <span class="m">① <i>u</i>≧0, <i>v</i>≧0 のとき：|<i>u</i>|＝<i>u</i>，|<i>v</i>|＝<i>v</i> ⇒ <span class="box"><i>u</i>＋<i>v</i>≦2</span></span>
+      <span class="m">② <i>u</i>≧0, <i>v</i>＜0 のとき：|<i>u</i>|＝<i>u</i>，|<i>v</i>|＝−<i>v</i> ⇒ <span class="box"><i>u</i>−<i>v</i>≦2</span></span>
+      <span class="m">③ <i>u</i>＜0, <i>v</i>≧0 のとき：|<i>u</i>|＝−<i>u</i>，|<i>v</i>|＝<i>v</i> ⇒ <span class="box">−<i>u</i>＋<i>v</i>≦2</span></span>
+      <span class="m">④ <i>u</i>＜0, <i>v</i>＜0 のとき：|<i>u</i>|＝−<i>u</i>，|<i>v</i>|＝−<i>v</i> ⇒ <span class="box">−<i>u</i>−<i>v</i>≦2</span>　（＝<i>u</i>＋<i>v</i>≧−2）</span>
+    </div>
+    <div class="easy"><span class="t">4つの式を絵にすると…</span>
+      <p>①〜④はどれも「傾き±1の直線より内側」を表す不等式です。<i>uv</i>平面上でこの4つを同時に満たす範囲は、4点 (2,0)，(0,2)，(−2,0)，(0,−2) を頂点とするひし形になります（①の u+v≦2 は右上の辺、②の u−v≦2 は右下の辺、…というように、4つの式がひし形の4辺をそれぞれ1本ずつ作ります）。</p>
+      <p><i>u</i>＝<i>x</i>−3，<i>v</i>＝<i>y</i>−3 を元に戻す（<i>x</i>軸方向に+3、<i>y</i>軸方向に+3ずらす）と、頂点は (5,3)，(3,5)，(1,3)，(3,1) になります。</p>
+    </div>
+    <div class="pt"><span class="t">検算：</span>①の頂点は u＋v＝2 上で v＝0（u軸上）の点 u＝2 → (x,y)=(5,3)、u＝0（v軸上）の点 v＝2 → (x,y)=(3,5)。同じように②③④からも残り2つの頂点が出て、先に求めた4頂点と一致します。</div>
     <figure class="fig">
       <svg viewBox="0 0 440 440" role="img" aria-label="中心(3,3)のひし形の領域D">
         <defs><pattern id="g3" width="60" height="60" patternUnits="userSpaceOnUse" x="40" y="40"><path d="M60 0H0V60" fill="none" stroke="var(--line)" stroke-width="1"/></pattern></defs>
@@ -370,7 +389,7 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
 
 <!-- ================= ④ 三角関数 ================= -->
 <section class="prob" id="p4" data-key="p4">
-  <div class="ph"><span class="no">三角<br>関数</span><h2>2倍角で変形 → 合成 → 最大・最小と解の個数</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="ph"><span class="no">302</span><h2>2倍角で変形 → 合成 → 最大・最小と解の個数</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
   <div class="body">
     <p class="q">0 ≦ <i class="m">θ</i> ≦ π を満たす実数 <i>θ</i> について、<span class="m"><i>f</i>(<i>θ</i>) ＝ 2sin<sup>2</sup><i>θ</i> − 4cos<sup>2</sup><i>θ</i> ＋ 6√3 sin<i>θ</i> cos<i>θ</i></span> とする。
       <span class="sub">(1) <i>f</i>(<i>θ</i>) を2倍角を用いた形に変形せよ。</span>
@@ -438,8 +457,8 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
   <div class="ph"><span class="no">直前</span><h2>ここだけ確認</h2><button class="done" type="button" aria-pressed="false">確認した</button></div>
   <div class="body">
     <ol class="sumlist">
-      <li><b>A148（確率）：</b>引き分け＝1−1/3−1/3＝1/3。(1) 5回目まででAがちょうど3勝、Bは0・1・2勝の場合分け → <span class="box">40/729</span>。(2) 対称性で <span class="box">1/2</span>。</li>
-      <li><b>202（展開）：</b>各項の <i>x</i> の指数 (1, −1, 2) から <i>p</i>−<i>q</i>＋2<i>r</i>＝目標、<i>p</i>＋<i>q</i>＋<i>r</i>＝6。<i>a</i>＝28/3，<i>x</i><sup>−1</sup> の係数 45/14。</li>
+      <li><b>148（確率）：</b>「Aが勝たない」（B勝ち＋引分＝2/3）とまとめてCで計算。(1) ₅C₃(1/3)³(2/3)²×(1/3)＝<span class="box">40/729</span>。(2) 引き分けを除いて決着回だけのコイン投げ(1/2)に直し、k=4〜7を合計 → <span class="box">1/2</span>。</li>
+      <li><b>202（2項定理）：</b>一般項 <sub>10</sub>C<sub><i>r</i></sub>2<sup><i>r</i></sup><i>a</i><sup>10−3<i>r</i></sup><i>x</i><sup>10−2<i>r</i></sup>。x²は<i>r</i>＝4でa＝√6、x⁻⁶は<i>r</i>＝8で係数10/243。</li>
       <li><b>283（領域）：</b>|<i>x</i>−3|＋|<i>y</i>−3|≦2 は中心(3,3)のひし形。(2) 最大 13 at (5,3)。(3) (<i>x</i>−2)²＋(<i>y</i>−1)²−5 で最大 12 at (3,5)。<span class="hl">最大・最小は頂点</span>。</li>
       <li><b>三角関数：</b>2倍角で <i>f</i>＝−1−3cos2<i>θ</i>＋3√3sin2<i>θ</i> → 合成して −1＋6sin(2<i>θ</i>−π/6)（<i>α</i>＝π/6）。最大 5，最小 −7，<i>f</i>＝4 は2個。<span class="hl"><i>θ</i> の範囲チェック</span>を忘れずに。</li>
     </ol>
