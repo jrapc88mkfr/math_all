@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中学生ルール表</title>
+<style>
+  :root {
+    --bg: #f6f7f4;
+    --ink: #1f2a2e;
+    --muted: #5d6b70;
+    --line: #d5dad6;
+    --card: #ffffff;
+    --life: #2f7d6d;
+    --study: #3a5fa0;
+    --sport: #c0652b;
+    --ng: #a63a3a;
+    --ng-bg: #fbeeee;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    line-height: 1.7;
+  }
+  main { max-width: 960px; margin: 0 auto; padding: 32px 16px 56px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; letter-spacing: .04em; }
+  .lead { color: var(--muted); margin: 0 0 24px; font-size: .95rem; }
+  .time-box {
+    background: var(--card);
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    font-weight: 700;
+  }
+  .time-box small { display: block; font-weight: 400; color: var(--muted); }
+  .wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    min-width: 640px;
+  }
+  th, td { border: 1px solid var(--line); padding: 14px 16px; vertical-align: top; text-align: left; }
+  thead th { background: var(--ink); color: #fff; font-size: .95rem; }
+  thead th:first-child { width: 90px; }
+  tbody th { color: #fff; text-align: center; font-size: 1.1rem; letter-spacing: .1em; }
+  tr.life th { background: var(--life); }
+  tr.study th { background: var(--study); }
+  tr.sport th { background: var(--sport); }
+  ul { margin: 0; padding-left: 1.2em; }
+  li { margin: 2px 0; }
+  td.ng { background: var(--ng-bg); }
+  td.ng li::marker { color: var(--ng); }
+  footer { margin-top: 24px; color: var(--muted); font-size: .85rem; }
+  @media print {
+    body { background: #fff; }
+    main { padding: 0; }
+    .wrap { overflow: visible; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>中学生ルール表</h1>
+  <p class="lead">生活・勉強・運動のルールと、守れなかったときの対応</p>
+
+  <div class="time-box">
+    スマホの使用時間：水曜は1日1時間まで／土・日・休日は1日1.5時間まで／それ以外の平日は1日30分まで
+    <small>基本は連絡専用。ゲーム・SNSは禁止（インスタのみ「生活」のルールに従う）。夜9時30分以降は親に預ける。</small>
+  </div>
+
+  <div class="wrap">
+    <table>
+      <thead>
+        <tr><th>区分</th><th>ルール内容</th><th>違反時の対応</th></tr>
+      </thead>
+      <tbody>
+        <tr class="life">
+          <th scope="row">生活</th>
+          <td>
+            <ul>
+              <li>朝は起こされたら一発で起きる（スマホ禁止）</li>
+              <li>ソファーで寝ない</li>
+              <li>起きたらすぐにごはんの準備をする</li>
+              <li>夜10時までに寝る</li>
+              <li>スマホは連絡専用（ゲーム・SNS禁止）</li>
+              <li>夜9時30分以降は親に預ける</li>
+              <li>食事中はスマホ禁止</li>
+              <li>セキュリティのため、ノートンによる監視は必須（高校生になるまで）</li>
+              <li>洗濯物（制服など）はすぐに出す</li>
+              <li>自分の物の片付けをきちんとする（机もきれいに保つ）</li>
+              <li>後回しにしない。片付け、勉強などを優先する</li>
+              <li>いじけない。ふてくされない</li>
+              <li>インスタはテストで15番以内（1〜15番）に入ったときだけ使ってよい（SNS禁止の例外。「頑張ったから」などの理由での例外は絶対になし）</li>
+              <li>インスタの時間も、その日のスマホ使用時間に含める</li>
+            </ul>
+          </td>
+          <td class="ng">
+            <ul>
+              <li>一発で起きられない日はスマホなし</li>
+              <li>夜更かしした日はスマホなし</li>
+              <li>ゲーム/SNS使用は即没収</li>
+              <li>ノートンを外す・設定を変えるのは即没収</li>
+              <li>洗濯物を出さなかった日、片付けをしなかった日はスマホなし</li>
+              <li>テストで16番以下になったらインスタは封印（次のテストで15番以内に戻るまで）</li>
+              <li>封印中にインスタを使ったらスマホなし</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="study">
+          <th scope="row">勉強</th>
+          <td>
+            <ul>
+              <li>勉強中はスマホを絶対に見ない（別の部屋に置く）</li>
+              <li>宿題は毎日必ず終わらせる</li>
+              <li>学校ワークをためない</li>
+              <li>公文は土日・休日は3枚、平日は少なくても1枚はやる</li>
+              <li>英検の勉強を水曜・土日・休日に30分行う</li>
+              <li>テスト前は勉強時間を増やす</li>
+              <li>成績40番以下はスマホ没収</li>
+            </ul>
+          </td>
+          <td class="ng">
+            <ul>
+              <li>勉強中にスマホを見たら即没収</li>
+              <li>宿題未完了はスマホなし</li>
+              <li>ワークをためたらスマホ停止</li>
+              <li>公文未実施日（平日1枚・休日3枚に届かない日）はスマホなし</li>
+              <li>英検の勉強をしなかった日はスマホなし</li>
+              <li>成績40番以下は成績が戻るまで使用不可</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="sport">
+          <th scope="row">運動</th>
+          <td>
+            <ul>
+              <li>部活・体育・自主トレをしっかりやる</li>
+              <li>週数回は体を動かす</li>
+              <li>運動をさぼらない</li>
+              <li>体調管理（睡眠・食事）を大切にする</li>
+            </ul>
+          </td>
+          <td class="ng">
+            <ul>
+              <li>運動をさぼった日はスマホなし</li>
+              <li>生活リズムを整えるまでスマホ制限</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>このルールは親子で話し合って決め、必要に応じて見直します。</footer>
+</main>
+</body>
+</html>
