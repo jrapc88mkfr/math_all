@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>正規分布・標本平均・二項分布｜どれを使う？Zの求め方</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f5fa; --panel:#ffffff; --ink:#16233b; --sub:#54627c; --line:#d3dce8;
+  --red:#d0212f; --red-bg:#fff1f2; --red-ink:#ffffff;
+  --blue:#1d5fa8; --blue-bg:#eaf3fc;
+  --mark:#ffe873; --mark-bg:#fff8d6; --mark-line:#e0b400;
+  --green:#2e7d4f; --green-bg:#eaf7ee;
+  --ans-bg:#16233b; --ans-ink:#ffffff;
+  --grid:rgba(29,95,168,.08);
+  --shadow:0 1px 0 rgba(22,35,59,.06), 0 8px 24px -14px rgba(22,35,59,.35);
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  --math:"STIX Two Text","Times New Roman","Noto Serif JP","Yu Mincho",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+    --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+    --blue:#82bbff; --blue-bg:#13263b;
+    --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+    --green:#7fd19f; --green-bg:#122a1c;
+    --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+    --grid:rgba(130,187,255,.07);
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+  --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+  --blue:#82bbff; --blue-bg:#13263b;
+  --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+  --green:#7fd19f; --green-bg:#122a1c;
+  --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+  --grid:rgba(130,187,255,.07);
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:auto;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--sans);font-size:16px;line-height:1.85;
+}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.hero{max-width:960px;margin:0 auto;padding:34px 18px 8px}
+.hero h1{margin:0;font-size:clamp(1.5rem,5vw,2.3rem);font-weight:900;line-height:1.35;letter-spacing:.02em}
+.hero h1 span{display:inline-block;border:4px solid var(--red);border-radius:12px;padding:0 .35em;margin-right:.2em;color:var(--red);transform:rotate(-1.5deg)}
+.hero p{margin:12px 0 0;color:var(--sub);max-width:42em}
+.legend{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:22px 0 4px}
+.legend > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.86rem;line-height:1.6;box-shadow:var(--shadow)}
+.legend b{display:block;margin-bottom:4px;font-size:.9rem}
+.swatch{display:inline-block;width:1.6em;height:1em;vertical-align:-.15em;margin-right:.4em;border-radius:3px}
+.sw-red{border:2.5px solid var(--red);background:var(--red-bg)}
+.sw-blue{border-left:5px solid var(--blue);background:var(--blue-bg)}
+.sw-mark{border-left:5px solid var(--mark-line);background:var(--mark-bg)}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:960px;margin:0 auto;padding:8px 18px;display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 12px;line-height:1.7}
+.nav a:hover{border-color:var(--red);color:var(--red)}
+.tools{margin-left:auto;display:flex;gap:8px;flex:none;padding-left:8px}
+.btn{font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:3px 12px;line-height:1.7}
+.btn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.progress{font-size:.82rem;font-weight:700;color:var(--sub);white-space:nowrap;align-self:center}
+
+main{max-width:960px;margin:0 auto;padding:12px 18px 60px}
+.prob{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:26px 0;padding:0 0 18px;box-shadow:var(--shadow);overflow:hidden}
+.ph{display:flex;align-items:stretch;border-bottom:2px solid var(--ink);margin-bottom:16px}
+.ph .no{flex:none;min-width:4.6rem;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--panel);font-weight:900;font-size:1.15rem;padding:8px 10px;letter-spacing:.03em;text-align:center;line-height:1.3}
+.ph .htext{flex:1;align-self:center;padding:10px 16px}
+.ph .htext .tag{display:block;font-size:.74rem;font-weight:700;color:var(--red);letter-spacing:.06em;margin-bottom:1px}
+.ph h2{margin:0;font-size:1.05rem;font-weight:700;line-height:1.5}
+.ph .done{margin:8px 12px 8px 0;align-self:center}
+.body{padding:0 clamp(14px,3vw,24px)}
+h3{font-size:1rem;font-weight:900;margin:22px 0 6px;padding-bottom:3px;border-bottom:2px dotted var(--line)}
+p{margin:8px 0}
+.q{border:2px dashed var(--line);border-radius:10px;padding:10px 14px;margin:0 0 14px}
+.q::before{content:"問題";display:inline-block;font-weight:900;font-size:.8rem;background:var(--ink);color:var(--panel);border-radius:4px;padding:0 8px;margin-right:8px;line-height:1.6}
+.src{color:var(--sub);font-size:.85rem}
+
+.m{font-family:var(--math);font-size:1.12em;line-height:1.9}
+.m i,i.m{font-style:italic}
+sup,sub{line-height:0;font-size:.72em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.25;margin:0 .18em;font-size:.95em}
+.fr > b{font-weight:inherit;padding:0 .25em}
+.fr > b:first-child{border-bottom:1.5px solid currentColor}
+
+.fb{position:relative;margin:24px 0 14px;padding:16px 16px 10px;border:3px solid var(--red);border-radius:12px;background:var(--red-bg)}
+.fb::before{content:attr(data-label);position:absolute;top:-.95em;left:14px;background:var(--red);color:var(--red-ink);font-weight:900;font-size:.82rem;line-height:1.7;padding:0 12px;border-radius:999px}
+.fb .m{display:block;overflow-x:auto;padding:1px 0}
+.fb .m + .m{margin-top:2px}
+.fb.soft{border-style:dashed;border-width:2.5px}
+.box{font-family:var(--math);display:inline-block;border:2.5px solid var(--red);border-radius:6px;padding:0 .4em;background:var(--panel)}
+
+.easy{margin:14px 0;padding:12px 16px;background:var(--blue-bg);border-left:6px solid var(--blue);border-radius:0 10px 10px 0}
+.easy > .t{display:block;font-weight:900;color:var(--blue);font-size:.92rem;margin-bottom:2px}
+.easy > .t::before{content:"💡 "}
+.easy ul,.easy ol{margin:6px 0;padding-left:1.3em}
+.easy li{margin:3px 0}
+.pt{margin:14px 0;padding:10px 16px;background:var(--mark-bg);border-left:6px solid var(--mark-line);border-radius:0 10px 10px 0}
+.pt > .t{font-weight:900}
+.hl{background:linear-gradient(transparent 55%,var(--mark) 55%);font-weight:700}
+
+.ans{margin:16px 0 4px;background:var(--ans-bg);color:var(--ans-ink);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.ans .al{flex:none;font-weight:900;font-size:.85rem;background:var(--red);color:var(--red-ink);border-radius:999px;padding:0 12px;line-height:1.7}
+.ans .av{font-weight:700;font-size:1.05rem;flex:1;min-width:0}
+body.hide .ans{cursor:pointer}
+body.hide .ans:not(.shown) .av{filter:blur(9px);user-select:none}
+body.hide .ans:not(.shown)::after{content:"タップで答えを見る";font-size:.78rem;opacity:.75;margin-left:auto}
+
+.check{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 12px;margin:10px 0;font-size:.92rem}
+.check b{color:var(--blue)}
+.done{font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--panel);color:var(--sub);border-radius:999px;padding:0 12px;line-height:1.9}
+.done[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--panel)}
+.done[aria-pressed="true"]::before{content:"✓ "}
+.fig{margin:14px 0;text-align:center}
+.fig svg{max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.fig figcaption{font-size:.82rem;color:var(--sub);margin-top:4px}
+.tblwrap{overflow-x:auto;margin:12px 0}
+table.tbl{border-collapse:collapse;width:100%;min-width:480px;font-size:.92rem;text-align:center}
+.tbl th,.tbl td{border:1.5px solid var(--ink);padding:7px 8px}
+.tbl th{background:var(--ink);color:var(--panel);font-weight:700}
+.tbl td.m{font-size:1.02em}
+.tbl td.left,.tbl th.left{text-align:left}
+.choice3{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:16px 0}
+.choice3 > div{border:2px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--panel)}
+.choice3 .num{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--panel);align-items:center;justify-content:center;font-weight:900;font-size:.85rem;margin-right:6px}
+.choice3 strong{font-size:1rem}
+.sumlist{list-style:none;margin:0;padding:0;counter-reset:s}
+.sumlist li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px dotted var(--line)}
+.sumlist li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--red);color:var(--red);font-weight:900;text-align:center;line-height:25px}
+.sumlist li:last-child{border-bottom:0}
+.memo{background:var(--green-bg);border:2px solid var(--green);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:.95rem}
+.memo b{color:var(--green)}
+footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-size:.82rem}
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .ph .no{min-width:3.6rem;font-size:1rem}
+  .ph h2{font-size:1rem}
+  .fb{padding:16px 12px 8px}
+  .tools{padding-left:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .nav,.done,.tools{display:none}
+  body{background:#fff;color:#000}
+  .prob{break-inside:avoid;box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1><span>統計</span>正規分布・標本平均・二項分布　どれを使う？Zの求め方</h1>
+  <p>問題を見たら、まず「何を確率変数 X として考えているか」を確認する。<strong>赤枠の公式</strong>で3つの型を覚え、青い解説で理由を確認、黄色いところでテストの注意点を押さえましょう。</p>
+  <div class="legend" aria-label="この資料の見かた">
+    <div><b><span class="swatch sw-red"></span>赤枠＝覚える公式・式変形</b>テストで書く式です。</div>
+    <div><b><span class="swatch sw-blue"></span>青＝やさしい解説</b>中学の知識でわかるように説明します。</div>
+    <div><b><span class="swatch sw-mark"></span>黄＝テストでのポイント</b>書き忘れ・減点されやすいところ。</div>
+  </div>
+</div>
+
+<nav class="nav" aria-label="目次">
+  <div class="nav-in">
+    <a href="#kijun">判断基準</a><a href="#s1">①母標準化</a><a href="#s2">②標本平均</a><a href="#s3">③二項分布</a><a href="#r25">練習25</a><a href="#r24">練習24</a><a href="#r27">練習27</a><a href="#pfinal">直前</a>
+    <span class="tools">
+      <span class="progress" id="progress" aria-live="polite"></span>
+      <button class="btn" id="hideBtn" aria-pressed="false" type="button">答えをかくす</button>
+    </span>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= 判断基準 ================= -->
+<section class="prob" id="kijun" data-key="kijun">
+  <div class="ph"><span class="no">判断<br>基準</span><div class="htext"><span class="tag">まず覚えること</span><h2>何を確率変数 X として考えているかを確認する</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <div class="choice3">
+      <div><span class="num">1</span><strong>個々のデータ X</strong><br>身長・点数・測定値など<br>→ 母集団を標準化</div>
+      <div><span class="num">2</span><strong>標本平均 X̄</strong><br>「平均が○○より大きい・小さい」<br>→ 標本平均を標準化</div>
+      <div><span class="num">3</span><strong>成功回数 X</strong><br>コイン・サイコロなど<br>→ 二項分布を使う</div>
+    </div>
+
+    <div class="fb" data-label="3つのZの公式（全部まとめて）">
+      <span class="m">① 個々のデータ：<span class="box"><i>Z</i> ＝ (<i>X</i>−<i>μ</i>) / <i>σ</i></span></span>
+      <span class="m">② 標本平均：<span class="box"><i>Z</i> ＝ (X̄−<i>μ</i>) / (<i>σ</i>/√<i>n</i>)</span></span>
+      <span class="m">③ 二項分布の正規近似：<span class="box"><i>Z</i> ＝ (<i>X</i>−<i>np</i>) / √{<i>np</i>(1−<i>p</i>)}</span></span>
+    </div>
+
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th class="left">種類</th><th class="left">使う場面</th><th>Zの式</th><th>標準偏差に使う値</th></tr></thead>
+        <tbody>
+          <tr><td class="left">① 母集団の標準化</td><td class="left">正規分布N(μ,σ²)の個々の値Xを標準化</td><td class="m">(X−μ)/σ</td><td class="m">σ</td></tr>
+          <tr><td class="left">② 標本平均の標準化</td><td class="left">標本平均 X̄ の確率を求める</td><td class="m">(X̄−μ)/(σ/√n)</td><td class="m">σ/√n</td></tr>
+          <tr><td class="left">③ 二項分布の正規近似</td><td class="left">二項分布B(n,p)の成功回数Xを近似</td><td class="m">(X−np)/√{np(1−p)}</td><td class="m">√{np(1−p)}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pt"><span class="t">一番大事な見分け方：</span>「<span class="hl">平均</span>」と書いてあれば②、「<span class="hl">○回成功した回数</span>」なら③。それ以外の普通の測定値・得点などなら、まず①を考える。</div>
+
+    <div class="easy"><span class="t">やさしい解説：なぜ3種類も公式があるの？</span>
+      <p>どれも「<b>平均からどれだけ離れているかを、ばらつきの大きさ（標準偏差）を単位にして測る</b>」という同じ考え方です。何を測るか（1個のデータ／平均／成功回数）によって、分母に入れる「ばらつきの大きさ」が変わるだけです。</p>
+      <ul>
+        <li>①は、1個1個のデータそのもののばらつき ＝ <i>σ</i></li>
+        <li>②は、たくさん集めて平均をとると、ばらつきが小さくなる ＝ <i>σ</i>/√<i>n</i></li>
+        <li>③は、2択を<i>n</i>回くり返したときの「成功した回数」のばらつき ＝ √{<i>np</i>(1−<i>p</i>)}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ①母集団 ================= -->
+<section class="prob" id="s1" data-key="s1">
+  <div class="ph"><span class="no">①</span><div class="htext"><span class="tag">母集団の標準化</span><h2>個々のデータ X を標準化する</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <div class="fb" data-label="①の公式">
+      <span class="m"><i>X</i> ～ N(<i>μ</i>, <i>σ</i><sup>2</sup>) のとき　<span class="box"><i>Z</i> ＝ (<i>X</i>−<i>μ</i>) / <i>σ</i></span>　（<i>Z</i>～N(0,1)）</span>
+    </div>
+    <div class="easy"><span class="t">①のイメージ</span>「この1個のデータは、平均からどれくらい離れている？」を、標準偏差 <i>σ</i> を単位にして測り直します（単位を「cm」や「点」から「標準偏差いくつ分」に変換するイメージ）。</div>
+
+    <h3>例えばこんな問題</h3>
+    <p class="q">あるテストの点数 <i class="m">X</i> は、平均60点、標準偏差10点の正規分布に従う。70点を取った人の <i>Z</i> 値を求めよ。</p>
+    <div class="fb soft" data-label="代入するだけ">
+      <span class="m"><i>Z</i> ＝ (70−60)/10 ＝ <span class="box">1</span></span>
+    </div>
+    <div class="ans"><span class="al">答</span><span class="av m">Z ＝ 1（70点は平均より標準偏差1個分だけ高い）</span></div>
+  </div>
+</section>
+
+<!-- ================= ②標本平均 ================= -->
+<section class="prob" id="s2" data-key="s2">
+  <div class="ph"><span class="no">②</span><div class="htext"><span class="tag">標本平均の標準化</span><h2>標本平均 X̄ を標準化する</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <div class="fb" data-label="②の公式">
+      <span class="m">標本平均の標準偏差：<span class="box"><i>σ</i>(X̄) ＝ <i>σ</i>/√<i>n</i></span></span>
+      <span class="m">したがって　<span class="box"><i>Z</i> ＝ (X̄−<i>μ</i>) / (<i>σ</i>/√<i>n</i>)</span></span>
+    </div>
+    <div class="pt"><span class="t">①との最大の違い：</span>個々のデータXなら分母は<span class="hl">σ</span>。標本平均X̄なら分母は<span class="hl">σ/√n</span>。ここを混同すると大きく減点されます。</div>
+    <div class="easy"><span class="t">やさしい解説：なぜ √n で割る？</span>1人だけ測るとデータは大きくばらつきます。でも、<i>n</i>人集めて平均をとると、高い人と低い人が打ち消し合って、<b>平均の値そのもののばらつきは小さくなります</b>。人数<i>n</i>が多いほどばらつきが小さくなる度合いが「√<i>n</i>で割る」という形で表れます。</div>
+
+    <h3 id="r29">練習29：標本平均 X̄ が48より小さい確率</h3>
+    <p class="q">応用例題3において、標本の大きさを400とするとき、標本平均 X̄ が48より小さい値をとる確率を求めよ。</p>
+
+    <div class="fb soft" data-label="STEP1：何を求めている？">
+      <span class="m">「標本平均X̄」が48より小さい確率　⇒　<span class="box">② 標本平均の標準化</span>を使う</span>
+    </div>
+    <div class="fb" data-label="STEP2：標本平均の標準偏差">
+      <span class="m"><i>σ</i>(X̄) ＝ <i>σ</i>/√400 ＝ <span class="box"><i>σ</i>/20</span></span>
+    </div>
+    <div class="fb soft" data-label="STEP3：Zに直す">
+      <span class="m"><i>Z</i> ＝ (X̄−<i>μ</i>) / (<i>σ</i>/√400)</span>
+      <span class="m">P(X̄＜48) ＝ P[ <i>Z</i> ＜ (48−<i>μ</i>)/(<i>σ</i>/√400) ]</span>
+    </div>
+    <div class="check"><b>注：</b><i>μ</i> と <i>σ</i> は「応用例題3」で与えられている値を代入します（この練習単独では数値が決まらないので、ここでは式の形まで確認します）。</div>
+    <div class="pt"><span class="t">覚え方：</span>「平均をたくさん集めたX̄」だから、ばらつきが小さくなって <span class="hl">σ → σ/√n</span>。</div>
+  </div>
+</section>
+
+<!-- ================= ③二項分布 ================= -->
+<section class="prob" id="s3" data-key="s3">
+  <div class="ph"><span class="no">③</span><div class="htext"><span class="tag">二項分布の正規近似</span><h2>成功回数 X を二項分布・正規近似で扱う</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <div class="fb" data-label="二項分布の公式">
+      <span class="m">1回ごとに2択（成功確率<i>p</i>）の試行を<i>n</i>回くり返すとき、成功回数<i>X</i>は　<span class="box"><i>X</i> ～ B(<i>n</i>, <i>p</i>)</span></span>
+      <span class="m">E(<i>X</i>) ＝ <i>np</i>　　V(<i>X</i>) ＝ <i>np</i>(1−<i>p</i>)　　<i>σ</i> ＝ √{<i>np</i>(1−<i>p</i>)}</span>
+      <span class="m"><i>n</i>が大きいとき、正規分布で近似：<i>X</i> ≈ N(<i>np</i>, <i>np</i>(1−<i>p</i>))　⇒　<span class="box"><i>Z</i> ＝ (<i>X</i>−<i>np</i>) / √{<i>np</i>(1−<i>p</i>)}</span></span>
+    </div>
+    <div class="easy"><span class="t">二項分布の代表例</span>コインの表・裏、サイコロの「1が出る・出ない」、合格・不合格、当たり・はずれなど、<b>1回ごとに2択</b>になるもの。「<span class="hl">2択 × n回</span>」を見つけたら B(<i>n</i>,<i>p</i>) を疑いましょう。</div>
+    <div class="pt"><span class="t">ポイント：</span>「二項分布→正規近似」の場合は、まず<b>平均 np</b> と<b>標準偏差 √{np(1−p)}</b> を作ってから <i>Z</i> にする（いきなり公式に数字を入れない）。</div>
+
+    <h3 id="r25">練習25：さいころを180回投げる</h3>
+    <p class="q">サイコロ1個を180回投げる。「1の目が出る回数」を <i class="m">X</i> とするとき、20 ≦ <i>X</i> ≦ 45 となる確率を求めよ。</p>
+
+    <div class="fb soft" data-label="STEP1：どの分布？">
+      <span class="m">1回ごとに「1が出る／出ない」の2択 ⇒ <span class="box">二項分布</span>　　<i>n</i>＝180，<i>p</i>＝1/6　⇒　<i>X</i> ～ B(180, 1/6)</span>
+    </div>
+    <div class="fb" data-label="STEP2：平均・分散・標準偏差">
+      <span class="m">E(<i>X</i>) ＝ 180×1/6 ＝ <span class="box">30</span></span>
+      <span class="m">V(<i>X</i>) ＝ 180×1/6×5/6 ＝ <span class="box">25</span></span>
+      <span class="m"><i>σ</i> ＝ √25 ＝ <span class="box">5</span>　⇒　<i>X</i> ≈ N(30, 25)</span>
+    </div>
+    <div class="fb soft" data-label="STEP3：Zに直す">
+      <span class="m"><i>Z</i> ＝ (<i>X</i>−30)/5</span>
+      <span class="m">P(20≦<i>X</i>≦45) ＝ P((20−30)/5 ≦ <i>Z</i> ≦ (45−30)/5) ＝ <span class="box">P(−2 ≦ <i>Z</i> ≦ 3)</span></span>
+    </div>
+    <div class="fb" data-label="標準正規分布表を読む">
+      <span class="m">P(−2≦<i>Z</i>≦3) ＝ Φ(3) − Φ(−2)</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：Φ(z)って何？</span>Φ(<i>z</i>) は「<i>Z</i> が <i>z</i> 以下になる確率」（標準正規分布表に載っている値）。範囲の確率を求めるときは、<b>上の端のΦ − 下の端のΦ</b>で求めます（帯グラフの面積を、大きい方から小さい方を引いて真ん中だけ残すイメージ）。</div>
+    <div class="ans"><span class="al">答</span><span class="av m">P(20≦X≦45) ＝ Φ(3) − Φ(−2)　（表の値を代入して求める）</span></div>
+  </div>
+</section>
+
+<!-- ================= 練習24 ================= -->
+<section class="prob" id="r24" data-key="r24">
+  <div class="ph"><span class="no">24</span><div class="htext"><span class="tag">練習24　①母標準化の練習</span><h2>高校2年男子の身長：3パターンの確率</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <div class="pt"><span class="t">この問題は「① 母集団の標準化」の練習：</span>身長という<b>個々のデータX</b>について、180cm以上・上位3％・165〜170cmの確率を求めます。標本平均ではないので、分母は <span class="hl">σ/√n ではなく、そのまま σ</span> です。</div>
+
+    <div class="fb" data-label="共通の条件">
+      <span class="m">高校2年男子の身長<i>X</i>は、平均170.5cm、標準偏差5.4cmの正規分布：<i>X</i> ～ N(170.5, 5.4<sup>2</sup>)</span>
+      <span class="m">標準化：<span class="box"><i>Z</i> ＝ (<i>X</i>−170.5) / 5.4</span></span>
+    </div>
+
+    <p class="q">応用例題2の県における高校2年生の男子を考えるとき、次の問いに答えよ。ただし、小数第2位を四捨五入して小数第1位まで求めよ。
+      <span class="src">(1) 身長180cm以上の人は、約何％いるか。</span>
+      <span class="src">(2) 高い方から3％以内の位置にいる人の身長は何cm以上か。</span>
+      <span class="src">(3) 身長が165cm以上170cm以下の人は、約何％いるか。</span></p>
+
+    <h3>(1) 身長180cm以上の人は何％？</h3>
+    <div class="fb soft" data-label="STEP1〜2：標準化">
+      <span class="m">求める確率：P(<i>X</i>≧180)</span>
+      <span class="m"><i>Z</i> ＝ (180−170.5)/5.4 ＝ 9.5/5.4 ≈ <span class="box">1.76</span></span>
+    </div>
+    <div class="fb" data-label="表を読む">
+      <span class="m">P(<i>X</i>≧180) ＝ P(<i>Z</i>≧1.76) ＝ 1−Φ(1.76)</span>
+      <span class="m">表より Φ(1.76) ≈ 0.9608　⇒　1−0.9608 ＝ <span class="box">0.0392</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：「以上」は片側だけ</span>「180cm<b>以上</b>」は、分布の右はしっぽの部分（片側）の面積。全体(1)から、180cmより左側の面積Φ(1.76)を引けば、右側だけが残ります。</div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av m">約3.9％</span></div>
+
+    <h3>(2) 高い方から3％以内の位置にいる人の身長は？</h3>
+    <div class="fb soft" data-label="STEP1：「上位3％」を確率で表す">
+      <span class="m">P(<i>X</i>≧<i>a</i>) ＝ 0.03　⇒　P(<i>Z</i>≧<i>z</i>) ＝ 0.03 となる <i>z</i> を表から探す</span>
+      <span class="m">表より　<span class="box"><i>z</i> ≈ 1.88</span></span>
+    </div>
+    <div class="fb" data-label="STEP2：Zの式に戻してaを求める">
+      <span class="m">(<i>a</i>−170.5)/5.4 ＝ 1.88</span>
+      <span class="m"><i>a</i>−170.5 ＝ 1.88×5.4 ＝ 10.152</span>
+      <span class="m"><i>a</i> ＝ 170.5＋10.152 ＝ <span class="box">180.652</span></span>
+    </div>
+    <div class="easy"><span class="t">(2)の考え方：順番がポイント</span>「上位3％」→ まず<b>Zの値（1.88）</b>を表から探す → そのあとで<b>身長に戻す</b>。(1)とは逆の手順（Zを先に求めてから、公式を身長について解き直す）です。</div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av m">約180.7cm以上（180.652を小数第2位で四捨五入）</span></div>
+
+    <h3>(3) 身長165cm以上170cm以下の人は何％？</h3>
+    <div class="fb soft" data-label="STEP1〜3：両端をZにする">
+      <span class="m">求める確率：P(165≦<i>X</i>≦170)</span>
+      <span class="m"><i>Z</i><sub>1</sub> ＝ (165−170.5)/5.4 ＝ −5.5/5.4 ≈ −1.02</span>
+      <span class="m"><i>Z</i><sub>2</sub> ＝ (170−170.5)/5.4 ＝ −0.5/5.4 ≈ −0.09</span>
+    </div>
+    <div class="fb" data-label="表を読んで差をとる">
+      <span class="m">P(165≦<i>X</i>≦170) ＝ P(−1.02≦<i>Z</i>≦−0.09) ＝ Φ(−0.09) − Φ(−1.02)</span>
+      <span class="m">＝ 0.4641 − 0.1539 ＝ <span class="box">0.3102</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ引き算？</span>Φ(−0.09)は「−0.09より左側すべて」の面積、Φ(−1.02)は「−1.02より左側すべて」の面積。範囲 [−1.02, −0.09] の面積だけが欲しいので、<b>大きい方の面積から、はみ出た分（−1.02より左）を引きます</b>。</div>
+    <div class="ans"><span class="al">答 (3)</span><span class="av m">約31.0％</span></div>
+
+    <h3>練習24から覚えること</h3>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th class="left">パターン</th><th class="left">やること</th></tr></thead>
+        <tbody>
+          <tr><td class="left">①「○○以上」</td><td class="left">○○をZにして、右側（片側）の確率を求める</td></tr>
+          <tr><td class="left">②「上位○％」</td><td class="left">先に「上位○％に対応するZ」を探し、そこから元の値に戻す</td></tr>
+          <tr><td class="left">③「○以上○以下」</td><td class="left">両端をそれぞれZにして、2つの確率の差を求める</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 練習27 ================= -->
+<section class="prob" id="r27" data-key="r27">
+  <div class="ph"><span class="no">27</span><div class="htext"><span class="tag">練習27</span><h2>40枚の札から母平均・母標準偏差を求める</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>数字</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>計</th></tr></thead>
+        <tbody><tr><th>枚数</th><td>2</td><td>6</td><td>24</td><td>6</td><td>2</td><td>40</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="fb" data-label="母集団分布">
+      <span class="m">札に書かれた数字を <i>X</i> とする。</span>
+      <span class="m">P(<i>X</i>＝1)＝2/40，P(<i>X</i>＝2)＝6/40，P(<i>X</i>＝3)＝24/40，P(<i>X</i>＝4)＝6/40，P(<i>X</i>＝5)＝2/40</span>
+    </div>
+
+    <h3>① 母平均 μ</h3>
+    <div class="fb soft" data-label="期待値の計算">
+      <span class="m"><i>μ</i> ＝ E(<i>X</i>) ＝ (1×2＋2×6＋3×24＋4×6＋5×2)/40</span>
+      <span class="m">分子 ＝ 2＋12＋72＋24＋10 ＝ 120　⇒　<i>μ</i> ＝ <span class="box">120/40 ＝ 3</span></span>
+    </div>
+
+    <h3>② 母分散・母標準偏差</h3>
+    <div class="fb" data-label="分散の公式">
+      <span class="m">V(<i>X</i>) ＝ <span class="box">E(<i>X</i><sup>2</sup>) − <i>μ</i><sup>2</sup></span>　（2乗の平均 − 平均の2乗）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜこの形？</span>分散は「平均からのズレの2乗」の平均で定義されますが（V(X)=E((X−μ)²)）、これを展開して整理すると E(X²)−μ² という計算しやすい形になります。公式として覚えてしまって大丈夫です。</div>
+    <div class="fb soft" data-label="E(X²)の計算">
+      <span class="m">E(<i>X</i><sup>2</sup>) ＝ (1<sup>2</sup>×2＋2<sup>2</sup>×6＋3<sup>2</sup>×24＋4<sup>2</sup>×6＋5<sup>2</sup>×2)/40</span>
+      <span class="m">＝ (2＋24＋216＋96＋50)/40 ＝ 388/40 ＝ <span class="box">9.7</span></span>
+    </div>
+    <div class="fb" data-label="分散・標準偏差">
+      <span class="m">V(<i>X</i>) ＝ 9.7 − 3<sup>2</sup> ＝ <span class="box">0.7</span></span>
+      <span class="m"><i>σ</i> ＝ <span class="box">√0.7</span></span>
+    </div>
+    <div class="pt"><span class="t">注意：</span>「√0.7」と「0.7」は別物。0.7は<b>分散</b>、√0.7は<b>標準偏差</b>。answer欄にどちらを書くか問題文をよく確認しましょう。</div>
+    <div class="ans"><span class="al">答</span><span class="av m">μ ＝ 3，V(X) ＝ 0.7，σ ＝ √0.7</span></div>
+  </div>
+</section>
+
+<!-- ================= まとめ ================= -->
+<section class="prob" id="pfinal" data-key="pfinal">
+  <div class="ph"><span class="no">直前</span><div class="htext"><span class="tag">FINAL CHECK</span><h2>問題を見たときの3秒判断</h2></div><button class="done" type="button" aria-pressed="false">確認した</button></div>
+  <div class="body">
+    <div class="fb" data-label="3秒判断フローチャート">
+      <span class="m">①「<i>X</i>」という普通のデータ？　⇒　母集団の標準化　⇒　<span class="box"><i>Z</i>＝(<i>X</i>−<i>μ</i>)/<i>σ</i></span></span>
+      <span class="m">②「標本平均 X̄」が出てきた？　⇒　標本平均の標準化　⇒　<span class="box"><i>Z</i>＝(X̄−<i>μ</i>)/(<i>σ</i>/√<i>n</i>)</span></span>
+      <span class="m">③「○回成功する」「○回表が出る」？　⇒　二項分布　⇒　平均<i>np</i>・標準偏差√{<i>np</i>(1−<i>p</i>)}　⇒　正規近似なら <span class="box"><i>Z</i>＝(<i>X</i>−<i>np</i>)/√{<i>np</i>(1−<i>p</i>)}</span></span>
+    </div>
+
+    <div class="memo"><b>超重要・一言で覚える：</b>「普通のXは σ、平均X̄は σ/√n、成功回数Xは √{np(1−p)}」<br>
+    さらに、二項分布では「<b>2択 × n回</b>」を見つけたら B(n,p) を疑う。</div>
+
+    <ol class="sumlist">
+      <li><b>見分け方：</b>「平均」と書いてあれば②、「○回成功」なら③、それ以外の普通の測定値・得点ならまず①。</li>
+      <li><b>①母標準化：</b>Z＝(X−μ)/σ。分母はそのままσ（標本平均ではないので÷√nしない）。</li>
+      <li><b>②標本平均：</b>Z＝(X̄−μ)/(σ/√n)。σ(X̄)＝σ/√n（n人集めるとばらつきが小さくなる）。</li>
+      <li><b>③二項分布：</b>X～B(n,p) → E(X)=np、V(X)=np(1−p)、σ=√{np(1−p)} → 正規近似してZへ。</li>
+      <li><b>読み方の3パターン：</b>「以上」は片側、「上位○％」はZを先に探す、「○以上○以下」は両端のΦの差。</li>
+      <li><b>分散の公式：</b>V(X)＝E(X²)−μ²。0.7（分散）と√0.7（標準偏差）を書き間違えない。</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+<footer>「答えをかくす」をオンにすると、答えがぼやけて表示されます。タップで1つずつ見られます。「できた」の記録はこの端末のブラウザに保存されます。</footer>
+
+<script>
+(function(){
+  var KEY='stats-guide-done';
+  var done={};
+  function load(){try{var v=localStorage.getItem(KEY);done=v?JSON.parse(v)||{}:{};}catch(e){done={};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  var sections=[].slice.call(document.querySelectorAll('.prob'));
+  var progress=document.getElementById('progress');
+  function refresh(){
+    var n=0;
+    sections.forEach(function(s){
+      var b=s.querySelector('.done');var k=s.getAttribute('data-key');
+      var on=!!done[k];if(on)n++;
+      if(b)b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    progress.textContent=n+' / '+sections.length;
+  }
+  load();refresh();
+  sections.forEach(function(s){
+    var b=s.querySelector('.done');if(!b)return;
+    b.addEventListener('click',function(){
+      var k=s.getAttribute('data-key');
+      if(done[k])delete done[k];else done[k]=1;
+      save();refresh();
+    });
+  });
+  var hideBtn=document.getElementById('hideBtn');
+  hideBtn.addEventListener('click',function(){
+    var on=hideBtn.getAttribute('aria-pressed')!=='true';
+    hideBtn.setAttribute('aria-pressed',on?'true':'false');
+    document.body.classList.toggle('hide',on);
+    if(!on){[].forEach.call(document.querySelectorAll('.ans.shown'),function(a){a.classList.remove('shown');});}
+  });
+  [].forEach.call(document.querySelectorAll('.ans'),function(a){
+    a.addEventListener('click',function(){if(document.body.classList.contains('hide'))a.classList.toggle('shown');});
+  });
+})();
+</script>
+</body>
+</html>
