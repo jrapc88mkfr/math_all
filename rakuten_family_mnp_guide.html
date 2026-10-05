@@ -2,57 +2,130 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>楽天モバイル 家族乗り換え・端末購入 手順書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#17365d;--blue:#2563eb;--pale:#eff6ff;--teal:#0f766e;--gold:#b45309;--ink:#243247;--muted:#64748b;--line:#dbe4ef;--bg:#f4f7fb}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Yu Gothic UI","Meiryo",sans-serif;line-height:1.75}
-header{background:linear-gradient(120deg,#15345b,#2563eb);color:white;padding:38px 20px}
-.wrap{max-width:1100px;margin:auto;padding:0 18px}h1{font-size:clamp(25px,4vw,38px);line-height:1.35;margin:0 0 10px}header p{margin:0;color:#e7efff}
-main{padding:24px 0 50px}.notice{background:#fff8e8;border:1px solid #f2d49a;border-left:5px solid #d97706;border-radius:10px;padding:15px 18px;margin:0 0 22px}
-nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 24px}nav a{background:white;border:1px solid var(--line);border-radius:20px;padding:7px 13px;color:var(--navy);text-decoration:none;font-size:14px}
-section{background:white;border:1px solid var(--line);border-radius:14px;padding:22px;margin:18px 0;box-shadow:0 3px 12px #17365d0a}
-h2{font-size:22px;color:var(--navy);margin:0 0 14px;border-bottom:2px solid #e8eef7;padding-bottom:8px}h3{font-size:17px;margin:12px 0 6px;color:#24456e}
-.step{display:grid;grid-template-columns:42px 1fr;gap:12px;margin:15px 0}.num{width:36px;height:36px;border-radius:50%;background:var(--blue);color:white;font-weight:bold;display:grid;place-items:center}
-.check{display:flex;gap:10px;align-items:flex-start;margin:8px 0}.check input{margin-top:7px;transform:scale(1.2);accent-color:var(--teal)}.check span{flex:1}
-.person{border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}.person strong{color:var(--navy)}
-.tag{display:inline-block;background:var(--pale);color:#1d4ed8;border-radius:6px;padding:1px 8px;font-size:12px;font-weight:bold}
-table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}th{background:#edf3fb;color:#1e3a5f}tr:nth-child(even) td{background:#fafcff}
-.btn{display:inline-block;background:var(--blue);color:white;text-decoration:none;border-radius:7px;padding:7px 12px;font-size:13px;font-weight:bold;margin:4px 4px 4px 0}.btn.secondary{background:#e8f0ff;color:#1d4ed8}.small{font-size:13px;color:var(--muted)}.warning{color:#9a3412;background:#fff7ed;padding:10px 12px;border-radius:8px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.device{border:1px solid var(--line);border-radius:10px;padding:14px}.price{font-size:20px;font-weight:800;color:var(--teal)}.muted{color:var(--muted)}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:15px}
-@media(max-width:650px){section{padding:16px}table{font-size:12px}th,td{padding:7px}.step{grid-template-columns:34px 1fr}.num{width:30px;height:30px}}
-@media print{body{background:white}header{padding:20px}section{box-shadow:none;break-inside:avoid}nav,.btn{display:none}main{padding-top:0}}
+:root{--bg:#f1f3f6;--card:#fff;--ink:#1c2733;--muted:#5d6b7a;--line:#dde3ea;--deep:#0f2438;--red:#b9132f;--redpale:#fdebee;--teal:#0e7c6b;--tealpale:#e3f4f0;--amber:#8a4b08;--amberpale:#fff4e0;--chip:#e9eef4;
+--ff:"Zen Kaku Gothic New","Yu Gothic UI","Hiragino Sans","Meiryo",sans-serif;--fh:"Shippori Mincho B1","Yu Mincho","Hiragino Mincho ProN",serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d141c;--card:#152130;--ink:#e4eaf1;--muted:#98a6b6;--line:#26364a;--deep:#07101a;--red:#ff6b81;--redpale:#3a1a22;--teal:#4fd1b8;--tealpale:#12332f;--amber:#f3b565;--amberpale:#3a2c14;--chip:#1d2d40}}
+:root[data-theme="dark"]{--bg:#0d141c;--card:#152130;--ink:#e4eaf1;--muted:#98a6b6;--line:#26364a;--deep:#07101a;--red:#ff6b81;--redpale:#3a1a22;--teal:#4fd1b8;--tealpale:#12332f;--amber:#f3b565;--amberpale:#3a2c14;--chip:#1d2d40}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ff);line-height:1.8;font-size:16px;-webkit-text-size-adjust:100%}
+a{color:var(--red)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+/* hero */
+header{background:var(--deep);color:#fff;padding:56px 0 64px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;right:-90px;top:-90px;width:340px;height:340px;border-radius:50%;background:var(--red);opacity:.92}
+header .wrap{position:relative;z-index:1}
+h1{font-family:var(--fh);font-weight:800;font-size:clamp(30px,6vw,56px);line-height:1.25;margin:0 0 14px;letter-spacing:.02em}
+.lead{margin:0;color:#c9d6e4;font-size:clamp(14px,2vw,17px);max-width:34em}
+.hero-prog{margin-top:30px;display:flex;align-items:center;gap:14px;max-width:420px}
+.hero-prog .bar{flex:1;height:8px;border-radius:8px;background:#ffffff26;overflow:hidden}
+.hero-prog .bar i{display:block;height:100%;width:0;background:#fff;border-radius:8px;transition:width .35s}
+.hero-prog b{font-size:15px;white-space:nowrap}
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
+nav a{flex:none;text-decoration:none;color:var(--ink);background:var(--chip);border-radius:999px;padding:5px 14px;font-size:14px;font-weight:500}
+nav a:hover,nav a:focus-visible{background:var(--red);color:#fff;outline:none}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+main{padding:28px 0 40px}
+.notice{background:var(--amberpale);color:var(--ink);border-left:6px solid var(--amber);border-radius:4px 12px 12px 4px;padding:16px 20px;margin-bottom:34px;font-size:15px}
+.notice strong{color:var(--amber);font-size:16px}
+section{margin:0 0 56px}
+h2{font-family:var(--fh);font-weight:800;font-size:clamp(23px,3.5vw,32px);margin:0 0 18px;line-height:1.35}
+h3{font-size:18px;margin:0 0 8px;line-height:1.5}
+.small{font-size:13px;color:var(--muted);line-height:1.7}
+/* family cards */
+.family{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.fam{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.fam h3{margin:0;padding:12px 18px;background:var(--chip);font-family:var(--fh);font-size:19px}
+.fam dl{margin:0;padding:6px 18px 14px;display:grid;grid-template-columns:auto 1fr;gap:2px 14px;font-size:14px}
+.fam dt{color:var(--muted);font-weight:500;padding-top:8px}.fam dd{margin:0;padding-top:8px}
+.fam .arrow{grid-column:1/-1;height:1px;background:var(--line);margin-top:8px}
+.fam .after{font-weight:700;color:var(--red)}
+.fam .after-wrap{background:var(--redpale);margin:8px -18px -14px;padding:2px 18px 14px;display:grid;grid-template-columns:auto 1fr;gap:2px 14px;grid-column:1/-1}
+/* steps */
+.steps{position:relative;padding-left:0}
+.step{display:grid;grid-template-columns:48px 1fr;gap:16px;position:relative;padding-bottom:26px}
+.step::before{content:"";position:absolute;left:23px;top:48px;bottom:0;width:2px;background:var(--line)}
+.step:last-child::before{display:none}
+.num{width:48px;height:48px;border-radius:50%;background:var(--deep);color:#fff;font-family:var(--fh);font-weight:800;font-size:22px;display:grid;place-items:center;position:relative;z-index:1}
+.step .body{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.person{border-top:1px dashed var(--line);margin-top:12px;padding-top:10px}
+.person>strong{display:inline-block;background:var(--chip);border-radius:6px;padding:0 10px;font-size:14px;margin-bottom:2px}
+.check{display:flex;gap:12px;align-items:flex-start;margin:6px 0;cursor:pointer;font-size:15px}
+.check input{flex:none;width:20px;height:20px;margin-top:5px;accent-color:var(--teal);cursor:pointer}
+.check input:checked+span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--teal)}
+.warning{background:var(--redpale);border-left:5px solid var(--red);border-radius:4px 10px 10px 4px;padding:10px 14px;margin:14px 0 0;font-size:14px}
+/* devices */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.device{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;border-top:6px solid var(--red)}
+.device:nth-child(2){border-top-color:var(--teal)}.device:nth-child(3){border-top-color:var(--deep)}
+.tag{align-self:flex-start;background:var(--chip);border-radius:6px;padding:0 10px;font-size:12px;font-weight:700;margin-bottom:8px}
+.price{font-family:var(--fh);font-size:30px;font-weight:800;color:var(--teal);line-height:1.3;margin-bottom:6px}
+.price span{font-size:14px;font-weight:600}
+.device p{margin:0 0 10px;font-size:14px}.device .small{margin-top:auto}
+.btn{display:inline-block;align-self:flex-start;background:var(--red);color:#fff;text-decoration:none;border-radius:999px;padding:7px 18px;font-size:14px;font-weight:700;margin:4px 0 12px}
+.btn:hover{filter:brightness(1.1)}
+/* tables */
+.scroll{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:16px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:620px}
+th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:var(--chip);font-weight:700;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td .small{display:block}
+.total{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin:18px 0 0;padding:18px 22px;background:var(--deep);color:#fff;border-radius:16px}
+.total b{font-family:var(--fh);font-size:clamp(26px,5vw,38px)}
+.total span{color:#c9d6e4;font-size:14px}
+.final{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 22px}
+.links{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.links li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px;font-size:15px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 20px 30px;max-width:720px;margin:auto}
+@media(max-width:640px){header{padding:40px 0 48px}header::after{width:220px;height:220px;right:-80px;top:-80px}.step{grid-template-columns:38px 1fr;gap:10px}.num{width:38px;height:38px;font-size:18px}.step::before{left:18px;top:38px}.step .body{padding:14px}}
+@media print{body{background:#fff}nav,.btn,.hero-prog{display:none}header{padding:20px 0}header::after{display:none}section{break-inside:avoid}}
 </style>
 </head>
 <body>
 <header><div class="wrap">
 <h1>楽天モバイル<br>家族乗り換え・端末購入 手順書</h1>
-<p>MNP ＋ 端末購入 ＋ 回線名義変更 ＋ 紹介キャンペーン</p>
+<p class="lead">MNP ＋ 端末購入 ＋ 回線名義変更 ＋ 紹介キャンペーン</p>
+<div class="hero-prog" aria-live="polite"><div class="bar"><i id="bar"></i></div><b id="count">0 / 0 完了</b></div>
 </div></header>
+<nav aria-label="目次"><div class="wrap">
+<a href="#overview">家族構成</a><a href="#steps">実施手順</a><a href="#devices">端末購入リンク</a><a href="#compare">端末比較</a><a href="#points">ポイント確認</a><a href="#final">完了チェック</a>
+</div></nav>
 <main class="wrap">
 <div class="notice"><strong>手続き前の重要確認</strong><br>
 この手順書はご提示いただいた家族構成・計画を整理したものです。キャンペーン条件、対象年齢、販売価格、在庫は変更されます。申込直前に必ず公式ページの最新条件を確認してください。特に「紹介コードを申込前に適用できること」「端末値引きと紹介特典の併用可否」「名義変更後の紹介特典対象可否」を確認します。</div>
-<nav>
-<a href="#overview">家族構成</a><a href="#steps">実施手順</a><a href="#devices">端末購入リンク</a><a href="#compare">端末比較</a><a href="#points">ポイント確認</a><a href="#final">完了チェック</a>
-</nav>
+
 <section id="overview"><h2>1. 家族まとめ Before → After</h2>
-<table><thead><tr><th>家族</th><th>端末 Before</th><th>回線 Before</th><th>端末 After</th><th>回線 After</th></tr></thead><tbody>
-<tr><td>父</td><td>POCO F8 Pro</td><td>主：docomo<br>副：楽天×2</td><td>POCO F8 Pro（継続）</td><td>主：楽天（docomoからMNP・eSIM）<br>副：楽天（既存）</td></tr>
-<tr><td>母</td><td>motorola edge 60 pro</td><td>主：docomo<br>副：mineo</td><td>motorola edge 60 pro（継続）</td><td>主：楽天（docomoからMNP・eSIM）<br>副：mineo</td></tr>
-<tr><td>娘1</td><td>OPPO Reno5 A</td><td>楽天</td><td>edge 70 fusion または Nothing Phone (3)</td><td>楽天（既存回線・家族割等を確認）</td></tr>
-<tr><td>娘2</td><td>OPPO Reno9 A</td><td>QTnet</td><td>OPPO Reno9 A（継続）</td><td>QTnet</td></tr>
-<tr><td>息子</td><td>なし</td><td>なし</td><td>OPPO Reno15 A</td><td>父の楽天副回線を名義変更して利用予定</td></tr>
-</tbody></table>
-<p class="small">「家族割」の適用条件・対象回線の扱いは申込画面または楽天モバイル公式案内で確認してください。</p></section>
+<div class="family">
+<div class="fam"><h3>父</h3><dl><dt>端末</dt><dd>POCO F8 Pro</dd><dt>回線</dt><dd>主：docomo<br>副：楽天×2</dd>
+<div class="after-wrap"><dt>端末</dt><dd class="after">POCO F8 Pro（継続）</dd><dt>回線</dt><dd class="after">主：楽天（docomoからMNP・eSIM）<br>副：楽天（既存）</dd></div></dl></div>
+<div class="fam"><h3>母</h3><dl><dt>端末</dt><dd>motorola edge 60 pro</dd><dt>回線</dt><dd>主：docomo<br>副：mineo</dd>
+<div class="after-wrap"><dt>端末</dt><dd class="after">motorola edge 60 pro（継続）</dd><dt>回線</dt><dd class="after">主：楽天（docomoからMNP・eSIM）<br>副：mineo</dd></div></dl></div>
+<div class="fam"><h3>娘1</h3><dl><dt>端末</dt><dd>OPPO Reno5 A</dd><dt>回線</dt><dd>楽天</dd>
+<div class="after-wrap"><dt>端末</dt><dd class="after">edge 70 fusion または Nothing Phone (3)</dd><dt>回線</dt><dd class="after">楽天（既存回線・家族割等を確認）</dd></div></dl></div>
+<div class="fam"><h3>娘2</h3><dl><dt>端末</dt><dd>OPPO Reno9 A</dd><dt>回線</dt><dd>QTnet</dd>
+<div class="after-wrap"><dt>端末</dt><dd class="after">OPPO Reno9 A（継続）</dd><dt>回線</dt><dd class="after">QTnet</dd></div></dl></div>
+<div class="fam"><h3>息子</h3><dl><dt>端末</dt><dd>なし</dd><dt>回線</dt><dd>なし</dd>
+<div class="after-wrap"><dt>端末</dt><dd class="after">OPPO Reno15 A</dd><dt>回線</dt><dd class="after">父の楽天副回線を名義変更して利用予定</dd></div></dl></div>
+</div>
+<p class="small" style="margin-top:12px">上段が Before、色付きの下段が After です。「家族割」の適用条件・対象回線の扱いは申込画面または楽天モバイル公式案内で確認してください。</p></section>
 
 <section id="steps"><h2>2. 実施手順</h2>
-<div class="step"><div class="num">1</div><div><h3>紹介者（父）が紹介リンク・コードを準備</h3>
+<div class="steps">
+<div class="step"><div class="num">1</div><div class="body"><h3>紹介者（父）が紹介リンク・コードを準備</h3>
 <label class="check"><input type="checkbox"><span>楽天モバイルの紹介キャンペーン画面を開く</span></label>
 <label class="check"><input type="checkbox"><span>紹介リンク／紹介コードを取得し、妻・娘1・息子に送る</span></label>
-<p class="small">紹介キャンペーンは、対象となる申込手順・ログイン状態・紹介リンク経由などの条件が設定される場合があります。単にコードを控えるだけでなく、各人の申込直前に最新ルールを確認してください。</p>
-</div></div>
-<div class="step"><div class="num">2</div><div><h3>父・母：docomoから楽天モバイルへMNP</h3>
+<p class="small">紹介キャンペーンは、対象となる申込手順・ログイン状態・紹介リンク経由などの条件が設定される場合があります。単にコードを控えるだけでなく、各人の申込直前に最新ルールを確認してください。</p></div></div>
+
+<div class="step"><div class="num">2</div><div class="body"><h3>父・母：docomoから楽天モバイルへMNP</h3>
 <div class="person"><strong>父</strong><br>
 <label class="check"><input type="checkbox"><span>docomoの契約名義・本人確認書類・支払方法を確認</span></label>
 <label class="check"><input type="checkbox"><span>MNPワンストップ対応なら予約番号取得を省略。非対応・必要な場合はdocomoでMNP予約番号を取得</span></label>
@@ -63,60 +136,57 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:15px}
 <label class="check"><input type="checkbox"><span>MNPワンストップ対応なら予約番号取得を省略。必要な場合はdocomoで取得</span></label>
 <label class="check"><input type="checkbox"><span>紹介リンク経由で楽天モバイルを申し込み、本人名義でeSIMを選択</span></label>
 <label class="check"><input type="checkbox"><span>開通後、発着信・データ通信を確認。mineo回線は継続</span></label></div>
-<p class="warning">MNP元と楽天モバイルの契約名義は原則同一にします。家族名義でまとめて申し込まず、各回線の契約者本人の情報で手続きしてください。</p>
-</div></div>
-<div class="step"><div class="num">3</div><div><h3>娘1：端末を選び、必要な購入・回線手続きを行う</h3>
+<p class="warning">MNP元と楽天モバイルの契約名義は原則同一にします。家族名義でまとめて申し込まず、各回線の契約者本人の情報で手続きしてください。</p></div></div>
+
+<div class="step"><div class="num">3</div><div class="body"><h3>娘1：端末を選び、必要な購入・回線手続きを行う</h3>
 <label class="check"><input type="checkbox"><span>edge 70 fusion と Nothing Phone (3) の価格・重さ・容量・色を比較して決定</span></label>
 <label class="check"><input type="checkbox"><span>紹介キャンペーンの対象条件を確認し、該当する申込方法で手続き</span></label>
-<label class="check"><input type="checkbox"><span>端末購入後、SIM/eSIM・データ移行・各種アプリの動作を確認</span></label>
-</div></div>
-<div class="step"><div class="num">4</div><div><h3>息子：OPPO Reno15 Aを購入</h3>
+<label class="check"><input type="checkbox"><span>端末購入後、SIM/eSIM・データ移行・各種アプリの動作を確認</span></label></div></div>
+
+<div class="step"><div class="num">4</div><div class="body"><h3>息子：OPPO Reno15 Aを購入</h3>
 <label class="check"><input type="checkbox"><span>端末購入価格・対象キャンペーン・在庫を公式ページで確認</span></label>
 <label class="check"><input type="checkbox"><span>14歳の契約・利用に必要な親権者同意、本人確認、名義条件を確認</span></label>
-<label class="check"><input type="checkbox"><span>端末を受け取り、初期設定・OS更新を済ませる（回線移行前はWi-Fiで準備可能）</span></label>
-</div></div>
-<div class="step"><div class="num">5</div><div><h3>父の楽天副回線を息子へ名義変更</h3>
+<label class="check"><input type="checkbox"><span>端末を受け取り、初期設定・OS更新を済ませる（回線移行前はWi-Fiで準備可能）</span></label></div></div>
+
+<div class="step"><div class="num">5</div><div class="body"><h3>父の楽天副回線を息子へ名義変更</h3>
 <label class="check"><input type="checkbox"><span>父の楽天回線の契約情報・利用中の電話番号を確認</span></label>
 <label class="check"><input type="checkbox"><span>楽天モバイルの案内に従って譲渡／名義変更を申請し、息子側の必要書類・親権者同意を準備</span></label>
 <label class="check"><input type="checkbox"><span>名義変更完了後、必要な場合はeSIMを再発行・再設定</span></label>
 <label class="check"><input type="checkbox"><span>Reno15 Aで回線開通、発着信・データ通信を確認</span></label>
-<p class="warning">名義変更が完了する前に、父側の回線を解約しないでください。未成年者への譲渡可否・必要書類・手数料・eSIM再発行条件は、申請時点の公式案内で確認してください。</p>
-</div></div>
-</section>
+<p class="warning">名義変更が完了する前に、父側の回線を解約しないでください。未成年者への譲渡可否・必要書類・手数料・eSIM再発行条件は、申請時点の公式案内で確認してください。</p></div></div>
+</div></section>
 
 <section id="devices"><h2>3. 購入端末と楽天モバイル公式リンク</h2>
 <div class="cards">
-<div class="device"><span class="tag">息子用・購入予定</span><h3>OPPO Reno15 A</h3><div class="price">29,990円*</div><p>8GB / 128GB、eSIM対応。父の旧回線を名義変更して利用する計画。</p><a class="btn" href="https://network.mobile.rakuten.co.jp/product/smartphone/reno15-a/" target="_blank" rel="noopener">楽天モバイル公式で確認</a><p class="small">* 公式ページ上では通常価格57,990円、対象キャンペーン適用時29,990円の表示例あり。端末のみ購入では同額にならない場合があります。</p></div>
-<div class="device"><span class="tag">娘1用・軽さ重視候補</span><h3>motorola edge 70 fusion</h3><div class="price">64,900円（掲載価格）</div><p>12GB / 256GB、約193g、7,000mAh。公式ページでは2026年10月23日発売予定・予約受付の表示。</p><a class="btn" href="https://network.mobile.rakuten.co.jp/product/smartphone/motorola-edge-70-fusion/" target="_blank" rel="noopener">楽天モバイル公式で確認</a><p class="small">提示資料の59,800円・174gとは公式掲載情報に差があります。購入時に再確認してください。</p></div>
-<div class="device"><span class="tag">娘1用・高性能候補</span><h3>Nothing Phone (3)</h3><div class="price">55,990円*</div><p>256GBモデルは12GB RAM、約218g、eSIM対応、IPX8/IP6X。</p><a class="btn" href="https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/" target="_blank" rel="noopener">楽天モバイル公式で確認</a><p class="small">* 公式ページでは通常95,990円、対象MNP・一括払い等の条件で55,990円の表示例。256GBモデルのRAMは12GBです。</p></div>
+<div class="device"><span class="tag">息子用・購入予定</span><h3>OPPO Reno15 A</h3><div class="price">29,990<span>円*</span></div><p>8GB / 128GB、eSIM対応。父の旧回線を名義変更して利用する計画。</p><a class="btn" href="https://network.mobile.rakuten.co.jp/product/smartphone/reno15-a/" target="_blank" rel="noopener">楽天モバイル公式で確認</a><p class="small">* 公式ページ上では通常価格57,990円、対象キャンペーン適用時29,990円の表示例あり。端末のみ購入では同額にならない場合があります。</p></div>
+<div class="device"><span class="tag">娘1用・軽さ重視候補</span><h3>motorola edge 70 fusion</h3><div class="price">64,900<span>円（掲載価格）</span></div><p>12GB / 256GB、約193g、7,000mAh。公式ページでは2026年10月23日発売予定・予約受付の表示。</p><a class="btn" href="https://network.mobile.rakuten.co.jp/product/smartphone/motorola-edge-70-fusion/" target="_blank" rel="noopener">楽天モバイル公式で確認</a><p class="small">提示資料の59,800円・174gとは公式掲載情報に差があります。購入時に再確認してください。</p></div>
+<div class="device"><span class="tag">娘1用・高性能候補</span><h3>Nothing Phone (3)</h3><div class="price">55,990<span>円*</span></div><p>256GBモデルは12GB RAM、約218g、eSIM対応、IPX8/IP6X。</p><a class="btn" href="https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/" target="_blank" rel="noopener">楽天モバイル公式で確認</a><p class="small">* 公式ページでは通常95,990円、対象MNP・一括払い等の条件で55,990円の表示例。256GBモデルのRAMは12GBです。</p></div>
 </div>
-<p class="small">父のPOCO F8 Pro、母のmotorola edge 60 proは継続利用のため、今回の購入リンク対象外です。</p>
-</section>
+<p class="small" style="margin-top:12px">父のPOCO F8 Pro、母のmotorola edge 60 proは継続利用のため、今回の購入リンク対象外です。</p></section>
 
 <section id="compare"><h2>4. 端末比較（計画案＋公式確認値）</h2>
-<table><thead><tr><th>機種</th><th>価格の目安</th><th>RAM / ROM</th><th>eSIM / SD</th><th>重さ</th><th>選ぶポイント</th></tr></thead><tbody>
-<tr><td>OPPO Reno15 A</td><td>29,990円*<br><span class="small">通常57,990円表示</span></td><td>8GB / 128GB</td><td>eSIM対応<br>SD対応状況は公式仕様確認</td><td>約195〜202g</td><td>息子用。大容量バッテリーと価格重視</td></tr>
-<tr><td>Nothing Phone (3)</td><td>55,990円*<br><span class="small">256GB MNP条件例</span></td><td>12GB / 256GB<br>16GB / 512GB</td><td>○ / ×</td><td>約218g</td><td>高性能・デザイン・長期利用を重視</td></tr>
-<tr><td>motorola edge 70 fusion</td><td>64,900円<br><span class="small">公式掲載価格</span></td><td>12GB / 256GB</td><td>○ / ×</td><td>約193g</td><td>大容量電池・画面・扱いやすさ</td></tr>
-<tr><td>POCO F8 Pro</td><td>提示価格89,800円</td><td>提示値12GB / 256GB</td><td>モデル仕様確認</td><td>約209g（提示値）</td><td>父が継続利用</td></tr>
-<tr><td>OPPO Reno9 A</td><td>提示価格約39,800円</td><td>8GB / 128GB</td><td>× / ○</td><td>約183g</td><td>娘2が継続利用</td></tr>
-<tr><td>OPPO Reno5 A</td><td>提示価格約35,000円</td><td>6GB / 128GB</td><td>× / ○</td><td>約182g</td><td>娘1の旧端末</td></tr>
-</tbody></table>
-<p class="small">※提示された比較表の一部数値は、楽天モバイル公式掲載値と異なる可能性があります。特にedge 70 fusionは公式仕様で約193g・Snapdragon 7s Gen 3、Phone (3)は256GB版12GB RAM・約218gです。旧端末や他社購入モデルは型番によって仕様が異なるため、購入・SIM設定前に型番を確認してください。</p>
-</section>
+<div class="scroll"><table><thead><tr><th>機種</th><th>価格の目安</th><th>RAM / ROM</th><th>eSIM / SD</th><th>重さ</th><th>選ぶポイント</th></tr></thead><tbody>
+<tr><td><b>OPPO Reno15 A</b></td><td>29,990円*<span class="small">通常57,990円表示</span></td><td>8GB / 128GB</td><td>eSIM対応<span class="small">SD対応状況は公式仕様確認</span></td><td>約195〜202g</td><td>息子用。大容量バッテリーと価格重視</td></tr>
+<tr><td><b>Nothing Phone (3)</b></td><td>55,990円*<span class="small">256GB MNP条件例</span></td><td>12GB / 256GB<br>16GB / 512GB</td><td>○ / ×</td><td>約218g</td><td>高性能・デザイン・長期利用を重視</td></tr>
+<tr><td><b>motorola edge 70 fusion</b></td><td>64,900円<span class="small">公式掲載価格</span></td><td>12GB / 256GB</td><td>○ / ×</td><td>約193g</td><td>大容量電池・画面・扱いやすさ</td></tr>
+<tr><td><b>POCO F8 Pro</b></td><td>提示価格89,800円</td><td>提示値12GB / 256GB</td><td>モデル仕様確認</td><td>約209g（提示値）</td><td>父が継続利用</td></tr>
+<tr><td><b>OPPO Reno9 A</b></td><td>提示価格約39,800円</td><td>8GB / 128GB</td><td>× / ○</td><td>約183g</td><td>娘2が継続利用</td></tr>
+<tr><td><b>OPPO Reno5 A</b></td><td>提示価格約35,000円</td><td>6GB / 128GB</td><td>× / ○</td><td>約182g</td><td>娘1の旧端末</td></tr>
+</tbody></table></div>
+<p class="small" style="margin-top:12px">※提示された比較表の一部数値は、楽天モバイル公式掲載値と異なる可能性があります。特にedge 70 fusionは公式仕様で約193g・Snapdragon 7s Gen 3、Phone (3)は256GB版12GB RAM・約218gです。旧端末や他社購入モデルは型番によって仕様が異なるため、購入・SIM設定前に型番を確認してください。</p></section>
 
 <section id="points"><h2>5. 紹介ポイント・特典の確認</h2>
-<table><thead><tr><th>対象</th><th>計画上の想定</th><th>申込後の確認</th></tr></thead><tbody>
-<tr><td>父（紹介者）</td><td>最大7,000pt</td><td><label class="check"><input type="checkbox"><span>紹介成立・特典進呈条件を確認</span></label></td></tr>
-<tr><td>母</td><td>最大6,000pt</td><td><label class="check"><input type="checkbox"><span>MNP・紹介特典の条件達成を確認</span></label></td></tr>
-<tr><td>娘1</td><td>最大6,000pt</td><td><label class="check"><input type="checkbox"><span>既存契約者の機種変更／追加申込が対象か確認</span></label></td></tr>
-<tr><td>息子</td><td>2,000〜6,000pt</td><td><label class="check"><input type="checkbox"><span>名義変更した回線が紹介特典の対象になるか確認</span></label></td></tr>
-</tbody></table>
-<p><strong>計画上の合計：21,000〜25,000pt</strong></p>
-<p class="warning">この合計はご提示の想定値をそのまま合算したものです。紹介者・被紹介者の特典額、MNP／新規／既存回線の扱い、ポイント進呈時期、併用条件により変わります。ポイントを確定利益として端末価格から差し引かず、各キャンペーンの「達成条件」と「進呈予定」を申込ごとに記録してください。</p>
-</section>
+<div class="scroll"><table><thead><tr><th>対象</th><th>計画上の想定</th><th>申込後の確認</th></tr></thead><tbody>
+<tr><td><b>父（紹介者）</b></td><td>最大7,000pt</td><td><label class="check"><input type="checkbox"><span>紹介成立・特典進呈条件を確認</span></label></td></tr>
+<tr><td><b>母</b></td><td>最大6,000pt</td><td><label class="check"><input type="checkbox"><span>MNP・紹介特典の条件達成を確認</span></label></td></tr>
+<tr><td><b>娘1</b></td><td>最大6,000pt</td><td><label class="check"><input type="checkbox"><span>既存契約者の機種変更／追加申込が対象か確認</span></label></td></tr>
+<tr><td><b>息子</b></td><td>2,000〜6,000pt</td><td><label class="check"><input type="checkbox"><span>名義変更した回線が紹介特典の対象になるか確認</span></label></td></tr>
+</tbody></table></div>
+<div class="total"><span>計画上の合計</span><b>21,000〜25,000pt</b></div>
+<p class="warning">この合計はご提示の想定値をそのまま合算したものです。紹介者・被紹介者の特典額、MNP／新規／既存回線の扱い、ポイント進呈時期、併用条件により変わります。ポイントを確定利益として端末価格から差し引かず、各キャンペーンの「達成条件」と「進呈予定」を申込ごとに記録してください。</p></section>
 
 <section id="final"><h2>6. 最終チェックリスト</h2>
+<div class="final">
 <label class="check"><input type="checkbox"><span>家族それぞれの契約名義・本人確認書類を確認した</span></label>
 <label class="check"><input type="checkbox"><span>紹介キャンペーンの最新条件・紹介リンク適用を確認した</span></label>
 <label class="check"><input type="checkbox"><span>端末価格・割引条件・在庫・購入時期を確認した</span></label>
@@ -125,15 +195,31 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:15px}
 <label class="check"><input type="checkbox"><span>息子のReno15 AでeSIM設定・通信確認を完了した</span></label>
 <label class="check"><input type="checkbox"><span>各回線の旧契約・オプション・請求が意図どおりか確認した</span></label>
 <label class="check"><input type="checkbox"><span>キャンペーンの達成状況・ポイント進呈予定を記録した</span></label>
-</section>
+</div></section>
+
 <section><h2>公式案内</h2>
-<ul>
+<ul class="links">
 <li><a href="https://network.mobile.rakuten.co.jp/guide/mnp/" target="_blank" rel="noopener">楽天モバイル：他社から乗り換え（MNP）</a></li>
 <li><a href="https://network.mobile.rakuten.co.jp/product/compatible-band/" target="_blank" rel="noopener">楽天回線対応製品・他社回線対応状況</a></li>
 <li><a href="https://network.mobile.rakuten.co.jp/product/smartphone/reno15-a/" target="_blank" rel="noopener">OPPO Reno15 A 製品ページ</a></li>
 <li><a href="https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/" target="_blank" rel="noopener">Nothing Phone (3) 製品ページ</a></li>
 <li><a href="https://network.mobile.rakuten.co.jp/product/smartphone/motorola-edge-70-fusion/" target="_blank" rel="noopener">motorola edge 70 fusion 製品ページ</a></li>
-</ul>
-</section>
+</ul></section>
+</main>
 <footer>家族内の作業確認用資料です。申込・契約・キャンペーンの最終条件は楽天モバイルおよび各契約会社の公式案内を優先してください。</footer>
-</main></body></html>
+<script>
+(function(){
+var boxes=[].slice.call(document.querySelectorAll('input[type=checkbox]')),KEY='rakuten-guide-checks',saved=[];
+try{saved=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+boxes.forEach(function(b,i){if(saved[i])b.checked=true;b.addEventListener('change',update)});
+function update(){
+var n=boxes.filter(function(b){return b.checked}).length;
+document.getElementById('count').textContent=n+' / '+boxes.length+' 完了';
+document.getElementById('bar').style.width=(boxes.length?n/boxes.length*100:0)+'%';
+try{localStorage.setItem(KEY,JSON.stringify(boxes.map(function(b){return b.checked})))}catch(e){}
+}
+update();
+})();
+</script>
+</body>
+</html>
