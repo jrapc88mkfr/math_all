@@ -243,48 +243,46 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
 
     <div class="fb" data-label="2項定理（公式）">
       <span class="m">(<i>X</i>＋<i>Y</i>)<sup><i>n</i></sup> の一般項（<i>r</i>＝0,1,…,<i>n</i>）：<span class="box"><sub><i>n</i></sub>C<sub><i>r</i></sub> <i>X</i><sup><i>n</i>−<i>r</i></sup><i>Y</i><sup><i>r</i></sup></span></span>
-      <span class="m">指数法則：<i>a</i><sup><i>p</i></sup>·<i>a</i><sup><i>q</i></sup> ＝ <i>a</i><sup><i>p</i>＋<i>q</i></sup>　　(<i>a</i><sup><i>p</i></sup>)<sup><i>q</i></sup> ＝ <i>a</i><sup><i>pq</i></sup>　　1/<i>a</i><sup><i>k</i></sup> ＝ <i>a</i><sup>−<i>k</i></sup></span>
     </div>
     <div class="easy"><span class="t">やさしい解説：2項定理は「10個のカッコから選ぶ」</span>
-      <p>(<i>X</i>＋<i>Y</i>)<sup>10</sup> は (<i>X</i>＋<i>Y</i>) を10回かけ算したもの。10個のカッコそれぞれから <i>X</i> か <i>Y</i> のどちらかを1つ選んで掛け合わせると考えると、「<i>Y</i> を <i>r</i> 個選ぶ（残り10−<i>r</i>個は<i>X</i>）」の選び方が <sub>10</sub>C<sub><i>r</i></sub> 通りです。これが係数になります。</p>
-      <p>今回は <i>X</i>＝<i>ax</i>，<i>Y</i>＝2/(<i>a</i><sup>2</sup><i>x</i>) です。</p>
+      <p>(<i>X</i>＋<i>Y</i>)<sup>10</sup> は (<i>X</i>＋<i>Y</i>) を10回かけ算したもの。10個のカッコそれぞれから <i>X</i> か <i>Y</i> のどちらかを1つ選んで掛け合わせると考えると、「<i>Y</i> を <i>r</i> 個選ぶ（残り10−<i>r</i>個は<i>X</i>）」の選び方が <sub>10</sub>C<sub><i>r</i></sub> 通り。今回は <i>X</i>＝<i>ax</i>，<i>Y</i>＝2/(<i>a</i><sup>2</sup><i>x</i>) です。</p>
     </div>
 
-    <h3>① 一般項を作り、x の指数を整理する</h3>
-    <div class="fb soft" data-label="一般項の計算">
-      <span class="m">一般項 ＝ <sub>10</sub>C<sub><i>r</i></sub> (<i>ax</i>)<sup>10−<i>r</i></sup> <span class="fr"><b>2</b><b><i>a</i><sup>2</sup><i>x</i></b></span><sup><i>r</i></sup> ＝ <sub>10</sub>C<sub><i>r</i></sub> <i>a</i><sup>10−<i>r</i></sup><i>x</i><sup>10−<i>r</i></sup> · 2<sup><i>r</i></sup><i>a</i><sup>−2<i>r</i></sup><i>x</i><sup>−<i>r</i></sup></span>
-      <span class="m">＝ <span class="box"><sub>10</sub>C<sub><i>r</i></sub> 2<sup><i>r</i></sup> <i>a</i><sup>10−3<i>r</i></sup> <i>x</i><sup>10−2<i>r</i></sup></span></span>
+    <h3>① 一般項を作る</h3>
+    <div class="fb soft" data-label="展開式の一般項">
+      <span class="m"><sub>10</sub>C<sub><i>r</i></sub> (<i>ax</i>)<sup>10−<i>r</i></sup> <span class="fr"><b>2</b><b><i>a</i><sup>2</sup><i>x</i></b></span><sup><i>r</i></sup> ＝ <span class="box"><sub>10</sub>C<sub><i>r</i></sub> · <span class="fr"><b>2<sup><i>r</i></sup><i>a</i><sup>10−<i>r</i></sup></b><b><i>a</i><sup>2<i>r</i></sup></b></span> · <span class="fr"><b><i>x</i><sup>10−<i>r</i></sup></b><b><i>x</i><sup><i>r</i></sup></b></span></span></span>
     </div>
-    <div class="easy"><span class="t">やさしい解説：指数だけ集める</span><i>a</i> の指数は「<i>ax</i>から来た(10−<i>r</i>)個」＋「2/(<i>a</i>²<i>x</i>)から来た−2<i>r</i>個」＝10−<i>r</i>−2<i>r</i>＝10−3<i>r</i>。<i>x</i> の指数も同じように「(10−<i>r</i>)−<i>r</i>＝10−2<i>r</i>」とまとめられます。</div>
+    <div class="pt"><span class="t">この先にやること：</span>これが <i>x</i>² および 1/<i>x</i>⁶ の項を表すような <i>r</i> の値を、それぞれ求めます。</div>
 
     <h3>② x² の項の r を決める</h3>
-    <div class="fb" data-label="x²の条件">
-      <span class="m">10−2<i>r</i> ＝ 2　⇒　<span class="box"><i>r</i> ＝ 4</span></span>
+    <div class="fb" data-label="xの指数をそろえる">
+      <span class="m"><span class="fr"><b><i>x</i><sup>10−<i>r</i></sup></b><b><i>x</i><sup><i>r</i></sup></b></span> ＝ <i>x</i><sup>2</sup> とすると　<i>x</i><sup>10−<i>r</i></sup> ＝ <i>x</i><sup>2+<i>r</i></sup>　より　10−<i>r</i> ＝ 2＋<i>r</i>　すなわち　<span class="box"><i>r</i> ＝ 4</span></span>
     </div>
-    <div class="fb soft" data-label="係数の計算">
-      <span class="m">係数 ＝ <sub>10</sub>C<sub>4</sub> 2<sup>4</sup> <i>a</i><sup>10−12</sup> ＝ 210 × 16 × <i>a</i><sup>−2</sup> ＝ <span class="box">3360/<i>a</i><sup>2</sup></span></span>
+    <div class="easy"><span class="t">やさしい解説</span>分数のまま「＝x²」とするのではなく、まず <i>x</i><sup>10−<i>r</i></sup>＝<i>x</i><sup>2</sup>·<i>x</i><sup><i>r</i></sup>＝<i>x</i><sup>2+<i>r</i></sup> の形にしてから、<b>指数どうしを＝で結ぶ</b>のがコツです。</div>
+    <div class="fb soft" data-label="x²の項の係数">
+      <span class="m"><sub>10</sub>C<sub>4</sub> · <span class="fr"><b>2<sup>4</sup><i>a</i><sup>6</sup></b><b><i>a</i><sup>8</sup></b></span> ＝ <span class="fr"><b>10·9·8·7</b><b>4·3·2·1</b></span> · 2<sup>4</sup> · <span class="fr"><b>1</b><b><i>a</i><sup>2</sup></b></span> ＝ <span class="box">3360/<i>a</i><sup>2</sup></span></span>
     </div>
     <div class="fb" data-label="aを求める">
-      <span class="m">3360/<i>a</i><sup>2</sup> ＝ 560　⇒　<i>a</i><sup>2</sup> ＝ 3360÷560 ＝ 6　⇒　（<i>a</i>＞0 より）<span class="box"><i>a</i> ＝ √6</span></span>
+      <span class="m">これが560となるから　3360/<i>a</i><sup>2</sup> ＝ 560　⇒　<i>a</i><sup>2</sup> ＝ 6</span>
+      <span class="m"><i>a</i>＞0 より　<span class="box"><i>a</i> ＝ √6</span></span>
     </div>
     <div class="ans"><span class="al">答</span><span class="av m">a ＝ √6</span></div>
-    <div class="pt"><span class="t">テストで書く一言：</span><sub>10</sub>C<sub>4</sub>＝210 の計算は <span class="hl">10·9·8·7／4·3·2·1</span> で出す、と書いておくと計算過程が伝わりやすい（5040／24＝210）。</div>
 
-    <h3>③ x⁻⁶ の項の係数（a＝√6 を使う）</h3>
-    <div class="fb soft" data-label="x⁻⁶の条件">
-      <span class="m">10−2<i>r</i> ＝ −6　⇒　<span class="box"><i>r</i> ＝ 8</span></span>
+    <h3>③ 1/x⁶ の項の係数（a＝√6 を使う）</h3>
+    <div class="fb soft" data-label="xの指数をそろえる">
+      <span class="m"><span class="fr"><b><i>x</i><sup>10−<i>r</i></sup></b><b><i>x</i><sup><i>r</i></sup></b></span> ＝ <span class="fr"><b>1</b><b><i>x</i><sup>6</sup></b></span> とすると　<i>x</i><sup>10−<i>r</i></sup>·<i>x</i><sup>6</sup> ＝ <i>x</i><sup><i>r</i></sup>　より　<i>x</i><sup>16−<i>r</i></sup> ＝ <i>x</i><sup><i>r</i></sup>　すなわち　16−<i>r</i> ＝ <i>r</i>　よって　<span class="box"><i>r</i> ＝ 8</span></span>
     </div>
-    <div class="easy"><span class="t">やさしい解説</span>x²のときと同じ一般項の式に、今度は <i>r</i>＝8 を入れるだけ。式の形はそのまま使い回せます。</div>
-    <div class="fb" data-label="係数の計算">
-      <span class="m">係数 ＝ <sub>10</sub>C<sub>8</sub> 2<sup>8</sup> <i>a</i><sup>10−24</sup> ＝ <sub>10</sub>C<sub>2</sub> × 256 × <i>a</i><sup>−14</sup> ＝ 45×256×<i>a</i><sup>−14</sup> ＝ <span class="box">11520/<i>a</i><sup>14</sup></span></span>
+    <div class="easy"><span class="t">やさしい解説</span>②と同じく、分母をはらってから（両辺に<i>x</i><sup>6</sup>をかけて）指数を比べます。「両辺の<i>x</i>の肩（指数）が等しい」という1本の式にしてしまうのがポイントです。</div>
+    <div class="fb" data-label="1/x⁶の項の係数">
+      <span class="m"><sub>10</sub>C<sub>8</sub> · <span class="fr"><b>2<sup>8</sup>(√6)<sup>2</sup></b><b>(√6)<sup>16</sup></b></span> ＝ <sub>10</sub>C<sub>2</sub> · <span class="fr"><b>2<sup>8</sup></b><b>6<sup>7</sup></b></span> ＝ <span class="fr"><b>10·9</b><b>2·1</b></span> · <span class="fr"><b>2<sup>8</sup></b><b>2<sup>7</sup>×3<sup>7</sup></b></span> ＝ <span class="fr"><b>10</b><b>3<sup>5</sup></b></span> ＝ <span class="box">10/243</span></span>
     </div>
-    <div class="fb soft" data-label="a=√6 を代入">
-      <span class="m"><i>a</i><sup>14</sup> ＝ (√6)<sup>14</sup> ＝ 6<sup>7</sup> ＝ 279936</span>
-      <span class="m">係数 ＝ 11520／279936 ＝ <span class="box">10/243</span>　（分子・分母を1152で約分）</span>
+    <div class="easy"><span class="t">やさしい解説：√6の2乗と16乗</span>(√6)²＝6はすぐ計算できます。(√6)¹⁶は、6⁷×(√6)²＝6⁷×6＝6⁸…としてもよいのですが、上の式では<sub>10</sub>C₈・2⁸(√6)²を(√6)¹⁶で割る形のまま、6＝2×3に分解して2のべき乗・3のべき乗を別々に約分すると計算がラクになります。</div>
+    <div class="ans"><span class="al">答</span><span class="av m">1/x⁶ の項の係数：10/243</span></div>
+
+    <div class="pt"><span class="t">一般項の指数の作り方（まとめ）：</span>
+      <span class="m">₁₀Cᵣ·<i>a</i><sup>10−<i>r</i></sup>·<i>x</i><sup>10−<i>r</i></sup>·2<sup><i>r</i></sup>·<i>a</i><sup>−2<i>r</i></sup>·<i>x</i><sup>−<i>r</i></sup> ＝ ₁₀Cᵣ <i>a</i><sup>10−3<i>r</i></sup>·2<sup><i>r</i></sup>·<i>x</i><sup>10−2<i>r</i></sup>　← これが係数（<i>a</i>の部分）×<i>x</i><sup>10−2<i>r</i></sup></span>
+      この「10−2<i>r</i>」の部分を2とおいたり−6とおいたりすれば、<i>r</i>が一発で決まります（②③で使った手順と同じ結果になる近道です）。
     </div>
-    <div class="easy"><span class="t">やさしい解説：(√6)¹⁴ の計算</span>√6 を14回かけると、2個ずつペアにして (√6)²＝6 が7セットできる、と考えると (√6)<sup>14</sup>＝6<sup>7</sup> とすぐ分かります。指数が偶数のときはこの「ペアにする」考え方が使えます。</div>
-    <div class="ans"><span class="al">答</span><span class="av m">x⁻⁶ の項の係数：10/243</span></div>
-    <div class="pt"><span class="t">計算の流れのまとめ：</span>①一般項を <sub>10</sub>C<sub><i>r</i></sub>のかたちで作る → ②目標の <i>x</i> の指数から <i>r</i> を決める → ③その <i>r</i> を代入して係数を出す（この流れは <i>r</i>＝4 でも <i>r</i>＝8 でも同じ）。</div>
   </div>
 </section>
 
@@ -397,17 +395,34 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
       <span class="sub">(3) <i>f</i>(<i>θ</i>) の最大値・最小値を求めよ。また <i>f</i>(<i>θ</i>)＝4 を満たす <i>θ</i> の個数を求めよ。</span>
       <span class="src">※元の資料に文字化けがあり、読み取った式です。教科書の式と一致するか確認してください。</span></p>
 
-    <h3>(1) 2倍角を使って変形</h3>
-    <div class="fb" data-label="2倍角・半角の公式">
-      <span class="m">sin<sup>2</sup><i>θ</i> ＝ <span class="fr"><b>1 − cos2<i>θ</i></b><b>2</b></span>　　cos<sup>2</sup><i>θ</i> ＝ <span class="fr"><b>1 ＋ cos2<i>θ</i></b><b>2</b></span>　　sin<i>θ</i>cos<i>θ</i> ＝ <span class="fr"><b>1</b><b>2</b></span> sin2<i>θ</i></span>
-      <span class="m">（もとは sin2<i>θ</i>＝2sin<i>θ</i>cos<i>θ</i>，cos2<i>θ</i>＝1−2sin<sup>2</sup><i>θ</i>＝2cos<sup>2</sup><i>θ</i>−1）</span>
+    <h3>(1) 加法定理だけで2θの形に変形</h3>
+    <div class="fb" data-label="覚える公式はこれだけ：加法定理">
+      <span class="m">sin(<i>A</i>＋<i>B</i>) ＝ sin<i>A</i>cos<i>B</i> ＋ cos<i>A</i>sin<i>B</i></span>
+      <span class="m">cos(<i>A</i>＋<i>B</i>) ＝ cos<i>A</i>cos<i>B</i> − sin<i>A</i>sin<i>B</i></span>
     </div>
-    <div class="easy"><span class="t">やさしい解説</span>sin²θ や cos²θ が混ざった式は、そのままでは扱いにくい。「2乗の形 → 2θ の1次の形」に変えると、あとで<b>合成</b>できるようになります。</div>
-    <div class="fb soft" data-label="変形">
-      <span class="m">2sin<sup>2</sup><i>θ</i> ＝ 1 − cos2<i>θ</i></span>
-      <span class="m">−4cos<sup>2</sup><i>θ</i> ＝ −2(1＋cos2<i>θ</i>) ＝ −2 − 2cos2<i>θ</i></span>
-      <span class="m">6√3 sin<i>θ</i>cos<i>θ</i> ＝ 3√3 sin2<i>θ</i></span>
-      <span class="m">合計：<i>f</i>(<i>θ</i>) ＝ (1−2) ＋ (−cos2<i>θ</i>−2cos2<i>θ</i>) ＋ 3√3 sin2<i>θ</i> ＝ <span class="box">−1 − 3cos2<i>θ</i> ＋ 3√3 sin2<i>θ</i></span></span>
+    <div class="easy"><span class="t">やさしい解説：2倍角は「覚えるもの」ではなく「その場で作るもの」</span>
+      <p>2倍角の公式（sin2θ＝…，cos2θ＝…）を別に丸暗記する必要はありません。加法定理で <i>A</i>＝<i>B</i>＝<i>θ</i> と<b>同じ角を2つ入れるだけ</b>で、その場で作れます。</p>
+    </div>
+    <div class="fb soft" data-label="加法定理にA=B=θを代入する">
+      <span class="m">sin2<i>θ</i> ＝ sin(<i>θ</i>＋<i>θ</i>) ＝ sin<i>θ</i>cos<i>θ</i>＋cos<i>θ</i>sin<i>θ</i> ＝ <span class="box">2sin<i>θ</i>cos<i>θ</i></span></span>
+      <span class="m">cos2<i>θ</i> ＝ cos(<i>θ</i>＋<i>θ</i>) ＝ cos<i>θ</i>cos<i>θ</i>−sin<i>θ</i>sin<i>θ</i> ＝ <span class="box">cos<sup>2</sup><i>θ</i>−sin<sup>2</sup><i>θ</i></span></span>
+    </div>
+    <div class="easy"><span class="t">sin²θ・cos²θ をcos2θで表す（使うのはsin²θ+cos²θ=1だけ）</span>
+      <p>cos2<i>θ</i>＝cos²<i>θ</i>−sin²<i>θ</i> と、おなじみの sin²<i>θ</i>＋cos²<i>θ</i>＝1 を連立させます。</p>
+      <p>たす：cos2<i>θ</i>＋1＝2cos²<i>θ</i>　⇒　cos²<i>θ</i>＝(1＋cos2<i>θ</i>)/2</p>
+      <p>ひく：1−cos2<i>θ</i>＝2sin²<i>θ</i>　⇒　sin²<i>θ</i>＝(1−cos2<i>θ</i>)/2</p>
+    </div>
+    <div class="pt"><span class="t">ここまでの道具：</span>使ったのは<span class="hl">加法定理</span>と<span class="hl">sin²θ+cos²θ=1</span>の2つだけ。「2倍角の公式」や「半角の公式」を別物として覚える必要はありません。</div>
+
+    <h3>f(θ)に代入して整理する</h3>
+    <div class="fb" data-label="変形">
+      <span class="m">2sin<sup>2</sup><i>θ</i> ＝ 2×(1−cos2<i>θ</i>)/2 ＝ 1 − cos2<i>θ</i></span>
+      <span class="m">−4cos<sup>2</sup><i>θ</i> ＝ −4×(1＋cos2<i>θ</i>)/2 ＝ −2 − 2cos2<i>θ</i></span>
+      <span class="m">6√3 sin<i>θ</i>cos<i>θ</i> ＝ 3√3×(2sin<i>θ</i>cos<i>θ</i>) ＝ 3√3 sin2<i>θ</i>　（sin2θ＝2sinθcosθ を使った）</span>
+    </div>
+    <div class="fb soft" data-label="合計">
+      <span class="m"><i>f</i>(<i>θ</i>) ＝ (1−cos2<i>θ</i>) ＋ (−2−2cos2<i>θ</i>) ＋ 3√3 sin2<i>θ</i></span>
+      <span class="m">＝ (1−2) ＋ (−cos2<i>θ</i>−2cos2<i>θ</i>) ＋ 3√3 sin2<i>θ</i> ＝ <span class="box">−1 − 3cos2<i>θ</i> ＋ 3√3 sin2<i>θ</i></span></span>
     </div>
     <div class="ans"><span class="al">答 (1)</span><span class="av m"><i>f</i>(<i>θ</i>) ＝ −1 − 3cos2<i>θ</i> ＋ 3√3 sin2<i>θ</i></span></div>
 
