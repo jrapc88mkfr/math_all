@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>数学Ⅰ 2次関数とx軸の共有点（解の位置）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f5fa; --panel:#ffffff; --ink:#16233b; --sub:#54627c; --line:#d3dce8;
+  --red:#d0212f; --red-bg:#fff1f2; --red-ink:#ffffff;
+  --blue:#1d5fa8; --blue-bg:#eaf3fc;
+  --mark:#ffe873; --mark-bg:#fff8d6; --mark-line:#e0b400;
+  --green:#2e7d4f; --green-bg:#eaf7ee;
+  --purp:#7b3fb0; --purp-bg:#f3ecfa;
+  --ans-bg:#16233b; --ans-ink:#ffffff;
+  --grid:rgba(29,95,168,.08);
+  --shadow:0 1px 0 rgba(22,35,59,.06), 0 8px 24px -14px rgba(22,35,59,.35);
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  --math:"STIX Two Text","Times New Roman","Noto Serif JP","Yu Mincho",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+    --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+    --blue:#82bbff; --blue-bg:#13263b;
+    --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+    --green:#7fd19f; --green-bg:#122a1c;
+    --purp:#c9a4ec; --purp-bg:#241a30;
+    --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+    --grid:rgba(130,187,255,.07);
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+  --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+  --blue:#82bbff; --blue-bg:#13263b;
+  --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+  --green:#7fd19f; --green-bg:#122a1c;
+  --purp:#c9a4ec; --purp-bg:#241a30;
+  --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+  --grid:rgba(130,187,255,.07);
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:auto;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--sans);font-size:16px;line-height:1.85;
+}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.hero{max-width:960px;margin:0 auto;padding:34px 18px 8px}
+.hero h1{margin:0;font-size:clamp(1.5rem,5vw,2.3rem);font-weight:900;line-height:1.35;letter-spacing:.02em}
+.hero h1 span{display:inline-block;border:4px solid var(--red);border-radius:12px;padding:0 .35em;margin-right:.2em;color:var(--red);transform:rotate(-1.5deg)}
+.hero p{margin:12px 0 0;color:var(--sub);max-width:42em}
+.legend{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:22px 0 4px}
+.legend > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.86rem;line-height:1.6;box-shadow:var(--shadow)}
+.legend b{display:block;margin-bottom:4px;font-size:.9rem}
+.swatch{display:inline-block;width:1.6em;height:1em;vertical-align:-.15em;margin-right:.4em;border-radius:3px}
+.sw-red{border:2.5px solid var(--red);background:var(--red-bg)}
+.sw-blue{border-left:5px solid var(--blue);background:var(--blue-bg)}
+.sw-mark{border-left:5px solid var(--mark-line);background:var(--mark-bg)}
+.sw-purp{border-left:5px solid var(--purp);background:var(--purp-bg)}
+
+.notice{max-width:960px;margin:18px auto 0;padding:0 18px}
+.notice-in{background:var(--purp-bg);border:2px solid var(--purp);border-radius:12px;padding:14px 18px;font-size:.92rem}
+.notice-in b{color:var(--purp)}
+.notice-in ul{margin:8px 0 0;padding-left:1.3em}
+.notice-in li{margin:4px 0}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:960px;margin:0 auto;padding:8px 18px;display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 12px;line-height:1.7}
+.nav a:hover{border-color:var(--red);color:var(--red)}
+.tools{margin-left:auto;display:flex;gap:8px;flex:none;padding-left:8px}
+.btn{font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:3px 12px;line-height:1.7}
+.btn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.progress{font-size:.82rem;font-weight:700;color:var(--sub);white-space:nowrap;align-self:center}
+
+main{max-width:960px;margin:0 auto;padding:12px 18px 60px}
+.prob{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:26px 0;padding:0 0 18px;box-shadow:var(--shadow);overflow:hidden}
+.ph{display:flex;align-items:stretch;border-bottom:2px solid var(--ink);margin-bottom:16px}
+.ph .no{flex:none;min-width:4.6rem;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--panel);font-weight:900;font-size:1.2rem;padding:8px 10px;letter-spacing:.03em;text-align:center;line-height:1.3}
+.ph .htext{flex:1;align-self:center;padding:10px 16px}
+.ph .htext .tag{display:block;font-size:.74rem;font-weight:700;color:var(--red);letter-spacing:.06em;margin-bottom:1px}
+.ph h2{margin:0;font-size:1.05rem;font-weight:700;line-height:1.5}
+.ph .done{margin:8px 12px 8px 0;align-self:center}
+.body{padding:0 clamp(14px,3vw,24px)}
+h3{font-size:1rem;font-weight:900;margin:22px 0 6px;padding-bottom:3px;border-bottom:2px dotted var(--line)}
+p{margin:8px 0}
+.q{border:2px dashed var(--line);border-radius:10px;padding:10px 14px;margin:0 0 14px}
+.q::before{content:"問題";display:inline-block;font-weight:900;font-size:.8rem;background:var(--ink);color:var(--panel);border-radius:4px;padding:0 8px;margin-right:8px;line-height:1.6}
+.q .sub{display:block;margin-top:4px}
+
+/* math */
+.m{font-family:var(--math);font-size:1.12em;line-height:1.9}
+.m i{font-style:italic}
+sup,sub{line-height:0;font-size:.72em}
+.fr{display:inline-block;vertical-align:middle;text-align:center;line-height:1.25;margin:0 .18em;font-size:.95em}
+.fr > b{display:block;font-weight:inherit;padding:0 .25em}
+.fr > b:first-child{border-bottom:1.5px solid currentColor}
+.int{display:inline-block;vertical-align:middle;white-space:nowrap;margin:0 .1em}
+.int .sym{display:inline-block;vertical-align:middle;font-size:2.1em;line-height:1;font-weight:300;font-family:var(--math)}
+.lim{display:inline-block;vertical-align:middle;font-size:.62em;line-height:1.1;margin-left:.1em;text-align:left}
+.lim > span{display:block}
+.lim > span:first-child{margin-bottom:1.15em}
+.int .lim{margin-left:-.25em}
+.brk{font-size:2.2em;line-height:1;font-weight:300;vertical-align:middle;display:inline-block;margin:0 .02em;font-family:var(--math)}
+
+.fb{position:relative;margin:24px 0 14px;padding:16px 16px 10px;border:3px solid var(--red);border-radius:12px;background:var(--red-bg)}
+.fb::before{content:attr(data-label);position:absolute;top:-.95em;left:14px;background:var(--red);color:var(--red-ink);font-weight:900;font-size:.82rem;line-height:1.7;padding:0 12px;border-radius:999px}
+.fb .m{display:block;overflow-x:auto;padding:1px 0}
+.fb .m + .m{margin-top:2px}
+.fb.soft{border-style:dashed;border-width:2.5px}
+.box{font-family:var(--math);display:inline-block;border:2.5px solid var(--red);border-radius:6px;padding:0 .4em;background:var(--panel)}
+
+.easy{margin:14px 0;padding:12px 16px;background:var(--blue-bg);border-left:6px solid var(--blue);border-radius:0 10px 10px 0}
+.easy > .t{display:block;font-weight:900;color:var(--blue);font-size:.92rem;margin-bottom:2px}
+.easy > .t::before{content:"💡 "}
+.easy ul,.easy ol{margin:6px 0;padding-left:1.3em}
+.easy li{margin:3px 0}
+.pt{margin:14px 0;padding:10px 16px;background:var(--mark-bg);border-left:6px solid var(--mark-line);border-radius:0 10px 10px 0}
+.pt > .t{font-weight:900}
+.hl{background:linear-gradient(transparent 55%,var(--mark) 55%);font-weight:700}
+
+.ans{margin:16px 0 4px;background:var(--ans-bg);color:var(--ans-ink);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ans .al{flex:none;font-weight:900;font-size:.85rem;background:var(--red);color:var(--red-ink);border-radius:999px;padding:0 12px;line-height:1.7}
+.ans .av{font-weight:700;font-size:1.05rem;flex:1;min-width:0}
+body.hide .ans{cursor:pointer}
+body.hide .ans:not(.shown) .av{filter:blur(9px);user-select:none}
+body.hide .ans:not(.shown)::after{content:"タップで答えを見る";font-size:.78rem;opacity:.75;margin-left:auto}
+
+.check{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 12px;margin:10px 0;font-size:.92rem}
+.check b{color:var(--blue)}
+.check .chk-row{margin:2px 0;overflow-x:auto}
+.done{font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--panel);color:var(--sub);border-radius:999px;padding:0 12px;line-height:1.9}
+.done[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--panel)}
+.done[aria-pressed="true"]::before{content:"✓ "}
+.fig{margin:14px 0;text-align:center}
+.fig svg{width:100%;max-width:460px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.fig figcaption{font-size:.84rem;color:var(--sub);margin-top:4px;line-height:1.6}
+.tblwrap{overflow-x:auto;margin:12px 0}
+table.tbl{border-collapse:collapse;width:100%;min-width:420px;font-size:.95rem;text-align:center}
+.tbl th,.tbl td{border:1.5px solid var(--ink);padding:7px 10px}
+.tbl th{background:var(--ink);color:var(--panel);font-weight:700}
+.tbl td.left{text-align:left}
+.sumlist{list-style:none;margin:0;padding:0;counter-reset:s}
+.sumlist li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px dotted var(--line)}
+.sumlist li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--red);color:var(--red);font-weight:900;text-align:center;line-height:25px}
+.sumlist li:last-child{border-bottom:0}
+.memo{background:var(--green-bg);border:2px solid var(--green);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:.95rem}
+.memo b{color:var(--green)}
+footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-size:.82rem}
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .ph .no{min-width:3.6rem;font-size:1.05rem}
+  .ph h2{font-size:1rem}
+  .fb{padding:16px 12px 8px}
+  .tools{padding-left:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .nav,.done,.tools{display:none}
+  body{background:#fff;color:#000}
+  .prob{break-inside:avoid;box-shadow:none}
+}
+
+.figgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:14px 0}
+.figgrid figure{margin:0;text-align:center}
+.figgrid svg{width:100%;max-width:300px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.figgrid figcaption{font-size:.84rem;color:var(--sub);margin-top:4px;line-height:1.5}
+.ok{color:var(--green);font-weight:900}
+.ng{color:var(--red);font-weight:900}
+.tbl td.m,.tbl td .m{font-size:1.02em}
+.tbl th,.tbl td.nw{white-space:nowrap}
+</style>
+</head><body>
+
+<div class="hero">
+  <h1><span>数学Ⅰ</span>2次関数と x軸の共有点（解の位置）</h1>
+  <p>数学Ⅰ・数学A 第2問〔1〕（配点30）。「グラフが x軸の <span class="m"><i>x</i> ＞ 1</span> の部分と共有点をもつ k の範囲」を、<strong>頂点の y座標・軸の位置・f(1) の符号</strong>の3点セットで整理する問題です。記述式の答案の形と図で流れをつかみ、青い解説で理由を確認、黄色いところでテストの注意点を押さえましょう。</p>
+  <div class="legend" aria-label="この資料の見かた">
+    <div><b><span class="swatch sw-red"></span>赤枠＝覚える公式・答案の形</b>テストで書く式です。</div>
+    <div><b><span class="swatch sw-blue"></span>青＝やさしい解説</b>中学の知識でわかるように説明します。</div>
+    <div><b><span class="swatch sw-mark"></span>黄＝テストでのポイント</b>書き忘れ・減点されやすいところ。</div>
+    <div><b><span class="swatch sw-purp"></span>紫＝問題文の読み取り</b>文字が崩れていた部分の確認。</div>
+  </div>
+</div>
+
+<div class="notice">
+  <div class="notice-in">
+    <b>問題文の読み取りについて（元の資料は式や記号の文字が崩れていました）</b>
+    <ul>
+      <li><b>f(x)：</b>「−x+2kx−2k+3+4」と崩れていた式を <span class="m"><i>f</i>(<i>x</i>) = −<i>x</i><sup>2</sup> + 2<i>k</i><i>x</i> − 2<i>k</i><sup>2</sup> + 3<i>k</i> + 4</span> と読みました。(2) の答えが x = 1, 5 と x = 1, −2 のきれいな整数になるので、この読み取りで合っていると考えられます。</li>
+      <li><b>解答欄の記号：</b>ア・イ・ウ・カ・キ・ク・ス など読み取れた欄だけ記号を添えています。読み取れなかった欄（(3)(iii) の不等号の記号など）は、答えの値だけを書いています。</li>
+      <li><b>(4)：</b>「整数 k の値は全部で何個あるか」と読んで解いています。</li>
+    </ul>
+  </div>
+</div>
+
+<nav class="nav" aria-label="目次">
+  <div class="nav-in">
+    <a href="#q">問題</a><a href="#s1">(1)</a><a href="#s2">(2)</a><a href="#s3">(3)</a><a href="#s4">(4)</a><a href="#pfinal">直前</a>
+    <span class="tools">
+      <span class="progress" id="progress" aria-live="polite"></span>
+      <button class="btn" id="hideBtn" aria-pressed="false" type="button">答えをかくす</button>
+    </span>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= 問題 ================= -->
+<section class="prob" id="q">
+  <div class="ph"><span class="no">問題</span><div class="htext"><span class="tag">数学Ⅰ・数学A 第2問〔1〕（配点30）</span><h2>2次関数のグラフと x軸の共有点</h2></div></div>
+  <div class="body">
+    <p class="q"><span class="m"><i>k</i></span> を定数とし、2次関数 <span class="m"><i>f</i>(<i>x</i>) = −<i>x</i><sup>2</sup> + 2<i>k</i><i>x</i> − 2<i>k</i><sup>2</sup> + 3<i>k</i> + 4</span> がある。
+      <span class="sub">(1) <span class="m"><i>k</i> = 2</span> のとき、<span class="m"><i>y</i> = <i>f</i>(<i>x</i>)</span> のグラフの頂点の座標を求めよ。</span>
+      <span class="sub">(2) <span class="m"><i>y</i> = <i>f</i>(<i>x</i>)</span> のグラフが点 (1, 0) を通るとき、<span class="m"><i>k</i></span> の値を求めよ。また、このとき <span class="m"><i>y</i> = <i>f</i>(<i>x</i>)</span> のグラフと x軸の共有点の x座標を求めよ。</span>
+      <span class="sub">(3) <span class="m"><i>y</i> = <i>f</i>(<i>x</i>)</span> のグラフが x軸の <span class="m"><i>x</i> ＞ 1</span> の部分と少なくとも一つの共有点をもつような <span class="m"><i>k</i></span> の値の範囲を考えよう。</span>
+      <span class="sub">　(i) <span class="m"><i>f</i>(1) ＞ 0</span> とする。このとき、グラフと x軸の <span class="m"><i>x</i> ＞ 1</span> の部分の共有点は、⓪ない　① 1個だけである　② ちょうど2個ある　のどれか。</span>
+      <span class="sub">　(ii) <span class="m"><i>f</i>(1) ＜ 0</span> とする。グラフが x軸の <span class="m"><i>x</i> ＞ 1</span> の部分と異なる2点で交わるような <span class="m"><i>k</i></span> の値の範囲を求めよ。</span>
+      <span class="sub">　(iii) グラフが x軸の <span class="m"><i>x</i> ＞ 1</span> の部分と少なくとも一つの共有点をもつような <span class="m"><i>k</i></span> の値の範囲を求めよ。</span>
+      <span class="sub">(4) グラフが x軸の <span class="m"><i>x</i> ≦ 1</span> の部分と少なくとも一つの共有点をもつような整数 <span class="m"><i>k</i></span> の値は、全部で何個あるか。</span></p>
+
+    <div class="fb" data-label="この問題の流れ">
+      <span class="m">(1)　平方完成 → 頂点</span>
+      <span class="m">(2)　<i>f</i>(1) = 0 を解く → <i>k</i> → 因数分解 → 共有点の <i>x</i>座標</span>
+      <span class="m">(3)　準備（<i>f</i>(1)・軸・頂点の <i>y</i>座標）→ <i>f</i>(1) の符号で場合分け</span>
+      <span class="m">(4)　「<i>x</i> ≦ 1 に共有点をもたない」場合を除く</span>
+    </div>
+    <div class="memo"><b>この問題の合言葉：</b>「x軸との共有点 ＝ f(x) = 0 の解」。そして x = 1 を境に解が左右どちらにあるかは、<b>頂点の y座標・軸の位置・f(1) の符号</b>の3点セットで決まります。</div>
+  </div>
+</section>
+
+<!-- ================= (1) ================= -->
+<section class="prob" id="s1" data-key="s1">
+  <div class="ph"><span class="no">(1)</span><div class="htext"><span class="tag">頂点</span><h2>k = 2 のときの頂点の座標（平方完成）</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q"><span class="m"><i>k</i> = 2</span> のとき、<span class="m"><i>y</i> = <i>f</i>(<i>x</i>)</span> のグラフの頂点の座標を求めよ。</p>
+
+    <div class="fb" data-label="平方完成の公式">
+      <span class="m"><span class="box"><i>y</i> = <i>a</i>(<i>x</i> − <i>p</i>)<sup>2</sup> + <i>q</i></span> のグラフの頂点は <span class="box">(<i>p</i>, <i>q</i>)</span></span>
+      <span class="m"><i>x</i><sup>2</sup> + <i>b</i><i>x</i> = (<i>x</i> + <span class="fr"><b><i>b</i></b><b>2</b></span>)<sup>2</sup> − (<span class="fr"><b><i>b</i></b><b>2</b></span>)<sup>2</sup>　（<i>x</i> の係数の半分を使う）</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><b><i>k</i> = 2 のとき</b>　<i>f</i>(<i>x</i>) = −<i>x</i><sup>2</sup> + 4<i>x</i> − 8 + 6 + 4 = −<i>x</i><sup>2</sup> + 4<i>x</i> + 2</span>
+      <span class="m">= −(<i>x</i><sup>2</sup> − 4<i>x</i>) + 2</span>
+      <span class="m">= −{(<i>x</i> − 2)<sup>2</sup> − 4} + 2</span>
+      <span class="m">= −(<i>x</i> − 2)<sup>2</sup> + 6</span>
+      <span class="m">よって、頂点の座標は <span class="box">(2, 6)</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：平方完成のしくみ</span>
+      <p><span class="m"><i>x</i><sup>2</sup> − 4<i>x</i></span> は、x の係数 −4 の半分 −2 を使って <span class="m">(<i>x</i> − 2)<sup>2</sup> − 4</span> と書けます。（<span class="m">(<i>x</i> − 2)<sup>2</sup> = <i>x</i><sup>2</sup> − 4<i>x</i> + 4</span> なので、余分な +4 を引いて調整します。）</p>
+      <p>グラフの形は <span class="m"><i>y</i> = −(<i>x</i> − 2)<sup>2</sup> + 6</span>。<span class="m">(<i>x</i> − 2)<sup>2</sup></span> が 0 になる x = 2 のとき y が一番大きい（6）ので、頂点は (2, 6) です。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span><span class="hl">−{ } を外すときの符号</span>に注意。<span class="m">−{(<i>x</i> − 2)<sup>2</sup> − 4}</span> は、かっこの中の全部にマイナスをかけて <span class="m">−(<i>x</i> − 2)<sup>2</sup> + 4</span> になります（−4 の項は +4 に変わる）。</div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 302 397" role="img" aria-label="k=2のときのグラフ。頂点は(2, 6)、軸はx=2" xmlns="http://www.w3.org/2000/svg">
+<defs><clipPath id="cp-q1"><rect x="30" y="14" width="258.4" height="357.0"/></clipPath></defs>
+<rect x="30" y="14" width="258.4" height="357.0" fill="var(--panel)"/>
+<line x1="57.2" y1="14" x2="57.2" y2="371.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="125.2" y1="14" x2="125.2" y2="371.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="159.2" y1="14" x2="159.2" y2="371.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="193.2" y1="14" x2="193.2" y2="371.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="227.2" y1="14" x2="227.2" y2="371.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="261.2" y1="14" x2="261.2" y2="371.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="371.0" x2="288.4" y2="371.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="337.0" x2="288.4" y2="337.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="303.0" x2="288.4" y2="303.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="235.0" x2="288.4" y2="235.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="201.0" x2="288.4" y2="201.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="167.0" x2="288.4" y2="167.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="133.0" x2="288.4" y2="133.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="99.0" x2="288.4" y2="99.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="65.0" x2="288.4" y2="65.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="31.0" x2="288.4" y2="31.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="269.0" x2="288.4" y2="269.0" stroke="var(--ink)" stroke-width="1.6"/>
+<line x1="91.2" y1="14" x2="91.2" y2="371.0" stroke="var(--ink)" stroke-width="1.6"/>
+<g clip-path="url(#cp-q1)"><polyline points="159.2,371.0 159.2,14.0" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-opacity="0.55" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5"/><polyline points="30.0,556.0 31.7,543.1 33.4,530.5 35.1,518.0 36.8,505.6 38.5,493.5 40.2,481.5 41.9,469.7 43.6,458.0 45.3,446.6 47.0,435.3 48.7,424.1 50.4,413.2 52.1,402.4 53.8,391.7 55.5,381.3 57.2,371.0 58.9,360.9 60.6,350.9 62.3,341.2 64.0,331.6 65.7,322.1 67.4,312.9 69.1,303.8 70.8,294.8 72.5,286.1 74.2,277.5 75.9,269.1 77.6,260.8 79.3,252.8 81.0,244.9 82.7,237.1 84.4,229.6 86.1,222.2 87.8,214.9 89.5,207.9 91.2,201.0 92.9,194.3 94.6,187.7 96.3,181.4 98.0,175.2 99.7,169.1 101.4,163.3 103.1,157.6 104.8,152.0 106.5,146.7 108.2,141.5 109.9,136.5 111.6,131.6 113.3,127.0 115.0,122.5 116.7,118.1 118.4,114.0 120.1,110.0 121.8,106.1 123.5,102.5 125.2,99.0 126.9,95.7 128.6,92.5 130.3,89.6 132.0,86.8 133.7,84.1 135.4,81.7 137.1,79.4 138.8,77.2 140.5,75.3 142.2,73.5 143.9,71.9 145.6,70.4 147.3,69.2 149.0,68.1 150.7,67.1 152.4,66.4 154.1,65.8 155.8,65.3 157.5,65.1 159.2,65.0 160.9,65.1 162.6,65.3 164.3,65.8 166.0,66.4 167.7,67.1 169.4,68.1 171.1,69.2 172.8,70.4 174.5,71.9 176.2,73.5 177.9,75.3 179.6,77.2 181.3,79.4 183.0,81.7 184.7,84.1 186.4,86.8 188.1,89.6 189.8,92.5 191.5,95.7 193.2,99.0 194.9,102.5 196.6,106.1 198.3,110.0 200.0,114.0 201.7,118.1 203.4,122.5 205.1,127.0 206.8,131.6 208.5,136.5 210.2,141.5 211.9,146.7 213.6,152.0 215.3,157.6 217.0,163.3 218.7,169.1 220.4,175.2 222.1,181.4 223.8,187.7 225.5,194.3 227.2,201.0 228.9,207.9 230.6,214.9 232.3,222.2 234.0,229.6 235.7,237.1 237.4,244.9 239.1,252.8 240.8,260.8 242.5,269.1 244.2,277.5 245.9,286.1 247.6,294.8 249.3,303.8 251.0,312.9 252.7,322.1 254.4,331.6 256.1,341.2 257.8,350.9 259.5,360.9 261.2,371.0 262.9,381.3 264.6,391.7 266.3,402.4 268.0,413.2 269.7,424.1 271.4,435.3 273.1,446.6 274.8,458.0 276.5,469.7 278.2,481.5 279.9,493.5 281.6,505.6 283.3,518.0 285.0,530.5 286.7,543.1 288.4,556.0" fill="none" stroke="var(--blue)" stroke-width="3" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round"/></g>
+<rect x="30" y="14" width="258.4" height="357.0" fill="none" stroke="var(--sub)" stroke-width="1"/>
+<text x="57.2" y="387.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<text x="125.2" y="387.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<text x="159.2" y="387.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<text x="193.2" y="387.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<text x="227.2" y="387.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<text x="261.2" y="387.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<text x="24" y="375.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−3</text>
+<text x="24" y="341.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<text x="24" y="307.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<text x="24" y="239.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<text x="24" y="205.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<text x="24" y="171.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<text x="24" y="137.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<text x="24" y="103.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<text x="24" y="69.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">6</text>
+<text x="24" y="35.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">7</text>
+<text x="83.2" y="284.0" font-size="12" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">O</text>
+<text x="280.4" y="262.0" font-size="14" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">x</text>
+<text x="101.2" y="27" font-size="14" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">y</text>
+<circle cx="159.2" cy="65.0" r="5.5" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><text x="166.0" y="44.6" font-size="14" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">頂点 (2, 6)</text><text x="164.3" y="354.0" font-size="12" font-weight="500" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">軸 x = 2</text><text x="239.1" y="143.2" font-size="14" font-weight="700" fill="var(--blue)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">y=f(x)</text>
+</svg>
+      <figcaption>k = 2 のグラフ。上に凸（山の形）で、頂点は (2, 6)。点線は軸 x = 2。</figcaption>
+    </figure>
+
+    <div class="fb" data-label="一般の k での平方完成（(3)(4) でそのまま使う）">
+      <span class="m"><i>f</i>(<i>x</i>) = −(<i>x</i> − <i>k</i>)<sup>2</sup> + <i>k</i><sup>2</sup> − 2<i>k</i><sup>2</sup> + 3<i>k</i> + 4 = <span class="box">−(<i>x</i> − <i>k</i>)<sup>2</sup> − <i>k</i><sup>2</sup> + 3<i>k</i> + 4</span></span>
+      <span class="m">頂点 <span class="box">(<i>k</i>, −<i>k</i><sup>2</sup> + 3<i>k</i> + 4)</span>，軸 <span class="box"><i>x</i> = <i>k</i></span>，　−<i>k</i><sup>2</sup> + 3<i>k</i> + 4 = −(<i>k</i> + 1)(<i>k</i> − 4)</span>
+    </div>
+    <div class="check"><b>検算：</b>この式に k = 2 を入れると、頂点は <span class="m">(2, −4 + 6 + 4) = (2, 6)</span> ✓</div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m">頂点の座標 (2, 6)</span>　（ア ＝ 2，イ ＝ 6）</span></div>
+  </div>
+</section>
+
+<!-- ================= (2) ================= -->
+<section class="prob" id="s2" data-key="s2">
+  <div class="ph"><span class="no">(2)</span><div class="htext"><span class="tag">点を通る・共有点</span><h2>点 (1, 0) を通るときの k と、x軸との共有点</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q"><span class="m"><i>y</i> = <i>f</i>(<i>x</i>)</span> のグラフが点 (1, 0) を通るとき、<span class="m"><i>k</i></span> の値を求めよ。また、このとき <span class="m"><i>y</i> = <i>f</i>(<i>x</i>)</span> のグラフと x軸の共有点の x座標を求めよ。</p>
+
+    <div class="fb" data-label="グラフが点を通る条件">
+      <span class="m">グラフが点 (<i>a</i>, <i>b</i>) を通る ⇔ <span class="box"><i>f</i>(<i>a</i>) = <i>b</i></span>（<i>x</i> = <i>a</i>, <i>y</i> = <i>b</i> を式に代入すると成り立つ）</span>
+      <span class="m"><i>x</i>軸との共有点の <i>x</i>座標 ⇔ <span class="box"><i>f</i>(<i>x</i>) = 0 の解</span></span>
+    </div>
+
+    <h3>① k の値を求める</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">グラフが点 (1, 0) を通るので　<i>f</i>(1) = 0</span>
+      <span class="m"><i>f</i>(1) = −1 + 2<i>k</i> − 2<i>k</i><sup>2</sup> + 3<i>k</i> + 4 = −2<i>k</i><sup>2</sup> + 5<i>k</i> + 3</span>
+      <span class="m">よって　−2<i>k</i><sup>2</sup> + 5<i>k</i> + 3 = 0　⇒　2<i>k</i><sup>2</sup> − 5<i>k</i> − 3 = 0</span>
+      <span class="m">(2<i>k</i> + 1)(<i>k</i> − 3) = 0</span>
+      <span class="m">ゆえに　<span class="box"><i>k</i> = −<span class="fr"><b>1</b><b>2</b></span>，3</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：2k² − 5k − 3 の因数分解（たすきがけ）</span>
+      <p>かけて 2·(−3) = −6、たして −5 になる2数は 1 と −6 です。そこで <span class="m">2<i>k</i><sup>2</sup> − 6<i>k</i> + <i>k</i> − 3</span> と分けて、<span class="m">2<i>k</i>(<i>k</i> − 3) + (<i>k</i> − 3) = (2<i>k</i> + 1)(<i>k</i> − 3)</span> とまとめます。展開して確かめると <span class="m">2<i>k</i><sup>2</sup> − 6<i>k</i> + <i>k</i> − 3 = 2<i>k</i><sup>2</sup> − 5<i>k</i> − 3</span> ✓。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>f(1) の式は、このあと (3) でも使います。<span class="m"><i>f</i>(1) = −2<i>k</i><sup>2</sup> + 5<i>k</i> + 3 = −(2<i>k</i> + 1)(<i>k</i> − 3)</span> の形まで<span class="hl">因数分解しておく</span>と、符号の調べ方が一気に楽になります。</div>
+    <div class="ans"><span class="al">答</span><span class="av"><span class="m"><i>k</i> = 3，−<span class="fr"><b>1</b><b>2</b></span></span>　（ウ ＝ 3）</span></div>
+
+    <h3>② 共有点の x座標を求める</h3>
+    <div class="fb soft" data-label="k = 3 のとき（答案）">
+      <span class="m"><i>f</i>(<i>x</i>) = −<i>x</i><sup>2</sup> + 6<i>x</i> − 18 + 9 + 4 = −<i>x</i><sup>2</sup> + 6<i>x</i> − 5</span>
+      <span class="m"><i>f</i>(<i>x</i>) = 0 ⇔ <i>x</i><sup>2</sup> − 6<i>x</i> + 5 = 0 ⇔ (<i>x</i> − 1)(<i>x</i> − 5) = 0　⇒　<span class="box"><i>x</i> = 1，5</span></span>
+    </div>
+    <div class="fb soft" data-label="k = −1/2 のとき（答案）">
+      <span class="m"><i>f</i>(<i>x</i>) = −<i>x</i><sup>2</sup> − <i>x</i> − <span class="fr"><b>1</b><b>2</b></span> − <span class="fr"><b>3</b><b>2</b></span> + 4 = −<i>x</i><sup>2</sup> − <i>x</i> + 2</span>
+      <span class="m"><i>f</i>(<i>x</i>) = 0 ⇔ <i>x</i><sup>2</sup> + <i>x</i> − 2 = 0 ⇔ (<i>x</i> − 1)(<i>x</i> + 2) = 0　⇒　<span class="box"><i>x</i> = 1，−2</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：f(x) = 0 の両辺に −1 をかける</span><span class="m">−<i>x</i><sup>2</sup> + 6<i>x</i> − 5 = 0</span> は、両辺に −1 をかけて <span class="m"><i>x</i><sup>2</sup> − 6<i>x</i> + 5 = 0</span> にすると、x² の係数が正になって因数分解しやすくなります（右辺は 0 なので、かけても変わりません）。</div>
+    <div class="check"><b>検算：</b>どちらも x = 1 が解に入っています（点 (1, 0) を通るので当然）。2つの解の和は、<span class="m"><i>x</i><sup>2</sup> − 2<i>k</i><i>x</i> + … = 0</span> の x の係数から <span class="m">2<i>k</i></span> のはず。k = 3 → 1 + 5 = 6 ✓、k = −<span class="fr"><b>1</b><b>2</b></span> → 1 + (−2) = −1 ✓。</div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 377 319" role="img" aria-label="k=3とk=−1/2のグラフ。どちらも点(1, 0)を通る" xmlns="http://www.w3.org/2000/svg">
+<defs><clipPath id="cp-q2"><rect x="30" y="14" width="333.2" height="278.8"/></clipPath></defs>
+<rect x="30" y="14" width="333.2" height="278.8" fill="var(--panel)"/>
+<line x1="43.6" y1="14" x2="43.6" y2="292.8" stroke="var(--line)" stroke-width="1"/>
+<line x1="77.6" y1="14" x2="77.6" y2="292.8" stroke="var(--line)" stroke-width="1"/>
+<line x1="111.6" y1="14" x2="111.6" y2="292.8" stroke="var(--line)" stroke-width="1"/>
+<line x1="179.6" y1="14" x2="179.6" y2="292.8" stroke="var(--line)" stroke-width="1"/>
+<line x1="213.6" y1="14" x2="213.6" y2="292.8" stroke="var(--line)" stroke-width="1"/>
+<line x1="247.6" y1="14" x2="247.6" y2="292.8" stroke="var(--line)" stroke-width="1"/>
+<line x1="281.6" y1="14" x2="281.6" y2="292.8" stroke="var(--line)" stroke-width="1"/>
+<line x1="315.6" y1="14" x2="315.6" y2="292.8" stroke="var(--line)" stroke-width="1"/>
+<line x1="349.6" y1="14" x2="349.6" y2="292.8" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="286.0" x2="363.2" y2="286.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="252.0" x2="363.2" y2="252.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="218.0" x2="363.2" y2="218.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="150.0" x2="363.2" y2="150.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="116.0" x2="363.2" y2="116.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="82.0" x2="363.2" y2="82.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="48.0" x2="363.2" y2="48.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="14.0" x2="363.2" y2="14.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="30" y1="184.0" x2="363.2" y2="184.0" stroke="var(--ink)" stroke-width="1.6"/>
+<line x1="145.6" y1="14" x2="145.6" y2="292.8" stroke="var(--ink)" stroke-width="1.6"/>
+<g clip-path="url(#cp-q2)"><polyline points="30.0,1440.6 31.7,1419.0 33.4,1397.5 35.1,1376.1 36.8,1355.0 38.5,1334.0 40.2,1313.1 41.9,1292.5 43.6,1272.0 45.3,1251.7 47.0,1231.5 48.7,1211.6 50.4,1191.8 52.1,1172.1 53.8,1152.7 55.5,1133.4 57.2,1114.2 58.9,1095.3 60.6,1076.5 62.3,1057.9 64.0,1039.4 65.7,1021.2 67.4,1003.1 69.1,985.1 70.8,967.4 72.5,949.8 74.2,932.3 75.9,915.1 77.6,898.0 79.3,881.1 81.0,864.3 82.7,847.8 84.4,831.4 86.1,815.1 87.8,799.1 89.5,783.2 91.2,767.4 92.9,751.9 94.6,736.5 96.3,721.3 98.0,706.2 99.7,691.4 101.4,676.7 103.1,662.1 104.8,647.8 106.5,633.6 108.2,619.5 109.9,605.7 111.6,592.0 113.3,578.5 115.0,565.1 116.7,552.0 118.4,539.0 120.1,526.1 121.8,513.5 123.5,501.0 125.2,488.6 126.9,476.5 128.6,464.5 130.3,452.7 132.0,441.0 133.7,429.6 135.4,418.3 137.1,407.1 138.8,396.2 140.5,385.4 142.2,374.7 143.9,364.3 145.6,354.0 147.3,343.9 149.0,333.9 150.7,324.2 152.4,314.6 154.1,305.1 155.8,295.9 157.5,286.8 159.2,277.8 160.9,269.1 162.6,260.5 164.3,252.1 166.0,243.8 167.7,235.8 169.4,227.9 171.1,220.1 172.8,212.6 174.5,205.2 176.2,197.9 177.9,190.9 179.6,184.0 181.3,177.3 183.0,170.7 184.7,164.4 186.4,158.2 188.1,152.1 189.8,146.3 191.5,140.6 193.2,135.0 194.9,129.7 196.6,124.5 198.3,119.5 200.0,114.6 201.7,110.0 203.4,105.5 205.1,101.1 206.8,97.0 208.5,93.0 210.2,89.1 211.9,85.5 213.6,82.0 215.3,78.7 217.0,75.5 218.7,72.6 220.4,69.8 222.1,67.1 223.8,64.7 225.5,62.4 227.2,60.2 228.9,58.3 230.6,56.5 232.3,54.9 234.0,53.4 235.7,52.2 237.4,51.1 239.1,50.1 240.8,49.4 242.5,48.8 244.2,48.3 245.9,48.1 247.6,48.0 249.3,48.1 251.0,48.3 252.7,48.8 254.4,49.4 256.1,50.1 257.8,51.1 259.5,52.2 261.2,53.4 262.9,54.9 264.6,56.5 266.3,58.3 268.0,60.2 269.7,62.4 271.4,64.7 273.1,67.1 274.8,69.8 276.5,72.6 278.2,75.5 279.9,78.7 281.6,82.0 283.3,85.5 285.0,89.1 286.7,93.0 288.4,97.0 290.1,101.1 291.8,105.5 293.5,110.0 295.2,114.6 296.9,119.5 298.6,124.5 300.3,129.7 302.0,135.0 303.7,140.6 305.4,146.3 307.1,152.1 308.8,158.2 310.5,164.4 312.2,170.7 313.9,177.3 315.6,184.0 317.3,190.9 319.0,197.9 320.7,205.2 322.4,212.6 324.1,220.1 325.8,227.9 327.5,235.8 329.2,243.8 330.9,252.1 332.6,260.5 334.3,269.1 336.0,277.8 337.7,286.8 339.4,295.9 341.1,305.1 342.8,314.6 344.5,324.2 346.2,333.9 347.9,343.9 349.6,354.0 351.3,364.3 353.0,374.7 354.7,385.4 356.4,396.2 358.1,407.1 359.8,418.3 361.5,429.6 363.2,441.0" fill="none" stroke="var(--blue)" stroke-width="3" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round"/><polyline points="30.0,393.4 31.7,383.7 33.4,374.1 35.1,364.6 36.8,355.4 38.5,346.3 40.2,337.3 41.9,328.6 43.6,320.0 45.3,311.6 47.0,303.3 48.7,295.3 50.4,287.4 52.1,279.6 53.8,272.1 55.5,264.7 57.2,257.4 58.9,250.4 60.6,243.5 62.3,236.8 64.0,230.2 65.7,223.9 67.4,217.7 69.1,211.6 70.8,205.8 72.5,200.1 74.2,194.5 75.9,189.2 77.6,184.0 79.3,179.0 81.0,174.1 82.7,169.5 84.4,165.0 86.1,160.6 87.8,156.5 89.5,152.5 91.2,148.6 92.9,145.0 94.6,141.5 96.3,138.2 98.0,135.0 99.7,132.1 101.4,129.3 103.1,126.6 104.8,124.2 106.5,121.9 108.2,119.7 109.9,117.8 111.6,116.0 113.3,114.4 115.0,112.9 116.7,111.7 118.4,110.6 120.1,109.6 121.8,108.9 123.5,108.3 125.2,107.8 126.9,107.6 128.6,107.5 130.3,107.6 132.0,107.8 133.7,108.3 135.4,108.9 137.1,109.6 138.8,110.6 140.5,111.7 142.2,112.9 143.9,114.4 145.6,116.0 147.3,117.8 149.0,119.7 150.7,121.9 152.4,124.2 154.1,126.6 155.8,129.3 157.5,132.1 159.2,135.0 160.9,138.2 162.6,141.5 164.3,145.0 166.0,148.6 167.7,152.5 169.4,156.5 171.1,160.6 172.8,165.0 174.5,169.5 176.2,174.1 177.9,179.0 179.6,184.0 181.3,189.2 183.0,194.5 184.7,200.1 186.4,205.8 188.1,211.6 189.8,217.7 191.5,223.9 193.2,230.2 194.9,236.8 196.6,243.5 198.3,250.4 200.0,257.4 201.7,264.7 203.4,272.1 205.1,279.6 206.8,287.4 208.5,295.3 210.2,303.3 211.9,311.6 213.6,320.0 215.3,328.6 217.0,337.3 218.7,346.3 220.4,355.4 222.1,364.6 223.8,374.1 225.5,383.7 227.2,393.4 228.9,403.4 230.6,413.5 232.3,423.8 234.0,434.2 235.7,444.9 237.4,455.7 239.1,466.6 240.8,477.8 242.5,489.1 244.2,500.5 245.9,512.2 247.6,524.0 249.3,536.0 251.0,548.1 252.7,560.5 254.4,573.0 256.1,585.6 257.8,598.5 259.5,611.5 261.2,624.6 262.9,638.0 264.6,651.5 266.3,665.2 268.0,679.0 269.7,693.1 271.4,707.3 273.1,721.6 274.8,736.2 276.5,750.9 278.2,765.7 279.9,780.8 281.6,796.0 283.3,811.4 285.0,826.9 286.7,842.7 288.4,858.6 290.1,874.6 291.8,890.9 293.5,907.3 295.2,923.8 296.9,940.6 298.6,957.5 300.3,974.6 302.0,991.8 303.7,1009.3 305.4,1026.9 307.1,1044.6 308.8,1062.6 310.5,1080.7 312.2,1098.9 313.9,1117.4 315.6,1136.0 317.3,1154.8 319.0,1173.7 320.7,1192.9 322.4,1212.2 324.1,1231.6 325.8,1251.3 327.5,1271.1 329.2,1291.0 330.9,1311.2 332.6,1331.5 334.3,1352.0 336.0,1372.6 337.7,1393.5 339.4,1414.5 341.1,1435.6 342.8,1457.0 344.5,1478.5 346.2,1500.1 347.9,1522.0 349.6,1544.0 351.3,1566.2 353.0,1588.5 354.7,1611.1 356.4,1633.8 358.1,1656.6 359.8,1679.7 361.5,1702.9 363.2,1726.2" fill="none" stroke="var(--green)" stroke-width="3" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round"/></g>
+<rect x="30" y="14" width="333.2" height="278.8" fill="none" stroke="var(--sub)" stroke-width="1"/>
+<text x="43.6" y="308.8" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−3</text>
+<text x="77.6" y="308.8" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<text x="111.6" y="308.8" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<text x="179.6" y="308.8" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<text x="213.6" y="308.8" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<text x="247.6" y="308.8" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<text x="281.6" y="308.8" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<text x="315.6" y="308.8" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<text x="349.6" y="308.8" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">6</text>
+<text x="24" y="290.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−3</text>
+<text x="24" y="256.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<text x="24" y="222.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<text x="24" y="154.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<text x="24" y="120.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<text x="24" y="86.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<text x="24" y="52.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<text x="24" y="18.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<text x="137.6" y="199.0" font-size="12" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">O</text>
+<text x="355.2" y="177.0" font-size="14" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">x</text>
+<text x="155.6" y="27" font-size="14" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">y</text>
+<circle cx="179.6" cy="184.0" r="6" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><circle cx="315.6" cy="184.0" r="4.8" fill="var(--blue)" stroke="var(--panel)" stroke-width="1.5"/><circle cx="77.6" cy="184.0" r="4.8" fill="var(--green)" stroke="var(--panel)" stroke-width="1.5"/><text x="179.6" y="156.8" font-size="14" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">(1, 0)</text><text x="320.7" y="161.9" font-size="13" font-weight="700" fill="var(--blue)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">(5, 0)</text><text x="79.3" y="161.9" font-size="13" font-weight="700" fill="var(--green)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">(−2, 0)</text><text x="247.6" y="27.6" font-size="14" font-weight="700" fill="var(--blue)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">k = 3</text><text x="128.6" y="87.1" font-size="14" font-weight="700" fill="var(--green)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">k = −1/2</text>
+</svg>
+      <figcaption>青＝k = 3（x軸と x = 1, 5 で交わる）、緑＝k = −1/2（x = −2, 1 で交わる）。どちらも点 (1, 0) を通ります。</figcaption>
+    </figure>
+    <div class="ans"><span class="al">答</span><span class="av"><span class="m"><i>k</i> = 3 のとき <i>x</i> = 1，5　（カ ＝ 5）　／　<i>k</i> = −<span class="fr"><b>1</b><b>2</b></span> のとき <i>x</i> = 1，−2　（キ ＝ −2）</span></span></div>
+  </div>
+</section>
+
+<!-- ================= (3) ================= -->
+<section class="prob" id="s3" data-key="s3">
+  <div class="ph"><span class="no">(3)</span><div class="htext"><span class="tag">解の位置</span><h2>x ＞ 1 の部分に共有点をもつ k の範囲</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <div class="easy"><span class="t">やさしい解説：問題を言いかえる</span>x軸との共有点の x座標は <span class="m"><i>f</i>(<i>x</i>) = 0</span> の解です。「x軸の <span class="m"><i>x</i> ＞ 1</span> の部分と共有点をもつ」とは、<b>f(x) = 0 の解のうち、1 より大きいものが少なくとも 1 つある</b>ということです。</div>
+
+    <h3>準備：3つの材料をそろえる</h3>
+    <div class="fb" data-label="解の位置の3点セット">
+      <span class="m"><b>① <i>f</i>(1) の符号</b>：<span class="box"><i>f</i>(1) = −2<i>k</i><sup>2</sup> + 5<i>k</i> + 3 = −(2<i>k</i> + 1)(<i>k</i> − 3)</span></span>
+      <span class="m">　　<i>f</i>(1) ＞ 0 ⇔ −<span class="fr"><b>1</b><b>2</b></span> ＜ <i>k</i> ＜ 3</span>
+      <span class="m">　　<i>f</i>(1) = 0 ⇔ <i>k</i> = −<span class="fr"><b>1</b><b>2</b></span>，3</span>
+      <span class="m">　　<i>f</i>(1) ＜ 0 ⇔ <i>k</i> ＜ −<span class="fr"><b>1</b><b>2</b></span>，3 ＜ <i>k</i></span>
+      <span class="m"><b>② 軸の位置</b>：<span class="box"><i>x</i> = <i>k</i></span>　（(1) の <i>f</i>(<i>x</i>) = −(<i>x</i> − <i>k</i>)<sup>2</sup> − (<i>k</i> + 1)(<i>k</i> − 4) より）</span>
+      <span class="m"><b>③ 頂点の <i>y</i>座標</b>：<span class="box">−<i>k</i><sup>2</sup> + 3<i>k</i> + 4 = −(<i>k</i> + 1)(<i>k</i> − 4)</span></span>
+      <span class="m">　　<i>x</i>軸と共有点をもつ ⇔ 頂点の <i>y</i>座標 ≧ 0 ⇔ <span class="box">−1 ≦ <i>k</i> ≦ 4</span></span>
+      <span class="m">　　異なる2点で交わる ⇔ 頂点の <i>y</i>座標 ＞ 0 ⇔ <span class="box">−1 ＜ <i>k</i> ＜ 4</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜこの3つを調べるの？</span>
+      <ul>
+        <li><b>① f(1)</b>：x = 1 は「x ＞ 1」の<b>境目</b>です。そこでグラフが x軸の上か下かが分かれば、境目が2つの共有点の間にあるのか、外にあるのかが分かります。</li>
+        <li><b>② 軸 x = k</b>：2つの共有点は軸を中心に<b>左右対称</b>、つまり軸は2つの共有点のちょうど真ん中です。共有点が 1 の右にあるか左にあるかを判断するのに使います。</li>
+        <li><b>③ 頂点の y座標</b>：x² の係数が −1（マイナス）なので、グラフは<b>山の形（上に凸）</b>です。頂点が一番高い点なので、頂点が x軸より下だと、グラフ全体が x軸より下に沈んで共有点がありません。（これは判別式 D と同じ内容で、<span class="m"><i>D</i> = 4(−<i>k</i><sup>2</sup> + 3<i>k</i> + 4)</span> です。）</li>
+      </ul>
+    </div>
+
+    <p>下の4枚は、k の値を変えたときのグラフです。<b>黄色い帯が x軸の x ＞ 1 の部分</b>、赤い点がその帯の上にある共有点です。</p>
+    <div class="figgrid"><figure><svg viewBox="0 0 272 333" role="img" aria-label="f(1)が正のとき、x＞1の部分に共有点は1個" xmlns="http://www.w3.org/2000/svg">
+<defs><clipPath id="cp-p1"><rect x="28" y="10" width="234.0" height="299.0"/></clipPath></defs>
+<rect x="28" y="10" width="234.0" height="299.0" fill="var(--panel)"/>
+<line x1="43.6" y1="10" x2="43.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="69.6" y1="10" x2="69.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="121.6" y1="10" x2="121.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="147.6" y1="10" x2="147.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="173.6" y1="10" x2="173.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="199.6" y1="10" x2="199.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="225.6" y1="10" x2="225.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="251.6" y1="10" x2="251.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="309.0" x2="262.0" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="283.0" x2="262.0" y2="283.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="257.0" x2="262.0" y2="257.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="231.0" x2="262.0" y2="231.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="179.0" x2="262.0" y2="179.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="153.0" x2="262.0" y2="153.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="127.0" x2="262.0" y2="127.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="101.0" x2="262.0" y2="101.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="75.0" x2="262.0" y2="75.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="49.0" x2="262.0" y2="49.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="23.0" x2="262.0" y2="23.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="205.0" x2="262.0" y2="205.0" stroke="var(--ink)" stroke-width="1.6"/>
+<line x1="95.6" y1="10" x2="95.6" y2="309.0" stroke="var(--ink)" stroke-width="1.6"/>
+<g clip-path="url(#cp-p1)"><polyline points="121.6,205.0 262.0,205.0" fill="none" stroke="var(--mark-line)" stroke-width="7" stroke-opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/><polyline points="121.6,309.0 121.6,10.0" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/><polyline points="28.0,386.0 29.3,376.7 30.6,367.5 31.9,358.5 33.2,349.6 34.5,340.8 35.8,332.1 37.1,323.6 38.4,315.2 39.7,307.0 41.0,298.9 42.3,290.9 43.6,283.0 44.9,275.3 46.2,267.7 47.5,260.2 48.8,252.8 50.1,245.6 51.4,238.5 52.7,231.6 54.0,224.8 55.3,218.1 56.6,211.5 57.9,205.1 59.2,198.8 60.5,192.6 61.8,186.5 63.1,180.6 64.4,174.8 65.7,169.2 67.0,163.7 68.3,158.3 69.6,153.0 70.9,147.9 72.2,142.9 73.5,138.0 74.8,133.2 76.1,128.6 77.4,124.1 78.7,119.8 80.0,115.6 81.3,111.5 82.6,107.5 83.9,103.7 85.2,100.0 86.5,96.4 87.8,92.9 89.1,89.6 90.4,86.4 91.7,83.4 93.0,80.5 94.3,77.7 95.6,75.0 96.9,72.5 98.2,70.1 99.5,67.8 100.8,65.6 102.1,63.6 103.4,61.7 104.7,60.0 106.0,58.4 107.3,56.9 108.6,55.5 109.9,54.3 111.2,53.2 112.5,52.2 113.8,51.3 115.1,50.6 116.4,50.0 117.7,49.6 119.0,49.3 120.3,49.1 121.6,49.0 122.9,49.1 124.2,49.3 125.5,49.6 126.8,50.0 128.1,50.6 129.4,51.3 130.7,52.2 132.0,53.2 133.3,54.3 134.6,55.5 135.9,56.9 137.2,58.4 138.5,60.0 139.8,61.7 141.1,63.6 142.4,65.6 143.7,67.8 145.0,70.1 146.3,72.5 147.6,75.0 148.9,77.7 150.2,80.5 151.5,83.4 152.8,86.4 154.1,89.6 155.4,92.9 156.7,96.4 158.0,100.0 159.3,103.7 160.6,107.5 161.9,111.5 163.2,115.6 164.5,119.8 165.8,124.1 167.1,128.6 168.4,133.2 169.7,138.0 171.0,142.9 172.3,147.9 173.6,153.0 174.9,158.3 176.2,163.7 177.5,169.2 178.8,174.8 180.1,180.6 181.4,186.5 182.7,192.6 184.0,198.8 185.3,205.1 186.6,211.5 187.9,218.1 189.2,224.8 190.5,231.6 191.8,238.5 193.1,245.6 194.4,252.8 195.7,260.2 197.0,267.7 198.3,275.3 199.6,283.0 200.9,290.9 202.2,298.9 203.5,307.0 204.8,315.2 206.1,323.6 207.4,332.1 208.7,340.8 210.0,349.6 211.3,358.5 212.6,367.5 213.9,376.7 215.2,386.0 216.5,395.4 217.8,404.9 219.1,414.6 220.4,424.4 221.7,434.4 223.0,444.5 224.3,454.7 225.6,465.0 226.9,475.5 228.2,486.1 229.5,496.8 230.8,507.6 232.1,518.6 233.4,529.7 234.7,541.0 236.0,552.4 237.3,563.9 238.6,575.5 239.9,587.3 241.2,599.2 242.5,611.2 243.8,623.3 245.1,635.6 246.4,648.0 247.7,660.6 249.0,673.3 250.3,686.1 251.6,699.0 252.9,712.1 254.2,725.3 255.5,738.6 256.8,752.0 258.1,765.6 259.4,779.3 260.7,793.2 262.0,807.2" fill="none" stroke="var(--blue)" stroke-width="3" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round"/></g>
+<rect x="28" y="10" width="234.0" height="299.0" fill="none" stroke="var(--sub)" stroke-width="1"/>
+<text x="43.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<text x="69.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<text x="121.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<text x="147.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<text x="173.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<text x="199.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<text x="225.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<text x="251.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">6</text>
+<text x="22" y="313.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−4</text>
+<text x="22" y="287.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−3</text>
+<text x="22" y="261.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<text x="22" y="235.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<text x="22" y="183.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<text x="22" y="157.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<text x="22" y="131.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<text x="22" y="105.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<text x="22" y="79.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<text x="22" y="53.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">6</text>
+<text x="22" y="27.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">7</text>
+<text x="87.6" y="220.0" font-size="12" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">O</text>
+<text x="254.0" y="198.0" font-size="14" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">x</text>
+<text x="105.6" y="23" font-size="14" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">y</text>
+<circle cx="57.9" cy="205.0" r="5" fill="var(--sub)" stroke="var(--panel)" stroke-width="1.5"/><circle cx="185.3" cy="205.0" r="5" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><text x="259.4" y="29.5" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">k = 1</text><text x="259.4" y="59.4" font-size="11.5" font-weight="500" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">f(1)＝6 ＞ 0</text><text x="124.7" y="292.1" font-size="11" font-weight="500" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">x = 1</text>
+</svg><figcaption>① f(1)＞0：1 は2つの共有点の間 → x＞1 には <b>1個</b></figcaption></figure><figure><svg viewBox="0 0 272 333" role="img" aria-label="f(1)が負で軸が1より右のとき、x＞1の部分に共有点は2個" xmlns="http://www.w3.org/2000/svg">
+<defs><clipPath id="cp-p2"><rect x="28" y="10" width="234.0" height="299.0"/></clipPath></defs>
+<rect x="28" y="10" width="234.0" height="299.0" fill="var(--panel)"/>
+<line x1="43.6" y1="10" x2="43.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="69.6" y1="10" x2="69.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="121.6" y1="10" x2="121.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="147.6" y1="10" x2="147.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="173.6" y1="10" x2="173.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="199.6" y1="10" x2="199.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="225.6" y1="10" x2="225.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="251.6" y1="10" x2="251.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="309.0" x2="262.0" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="283.0" x2="262.0" y2="283.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="257.0" x2="262.0" y2="257.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="231.0" x2="262.0" y2="231.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="179.0" x2="262.0" y2="179.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="153.0" x2="262.0" y2="153.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="127.0" x2="262.0" y2="127.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="101.0" x2="262.0" y2="101.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="75.0" x2="262.0" y2="75.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="49.0" x2="262.0" y2="49.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="23.0" x2="262.0" y2="23.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="205.0" x2="262.0" y2="205.0" stroke="var(--ink)" stroke-width="1.6"/>
+<line x1="95.6" y1="10" x2="95.6" y2="309.0" stroke="var(--ink)" stroke-width="1.6"/>
+<g clip-path="url(#cp-p2)"><polyline points="121.6,205.0 262.0,205.0" fill="none" stroke="var(--mark-line)" stroke-width="7" stroke-opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/><polyline points="121.6,309.0 121.6,10.0" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/><polyline points="28.0,1114.0 29.3,1098.2 30.6,1082.5 31.9,1067.0 33.2,1051.6 34.5,1036.3 35.8,1021.1 37.1,1006.1 38.4,991.2 39.7,976.5 41.0,961.9 42.3,947.4 43.6,933.0 44.9,918.8 46.2,904.7 47.5,890.7 48.8,876.8 50.1,863.1 51.4,849.5 52.7,836.1 54.0,822.8 55.3,809.6 56.6,796.5 57.9,783.6 59.2,770.8 60.5,758.1 61.8,745.5 63.1,733.1 64.4,720.8 65.7,708.7 67.0,696.7 68.3,684.8 69.6,673.0 70.9,661.4 72.2,649.9 73.5,638.5 74.8,627.2 76.1,616.1 77.4,605.1 78.7,594.3 80.0,583.6 81.3,573.0 82.6,562.5 83.9,552.2 85.2,542.0 86.5,531.9 87.8,521.9 89.1,512.1 90.4,502.4 91.7,492.9 93.0,483.5 94.3,474.2 95.6,465.0 96.9,456.0 98.2,447.1 99.5,438.3 100.8,429.6 102.1,421.1 103.4,412.7 104.7,404.5 106.0,396.4 107.3,388.4 108.6,380.5 109.9,372.8 111.2,365.2 112.5,357.7 113.8,350.3 115.1,343.1 116.4,336.0 117.7,329.1 119.0,322.3 120.3,315.6 121.6,309.0 122.9,302.6 124.2,296.3 125.5,290.1 126.8,284.0 128.1,278.1 129.4,272.3 130.7,266.7 132.0,261.2 133.3,255.8 134.6,250.5 135.9,245.4 137.2,240.4 138.5,235.5 139.8,230.7 141.1,226.1 142.4,221.6 143.7,217.3 145.0,213.1 146.3,209.0 147.6,205.0 148.9,201.2 150.2,197.5 151.5,193.9 152.8,190.4 154.1,187.1 155.4,183.9 156.7,180.9 158.0,178.0 159.3,175.2 160.6,172.5 161.9,170.0 163.2,167.6 164.5,165.3 165.8,163.1 167.1,161.1 168.4,159.2 169.7,157.5 171.0,155.9 172.3,154.4 173.6,153.0 174.9,151.8 176.2,150.7 177.5,149.7 178.8,148.8 180.1,148.1 181.4,147.5 182.7,147.1 184.0,146.8 185.3,146.6 186.6,146.5 187.9,146.6 189.2,146.8 190.5,147.1 191.8,147.5 193.1,148.1 194.4,148.8 195.7,149.7 197.0,150.7 198.3,151.8 199.6,153.0 200.9,154.4 202.2,155.9 203.5,157.5 204.8,159.2 206.1,161.1 207.4,163.1 208.7,165.3 210.0,167.6 211.3,170.0 212.6,172.5 213.9,175.2 215.2,178.0 216.5,180.9 217.8,183.9 219.1,187.1 220.4,190.4 221.7,193.9 223.0,197.5 224.3,201.2 225.6,205.0 226.9,209.0 228.2,213.1 229.5,217.3 230.8,221.6 232.1,226.1 233.4,230.7 234.7,235.5 236.0,240.4 237.3,245.4 238.6,250.5 239.9,255.8 241.2,261.2 242.5,266.7 243.8,272.3 245.1,278.1 246.4,284.0 247.7,290.1 249.0,296.3 250.3,302.6 251.6,309.0 252.9,315.6 254.2,322.3 255.5,329.1 256.8,336.0 258.1,343.1 259.4,350.3 260.7,357.7 262.0,365.2" fill="none" stroke="var(--blue)" stroke-width="3" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round"/></g>
+<rect x="28" y="10" width="234.0" height="299.0" fill="none" stroke="var(--sub)" stroke-width="1"/>
+<text x="43.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<text x="69.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<text x="121.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<text x="147.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<text x="173.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<text x="199.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<text x="225.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<text x="251.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">6</text>
+<text x="22" y="313.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−4</text>
+<text x="22" y="287.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−3</text>
+<text x="22" y="261.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<text x="22" y="235.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<text x="22" y="183.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<text x="22" y="157.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<text x="22" y="131.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<text x="22" y="105.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<text x="22" y="79.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<text x="22" y="53.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">6</text>
+<text x="22" y="27.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">7</text>
+<text x="87.6" y="220.0" font-size="12" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">O</text>
+<text x="254.0" y="198.0" font-size="14" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">x</text>
+<text x="105.6" y="23" font-size="14" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">y</text>
+<circle cx="147.6" cy="205.0" r="5" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><circle cx="225.6" cy="205.0" r="5" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><text x="259.4" y="29.5" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">k = 3.5</text><text x="259.4" y="59.4" font-size="11.5" font-weight="500" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">f(1)＜0，軸＞1</text><text x="124.7" y="292.1" font-size="11" font-weight="500" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">x = 1</text>
+</svg><figcaption>② f(1)＜0 で軸が右：2つとも x＞1 → <b>2個</b></figcaption></figure><figure><svg viewBox="0 0 272 333" role="img" aria-label="f(1)が負で軸が1より左のとき、x＞1の部分に共有点は0個" xmlns="http://www.w3.org/2000/svg">
+<defs><clipPath id="cp-p3"><rect x="28" y="10" width="234.0" height="299.0"/></clipPath></defs>
+<rect x="28" y="10" width="234.0" height="299.0" fill="var(--panel)"/>
+<line x1="43.6" y1="10" x2="43.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="69.6" y1="10" x2="69.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="121.6" y1="10" x2="121.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="147.6" y1="10" x2="147.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="173.6" y1="10" x2="173.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="199.6" y1="10" x2="199.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="225.6" y1="10" x2="225.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="251.6" y1="10" x2="251.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="309.0" x2="262.0" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="283.0" x2="262.0" y2="283.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="257.0" x2="262.0" y2="257.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="231.0" x2="262.0" y2="231.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="179.0" x2="262.0" y2="179.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="153.0" x2="262.0" y2="153.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="127.0" x2="262.0" y2="127.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="101.0" x2="262.0" y2="101.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="75.0" x2="262.0" y2="75.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="49.0" x2="262.0" y2="49.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="23.0" x2="262.0" y2="23.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="205.0" x2="262.0" y2="205.0" stroke="var(--ink)" stroke-width="1.6"/>
+<line x1="95.6" y1="10" x2="95.6" y2="309.0" stroke="var(--ink)" stroke-width="1.6"/>
+<g clip-path="url(#cp-p3)"><polyline points="121.6,205.0 262.0,205.0" fill="none" stroke="var(--mark-line)" stroke-width="7" stroke-opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/><polyline points="121.6,309.0 121.6,10.0" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/><polyline points="28.0,263.1 29.3,258.4 30.6,253.8 31.9,249.3 33.2,244.9 34.5,240.7 35.8,236.6 37.1,232.6 38.4,228.8 39.7,225.1 41.0,221.5 42.3,218.1 43.6,214.8 44.9,211.6 46.2,208.5 47.5,205.6 48.8,202.8 50.1,200.1 51.4,197.6 52.7,195.2 54.0,192.9 55.3,190.8 56.6,188.8 57.9,186.9 59.2,185.1 60.5,183.5 61.8,182.0 63.1,180.6 64.4,179.4 65.7,178.3 67.0,177.3 68.3,176.5 69.6,175.8 70.9,175.2 72.2,174.7 73.5,174.4 74.8,174.2 76.1,174.1 77.4,174.2 78.7,174.4 80.0,174.7 81.3,175.2 82.6,175.8 83.9,176.5 85.2,177.3 86.5,178.3 87.8,179.4 89.1,180.6 90.4,182.0 91.7,183.5 93.0,185.1 94.3,186.9 95.6,188.8 96.9,190.8 98.2,192.9 99.5,195.2 100.8,197.6 102.1,200.1 103.4,202.8 104.7,205.6 106.0,208.5 107.3,211.6 108.6,214.8 109.9,218.1 111.2,221.5 112.5,225.1 113.8,228.8 115.1,232.6 116.4,236.6 117.7,240.7 119.0,244.9 120.3,249.3 121.6,253.8 122.9,258.4 124.2,263.1 125.5,268.0 126.8,273.0 128.1,278.1 129.4,283.4 130.7,288.8 132.0,294.3 133.3,300.0 134.6,305.7 135.9,311.7 137.2,317.7 138.5,323.9 139.8,330.2 141.1,336.6 142.4,343.2 143.7,349.9 145.0,356.7 146.3,363.7 147.6,370.7 148.9,378.0 150.2,385.3 151.5,392.8 152.8,400.4 154.1,408.1 155.4,416.0 156.7,424.0 158.0,432.1 159.3,440.4 160.6,448.7 161.9,457.3 163.2,465.9 164.5,474.7 165.8,483.6 167.1,492.6 168.4,501.8 169.7,511.1 171.0,520.5 172.3,530.1 173.6,539.7 174.9,549.6 176.2,559.5 177.5,569.6 178.8,579.8 180.1,590.1 181.4,600.6 182.7,611.2 184.0,621.9 185.3,632.8 186.6,643.7 187.9,654.9 189.2,666.1 190.5,677.5 191.8,689.0 193.1,700.6 194.4,712.4 195.7,724.3 197.0,736.3 198.3,748.5 199.6,760.7 200.9,773.2 202.2,785.7 203.5,798.4 204.8,811.2 206.1,824.1 207.4,837.2 208.7,850.4 210.0,863.7 211.3,877.2 212.6,890.8 213.9,904.5 215.2,918.3 216.5,932.3 217.8,946.4 219.1,960.6 220.4,975.0 221.7,989.5 223.0,1004.1 224.3,1018.9 225.6,1033.8 226.9,1048.8 228.2,1063.9 229.5,1079.2 230.8,1094.6 232.1,1110.1 233.4,1125.8 234.7,1141.6 236.0,1157.5 237.3,1173.6 238.6,1189.8 239.9,1206.1 241.2,1222.5 242.5,1239.1 243.8,1255.8 245.1,1272.6 246.4,1289.6 247.7,1306.7 249.0,1323.9 250.3,1341.3 251.6,1358.8 252.9,1376.4 254.2,1394.1 255.5,1412.0 256.8,1430.0 258.1,1448.1 259.4,1466.4 260.7,1484.8 262.0,1503.3" fill="none" stroke="var(--blue)" stroke-width="3" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round"/></g>
+<rect x="28" y="10" width="234.0" height="299.0" fill="none" stroke="var(--sub)" stroke-width="1"/>
+<text x="43.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<text x="69.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<text x="121.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<text x="147.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<text x="173.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<text x="199.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<text x="225.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<text x="251.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">6</text>
+<text x="22" y="313.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−4</text>
+<text x="22" y="287.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−3</text>
+<text x="22" y="261.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<text x="22" y="235.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<text x="22" y="183.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<text x="22" y="157.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<text x="22" y="131.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<text x="22" y="105.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<text x="22" y="79.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<text x="22" y="53.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">6</text>
+<text x="22" y="27.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">7</text>
+<text x="87.6" y="220.0" font-size="12" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">O</text>
+<text x="254.0" y="198.0" font-size="14" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">x</text>
+<text x="105.6" y="23" font-size="14" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">y</text>
+<circle cx="47.8" cy="205.0" r="5" fill="var(--sub)" stroke="var(--panel)" stroke-width="1.5"/><circle cx="104.4" cy="205.0" r="5" fill="var(--sub)" stroke="var(--panel)" stroke-width="1.5"/><text x="259.4" y="29.5" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">k = −0.75</text><text x="259.4" y="59.4" font-size="11.5" font-weight="500" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">f(1)＜0，軸＜1</text><text x="124.7" y="292.1" font-size="11" font-weight="500" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">x = 1</text>
+</svg><figcaption>③ f(1)＜0 で軸が左：2つとも x＜1 → <b>0個</b></figcaption></figure><figure><svg viewBox="0 0 272 333" role="img" aria-label="頂点がx軸の下のとき、共有点は0個" xmlns="http://www.w3.org/2000/svg">
+<defs><clipPath id="cp-p4"><rect x="28" y="10" width="234.0" height="299.0"/></clipPath></defs>
+<rect x="28" y="10" width="234.0" height="299.0" fill="var(--panel)"/>
+<line x1="43.6" y1="10" x2="43.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="69.6" y1="10" x2="69.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="121.6" y1="10" x2="121.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="147.6" y1="10" x2="147.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="173.6" y1="10" x2="173.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="199.6" y1="10" x2="199.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="225.6" y1="10" x2="225.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="251.6" y1="10" x2="251.6" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="309.0" x2="262.0" y2="309.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="283.0" x2="262.0" y2="283.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="257.0" x2="262.0" y2="257.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="231.0" x2="262.0" y2="231.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="179.0" x2="262.0" y2="179.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="153.0" x2="262.0" y2="153.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="127.0" x2="262.0" y2="127.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="101.0" x2="262.0" y2="101.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="75.0" x2="262.0" y2="75.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="49.0" x2="262.0" y2="49.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="23.0" x2="262.0" y2="23.0" stroke="var(--line)" stroke-width="1"/>
+<line x1="28" y1="205.0" x2="262.0" y2="205.0" stroke="var(--ink)" stroke-width="1.6"/>
+<line x1="95.6" y1="10" x2="95.6" y2="309.0" stroke="var(--ink)" stroke-width="1.6"/>
+<g clip-path="url(#cp-p4)"><polyline points="121.6,205.0 262.0,205.0" fill="none" stroke="var(--mark-line)" stroke-width="7" stroke-opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/><polyline points="121.6,309.0 121.6,10.0" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/><polyline points="28.0,1587.2 29.3,1568.8 30.6,1550.5 31.9,1532.4 33.2,1514.4 34.5,1496.5 35.8,1478.7 37.1,1461.1 38.4,1443.6 39.7,1426.3 41.0,1409.1 42.3,1392.0 43.6,1375.0 44.9,1358.2 46.2,1341.5 47.5,1324.9 48.8,1308.4 50.1,1292.1 51.4,1275.9 52.7,1259.9 54.0,1244.0 55.3,1228.2 56.6,1212.5 57.9,1197.0 59.2,1181.6 60.5,1166.3 61.8,1151.1 63.1,1136.1 64.4,1121.2 65.7,1106.5 67.0,1091.9 68.3,1077.4 69.6,1063.0 70.9,1048.8 72.2,1034.7 73.5,1020.7 74.8,1006.8 76.1,993.1 77.4,979.5 78.7,966.1 80.0,952.8 81.3,939.6 82.6,926.5 83.9,913.6 85.2,900.8 86.5,888.1 87.8,875.5 89.1,863.1 90.4,850.8 91.7,838.7 93.0,826.7 94.3,814.8 95.6,803.0 96.9,791.4 98.2,779.9 99.5,768.5 100.8,757.2 102.1,746.1 103.4,735.1 104.7,724.3 106.0,713.6 107.3,703.0 108.6,692.5 109.9,682.2 111.2,672.0 112.5,661.9 113.8,651.9 115.1,642.1 116.4,632.4 117.7,622.9 119.0,613.5 120.3,604.2 121.6,595.0 122.9,586.0 124.2,577.1 125.5,568.3 126.8,559.6 128.1,551.1 129.4,542.7 130.7,534.5 132.0,526.4 133.3,518.4 134.6,510.5 135.9,502.8 137.2,495.2 138.5,487.7 139.8,480.3 141.1,473.1 142.4,466.0 143.7,459.1 145.0,452.3 146.3,445.6 147.6,439.0 148.9,432.6 150.2,426.3 151.5,420.1 152.8,414.0 154.1,408.1 155.4,402.3 156.7,396.7 158.0,391.2 159.3,385.8 160.6,380.5 161.9,375.4 163.2,370.4 164.5,365.5 165.8,360.7 167.1,356.1 168.4,351.6 169.7,347.3 171.0,343.1 172.3,339.0 173.6,335.0 174.9,331.2 176.2,327.5 177.5,323.9 178.8,320.4 180.1,317.1 181.4,313.9 182.7,310.9 184.0,308.0 185.3,305.2 186.6,302.5 187.9,300.0 189.2,297.6 190.5,295.3 191.8,293.1 193.1,291.1 194.4,289.2 195.7,287.5 197.0,285.9 198.3,284.4 199.6,283.0 200.9,281.8 202.2,280.7 203.5,279.7 204.8,278.8 206.1,278.1 207.4,277.5 208.7,277.1 210.0,276.8 211.3,276.6 212.6,276.5 213.9,276.6 215.2,276.8 216.5,277.1 217.8,277.5 219.1,278.1 220.4,278.8 221.7,279.7 223.0,280.7 224.3,281.8 225.6,283.0 226.9,284.4 228.2,285.9 229.5,287.5 230.8,289.2 232.1,291.1 233.4,293.1 234.7,295.3 236.0,297.6 237.3,300.0 238.6,302.5 239.9,305.2 241.2,308.0 242.5,310.9 243.8,313.9 245.1,317.1 246.4,320.4 247.7,323.9 249.0,327.5 250.3,331.2 251.6,335.0 252.9,339.0 254.2,343.1 255.5,347.3 256.8,351.6 258.1,356.1 259.4,360.7 260.7,365.5 262.0,370.4" fill="none" stroke="var(--blue)" stroke-width="3" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round"/></g>
+<rect x="28" y="10" width="234.0" height="299.0" fill="none" stroke="var(--sub)" stroke-width="1"/>
+<text x="43.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<text x="69.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<text x="121.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<text x="147.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<text x="173.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<text x="199.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<text x="225.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<text x="251.6" y="325.0" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">6</text>
+<text x="22" y="313.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−4</text>
+<text x="22" y="287.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−3</text>
+<text x="22" y="261.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<text x="22" y="235.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<text x="22" y="183.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<text x="22" y="157.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<text x="22" y="131.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<text x="22" y="105.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<text x="22" y="79.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<text x="22" y="53.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">6</text>
+<text x="22" y="27.0" font-size="11" fill="var(--sub)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">7</text>
+<text x="87.6" y="220.0" font-size="12" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">O</text>
+<text x="254.0" y="198.0" font-size="14" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">x</text>
+<text x="105.6" y="23" font-size="14" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">y</text>
+<text x="259.4" y="29.5" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">k = 4.5</text><text x="259.4" y="59.4" font-size="11.5" font-weight="500" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">D＜0（頂点が下）</text><text x="124.7" y="292.1" font-size="11" font-weight="500" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">x = 1</text>
+</svg><figcaption>④ 頂点が x軸の下：そもそも共有点なし → <b>0個</b></figcaption></figure></div>
+
+    <h3>(i) f(1) ＞ 0 のとき</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>f</i>(1) ＞ 0 より、グラフは <i>x</i> = 1 で <i>x</i>軸の上にあるので、<i>x</i>軸と異なる2点 α, β (α ＜ β) で交わる。</span>
+      <span class="m">グラフは上に凸なので、<i>f</i>(<i>x</i>) ＞ 0 となるのは α ＜ <i>x</i> ＜ β のときだけである。</span>
+      <span class="m"><i>f</i>(1) ＞ 0 より <span class="box">α ＜ 1 ＜ β</span></span>
+      <span class="m">よって、<i>x</i> ＞ 1 の部分にある共有点は β の <span class="box">1個だけ</span>である。</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>山の形のグラフで、x軸より上にある部分は「2つの交点の間」だけです。x = 1 がその間に入っている（f(1) ＞ 0）なら、1 より右に交点が1つ、左に交点が1つ。上の図の ① がこの場合です。</div>
+    <div class="ans"><span class="al">答 (i)</span><span class="av"><span class="m">① 1個だけである</span>　（ク ＝ ①）</span></div>
+
+    <h3>(ii) f(1) ＜ 0 で、x ＞ 1 の部分と異なる2点で交わる k の範囲</h3>
+    <div class="easy"><span class="t">やさしい解説：f(1) ＜ 0 のときの2つの共有点</span>
+      <p>山の形のグラフで f(1) ＜ 0 なら、x = 1 は2つの交点の<b>間ではなく外</b>にあります。だから2つの交点は、<b>ともに 1 の右</b>か<b>ともに 1 の左</b>のどちらかです（図の ②③）。</p>
+      <p>ともに右にあるのは、2つの交点の真ん中である<b>軸が 1 より右</b>にあるとき。さらに、そもそも2点で交わる必要があります。</p>
+    </div>
+    <div class="fb" data-label="2つの共有点がともに x ＞ 1 にある条件">
+      <span class="m">(<i>A</i>) 異なる2点で交わる：頂点の <i>y</i>座標 ＞ 0　⇒　<span class="box">−1 ＜ <i>k</i> ＜ 4</span></span>
+      <span class="m">(<i>B</i>) 軸が 1 より右：<span class="box"><i>k</i> ＞ 1</span></span>
+      <span class="m">(<i>C</i>) 仮定 <i>f</i>(1) ＜ 0：<span class="box"><i>k</i> ＜ −<span class="fr"><b>1</b><b>2</b></span>，3 ＜ <i>k</i></span></span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">グラフは上に凸で <i>f</i>(1) ＜ 0 なので、<i>x</i> ＞ 1 の部分で異なる2点で交わるのは、次の3つが成り立つときである。</span>
+      <span class="m">(<i>A</i>) 頂点の <i>y</i>座標 −<i>k</i><sup>2</sup> + 3<i>k</i> + 4 ＞ 0　⇔　(<i>k</i> + 1)(<i>k</i> − 4) ＜ 0　⇔　−1 ＜ <i>k</i> ＜ 4</span>
+      <span class="m">(<i>B</i>) 軸 <i>x</i> = <i>k</i> が 1 より大きい　⇔　<i>k</i> ＞ 1</span>
+      <span class="m">(<i>C</i>) <i>f</i>(1) ＜ 0　⇔　<i>k</i> ＜ −<span class="fr"><b>1</b><b>2</b></span> または 3 ＜ <i>k</i></span>
+      <span class="m">(<i>A</i>)(<i>B</i>)(<i>C</i>) の共通部分をとって　<span class="box">3 ＜ <i>k</i> ＜ 4</span></span>
+    </div>
+    <div class="check"><b>検算：</b>k = 3.5 は 3 ＜ k ＜ 4 の中。f(x) = −x² + 7x − 10 = −(x − 2)(x − 5) で、解は x = 2, 5。どちらも x ＞ 1 ✓（図の ②）。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>(A)(B)(C) は<span class="hl">3つとも必要</span>です。たとえば k = 4.5 は (B)(C) を満たしますが (A) を満たさず共有点なし（図の ④）。k = −0.75 は (A)(C) を満たしますが (B) を満たさず、共有点は x ＜ 1 側にしかありません（図の ③）。</div>
+    <div class="ans"><span class="al">答 (ii)</span><span class="av"><span class="m">3 ＜ <i>k</i> ＜ 4</span>　（ケ ＝ 3，コ ＝ 4）</span></div>
+
+    <h3>(iii) x ＞ 1 の部分に少なくとも一つの共有点をもつ k の範囲</h3>
+    <div class="easy"><span class="t">やさしい解説：f(1) の符号で場合分けする</span>「少なくとも一つ」は、1個の場合も2個の場合も含みます。f(1) の符号で場合を分けて、(i)(ii) の結果と、境目の k の値（f(1) = 0 や重解になる値）を1つずつ確認します。</div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>場合</th><th>k の範囲</th><th>x ＞ 1 の共有点</th><th>含む？</th></tr></thead>
+        <tbody>
+          <tr><td class="left"><span class="m"><i>f</i>(1) ＞ 0</span></td><td class="nw"><span class="m">−<span class="fr"><b>1</b><b>2</b></span> ＜ <i>k</i> ＜ 3</span></td><td class="left">1個（(i) より）</td><td class="ok">○</td></tr>
+          <tr><td class="left"><span class="m"><i>f</i>(1) = 0</span></td><td class="nw"><span class="m"><i>k</i> = −<span class="fr"><b>1</b><b>2</b></span></span></td><td class="left">解は x = 1, −2。x ＞ 1 には<b>なし</b></td><td class="ng">×</td></tr>
+          <tr><td class="left"><span class="m"><i>f</i>(1) = 0</span></td><td class="nw"><span class="m"><i>k</i> = 3</span></td><td class="left">解は x = 1, 5。x = 5 が x ＞ 1</td><td class="ok">○</td></tr>
+          <tr><td class="left"><span class="m"><i>f</i>(1) ＜ 0</span> で軸が左</td><td class="nw"><span class="m"><i>k</i> ＜ −<span class="fr"><b>1</b><b>2</b></span></span></td><td class="left">解があっても2つとも x ＜ 1</td><td class="ng">×</td></tr>
+          <tr><td class="left"><span class="m"><i>f</i>(1) ＜ 0</span> で軸が右（k ＞ 3）</td><td class="nw"><span class="m">3 ＜ <i>k</i> ＜ 4</span></td><td class="left">2個（(ii) より）</td><td class="ok">○</td></tr>
+          <tr><td class="left">　〃</td><td class="nw"><span class="m"><i>k</i> = 4</span></td><td class="left">重解 x = 4 の1個（接する）</td><td class="ok">○</td></tr>
+          <tr><td class="left">　〃</td><td class="nw"><span class="m"><i>k</i> ＞ 4</span></td><td class="left">頂点が x軸の下で共有点なし</td><td class="ng">×</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>f</i>(1) ＞ 0 のとき（−<span class="fr"><b>1</b><b>2</b></span> ＜ <i>k</i> ＜ 3）：(<i>i</i>) より共有点は1個あり、適する。</span>
+      <span class="m"><i>f</i>(1) = 0 のとき：<i>k</i> = −<span class="fr"><b>1</b><b>2</b></span> では解が <i>x</i> = 1, −2 で、<i>x</i> ＞ 1 の共有点はなく不適。<i>k</i> = 3 では解が <i>x</i> = 1, 5 で適する。</span>
+      <span class="m"><i>f</i>(1) ＜ 0 のとき：<i>k</i> ＜ −<span class="fr"><b>1</b><b>2</b></span> では軸 <i>x</i> = <i>k</i> ＜ 1 なので <i>x</i> ＞ 1 に共有点はない。3 ＜ <i>k</i> では、(<i>i</i><i>i</i>) より 3 ＜ <i>k</i> ＜ 4 で2個、<i>k</i> = 4 で重解 <i>x</i> = 4 の1個、<i>k</i> ＞ 4 でなし。</span>
+      <span class="m">以上より、求める範囲は　<span class="box">−<span class="fr"><b>1</b><b>2</b></span> ＜ <i>k</i> ≦ 4</span></span>
+    </div>
+    <div class="pt"><span class="t">テストのポイント（境目の扱い）：</span><span class="hl">k = −1/2 は含まない</span>（解の x = 1 は「x ＞ 1」の部分に入らない）、<span class="hl">k = 3 は含む</span>（もう1つの解 x = 5 が x ＞ 1）、<span class="hl">k = 4 は含む</span>（重解でも共有点は1個）。この3つの端の値が、いちばん間違えやすいところです。</div>
+    <figure class="fig">
+      <svg viewBox="0 0 420 310" role="img" aria-label="数直線で整理：共有点をもつkの範囲、f(1)の符号、(ii)と(iii)の答え" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="420" height="310" fill="var(--panel)"/>
+<line x1="77.1" y1="26" x2="77.1" y2="272" stroke="var(--line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+<line x1="103.7" y1="26" x2="103.7" y2="272" stroke="var(--line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+<line x1="289.7" y1="26" x2="289.7" y2="272" stroke="var(--line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+<line x1="342.9" y1="26" x2="342.9" y2="272" stroke="var(--line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+<text x="24" y="46" font-size="12" font-weight="700" fill="var(--ink)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">共有点をもつ（頂点の y座標 ≧ 0）：−1 ≦ k ≦ 4</text>
+<line x1="77.1" y1="64" x2="342.9" y2="64" stroke="var(--blue)" stroke-width="7" stroke-linecap="butt" stroke-opacity="0.85"/>
+<circle cx="77.1" cy="64" r="6" fill="var(--blue)" stroke="var(--blue)" stroke-width="2.5"/>
+<circle cx="342.9" cy="64" r="6" fill="var(--blue)" stroke="var(--blue)" stroke-width="2.5"/>
+<text x="24" y="104" font-size="12" font-weight="700" fill="var(--ink)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">f(1) の符号　青：f(1) ＞ 0　赤：f(1) ＜ 0</text>
+<line x1="103.7" y1="122" x2="289.7" y2="122" stroke="var(--blue)" stroke-width="7" stroke-linecap="butt" stroke-opacity="0.85"/>
+<circle cx="103.7" cy="122" r="6" fill="var(--panel)" stroke="var(--blue)" stroke-width="2.5"/>
+<circle cx="289.7" cy="122" r="6" fill="var(--panel)" stroke="var(--blue)" stroke-width="2.5"/>
+<line x1="24.0" y1="122" x2="103.7" y2="122" stroke="var(--red)" stroke-width="7" stroke-linecap="butt" stroke-opacity="0.85"/>
+<polygon points="15.0,122 25.0,115 25.0,129" fill="var(--red)" fill-opacity="0.85"/>
+<circle cx="103.7" cy="122" r="6" fill="var(--panel)" stroke="var(--red)" stroke-width="2.5"/>
+<line x1="289.7" y1="122" x2="396.0" y2="122" stroke="var(--red)" stroke-width="7" stroke-linecap="butt" stroke-opacity="0.85"/>
+<polygon points="405.0,122 395.0,115 395.0,129" fill="var(--red)" fill-opacity="0.85"/>
+<circle cx="289.7" cy="122" r="6" fill="var(--panel)" stroke="var(--red)" stroke-width="2.5"/>
+<text x="24" y="162" font-size="12" font-weight="700" fill="var(--ink)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">(ii) x ＞ 1 で異なる2点：3 ＜ k ＜ 4</text>
+<line x1="289.7" y1="180" x2="342.9" y2="180" stroke="var(--green)" stroke-width="7" stroke-linecap="butt" stroke-opacity="0.85"/>
+<circle cx="289.7" cy="180" r="6" fill="var(--panel)" stroke="var(--green)" stroke-width="2.5"/>
+<circle cx="342.9" cy="180" r="6" fill="var(--panel)" stroke="var(--green)" stroke-width="2.5"/>
+<text x="24" y="220" font-size="12" font-weight="700" fill="var(--ink)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">(iii) x ＞ 1 に少なくとも1つ：−1/2 ＜ k ≦ 4</text>
+<line x1="103.7" y1="238" x2="342.9" y2="238" stroke="var(--green)" stroke-width="7" stroke-linecap="butt" stroke-opacity="0.85"/>
+<circle cx="103.7" cy="238" r="6" fill="var(--panel)" stroke="var(--green)" stroke-width="2.5"/>
+<circle cx="342.9" cy="238" r="6" fill="var(--green)" stroke="var(--green)" stroke-width="2.5"/>
+<line x1="24" y1="272" x2="396" y2="272" stroke="var(--ink)" stroke-width="1.6"/>
+<line x1="24.0" y1="272" x2="24.0" y2="277" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="24.0" y="291" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<line x1="77.1" y1="272" x2="77.1" y2="277" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="77.1" y="291" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<line x1="130.3" y1="272" x2="130.3" y2="277" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="130.3" y="291" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">0</text>
+<line x1="183.4" y1="272" x2="183.4" y2="277" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="183.4" y="291" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<line x1="236.6" y1="272" x2="236.6" y2="277" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="236.6" y="291" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<line x1="289.7" y1="272" x2="289.7" y2="277" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="289.7" y="291" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<line x1="342.9" y1="272" x2="342.9" y2="277" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="342.9" y="291" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<line x1="396.0" y1="272" x2="396.0" y2="277" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="396.0" y="291" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<line x1="103.7" y1="272" x2="103.7" y2="277" stroke="var(--red)" stroke-width="1.6"/>
+<text x="103.7" y="303" font-size="11" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1/2</text>
+<text x="396" y="266" font-size="13" fill="var(--ink)" text-anchor="end" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">k</text>
+</svg>
+      <figcaption>k の範囲を数直線で整理。○は含まない、●は含む。(iii) は (f(1) ＞ 0 の範囲) ＋ (k = 3) ＋ (3 ＜ k ≦ 4) をつなげたものです。</figcaption>
+    </figure>
+    <div class="ans"><span class="al">答 (iii)</span><span class="av"><span class="m">−<span class="fr"><b>1</b><b>2</b></span> ＜ <i>k</i> ≦ 4</span></span></div>
+  </div>
+</section>
+
+<!-- ================= (4) ================= -->
+<section class="prob" id="s4" data-key="s4">
+  <div class="ph"><span class="no">(4)</span><div class="htext"><span class="tag">整数の個数</span><h2>x ≦ 1 の部分に共有点をもつ整数 k は何個か</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">グラフが x軸の <span class="m"><i>x</i> ≦ 1</span> の部分と少なくとも一つの共有点をもつような整数 <span class="m"><i>k</i></span> の値は、全部で何個あるか。</p>
+
+    <div class="easy"><span class="t">やさしい解説：「ない場合」を除く考え方</span>共有点をもつ k（−1 ≦ k ≦ 4）のうち、「x ≦ 1 に共有点が<b>1つもない</b>」のは、<b>2つの共有点がともに x ＞ 1 にある</b>ときだけです。これを除けば、残りが答えです（x = 1 も「x ≦ 1」に入ることに注意）。</div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">グラフが <i>x</i>軸と共有点をもつのは　−1 ≦ <i>k</i> ≦ 4　のとき。</span>
+      <span class="m">共有点がすべて <i>x</i> ＞ 1 にあるのは、2つの共有点（<i>k</i> = 4 では重解）がともに 1 より大きいとき。</span>
+      <span class="m">すなわち　頂点の <i>y</i>座標 ≧ 0（−1 ≦ <i>k</i> ≦ 4）、軸 <i>k</i> ＞ 1、<i>f</i>(1) ＜ 0（<i>k</i> ＜ −<span class="fr"><b>1</b><b>2</b></span>，3 ＜ <i>k</i>）　⇒　<span class="box">3 ＜ <i>k</i> ≦ 4</span></span>
+      <span class="m">したがって、<i>x</i> ≦ 1 に共有点をもつのは　−1 ≦ <i>k</i> ≦ 4 から 3 ＜ <i>k</i> ≦ 4 を除いた　<span class="box">−1 ≦ <i>k</i> ≦ 3</span></span>
+      <span class="m">この範囲の整数 <i>k</i> は　<i>k</i> = −1, 0, 1, 2, 3　の <span class="box">5個</span></span>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 420 252" role="img" aria-label="数直線で整理：x≦1に共有点をもつkの範囲は−1以上3以下で、整数は5個" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="420" height="252" fill="var(--panel)"/>
+<line x1="77.1" y1="26" x2="77.1" y2="214" stroke="var(--line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+<line x1="103.7" y1="26" x2="103.7" y2="214" stroke="var(--line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+<line x1="289.7" y1="26" x2="289.7" y2="214" stroke="var(--line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+<line x1="342.9" y1="26" x2="342.9" y2="214" stroke="var(--line)" stroke-width="1.4" stroke-dasharray="4 4"/>
+<text x="24" y="46" font-size="12" font-weight="700" fill="var(--ink)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">共有点をもつ（頂点の y座標 ≧ 0）：−1 ≦ k ≦ 4</text>
+<line x1="77.1" y1="64" x2="342.9" y2="64" stroke="var(--blue)" stroke-width="7" stroke-linecap="butt" stroke-opacity="0.85"/>
+<circle cx="77.1" cy="64" r="6" fill="var(--blue)" stroke="var(--blue)" stroke-width="2.5"/>
+<circle cx="342.9" cy="64" r="6" fill="var(--blue)" stroke="var(--blue)" stroke-width="2.5"/>
+<text x="24" y="104" font-size="12" font-weight="700" fill="var(--ink)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2つとも x ＞ 1（x ≦ 1 に共有点なし）：3 ＜ k ≦ 4</text>
+<line x1="289.7" y1="122" x2="342.9" y2="122" stroke="var(--red)" stroke-width="7" stroke-linecap="butt" stroke-opacity="0.85"/>
+<circle cx="289.7" cy="122" r="6" fill="var(--panel)" stroke="var(--red)" stroke-width="2.5"/>
+<circle cx="342.9" cy="122" r="6" fill="var(--red)" stroke="var(--red)" stroke-width="2.5"/>
+<text x="24" y="162" font-size="12" font-weight="700" fill="var(--ink)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">x ≦ 1 に少なくとも1つ：−1 ≦ k ≦ 3　（整数は5個）</text>
+<line x1="77.1" y1="180" x2="289.7" y2="180" stroke="var(--green)" stroke-width="7" stroke-linecap="butt" stroke-opacity="0.85"/>
+<circle cx="77.1" cy="180" r="6" fill="var(--green)" stroke="var(--green)" stroke-width="2.5"/>
+<circle cx="289.7" cy="180" r="6" fill="var(--green)" stroke="var(--green)" stroke-width="2.5"/>
+<circle cx="77.1" cy="180" r="3" fill="var(--panel)"/>
+<text x="77.1" y="202" font-size="11" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<circle cx="130.3" cy="180" r="3" fill="var(--panel)"/>
+<text x="130.3" y="202" font-size="11" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">0</text>
+<circle cx="183.4" cy="180" r="3" fill="var(--panel)"/>
+<text x="183.4" y="202" font-size="11" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<circle cx="236.6" cy="180" r="3" fill="var(--panel)"/>
+<text x="236.6" y="202" font-size="11" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<circle cx="289.7" cy="180" r="3" fill="var(--panel)"/>
+<text x="289.7" y="202" font-size="11" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<line x1="24" y1="214" x2="396" y2="214" stroke="var(--ink)" stroke-width="1.6"/>
+<line x1="24.0" y1="214" x2="24.0" y2="219" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="24.0" y="233" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<line x1="77.1" y1="214" x2="77.1" y2="219" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="77.1" y="233" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<line x1="130.3" y1="214" x2="130.3" y2="219" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="130.3" y="233" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">0</text>
+<line x1="183.4" y1="214" x2="183.4" y2="219" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="183.4" y="233" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<line x1="236.6" y1="214" x2="236.6" y2="219" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="236.6" y="233" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<line x1="289.7" y1="214" x2="289.7" y2="219" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="289.7" y="233" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<line x1="342.9" y1="214" x2="342.9" y2="219" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="342.9" y="233" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">4</text>
+<line x1="396.0" y1="214" x2="396.0" y2="219" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="396.0" y="233" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">5</text>
+<line x1="103.7" y1="214" x2="103.7" y2="219" stroke="var(--red)" stroke-width="1.6"/>
+<text x="103.7" y="245" font-size="11" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1/2</text>
+<text x="396" y="208" font-size="13" fill="var(--ink)" text-anchor="end" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic">k</text>
+</svg>
+      <figcaption>青の範囲（共有点をもつ）から、赤の範囲（2つとも x ＞ 1）を除いたのが緑の範囲。その中の整数が 5個です。</figcaption>
+    </figure>
+
+    <h3>確かめ：整数 k を1つずつ調べる</h3>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>k</th><th>f(x)</th><th>x軸との共有点の x座標</th><th>x ≦ 1 に共有点？</th></tr></thead>
+        <tbody>
+          <tr><td><span class="m">−1</span></td><td><span class="m">−(<i>x</i> + 1)<sup>2</sup></span></td><td><span class="m"><i>x</i> = −1</span>（重解）</td><td class="ok">あり</td></tr>
+          <tr><td><span class="m">0</span></td><td><span class="m">−<i>x</i><sup>2</sup> + 4</span></td><td><span class="m"><i>x</i> = ±2</span></td><td class="ok">あり（x = −2）</td></tr>
+          <tr><td><span class="m">1</span></td><td><span class="m">−<i>x</i><sup>2</sup> + 2<i>x</i> + 5</span></td><td><span class="m"><i>x</i> = 1 ± √6</span>（≒ −1.45, 3.45）</td><td class="ok">あり（x ≒ −1.45）</td></tr>
+          <tr><td><span class="m">2</span></td><td><span class="m">−<i>x</i><sup>2</sup> + 4<i>x</i> + 2</span></td><td><span class="m"><i>x</i> = 2 ± √6</span>（≒ −0.45, 4.45）</td><td class="ok">あり（x ≒ −0.45）</td></tr>
+          <tr><td><span class="m">3</span></td><td><span class="m">−<i>x</i><sup>2</sup> + 6<i>x</i> − 5</span></td><td><span class="m"><i>x</i> = 1, 5</span></td><td class="ok">あり（x = 1）</td></tr>
+          <tr><td><span class="m">4</span></td><td><span class="m">−(<i>x</i> − 4)<sup>2</sup></span></td><td><span class="m"><i>x</i> = 4</span>（重解）</td><td class="ng">なし（x = 4 ＞ 1）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>端の値の扱いに注意。<span class="hl">k = −1</span>（重解 x = −1 ≦ 1）と <span class="hl">k = 3</span>（x = 1 は「≦ 1」に入る）は<b>含む</b>、<span class="hl">k = 4</span>（重解 x = 4 ＞ 1）は<b>含まない</b>。k = 5 以上や k = −2 以下は、そもそも共有点がありません。</div>
+    <div class="ans"><span class="al">答 (4)</span><span class="av"><span class="m">5個</span>　（ス ＝ 5）</span></div>
+  </div>
+</section>
+
+<!-- ================= まとめ ================= -->
+<section class="prob" id="pfinal" data-key="pfinal">
+  <div class="ph"><span class="no">直前</span><div class="htext"><span class="tag">FINAL CHECK</span><h2>ここだけ確認</h2></div><button class="done" type="button" aria-pressed="false">確認した</button></div>
+  <div class="body">
+    <div class="memo"><b>超重要・一言で覚える：</b>「共有点 ＝ f(x) = 0 の解」。x = 1 を境にした解の位置は、<b>① 頂点の y座標（共有点があるか）② 軸の位置（左右どちらか）③ f(1) の符号（境目が内か外か）</b>の3点セット。</div>
+
+    <ol class="sumlist">
+      <li><b>(1) 頂点：</b>平方完成。<span class="m"><i>f</i>(<i>x</i>) = −(<i>x</i> − <i>k</i>)<sup>2</sup> − (<i>k</i> + 1)(<i>k</i> − 4)</span>。k = 2 のとき頂点 (2, 6)。</li>
+      <li><b>(2) 点を通る：</b><span class="m"><i>f</i>(1) = 0</span> を解いて <span class="m">(2<i>k</i> + 1)(<i>k</i> − 3) = 0</span>、<span class="m"><i>k</i> = −<span class="fr"><b>1</b><b>2</b></span>，3</span>。共有点は k = 3 → x = 1, 5、k = −<span class="fr"><b>1</b><b>2</b></span> → x = 1, −2。</li>
+      <li><b>(3) 準備：</b><span class="m"><i>f</i>(1) = −(2<i>k</i> + 1)(<i>k</i> − 3)</span>、軸 <span class="m"><i>x</i> = <i>k</i></span>、頂点の y座標 <span class="m">−(<i>k</i> + 1)(<i>k</i> − 4)</span>（共有点あり ⇔ −1 ≦ k ≦ 4）。</li>
+      <li><b>(3)(i)：</b>f(1) ＞ 0 なら 1 は2つの共有点の間 → x ＞ 1 には<b>1個だけ</b>。</li>
+      <li><b>(3)(ii)：</b>f(1) ＜ 0 で2つとも x ＞ 1 ⇔ (A) −1 ＜ k ＜ 4、(B) 軸 k ＞ 1、(C) f(1) ＜ 0 の<b>3つとも</b> → <span class="m">3 ＜ <i>k</i> ＜ 4</span>。</li>
+      <li><b>(3)(iii)：</b>場合分けして、k = −1/2（含まない）・k = 3（含む）・k = 4（含む）を確認 → <span class="m">−<span class="fr"><b>1</b><b>2</b></span> ＜ <i>k</i> ≦ 4</span>。</li>
+      <li><b>(4)：</b>「x ≦ 1 に共有点なし」は 3 ＜ k ≦ 4。除いて <span class="m">−1 ≦ <i>k</i> ≦ 3</span>、整数は <b>5個</b>（−1, 0, 1, 2, 3）。</li>
+    </ol>
+
+    <h3>答えのまとめ</h3>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>設問</th><th>答え</th><th>解答欄（読み取れた範囲）</th></tr></thead>
+        <tbody>
+          <tr><td>(1)</td><td class="left"><span class="m">頂点 (2, 6)</span></td><td class="left">ア ＝ 2，イ ＝ 6</td></tr>
+          <tr><td>(2)</td><td class="left"><span class="m"><i>k</i> = 3，−<span class="fr"><b>1</b><b>2</b></span></span>　　共有点：k = 3 のとき x = 1, 5　／　k = −<span class="fr"><b>1</b><b>2</b></span> のとき x = 1, −2</td><td class="left">ウ ＝ 3，カ ＝ 5，キ ＝ −2</td></tr>
+          <tr><td>(3)(i)</td><td class="left">1個だけである</td><td class="left">ク ＝ ①</td></tr>
+          <tr><td>(3)(ii)</td><td class="left"><span class="m">3 ＜ <i>k</i> ＜ 4</span></td><td class="left">ケ ＝ 3，コ ＝ 4</td></tr>
+          <tr><td>(3)(iii)</td><td class="left"><span class="m">−<span class="fr"><b>1</b><b>2</b></span> ＜ <i>k</i> ≦ 4</span></td><td class="left">（記号は読み取れず）</td></tr>
+          <tr><td>(4)</td><td class="left">5個</td><td class="left">ス ＝ 5</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>「答えをかくす」をオンにすると、答えがぼやけて表示されます。タップで1つずつ見られます。「できた」の記録はこの端末のブラウザに保存されます。</footer>
+
+<script>
+(function(){
+  var KEY='quadratic-xaxis-done';
+  var done={};
+  function load(){try{var v=localStorage.getItem(KEY);done=v?JSON.parse(v)||{}:{};}catch(e){done={};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  var sections=[].slice.call(document.querySelectorAll('.prob[data-key]'));
+  var progress=document.getElementById('progress');
+  function refresh(){
+    var n=0;
+    sections.forEach(function(s){
+      var b=s.querySelector('.done');var k=s.getAttribute('data-key');
+      var on=!!done[k];if(on)n++;
+      if(b)b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    progress.textContent=n+' / '+sections.length;
+  }
+  load();refresh();
+  sections.forEach(function(s){
+    var b=s.querySelector('.done');if(!b)return;
+    b.addEventListener('click',function(){
+      var k=s.getAttribute('data-key');
+      if(done[k])delete done[k];else done[k]=1;
+      save();refresh();
+    });
+  });
+  var hideBtn=document.getElementById('hideBtn');
+  hideBtn.addEventListener('click',function(){
+    var on=hideBtn.getAttribute('aria-pressed')!=='true';
+    hideBtn.setAttribute('aria-pressed',on?'true':'false');
+    document.body.classList.toggle('hide',on);
+    if(!on){[].forEach.call(document.querySelectorAll('.ans.shown'),function(a){a.classList.remove('shown');});}
+  });
+  [].forEach.call(document.querySelectorAll('.ans'),function(a){
+    a.addEventListener('click',function(){if(document.body.classList.contains('hide'))a.classList.toggle('shown');});
+  });
+})();
+</script>
+</body>
+</html>
