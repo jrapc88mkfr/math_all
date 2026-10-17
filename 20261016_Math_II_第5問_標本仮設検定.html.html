@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>数学 第5問 標本平均・分散・仮説検定</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f5fa; --panel:#ffffff; --ink:#16233b; --sub:#54627c; --line:#d3dce8;
+  --red:#d0212f; --red-bg:#fff1f2; --red-ink:#ffffff;
+  --blue:#1d5fa8; --blue-bg:#eaf3fc;
+  --mark:#ffe873; --mark-bg:#fff8d6; --mark-line:#e0b400;
+  --green:#2e7d4f; --green-bg:#eaf7ee;
+  --purp:#7b3fb0; --purp-bg:#f3ecfa;
+  --ans-bg:#16233b; --ans-ink:#ffffff;
+  --grid:rgba(29,95,168,.08);
+  --shadow:0 1px 0 rgba(22,35,59,.06), 0 8px 24px -14px rgba(22,35,59,.35);
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  --math:"STIX Two Text","Times New Roman","Noto Serif JP","Yu Mincho",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+    --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+    --blue:#82bbff; --blue-bg:#13263b;
+    --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+    --green:#7fd19f; --green-bg:#122a1c;
+    --purp:#c9a4ec; --purp-bg:#241a30;
+    --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+    --grid:rgba(130,187,255,.07);
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+  --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+  --blue:#82bbff; --blue-bg:#13263b;
+  --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+  --green:#7fd19f; --green-bg:#122a1c;
+  --purp:#c9a4ec; --purp-bg:#241a30;
+  --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+  --grid:rgba(130,187,255,.07);
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:auto;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--sans);font-size:16px;line-height:1.85;
+}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.hero{max-width:960px;margin:0 auto;padding:34px 18px 8px}
+.hero h1{margin:0;font-size:clamp(1.5rem,5vw,2.3rem);font-weight:900;line-height:1.35;letter-spacing:.02em}
+.hero h1 span{display:inline-block;border:4px solid var(--red);border-radius:12px;padding:0 .35em;margin-right:.2em;color:var(--red);transform:rotate(-1.5deg)}
+.hero p{margin:12px 0 0;color:var(--sub);max-width:42em}
+.legend{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:22px 0 4px}
+.legend > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.86rem;line-height:1.6;box-shadow:var(--shadow)}
+.legend b{display:block;margin-bottom:4px;font-size:.9rem}
+.swatch{display:inline-block;width:1.6em;height:1em;vertical-align:-.15em;margin-right:.4em;border-radius:3px}
+.sw-red{border:2.5px solid var(--red);background:var(--red-bg)}
+.sw-blue{border-left:5px solid var(--blue);background:var(--blue-bg)}
+.sw-mark{border-left:5px solid var(--mark-line);background:var(--mark-bg)}
+.sw-purp{border-left:5px solid var(--purp);background:var(--purp-bg)}
+
+.notice{max-width:960px;margin:18px auto 0;padding:0 18px}
+.notice-in{background:var(--purp-bg);border:2px solid var(--purp);border-radius:12px;padding:14px 18px;font-size:.92rem}
+.notice-in b{color:var(--purp)}
+.notice-in ul{margin:8px 0 0;padding-left:1.3em}
+.notice-in li{margin:4px 0}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:960px;margin:0 auto;padding:8px 18px;display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 12px;line-height:1.7}
+.nav a:hover{border-color:var(--red);color:var(--red)}
+.tools{margin-left:auto;display:flex;gap:8px;flex:none;padding-left:8px}
+.btn{font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:3px 12px;line-height:1.7}
+.btn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.progress{font-size:.82rem;font-weight:700;color:var(--sub);white-space:nowrap;align-self:center}
+
+main{max-width:960px;margin:0 auto;padding:12px 18px 60px}
+.prob{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:26px 0;padding:0 0 18px;box-shadow:var(--shadow);overflow:hidden}
+.ph{display:flex;align-items:stretch;border-bottom:2px solid var(--ink);margin-bottom:16px}
+.ph .no{flex:none;min-width:4.6rem;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--panel);font-weight:900;font-size:1.2rem;padding:8px 10px;letter-spacing:.03em;text-align:center;line-height:1.3}
+.ph .htext{flex:1;align-self:center;padding:10px 16px}
+.ph .htext .tag{display:block;font-size:.74rem;font-weight:700;color:var(--red);letter-spacing:.06em;margin-bottom:1px}
+.ph h2{margin:0;font-size:1.05rem;font-weight:700;line-height:1.5}
+.ph .done{margin:8px 12px 8px 0;align-self:center}
+.body{padding:0 clamp(14px,3vw,24px)}
+h3{font-size:1rem;font-weight:900;margin:22px 0 6px;padding-bottom:3px;border-bottom:2px dotted var(--line)}
+p{margin:8px 0}
+.q{border:2px dashed var(--line);border-radius:10px;padding:10px 14px;margin:0 0 14px}
+.q::before{content:"問題";display:inline-block;font-weight:900;font-size:.8rem;background:var(--ink);color:var(--panel);border-radius:4px;padding:0 8px;margin-right:8px;line-height:1.6}
+.q .sub{display:block;margin-top:4px}
+
+/* math */
+.m{font-family:var(--math);font-size:1.12em;line-height:1.9}
+.m i{font-style:italic}
+sup,sub{line-height:0;font-size:.72em}
+.fr{display:inline-block;vertical-align:middle;text-align:center;line-height:1.25;margin:0 .18em;font-size:.95em}
+.fr > b{display:block;font-weight:inherit;padding:0 .25em}
+.fr > b:first-child{border-bottom:1.5px solid currentColor}
+.int{display:inline-block;vertical-align:middle;white-space:nowrap;margin:0 .1em}
+.int .sym{display:inline-block;vertical-align:middle;font-size:2.1em;line-height:1;font-weight:300;font-family:var(--math)}
+.lim{display:inline-block;vertical-align:middle;font-size:.62em;line-height:1.1;margin-left:.1em;text-align:left}
+.lim > span{display:block}
+.lim > span:first-child{margin-bottom:1.15em}
+.int .lim{margin-left:-.25em}
+.brk{font-size:2.2em;line-height:1;font-weight:300;vertical-align:middle;display:inline-block;margin:0 .02em;font-family:var(--math)}
+
+.fb{position:relative;margin:24px 0 14px;padding:16px 16px 10px;border:3px solid var(--red);border-radius:12px;background:var(--red-bg)}
+.fb::before{content:attr(data-label);position:absolute;top:-.95em;left:14px;background:var(--red);color:var(--red-ink);font-weight:900;font-size:.82rem;line-height:1.7;padding:0 12px;border-radius:999px}
+.fb .m{display:block;overflow-x:auto;padding:1px 0}
+.fb .m + .m{margin-top:2px}
+.fb.soft{border-style:dashed;border-width:2.5px}
+.box{font-family:var(--math);display:inline-block;border:2.5px solid var(--red);border-radius:6px;padding:0 .4em;background:var(--panel)}
+
+.easy{margin:14px 0;padding:12px 16px;background:var(--blue-bg);border-left:6px solid var(--blue);border-radius:0 10px 10px 0}
+.easy > .t{display:block;font-weight:900;color:var(--blue);font-size:.92rem;margin-bottom:2px}
+.easy > .t::before{content:"💡 "}
+.easy ul,.easy ol{margin:6px 0;padding-left:1.3em}
+.easy li{margin:3px 0}
+.pt{margin:14px 0;padding:10px 16px;background:var(--mark-bg);border-left:6px solid var(--mark-line);border-radius:0 10px 10px 0}
+.pt > .t{font-weight:900}
+.hl{background:linear-gradient(transparent 55%,var(--mark) 55%);font-weight:700}
+
+.ans{margin:16px 0 4px;background:var(--ans-bg);color:var(--ans-ink);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ans .al{flex:none;font-weight:900;font-size:.85rem;background:var(--red);color:var(--red-ink);border-radius:999px;padding:0 12px;line-height:1.7}
+.ans .av{font-weight:700;font-size:1.05rem;flex:1;min-width:0}
+body.hide .ans{cursor:pointer}
+body.hide .ans:not(.shown) .av{filter:blur(9px);user-select:none}
+body.hide .ans:not(.shown)::after{content:"タップで答えを見る";font-size:.78rem;opacity:.75;margin-left:auto}
+
+.check{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 12px;margin:10px 0;font-size:.92rem}
+.check b{color:var(--blue)}
+.check .chk-row{margin:2px 0;overflow-x:auto}
+.done{font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--panel);color:var(--sub);border-radius:999px;padding:0 12px;line-height:1.9}
+.done[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--panel)}
+.done[aria-pressed="true"]::before{content:"✓ "}
+.fig{margin:14px 0;text-align:center}
+.fig svg{width:100%;max-width:460px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.fig figcaption{font-size:.84rem;color:var(--sub);margin-top:4px;line-height:1.6}
+.tblwrap{overflow-x:auto;margin:12px 0}
+table.tbl{border-collapse:collapse;width:100%;min-width:420px;font-size:.95rem;text-align:center}
+.tbl th,.tbl td{border:1.5px solid var(--ink);padding:7px 10px}
+.tbl th{background:var(--ink);color:var(--panel);font-weight:700}
+.tbl td.left{text-align:left}
+.sumlist{list-style:none;margin:0;padding:0;counter-reset:s}
+.sumlist li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px dotted var(--line)}
+.sumlist li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--red);color:var(--red);font-weight:900;text-align:center;line-height:25px}
+.sumlist li:last-child{border-bottom:0}
+.memo{background:var(--green-bg);border:2px solid var(--green);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:.95rem}
+.memo b{color:var(--green)}
+footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-size:.82rem}
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .ph .no{min-width:3.6rem;font-size:1.05rem}
+  .ph h2{font-size:1rem}
+  .fb{padding:16px 12px 8px}
+  .tools{padding-left:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .nav,.done,.tools{display:none}
+  body{background:#fff;color:#000}
+  .prob{break-inside:avoid;box-shadow:none}
+}
+
+.figgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:14px 0}
+.figgrid figure{margin:0;text-align:center}
+.figgrid svg{width:100%;max-width:300px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.figgrid figcaption{font-size:.84rem;color:var(--sub);margin-top:4px;line-height:1.5}
+.ok{color:var(--green);font-weight:900}
+.ng{color:var(--red);font-weight:900}
+.tbl td.m,.tbl td .m{font-size:1.02em}
+.tbl th,.tbl td.nw{white-space:nowrap}
+</style>
+</head><body>
+
+<div class="hero">
+  <h1><span>数学Ⅰ・A</span>第5問　標本平均・分散・仮説検定</h1>
+  <p>「平均のばらつき（標本平均の標準偏差）」「地域をまとめたときの分散」「仮説検定」の3つを扱う問題です。図で<strong>ばらつきがどう変わるか</strong>を確かめながら進めましょう。赤枠の公式、青い解説、黄色いテストのポイントで整理しています。</p>
+  <div class="legend" aria-label="この資料の見かた">
+    <div><b><span class="swatch sw-red"></span>赤枠＝覚える公式・答案の形</b>テストで書く式です。</div>
+    <div><b><span class="swatch sw-blue"></span>青＝やさしい解説</b>中学の知識でわかるように説明します。</div>
+    <div><b><span class="swatch sw-mark"></span>黄＝テストでのポイント</b>書き忘れ・減点されやすいところ。</div>
+    <div><b><span class="swatch sw-purp"></span>紫＝資料の整理について</b>元の資料からの変更点の確認。</div>
+  </div>
+</div>
+
+<div class="notice">
+  <div class="notice-in">
+    <b>元の資料について</b>
+    <ul>
+      <li>答えはすべて検算しました。(1) σ(X)＝2.2、n＝225（√225＝15 で一致）、(2) k＝600（全体の分散が 484 になることを確認）、(3) z＝2、p値≒0.0228（標準正規分布表の 0.0228 と一致）。</li>
+      <li>(2) の解き方は元の資料と同じです。ただし、「<b>各地域の平均が 51 なので、全体の平均も 51 になる</b>」理由と、「<b>分散は人数で重みをつけて平均する</b>」理由を、てこの図で補いました。</li>
+      <li>(3) の「p値」「有意水準」「棄却」は、元の資料では式だけで説明されていたので、言葉の意味を補いました。</li>
+    </ul>
+  </div>
+</div>
+
+<nav class="nav" aria-label="目次">
+  <div class="nav-in">
+    <a href="#q">問題</a><a href="#s1">(1)</a><a href="#s2">(2)</a><a href="#s3">(3)</a><a href="#pfinal">直前</a>
+    <span class="tools">
+      <span class="progress" id="progress" aria-live="polite"></span>
+      <button class="btn" id="hideBtn" aria-pressed="false" type="button">答えをかくす</button>
+    </span>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= 問題 ================= -->
+<section class="prob" id="q">
+  <div class="ph"><span class="no">問題</span><div class="htext"><span class="tag">第5問</span><h2>標本平均・分散・仮説検定</h2></div></div>
+  <div class="body">
+    <p class="q"><b>(1)</b>　A地域の受験生1000人の得点は、平均 51点、標準偏差 11点である。この中から無作為に 25人を選び、その得点の平均を <span class="m"><i>X</i></span> とする。また、B地域の受験生の得点は、平均 51点、標準偏差 33点である。B地域から無作為に <span class="m"><i>n</i></span> 人を選び、その得点の平均を <span class="m"><i>Y</i></span> とする。ただし母集団は十分大きいものとする。
+      <span class="sub">① <span class="m"><i>E</i>(<i>X</i>)</span> と <span class="m">σ(<i>X</i>)</span> を求めよ。</span>
+      <span class="sub">② <span class="m">σ(<i>X</i>) = σ(<i>Y</i>)</span> となるときの <span class="m"><i>n</i></span> を求めよ。</span></p>
+    <p class="q"><b>(2)</b>　A地域1000人と、B地域 <span class="m"><i>k</i></span> 人を合わせた全体の標準偏差は 22点である。A地域・B地域の平均点はともに 51点である。B地域の受験生数 <span class="m"><i>k</i></span> を求めよ。</p>
+    <p class="q"><b>(3)</b>　C地域の母平均を <span class="m"><i>m</i></span> とする。標本の大きさは 100、母標準偏差は 11点である。無作為抽出した 100人の平均点は 53.2点であった。有意水準 5% で「C地域の平均点は 51点より高い」といえるかを検定せよ。</p>
+
+    <div class="fb" data-label="この問題の流れ">
+      <span class="m">(1)　標本平均の期待値は母平均、標準偏差は <b>母標準偏差 ÷ √<i>n</i></b> → 2つの標準偏差を等しくして <i>n</i> を求める</span>
+      <span class="m">(2)　全体の<b>分散</b>を、人数で重みをつけて計算 → 標準偏差 22 から分散 484 を使う</span>
+      <span class="m">(3)　仮説を立てる → 標準化して <i>z</i> を求める → <i>p</i>値と有意水準を比べる</span>
+    </div>
+    <div class="memo"><b>この問題の合言葉：</b>「平均を集めると、ばらつきは <b>÷ √n</b> で小さくなる」「地域を合わせるときは、<b>分散を人数で重みづけ</b>する」「p値が有意水準より小さければ、仮説を棄却する」。</div>
+  </div>
+</section>
+
+<!-- ================= (1) ================= -->
+<section class="prob" id="s1" data-key="s1">
+  <div class="ph"><span class="no">(1)①</span><div class="htext"><span class="tag">標本平均の期待値・標準偏差</span><h2>E(X) と σ(X)</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">A地域の母平均 51、母標準偏差 11、標本の大きさ 25 のとき、標本平均 <span class="m"><i>X</i></span> の期待値 <span class="m"><i>E</i>(<i>X</i>)</span> と標準偏差 <span class="m">σ(<i>X</i>)</span> を求めよ。</p>
+
+    <div class="fb" data-label="標本平均の公式">
+      <span class="m">母平均 μ、母標準偏差 σ、標本の大きさ <i>n</i> の標本平均 <i>X</i>̄ について</span>
+      <span class="m"><span class="box"><i>E</i>(<i>X</i>̄) = μ</span>　　<span class="box">σ(<i>X</i>̄) = σ / √<i>n</i></span></span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>E</i>(<i>X</i>) = <span class="box">51</span></span>
+      <span class="m">σ(<i>X</i>) = <span class="fr"><b>11</b><b>√25</b></span> = <span class="fr"><b>11</b><b>5</b></span> = <span class="box">2.2</span>　（点）</span>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 397 236" role="img" aria-label="個人の得点（標準偏差11）と標本平均（標準偏差2.2）の分布。標本平均の方がずっと狭い" xmlns="http://www.w3.org/2000/svg">
+<defs><clipPath id="cp-p1"><rect x="18" y="12" width="360.8" height="190"/></clipPath></defs>
+<rect x="18" y="12" width="360.8" height="190" fill="var(--panel)"/>
+<line x1="62.0" y1="12" x2="62.0" y2="202" stroke="var(--line)" stroke-width="1"/>
+<line x1="106.0" y1="12" x2="106.0" y2="202" stroke="var(--line)" stroke-width="1"/>
+<line x1="150.0" y1="12" x2="150.0" y2="202" stroke="var(--line)" stroke-width="1"/>
+<line x1="198.4" y1="12" x2="198.4" y2="202" stroke="var(--line)" stroke-width="1"/>
+<line x1="246.8" y1="12" x2="246.8" y2="202" stroke="var(--line)" stroke-width="1"/>
+<line x1="290.8" y1="12" x2="290.8" y2="202" stroke="var(--line)" stroke-width="1"/>
+<line x1="334.8" y1="12" x2="334.8" y2="202" stroke="var(--line)" stroke-width="1"/>
+
+<g clip-path="url(#cp-p1)"><polygon points="150.0,202.0 150.0,104.3 150.5,103.4 151.0,102.4 151.5,101.4 151.9,100.4 152.4,99.5 152.9,98.5 153.4,97.5 153.9,96.5 154.4,95.6 154.8,94.6 155.3,93.6 155.8,92.7 156.3,91.7 156.8,90.8 157.3,89.8 157.7,88.9 158.2,87.9 158.7,87.0 159.2,86.0 159.7,85.1 160.2,84.1 160.6,83.2 161.1,82.3 161.6,81.4 162.1,80.5 162.6,79.5 163.1,78.6 163.6,77.7 164.0,76.9 164.5,76.0 165.0,75.1 165.5,74.2 166.0,73.4 166.5,72.5 166.9,71.6 167.4,70.8 167.9,70.0 168.4,69.1 168.9,68.3 169.4,67.5 169.8,66.7 170.3,65.9 170.8,65.1 171.3,64.4 171.8,63.6 172.3,62.8 172.7,62.1 173.2,61.3 173.7,60.6 174.2,59.9 174.7,59.2 175.2,58.5 175.7,57.8 176.1,57.1 176.6,56.5 177.1,55.8 177.6,55.2 178.1,54.6 178.6,54.0 179.0,53.4 179.5,52.8 180.0,52.2 180.5,51.6 181.0,51.1 181.5,50.5 181.9,50.0 182.4,49.5 182.9,49.0 183.4,48.5 183.9,48.1 184.4,47.6 184.8,47.2 185.3,46.7 185.8,46.3 186.3,45.9 186.8,45.6 187.3,45.2 187.8,44.8 188.2,44.5 188.7,44.2 189.2,43.9 189.7,43.6 190.2,43.3 190.7,43.0 191.1,42.8 191.6,42.6 192.1,42.3 192.6,42.1 193.1,42.0 193.6,41.8 194.0,41.6 194.5,41.5 195.0,41.4 195.5,41.3 196.0,41.2 196.5,41.1 196.9,41.1 197.4,41.0 197.9,41.0 198.4,41.0 198.9,41.0 199.4,41.0 199.9,41.1 200.3,41.1 200.8,41.2 201.3,41.3 201.8,41.4 202.3,41.5 202.8,41.6 203.2,41.8 203.7,42.0 204.2,42.1 204.7,42.3 205.2,42.6 205.7,42.8 206.1,43.0 206.6,43.3 207.1,43.6 207.6,43.9 208.1,44.2 208.6,44.5 209.0,44.8 209.5,45.2 210.0,45.6 210.5,45.9 211.0,46.3 211.5,46.7 212.0,47.2 212.4,47.6 212.9,48.1 213.4,48.5 213.9,49.0 214.4,49.5 214.9,50.0 215.3,50.5 215.8,51.1 216.3,51.6 216.8,52.2 217.3,52.8 217.8,53.4 218.2,54.0 218.7,54.6 219.2,55.2 219.7,55.8 220.2,56.5 220.7,57.1 221.1,57.8 221.6,58.5 222.1,59.2 222.6,59.9 223.1,60.6 223.6,61.3 224.1,62.1 224.5,62.8 225.0,63.6 225.5,64.4 226.0,65.1 226.5,65.9 227.0,66.7 227.4,67.5 227.9,68.3 228.4,69.1 228.9,70.0 229.4,70.8 229.9,71.6 230.3,72.5 230.8,73.4 231.3,74.2 231.8,75.1 232.3,76.0 232.8,76.9 233.2,77.7 233.7,78.6 234.2,79.5 234.7,80.5 235.2,81.4 235.7,82.3 236.2,83.2 236.6,84.1 237.1,85.1 237.6,86.0 238.1,87.0 238.6,87.9 239.1,88.9 239.5,89.8 240.0,90.8 240.5,91.7 241.0,92.7 241.5,93.6 242.0,94.6 242.4,95.6 242.9,96.5 243.4,97.5 243.9,98.5 244.4,99.5 244.9,100.4 245.3,101.4 245.8,102.4 246.3,103.4 246.8,104.3 246.8,202.0" fill="var(--sub)" fill-opacity="0.18" stroke="none"/><polygon points="188.7,202.0 188.7,104.3 188.8,103.4 188.9,102.4 189.0,101.4 189.1,100.4 189.2,99.5 189.3,98.5 189.4,97.5 189.5,96.5 189.6,95.6 189.7,94.6 189.8,93.6 189.9,92.7 190.0,91.7 190.1,90.8 190.2,89.8 190.3,88.9 190.4,87.9 190.5,87.0 190.6,86.0 190.7,85.1 190.8,84.1 190.8,83.2 190.9,82.3 191.0,81.4 191.1,80.5 191.2,79.5 191.3,78.6 191.4,77.7 191.5,76.9 191.6,76.0 191.7,75.1 191.8,74.2 191.9,73.4 192.0,72.5 192.1,71.6 192.2,70.8 192.3,70.0 192.4,69.1 192.5,68.3 192.6,67.5 192.7,66.7 192.8,65.9 192.9,65.1 193.0,64.4 193.1,63.6 193.2,62.8 193.3,62.1 193.4,61.3 193.5,60.6 193.6,59.9 193.7,59.2 193.8,58.5 193.9,57.8 193.9,57.1 194.0,56.5 194.1,55.8 194.2,55.2 194.3,54.6 194.4,54.0 194.5,53.4 194.6,52.8 194.7,52.2 194.8,51.6 194.9,51.1 195.0,50.5 195.1,50.0 195.2,49.5 195.3,49.0 195.4,48.5 195.5,48.1 195.6,47.6 195.7,47.2 195.8,46.7 195.9,46.3 196.0,45.9 196.1,45.6 196.2,45.2 196.3,44.8 196.4,44.5 196.5,44.2 196.6,43.9 196.7,43.6 196.8,43.3 196.9,43.0 196.9,42.8 197.0,42.6 197.1,42.3 197.2,42.1 197.3,42.0 197.4,41.8 197.5,41.6 197.6,41.5 197.7,41.4 197.8,41.3 197.9,41.2 198.0,41.1 198.1,41.1 198.2,41.0 198.3,41.0 198.4,41.0 198.5,41.0 198.6,41.0 198.7,41.1 198.8,41.1 198.9,41.2 199.0,41.3 199.1,41.4 199.2,41.5 199.3,41.6 199.4,41.8 199.5,42.0 199.6,42.1 199.7,42.3 199.8,42.6 199.9,42.8 199.9,43.0 200.0,43.3 200.1,43.6 200.2,43.9 200.3,44.2 200.4,44.5 200.5,44.8 200.6,45.2 200.7,45.6 200.8,45.9 200.9,46.3 201.0,46.7 201.1,47.2 201.2,47.6 201.3,48.1 201.4,48.5 201.5,49.0 201.6,49.5 201.7,50.0 201.8,50.5 201.9,51.1 202.0,51.6 202.1,52.2 202.2,52.8 202.3,53.4 202.4,54.0 202.5,54.6 202.6,55.2 202.7,55.8 202.8,56.5 202.9,57.1 202.9,57.8 203.0,58.5 203.1,59.2 203.2,59.9 203.3,60.6 203.4,61.3 203.5,62.1 203.6,62.8 203.7,63.6 203.8,64.4 203.9,65.1 204.0,65.9 204.1,66.7 204.2,67.5 204.3,68.3 204.4,69.1 204.5,70.0 204.6,70.8 204.7,71.6 204.8,72.5 204.9,73.4 205.0,74.2 205.1,75.1 205.2,76.0 205.3,76.9 205.4,77.7 205.5,78.6 205.6,79.5 205.7,80.5 205.8,81.4 205.9,82.3 206.0,83.2 206.0,84.1 206.1,85.1 206.2,86.0 206.3,87.0 206.4,87.9 206.5,88.9 206.6,89.8 206.7,90.8 206.8,91.7 206.9,92.7 207.0,93.6 207.1,94.6 207.2,95.6 207.3,96.5 207.4,97.5 207.5,98.5 207.6,99.5 207.7,100.4 207.8,101.4 207.9,102.4 208.0,103.4 208.1,104.3 208.1,202.0" fill="var(--blue)" fill-opacity="0.35" stroke="none"/><polyline points="18.0,201.8 19.2,201.8 20.4,201.8 21.6,201.8 22.8,201.8 24.0,201.8 25.2,201.7 26.4,201.7 27.6,201.7 28.8,201.7 30.0,201.6 31.2,201.6 32.4,201.5 33.6,201.5 34.8,201.5 36.0,201.4 37.2,201.4 38.4,201.3 39.6,201.3 40.9,201.2 42.1,201.1 43.3,201.1 44.5,201.0 45.7,200.9 46.9,200.8 48.1,200.7 49.3,200.6 50.5,200.5 51.7,200.4 52.9,200.2 54.1,200.1 55.3,200.0 56.5,199.8 57.7,199.6 58.9,199.5 60.1,199.3 61.3,199.1 62.5,198.9 63.7,198.7 64.9,198.4 66.1,198.2 67.3,197.9 68.5,197.6 69.7,197.3 70.9,197.0 72.1,196.6 73.3,196.3 74.5,195.9 75.7,195.5 76.9,195.1 78.1,194.7 79.3,194.2 80.5,193.7 81.7,193.2 82.9,192.6 84.1,192.1 85.3,191.5 86.6,190.9 87.8,190.2 89.0,189.5 90.2,188.8 91.4,188.0 92.6,187.3 93.8,186.4 95.0,185.6 96.2,184.7 97.4,183.8 98.6,182.8 99.8,181.8 101.0,180.8 102.2,179.7 103.4,178.6 104.6,177.4 105.8,176.2 107.0,174.9 108.2,173.6 109.4,172.3 110.6,170.9 111.8,169.5 113.0,168.0 114.2,166.5 115.4,165.0 116.6,163.4 117.8,161.7 119.0,160.0 120.2,158.3 121.4,156.5 122.6,154.7 123.8,152.9 125.0,151.0 126.2,149.0 127.4,147.0 128.6,145.0 129.8,142.9 131.1,140.8 132.3,138.7 133.5,136.6 134.7,134.4 135.9,132.1 137.1,129.9 138.3,127.6 139.5,125.3 140.7,122.9 141.9,120.6 143.1,118.2 144.3,115.8 145.5,113.4 146.7,111.0 147.9,108.6 149.1,106.2 150.3,103.7 151.5,101.3 152.7,98.9 153.9,96.5 155.1,94.1 156.3,91.7 157.5,89.3 158.7,87.0 159.9,84.6 161.1,82.3 162.3,80.0 163.5,77.8 164.7,75.6 165.9,73.4 167.1,71.3 168.3,69.2 169.5,67.2 170.7,65.2 171.9,63.3 173.1,61.5 174.3,59.7 175.5,58.0 176.8,56.3 178.0,54.7 179.2,53.2 180.4,51.8 181.6,50.4 182.8,49.2 184.0,48.0 185.2,46.9 186.4,45.9 187.6,45.0 188.8,44.1 190.0,43.4 191.2,42.8 192.4,42.2 193.6,41.8 194.8,41.4 196.0,41.2 197.2,41.0 198.4,41.0 199.6,41.0 200.8,41.2 202.0,41.4 203.2,41.8 204.4,42.2 205.6,42.8 206.8,43.4 208.0,44.1 209.2,45.0 210.4,45.9 211.6,46.9 212.8,48.0 214.0,49.2 215.2,50.4 216.4,51.8 217.6,53.2 218.8,54.7 220.0,56.3 221.3,58.0 222.5,59.7 223.7,61.5 224.9,63.3 226.1,65.2 227.3,67.2 228.5,69.2 229.7,71.3 230.9,73.4 232.1,75.6 233.3,77.8 234.5,80.0 235.7,82.3 236.9,84.6 238.1,87.0 239.3,89.3 240.5,91.7 241.7,94.1 242.9,96.5 244.1,98.9 245.3,101.3 246.5,103.7 247.7,106.2 248.9,108.6 250.1,111.0 251.3,113.4 252.5,115.8 253.7,118.2 254.9,120.6 256.1,122.9 257.3,125.3 258.5,127.6 259.7,129.9 260.9,132.1 262.1,134.4 263.3,136.6 264.5,138.7 265.7,140.8 267.0,142.9 268.2,145.0 269.4,147.0 270.6,149.0 271.8,151.0 273.0,152.9 274.2,154.7 275.4,156.5 276.6,158.3 277.8,160.0 279.0,161.7 280.2,163.4 281.4,165.0 282.6,166.5 283.8,168.0 285.0,169.5 286.2,170.9 287.4,172.3 288.6,173.6 289.8,174.9 291.0,176.2 292.2,177.4 293.4,178.6 294.6,179.7 295.8,180.8 297.0,181.8 298.2,182.8 299.4,183.8 300.6,184.7 301.8,185.6 303.0,186.4 304.2,187.3 305.4,188.0 306.6,188.8 307.8,189.5 309.0,190.2 310.2,190.9 311.5,191.5 312.7,192.1 313.9,192.6 315.1,193.2 316.3,193.7 317.5,194.2 318.7,194.7 319.9,195.1 321.1,195.5 322.3,195.9 323.5,196.3 324.7,196.6 325.9,197.0 327.1,197.3 328.3,197.6 329.5,197.9 330.7,198.2 331.9,198.4 333.1,198.7 334.3,198.9 335.5,199.1 336.7,199.3 337.9,199.5 339.1,199.6 340.3,199.8 341.5,200.0 342.7,200.1 343.9,200.2 345.1,200.4 346.3,200.5 347.5,200.6 348.7,200.7 349.9,200.8 351.1,200.9 352.3,201.0 353.5,201.1 354.7,201.1 355.9,201.2 357.2,201.3 358.4,201.3 359.6,201.4 360.8,201.4 362.0,201.5 363.2,201.5 364.4,201.5 365.6,201.6 366.8,201.6 368.0,201.7 369.2,201.7 370.4,201.7 371.6,201.7 372.8,201.8 374.0,201.8 375.2,201.8 376.4,201.8 377.6,201.8 378.8,201.8" fill="none" stroke="var(--sub)" stroke-width="2.6" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5"/><polyline points="18.0,202.0 19.2,202.0 20.4,202.0 21.6,202.0 22.8,202.0 24.0,202.0 25.2,202.0 26.4,202.0 27.6,202.0 28.8,202.0 30.0,202.0 31.2,202.0 32.4,202.0 33.6,202.0 34.8,202.0 36.0,202.0 37.2,202.0 38.4,202.0 39.6,202.0 40.9,202.0 42.1,202.0 43.3,202.0 44.5,202.0 45.7,202.0 46.9,202.0 48.1,202.0 49.3,202.0 50.5,202.0 51.7,202.0 52.9,202.0 54.1,202.0 55.3,202.0 56.5,202.0 57.7,202.0 58.9,202.0 60.1,202.0 61.3,202.0 62.5,202.0 63.7,202.0 64.9,202.0 66.1,202.0 67.3,202.0 68.5,202.0 69.7,202.0 70.9,202.0 72.1,202.0 73.3,202.0 74.5,202.0 75.7,202.0 76.9,202.0 78.1,202.0 79.3,202.0 80.5,202.0 81.7,202.0 82.9,202.0 84.1,202.0 85.3,202.0 86.6,202.0 87.8,202.0 89.0,202.0 90.2,202.0 91.4,202.0 92.6,202.0 93.8,202.0 95.0,202.0 96.2,202.0 97.4,202.0 98.6,202.0 99.8,202.0 101.0,202.0 102.2,202.0 103.4,202.0 104.6,202.0 105.8,202.0 107.0,202.0 108.2,202.0 109.4,202.0 110.6,202.0 111.8,202.0 113.0,202.0 114.2,202.0 115.4,202.0 116.6,202.0 117.8,202.0 119.0,202.0 120.2,202.0 121.4,202.0 122.6,202.0 123.8,202.0 125.0,202.0 126.2,202.0 127.4,202.0 128.6,202.0 129.8,202.0 131.1,202.0 132.3,202.0 133.5,202.0 134.7,202.0 135.9,202.0 137.1,202.0 138.3,202.0 139.5,202.0 140.7,202.0 141.9,202.0 143.1,202.0 144.3,202.0 145.5,202.0 146.7,202.0 147.9,202.0 149.1,202.0 150.3,202.0 151.5,202.0 152.7,202.0 153.9,202.0 155.1,202.0 156.3,202.0 157.5,202.0 158.7,202.0 159.9,201.9 161.1,201.9 162.3,201.8 163.5,201.8 164.7,201.6 165.9,201.4 167.1,201.1 168.3,200.7 169.5,200.1 170.7,199.3 171.9,198.2 173.1,196.6 174.3,194.7 175.5,192.1 176.8,188.8 178.0,184.7 179.2,179.7 180.4,173.6 181.6,166.5 182.8,158.3 184.0,149.0 185.2,138.7 186.4,127.6 187.6,115.8 188.8,103.7 190.0,91.7 191.2,80.0 192.4,69.2 193.6,59.7 194.8,51.8 196.0,45.9 197.2,42.2 198.4,41.0 199.6,42.2 200.8,45.9 202.0,51.8 203.2,59.7 204.4,69.2 205.6,80.0 206.8,91.7 208.0,103.7 209.2,115.8 210.4,127.6 211.6,138.7 212.8,149.0 214.0,158.3 215.2,166.5 216.4,173.6 217.6,179.7 218.8,184.7 220.0,188.8 221.3,192.1 222.5,194.7 223.7,196.6 224.9,198.2 226.1,199.3 227.3,200.1 228.5,200.7 229.7,201.1 230.9,201.4 232.1,201.6 233.3,201.8 234.5,201.8 235.7,201.9 236.9,201.9 238.1,202.0 239.3,202.0 240.5,202.0 241.7,202.0 242.9,202.0 244.1,202.0 245.3,202.0 246.5,202.0 247.7,202.0 248.9,202.0 250.1,202.0 251.3,202.0 252.5,202.0 253.7,202.0 254.9,202.0 256.1,202.0 257.3,202.0 258.5,202.0 259.7,202.0 260.9,202.0 262.1,202.0 263.3,202.0 264.5,202.0 265.7,202.0 267.0,202.0 268.2,202.0 269.4,202.0 270.6,202.0 271.8,202.0 273.0,202.0 274.2,202.0 275.4,202.0 276.6,202.0 277.8,202.0 279.0,202.0 280.2,202.0 281.4,202.0 282.6,202.0 283.8,202.0 285.0,202.0 286.2,202.0 287.4,202.0 288.6,202.0 289.8,202.0 291.0,202.0 292.2,202.0 293.4,202.0 294.6,202.0 295.8,202.0 297.0,202.0 298.2,202.0 299.4,202.0 300.6,202.0 301.8,202.0 303.0,202.0 304.2,202.0 305.4,202.0 306.6,202.0 307.8,202.0 309.0,202.0 310.2,202.0 311.5,202.0 312.7,202.0 313.9,202.0 315.1,202.0 316.3,202.0 317.5,202.0 318.7,202.0 319.9,202.0 321.1,202.0 322.3,202.0 323.5,202.0 324.7,202.0 325.9,202.0 327.1,202.0 328.3,202.0 329.5,202.0 330.7,202.0 331.9,202.0 333.1,202.0 334.3,202.0 335.5,202.0 336.7,202.0 337.9,202.0 339.1,202.0 340.3,202.0 341.5,202.0 342.7,202.0 343.9,202.0 345.1,202.0 346.3,202.0 347.5,202.0 348.7,202.0 349.9,202.0 351.1,202.0 352.3,202.0 353.5,202.0 354.7,202.0 355.9,202.0 357.2,202.0 358.4,202.0 359.6,202.0 360.8,202.0 362.0,202.0 363.2,202.0 364.4,202.0 365.6,202.0 366.8,202.0 368.0,202.0 369.2,202.0 370.4,202.0 371.6,202.0 372.8,202.0 374.0,202.0 375.2,202.0 376.4,202.0 377.6,202.0 378.8,202.0" fill="none" stroke="var(--blue)" stroke-width="3.4" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round"/></g>
+<line x1="18" y1="202" x2="378.8" y2="202" stroke="var(--ink)" stroke-width="1.8"/>
+<rect x="18" y="12" width="360.8" height="190" fill="none" stroke="var(--sub)" stroke-width="1"/>
+<line x1="62.0" y1="202" x2="62.0" y2="207" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="62.0" y="221" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">20</text>
+<line x1="106.0" y1="202" x2="106.0" y2="207" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="106.0" y="221" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">30</text>
+<line x1="150.0" y1="202" x2="150.0" y2="207" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="150.0" y="221" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">40</text>
+<line x1="198.4" y1="202" x2="198.4" y2="207" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="198.4" y="221" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">51</text>
+<line x1="246.8" y1="202" x2="246.8" y2="207" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="246.8" y="221" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">62</text>
+<line x1="290.8" y1="202" x2="290.8" y2="207" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="290.8" y="221" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">72</text>
+<line x1="334.8" y1="202" x2="334.8" y2="207" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="334.8" y="221" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">82</text>
+<line x1="198.4" y1="202.0" x2="198.4" y2="21.7" stroke="var(--ink)" stroke-width="1.4" stroke-opacity="0.6" stroke-dasharray="3 3"/><line x1="198.4" y1="169.8" x2="246.8" y2="169.8" stroke="var(--sub)" stroke-width="2.2"/><polygon points="198.4,169.8 206.4,165.3 206.4,174.3" fill="var(--sub)"/><polygon points="246.8,169.8 238.8,165.3 238.8,174.3" fill="var(--sub)"/><text x="222.6" y="158.5" font-size="12.5" font-weight="700" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">σ = 11</text><text x="212.5" y="102.2" font-size="12.5" font-weight="700" fill="var(--blue)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">← σ(X) = 2.2</text><rect x="255.6" y="20.0" width="133.3" height="46" rx="6" fill="var(--panel)" fill-opacity="0.92" stroke="var(--line)"/><line x1="263.6" y1="34.0" x2="287.6" y2="34.0" stroke="var(--sub)" stroke-width="3" stroke-dasharray="6 5"/><text x="293.6" y="38.0" font-size="12" font-weight="700" fill="var(--ink)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">個人の得点 X（A地域）</text><line x1="263.6" y1="53.0" x2="287.6" y2="53.0" stroke="var(--blue)" stroke-width="3"/><text x="293.6" y="57.0" font-size="12" font-weight="700" fill="var(--ink)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">25人の平均 X̄</text>
+</svg>
+      <figcaption>灰の点線＝A地域の個人の得点（標準偏差 11）、青＝25人の平均（標準偏差 2.2）。平均の方がずっと狭く、中心の 51 に集まります。</figcaption>
+    </figure>
+    <div class="easy"><span class="t">やさしい解説：なぜ平均は狭くなる？</span>
+      <p>1人の得点は、高い人も低い人もいて大きくばらつきます。でも25人の平均をとると、<b>高い人と低い人が打ち消し合う</b>ので、平均の値は 51 の近くに集まります。人数を増やすほど、この打ち消しが効いてばらつきが小さくなります。その割合が <span class="m">√<i>n</i></span> で、<b>σ を √n で割る</b>という公式になります。</p>
+      <p>今回は <span class="m">√25 = 5</span> なので、<span class="m">11 ÷ 5 = 2.2</span> です。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span><span class="hl">期待値は変わらない（51のまま）</span>、<span class="hl">標準偏差は割る（÷ √n）</span>。「期待値も割る」「標準偏差は √n を掛ける」と逆にしないこと。</div>
+    <div class="ans"><span class="al">答 (1)①</span><span class="av"><span class="m"><i>E</i>(<i>X</i>) = 51，σ(<i>X</i>) = 11/5 = 2.2 点</span></span></div>
+  </div>
+</section>
+
+<section class="prob" id="s2" data-key="s2">
+  <div class="ph"><span class="no">(1)②</span><div class="htext"><span class="tag">標準偏差を等しくする</span><h2>σ(X) = σ(Y) となる n</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">B地域の母標準偏差は 33、標本の大きさは <span class="m"><i>n</i></span> である。<span class="m">σ(<i>X</i>) = σ(<i>Y</i>)</span> となるときの <span class="m"><i>n</i></span> を求めよ。</p>
+
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">σ(<i>Y</i>) = <span class="fr"><b>33</b><b>√<i>n</i></b></span>　　σ(<i>X</i>) = <span class="fr"><b>11</b><b>5</b></span> より</span>
+      <span class="m"><span class="fr"><b>11</b><b>5</b></span> = <span class="fr"><b>33</b><b>√<i>n</i></b></span></span>
+      <span class="m">両辺を 11 で割って　<span class="fr"><b>1</b><b>5</b></span> = <span class="fr"><b>3</b><b>√<i>n</i></b></span>　⇒　√<i>n</i> = 15　⇒　<span class="box"><i>n</i> = 225</span></span>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 434 236" role="img" aria-label="B地域の個人は標準偏差33で広い。225人の平均の標準偏差は2.2で、A地域の25人の平均と同じ" xmlns="http://www.w3.org/2000/svg">
+<defs><clipPath id="cp-p2"><rect x="18" y="12" width="398.4" height="190"/></clipPath></defs>
+<rect x="18" y="12" width="398.4" height="190" fill="var(--panel)"/>
+<line x1="58.8" y1="12" x2="58.8" y2="202" stroke="var(--line)" stroke-width="1"/>
+<line x1="138.0" y1="12" x2="138.0" y2="202" stroke="var(--line)" stroke-width="1"/>
+<line x1="217.2" y1="12" x2="217.2" y2="202" stroke="var(--line)" stroke-width="1"/>
+<line x1="296.4" y1="12" x2="296.4" y2="202" stroke="var(--line)" stroke-width="1"/>
+<line x1="375.6" y1="12" x2="375.6" y2="202" stroke="var(--line)" stroke-width="1"/>
+
+<g clip-path="url(#cp-p2)"><polygon points="138.0,202.0 138.0,104.3 138.8,103.4 139.6,102.4 140.4,101.4 141.2,100.4 142.0,99.5 142.8,98.5 143.5,97.5 144.3,96.5 145.1,95.6 145.9,94.6 146.7,93.6 147.5,92.7 148.3,91.7 149.1,90.8 149.9,89.8 150.7,88.9 151.5,87.9 152.3,87.0 153.0,86.0 153.8,85.1 154.6,84.1 155.4,83.2 156.2,82.3 157.0,81.4 157.8,80.5 158.6,79.5 159.4,78.6 160.2,77.7 161.0,76.9 161.8,76.0 162.6,75.1 163.3,74.2 164.1,73.4 164.9,72.5 165.7,71.6 166.5,70.8 167.3,70.0 168.1,69.1 168.9,68.3 169.7,67.5 170.5,66.7 171.3,65.9 172.1,65.1 172.8,64.4 173.6,63.6 174.4,62.8 175.2,62.1 176.0,61.3 176.8,60.6 177.6,59.9 178.4,59.2 179.2,58.5 180.0,57.8 180.8,57.1 181.6,56.5 182.4,55.8 183.1,55.2 183.9,54.6 184.7,54.0 185.5,53.4 186.3,52.8 187.1,52.2 187.9,51.6 188.7,51.1 189.5,50.5 190.3,50.0 191.1,49.5 191.9,49.0 192.6,48.5 193.4,48.1 194.2,47.6 195.0,47.2 195.8,46.7 196.6,46.3 197.4,45.9 198.2,45.6 199.0,45.2 199.8,44.8 200.6,44.5 201.4,44.2 202.2,43.9 202.9,43.6 203.7,43.3 204.5,43.0 205.3,42.8 206.1,42.6 206.9,42.3 207.7,42.1 208.5,42.0 209.3,41.8 210.1,41.6 210.9,41.5 211.7,41.4 212.4,41.3 213.2,41.2 214.0,41.1 214.8,41.1 215.6,41.0 216.4,41.0 217.2,41.0 218.0,41.0 218.8,41.0 219.6,41.1 220.4,41.1 221.2,41.2 222.0,41.3 222.7,41.4 223.5,41.5 224.3,41.6 225.1,41.8 225.9,42.0 226.7,42.1 227.5,42.3 228.3,42.6 229.1,42.8 229.9,43.0 230.7,43.3 231.5,43.6 232.2,43.9 233.0,44.2 233.8,44.5 234.6,44.8 235.4,45.2 236.2,45.6 237.0,45.9 237.8,46.3 238.6,46.7 239.4,47.2 240.2,47.6 241.0,48.1 241.8,48.5 242.5,49.0 243.3,49.5 244.1,50.0 244.9,50.5 245.7,51.1 246.5,51.6 247.3,52.2 248.1,52.8 248.9,53.4 249.7,54.0 250.5,54.6 251.3,55.2 252.0,55.8 252.8,56.5 253.6,57.1 254.4,57.8 255.2,58.5 256.0,59.2 256.8,59.9 257.6,60.6 258.4,61.3 259.2,62.1 260.0,62.8 260.8,63.6 261.6,64.4 262.3,65.1 263.1,65.9 263.9,66.7 264.7,67.5 265.5,68.3 266.3,69.1 267.1,70.0 267.9,70.8 268.7,71.6 269.5,72.5 270.3,73.4 271.1,74.2 271.8,75.1 272.6,76.0 273.4,76.9 274.2,77.7 275.0,78.6 275.8,79.5 276.6,80.5 277.4,81.4 278.2,82.3 279.0,83.2 279.8,84.1 280.6,85.1 281.4,86.0 282.1,87.0 282.9,87.9 283.7,88.9 284.5,89.8 285.3,90.8 286.1,91.7 286.9,92.7 287.7,93.6 288.5,94.6 289.3,95.6 290.1,96.5 290.9,97.5 291.6,98.5 292.4,99.5 293.2,100.4 294.0,101.4 294.8,102.4 295.6,103.4 296.4,104.3 296.4,202.0" fill="var(--sub)" fill-opacity="0.16" stroke="none"/><polyline points="18.0,195.2 19.3,194.9 20.7,194.6 22.0,194.3 23.3,194.0 24.6,193.6 26.0,193.3 27.3,192.9 28.6,192.5 30.0,192.2 31.3,191.8 32.6,191.4 33.9,190.9 35.3,190.5 36.6,190.0 37.9,189.6 39.2,189.1 40.6,188.6 41.9,188.1 43.2,187.6 44.6,187.0 45.9,186.5 47.2,185.9 48.5,185.3 49.9,184.7 51.2,184.1 52.5,183.5 53.9,182.8 55.2,182.1 56.5,181.4 57.8,180.7 59.2,180.0 60.5,179.3 61.8,178.5 63.2,177.7 64.5,176.9 65.8,176.1 67.1,175.3 68.5,174.4 69.8,173.5 71.1,172.6 72.4,171.7 73.8,170.8 75.1,169.8 76.4,168.8 77.8,167.8 79.1,166.8 80.4,165.8 81.7,164.7 83.1,163.6 84.4,162.5 85.7,161.4 87.1,160.3 88.4,159.1 89.7,157.9 91.0,156.7 92.4,155.5 93.7,154.3 95.0,153.0 96.4,151.7 97.7,150.4 99.0,149.1 100.3,147.8 101.7,146.4 103.0,145.1 104.3,143.7 105.6,142.3 107.0,140.9 108.3,139.4 109.6,138.0 111.0,136.5 112.3,135.0 113.6,133.5 114.9,132.0 116.3,130.5 117.6,129.0 118.9,127.4 120.3,125.9 121.6,124.3 122.9,122.7 124.2,121.1 125.6,119.5 126.9,117.9 128.2,116.3 129.6,114.7 130.9,113.1 132.2,111.5 133.5,109.8 134.9,108.2 136.2,106.6 137.5,104.9 138.8,103.3 140.2,101.7 141.5,100.0 142.8,98.4 144.2,96.8 145.5,95.1 146.8,93.5 148.1,91.9 149.5,90.3 150.8,88.7 152.1,87.1 153.5,85.5 154.8,84.0 156.1,82.4 157.4,80.9 158.8,79.3 160.1,77.8 161.4,76.3 162.8,74.9 164.1,73.4 165.4,72.0 166.7,70.6 168.1,69.2 169.4,67.8 170.7,66.5 172.0,65.1 173.4,63.8 174.7,62.6 176.0,61.3 177.4,60.1 178.7,58.9 180.0,57.8 181.3,56.7 182.7,55.6 184.0,54.5 185.3,53.5 186.7,52.5 188.0,51.6 189.3,50.7 190.6,49.8 192.0,49.0 193.3,48.2 194.6,47.4 196.0,46.7 197.3,46.0 198.6,45.4 199.9,44.8 201.3,44.2 202.6,43.7 203.9,43.2 205.2,42.8 206.6,42.4 207.9,42.1 209.2,41.8 210.6,41.5 211.9,41.3 213.2,41.2 214.5,41.1 215.9,41.0 217.2,41.0 218.5,41.0 219.9,41.1 221.2,41.2 222.5,41.3 223.8,41.5 225.2,41.8 226.5,42.1 227.8,42.4 229.2,42.8 230.5,43.2 231.8,43.7 233.1,44.2 234.5,44.8 235.8,45.4 237.1,46.0 238.4,46.7 239.8,47.4 241.1,48.2 242.4,49.0 243.8,49.8 245.1,50.7 246.4,51.6 247.7,52.5 249.1,53.5 250.4,54.5 251.7,55.6 253.1,56.7 254.4,57.8 255.7,58.9 257.0,60.1 258.4,61.3 259.7,62.6 261.0,63.8 262.4,65.1 263.7,66.5 265.0,67.8 266.3,69.2 267.7,70.6 269.0,72.0 270.3,73.4 271.6,74.9 273.0,76.3 274.3,77.8 275.6,79.3 277.0,80.9 278.3,82.4 279.6,84.0 280.9,85.5 282.3,87.1 283.6,88.7 284.9,90.3 286.3,91.9 287.6,93.5 288.9,95.1 290.2,96.8 291.6,98.4 292.9,100.0 294.2,101.7 295.6,103.3 296.9,104.9 298.2,106.6 299.5,108.2 300.9,109.8 302.2,111.5 303.5,113.1 304.8,114.7 306.2,116.3 307.5,117.9 308.8,119.5 310.2,121.1 311.5,122.7 312.8,124.3 314.1,125.9 315.5,127.4 316.8,129.0 318.1,130.5 319.5,132.0 320.8,133.5 322.1,135.0 323.4,136.5 324.8,138.0 326.1,139.4 327.4,140.9 328.8,142.3 330.1,143.7 331.4,145.1 332.7,146.4 334.1,147.8 335.4,149.1 336.7,150.4 338.0,151.7 339.4,153.0 340.7,154.3 342.0,155.5 343.4,156.7 344.7,157.9 346.0,159.1 347.3,160.3 348.7,161.4 350.0,162.5 351.3,163.6 352.7,164.7 354.0,165.8 355.3,166.8 356.6,167.8 358.0,168.8 359.3,169.8 360.6,170.8 362.0,171.7 363.3,172.6 364.6,173.5 365.9,174.4 367.3,175.3 368.6,176.1 369.9,176.9 371.2,177.7 372.6,178.5 373.9,179.3 375.2,180.0 376.6,180.7 377.9,181.4 379.2,182.1 380.5,182.8 381.9,183.5 383.2,184.1 384.5,184.7 385.9,185.3 387.2,185.9 388.5,186.5 389.8,187.0 391.2,187.6 392.5,188.1 393.8,188.6 395.2,189.1 396.5,189.6 397.8,190.0 399.1,190.5 400.5,190.9 401.8,191.4 403.1,191.8 404.4,192.2 405.8,192.5 407.1,192.9 408.4,193.3 409.8,193.6 411.1,194.0 412.4,194.3 413.7,194.6 415.1,194.9 416.4,195.2" fill="none" stroke="var(--sub)" stroke-width="2.6" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5"/><polyline points="18.0,202.0 19.3,202.0 20.7,202.0 22.0,202.0 23.3,202.0 24.6,202.0 26.0,202.0 27.3,202.0 28.6,202.0 30.0,202.0 31.3,202.0 32.6,202.0 33.9,202.0 35.3,202.0 36.6,202.0 37.9,202.0 39.2,202.0 40.6,202.0 41.9,202.0 43.2,202.0 44.6,202.0 45.9,202.0 47.2,202.0 48.5,202.0 49.9,202.0 51.2,202.0 52.5,202.0 53.9,202.0 55.2,202.0 56.5,202.0 57.8,202.0 59.2,202.0 60.5,202.0 61.8,202.0 63.2,202.0 64.5,202.0 65.8,202.0 67.1,202.0 68.5,202.0 69.8,202.0 71.1,202.0 72.4,202.0 73.8,202.0 75.1,202.0 76.4,202.0 77.8,202.0 79.1,202.0 80.4,202.0 81.7,202.0 83.1,202.0 84.4,202.0 85.7,202.0 87.1,202.0 88.4,202.0 89.7,202.0 91.0,202.0 92.4,202.0 93.7,202.0 95.0,202.0 96.4,202.0 97.7,202.0 99.0,202.0 100.3,202.0 101.7,202.0 103.0,202.0 104.3,202.0 105.6,202.0 107.0,202.0 108.3,202.0 109.6,202.0 111.0,202.0 112.3,202.0 113.6,202.0 114.9,202.0 116.3,202.0 117.6,202.0 118.9,202.0 120.3,202.0 121.6,202.0 122.9,202.0 124.2,202.0 125.6,202.0 126.9,202.0 128.2,202.0 129.6,202.0 130.9,202.0 132.2,202.0 133.5,202.0 134.9,202.0 136.2,202.0 137.5,202.0 138.8,202.0 140.2,202.0 141.5,202.0 142.8,202.0 144.2,202.0 145.5,202.0 146.8,202.0 148.1,202.0 149.5,202.0 150.8,202.0 152.1,202.0 153.5,202.0 154.8,202.0 156.1,202.0 157.4,202.0 158.8,202.0 160.1,202.0 161.4,202.0 162.8,202.0 164.1,202.0 165.4,202.0 166.7,202.0 168.1,202.0 169.4,202.0 170.7,202.0 172.0,202.0 173.4,202.0 174.7,202.0 176.0,202.0 177.4,202.0 178.7,202.0 180.0,202.0 181.3,202.0 182.7,202.0 184.0,202.0 185.3,202.0 186.7,202.0 188.0,202.0 189.3,202.0 190.6,202.0 192.0,202.0 193.3,202.0 194.6,202.0 196.0,202.0 197.3,201.9 198.6,201.7 199.9,201.2 201.3,200.3 202.6,198.5 203.9,195.2 205.2,189.6 206.6,180.7 207.9,167.8 209.2,150.4 210.6,129.0 211.9,104.9 213.2,80.9 214.5,60.1 215.9,46.0 217.2,41.0 218.5,46.0 219.9,60.1 221.2,80.9 222.5,104.9 223.8,129.0 225.2,150.4 226.5,167.8 227.8,180.7 229.2,189.6 230.5,195.2 231.8,198.5 233.1,200.3 234.5,201.2 235.8,201.7 237.1,201.9 238.4,202.0 239.8,202.0 241.1,202.0 242.4,202.0 243.8,202.0 245.1,202.0 246.4,202.0 247.7,202.0 249.1,202.0 250.4,202.0 251.7,202.0 253.1,202.0 254.4,202.0 255.7,202.0 257.0,202.0 258.4,202.0 259.7,202.0 261.0,202.0 262.4,202.0 263.7,202.0 265.0,202.0 266.3,202.0 267.7,202.0 269.0,202.0 270.3,202.0 271.6,202.0 273.0,202.0 274.3,202.0 275.6,202.0 277.0,202.0 278.3,202.0 279.6,202.0 280.9,202.0 282.3,202.0 283.6,202.0 284.9,202.0 286.3,202.0 287.6,202.0 288.9,202.0 290.2,202.0 291.6,202.0 292.9,202.0 294.2,202.0 295.6,202.0 296.9,202.0 298.2,202.0 299.5,202.0 300.9,202.0 302.2,202.0 303.5,202.0 304.8,202.0 306.2,202.0 307.5,202.0 308.8,202.0 310.2,202.0 311.5,202.0 312.8,202.0 314.1,202.0 315.5,202.0 316.8,202.0 318.1,202.0 319.5,202.0 320.8,202.0 322.1,202.0 323.4,202.0 324.8,202.0 326.1,202.0 327.4,202.0 328.8,202.0 330.1,202.0 331.4,202.0 332.7,202.0 334.1,202.0 335.4,202.0 336.7,202.0 338.0,202.0 339.4,202.0 340.7,202.0 342.0,202.0 343.4,202.0 344.7,202.0 346.0,202.0 347.3,202.0 348.7,202.0 350.0,202.0 351.3,202.0 352.7,202.0 354.0,202.0 355.3,202.0 356.6,202.0 358.0,202.0 359.3,202.0 360.6,202.0 362.0,202.0 363.3,202.0 364.6,202.0 365.9,202.0 367.3,202.0 368.6,202.0 369.9,202.0 371.2,202.0 372.6,202.0 373.9,202.0 375.2,202.0 376.6,202.0 377.9,202.0 379.2,202.0 380.5,202.0 381.9,202.0 383.2,202.0 384.5,202.0 385.9,202.0 387.2,202.0 388.5,202.0 389.8,202.0 391.2,202.0 392.5,202.0 393.8,202.0 395.2,202.0 396.5,202.0 397.8,202.0 399.1,202.0 400.5,202.0 401.8,202.0 403.1,202.0 404.4,202.0 405.8,202.0 407.1,202.0 408.4,202.0 409.8,202.0 411.1,202.0 412.4,202.0 413.7,202.0 415.1,202.0 416.4,202.0" fill="none" stroke="var(--red)" stroke-width="4.2" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round"/><polyline points="18.0,202.0 19.3,202.0 20.7,202.0 22.0,202.0 23.3,202.0 24.6,202.0 26.0,202.0 27.3,202.0 28.6,202.0 30.0,202.0 31.3,202.0 32.6,202.0 33.9,202.0 35.3,202.0 36.6,202.0 37.9,202.0 39.2,202.0 40.6,202.0 41.9,202.0 43.2,202.0 44.6,202.0 45.9,202.0 47.2,202.0 48.5,202.0 49.9,202.0 51.2,202.0 52.5,202.0 53.9,202.0 55.2,202.0 56.5,202.0 57.8,202.0 59.2,202.0 60.5,202.0 61.8,202.0 63.2,202.0 64.5,202.0 65.8,202.0 67.1,202.0 68.5,202.0 69.8,202.0 71.1,202.0 72.4,202.0 73.8,202.0 75.1,202.0 76.4,202.0 77.8,202.0 79.1,202.0 80.4,202.0 81.7,202.0 83.1,202.0 84.4,202.0 85.7,202.0 87.1,202.0 88.4,202.0 89.7,202.0 91.0,202.0 92.4,202.0 93.7,202.0 95.0,202.0 96.4,202.0 97.7,202.0 99.0,202.0 100.3,202.0 101.7,202.0 103.0,202.0 104.3,202.0 105.6,202.0 107.0,202.0 108.3,202.0 109.6,202.0 111.0,202.0 112.3,202.0 113.6,202.0 114.9,202.0 116.3,202.0 117.6,202.0 118.9,202.0 120.3,202.0 121.6,202.0 122.9,202.0 124.2,202.0 125.6,202.0 126.9,202.0 128.2,202.0 129.6,202.0 130.9,202.0 132.2,202.0 133.5,202.0 134.9,202.0 136.2,202.0 137.5,202.0 138.8,202.0 140.2,202.0 141.5,202.0 142.8,202.0 144.2,202.0 145.5,202.0 146.8,202.0 148.1,202.0 149.5,202.0 150.8,202.0 152.1,202.0 153.5,202.0 154.8,202.0 156.1,202.0 157.4,202.0 158.8,202.0 160.1,202.0 161.4,202.0 162.8,202.0 164.1,202.0 165.4,202.0 166.7,202.0 168.1,202.0 169.4,202.0 170.7,202.0 172.0,202.0 173.4,202.0 174.7,202.0 176.0,202.0 177.4,202.0 178.7,202.0 180.0,202.0 181.3,202.0 182.7,202.0 184.0,202.0 185.3,202.0 186.7,202.0 188.0,202.0 189.3,202.0 190.6,202.0 192.0,202.0 193.3,202.0 194.6,202.0 196.0,202.0 197.3,201.9 198.6,201.7 199.9,201.2 201.3,200.3 202.6,198.5 203.9,195.2 205.2,189.6 206.6,180.7 207.9,167.8 209.2,150.4 210.6,129.0 211.9,104.9 213.2,80.9 214.5,60.1 215.9,46.0 217.2,41.0 218.5,46.0 219.9,60.1 221.2,80.9 222.5,104.9 223.8,129.0 225.2,150.4 226.5,167.8 227.8,180.7 229.2,189.6 230.5,195.2 231.8,198.5 233.1,200.3 234.5,201.2 235.8,201.7 237.1,201.9 238.4,202.0 239.8,202.0 241.1,202.0 242.4,202.0 243.8,202.0 245.1,202.0 246.4,202.0 247.7,202.0 249.1,202.0 250.4,202.0 251.7,202.0 253.1,202.0 254.4,202.0 255.7,202.0 257.0,202.0 258.4,202.0 259.7,202.0 261.0,202.0 262.4,202.0 263.7,202.0 265.0,202.0 266.3,202.0 267.7,202.0 269.0,202.0 270.3,202.0 271.6,202.0 273.0,202.0 274.3,202.0 275.6,202.0 277.0,202.0 278.3,202.0 279.6,202.0 280.9,202.0 282.3,202.0 283.6,202.0 284.9,202.0 286.3,202.0 287.6,202.0 288.9,202.0 290.2,202.0 291.6,202.0 292.9,202.0 294.2,202.0 295.6,202.0 296.9,202.0 298.2,202.0 299.5,202.0 300.9,202.0 302.2,202.0 303.5,202.0 304.8,202.0 306.2,202.0 307.5,202.0 308.8,202.0 310.2,202.0 311.5,202.0 312.8,202.0 314.1,202.0 315.5,202.0 316.8,202.0 318.1,202.0 319.5,202.0 320.8,202.0 322.1,202.0 323.4,202.0 324.8,202.0 326.1,202.0 327.4,202.0 328.8,202.0 330.1,202.0 331.4,202.0 332.7,202.0 334.1,202.0 335.4,202.0 336.7,202.0 338.0,202.0 339.4,202.0 340.7,202.0 342.0,202.0 343.4,202.0 344.7,202.0 346.0,202.0 347.3,202.0 348.7,202.0 350.0,202.0 351.3,202.0 352.7,202.0 354.0,202.0 355.3,202.0 356.6,202.0 358.0,202.0 359.3,202.0 360.6,202.0 362.0,202.0 363.3,202.0 364.6,202.0 365.9,202.0 367.3,202.0 368.6,202.0 369.9,202.0 371.2,202.0 372.6,202.0 373.9,202.0 375.2,202.0 376.6,202.0 377.9,202.0 379.2,202.0 380.5,202.0 381.9,202.0 383.2,202.0 384.5,202.0 385.9,202.0 387.2,202.0 388.5,202.0 389.8,202.0 391.2,202.0 392.5,202.0 393.8,202.0 395.2,202.0 396.5,202.0 397.8,202.0 399.1,202.0 400.5,202.0 401.8,202.0 403.1,202.0 404.4,202.0 405.8,202.0 407.1,202.0 408.4,202.0 409.8,202.0 411.1,202.0 412.4,202.0 413.7,202.0 415.1,202.0 416.4,202.0" fill="none" stroke="var(--blue)" stroke-width="2.0" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 4"/></g>
+<line x1="18" y1="202" x2="416.4" y2="202" stroke="var(--ink)" stroke-width="1.8"/>
+<rect x="18" y="12" width="398.4" height="190" fill="none" stroke="var(--sub)" stroke-width="1"/>
+<line x1="58.8" y1="202" x2="58.8" y2="207" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="58.8" y="221" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−15</text>
+<line x1="138.0" y1="202" x2="138.0" y2="207" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="138.0" y="221" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">18</text>
+<line x1="217.2" y1="202" x2="217.2" y2="207" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="217.2" y="221" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">51</text>
+<line x1="296.4" y1="202" x2="296.4" y2="207" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="296.4" y="221" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">84</text>
+<line x1="375.6" y1="202" x2="375.6" y2="207" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="375.6" y="221" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">117</text>
+<line x1="217.2" y1="202.0" x2="217.2" y2="21.7" stroke="var(--ink)" stroke-width="1.4" stroke-opacity="0.6" stroke-dasharray="3 3"/><rect x="301.2" y="20.0" width="136.7" height="65" rx="6" fill="var(--panel)" fill-opacity="0.92" stroke="var(--line)"/><line x1="309.2" y1="34.0" x2="333.2" y2="34.0" stroke="var(--sub)" stroke-width="3" stroke-dasharray="6 5"/><text x="339.2" y="38.0" font-size="11.5" font-weight="700" fill="var(--ink)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">B地域の個人 σ = 33</text><line x1="309.2" y1="53.0" x2="333.2" y2="53.0" stroke="var(--red)" stroke-width="3"/><text x="339.2" y="57.0" font-size="11.5" font-weight="700" fill="var(--ink)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">B地域 225人の平均 Y</text><line x1="309.2" y1="72.0" x2="333.2" y2="72.0" stroke="var(--blue)" stroke-width="3" stroke-dasharray="4 4"/><text x="339.2" y="76.0" font-size="11.5" font-weight="700" fill="var(--ink)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">A地域 25人の平均 X</text><text x="217.2" y="15.2" font-size="11.5" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">どちらも σ = 2.2（重なる）</text>
+</svg>
+      <figcaption>B地域の個人（灰の点線、標準偏差 33）はとても広いですが、225人の平均（赤）の標準偏差は 2.2 で、A地域25人の平均（青）と<b>ぴったり重なります</b>。</figcaption>
+    </figure>
+    <div class="easy"><span class="t">やさしい解説：ばらつきを「同じ」にするには</span>
+      <p>B地域の個人の標準偏差は 33 で、A地域の 11 の3倍です。平均のばらつきを 2.2 に揃えるには、「<b>3倍のばらつき</b>を、<b>√n の割り算</b>で打ち消す」必要があります。そのため √n = 3 × 5 = 15、つまり人数は 15² = 225 人です。</p>
+    </div>
+    <div class="check"><b>検算：</b>33 ÷ √225 = 33 ÷ 15 = 2.2 ✓（A地域の σ(X) と一致）。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>「標準偏差が等しい」の式を作るときに、<span class="hl">標準偏差どうし</span>を等しくします（分散 121 と 1089 を比べて n を出すのは、同じ答えになりますが、式の形がずれやすいので注意）。</div>
+    <div class="ans"><span class="al">答 (1)②</span><span class="av"><span class="m"><i>n</i> = 225 人</span></span></div>
+  </div>
+</section>
+
+<!-- ================= (2) ================= -->
+<section class="prob" id="s3" data-key="s3">
+  <div class="ph"><span class="no">(2)</span><div class="htext"><span class="tag">2つの地域をまとめた分散</span><h2>全体の標準偏差 22 から、B地域の人数 k を求める</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">A地域1000人と、B地域 <span class="m"><i>k</i></span> 人を合わせた全体の標準偏差は 22点である。A・B 両地域の平均は、ともに 51点である。<span class="m"><i>k</i></span> を求めよ。</p>
+
+    <div class="fb" data-label="地域をまとめるときの公式">
+      <span class="m">全体の平均 ＝ 各地域の平均を人数で重みづけした平均（今回は両方 51 なので、全体の平均も 51）</span>
+      <span class="m"><span class="box">全体の分散 ＝ （<i>A</i> の人数 × <i>A</i> の分散 ＋ <i>B</i> の人数 × <i>B</i> の分散）／（<i>A</i> の人数 ＋ <i>B</i> の人数）</span></span>
+      <span class="m">分散 ＝ 標準偏差<sup>2</sup></span>
+      <span class="m">22<sup>2</sup> = 484</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>A</i> の分散 11² = 121、<i>B</i> の分散 33² = 1089 より</span>
+      <span class="m"><span class="fr"><b>1000×121 + <i>k</i>×1089</b><b>1000 + <i>k</i></b></span> = 484</span>
+      <span class="m">両辺に (1000 + <i>k</i>) をかけて　121000 + 1089<i>k</i> = 484000 + 484<i>k</i></span>
+      <span class="m">605<i>k</i> = 363000　⇒　<span class="box"><i>k</i> = 600</span></span>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 440 250" role="img" aria-label="分散121と1089を、人数1000と600で重みづけすると、てこがつりあう位置が全体の分散484" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="440" height="250" fill="var(--panel)"/>
+<line x1="30.0" y1="126" x2="410.0" y2="126" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
+<polygon points="183.3,130 166.3,164 200.3,164" fill="var(--red)"/>
+<circle cx="68.3" cy="101" r="22" fill="var(--green)" fill-opacity="0.9" stroke="var(--panel)" stroke-width="2"/>
+<text x="68.3" y="68" font-size="12.5" font-weight="800" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">A地域：1000人</text>
+<text x="68.3" y="52" font-size="12.5" font-weight="700" fill="var(--green)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">分散 121</text>
+<circle cx="374.8" cy="106" r="17" fill="var(--blue)" fill-opacity="0.9" stroke="var(--panel)" stroke-width="2"/>
+<text x="374.8" y="78" font-size="12.5" font-weight="800" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">B地域：600人</text>
+<text x="374.8" y="62" font-size="12.5" font-weight="700" fill="var(--blue)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">分散 1089</text>
+<text x="183.3" y="184" font-size="14" font-weight="800" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">全体の分散 484（22²）</text>
+<line x1="68.3" y1="210" x2="183.3" y2="210" stroke="var(--sub)" stroke-width="2"/>
+<polygon points="68.3,210 76.3,205.5 76.3,214.5" fill="var(--sub)"/><polygon points="183.3,210 175.3,205.5 175.3,214.5" fill="var(--sub)"/>
+<text x="125.8" y="203" font-size="13" font-weight="800" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">363</text>
+<line x1="183.3" y1="210" x2="374.8" y2="210" stroke="var(--sub)" stroke-width="2"/>
+<polygon points="183.3,210 191.3,205.5 191.3,214.5" fill="var(--sub)"/><polygon points="374.8,210 366.8,205.5 366.8,214.5" fill="var(--sub)"/>
+<text x="279.1" y="203" font-size="13" font-weight="800" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">605</text>
+<line x1="68.3" y1="126" x2="68.3" y2="218" stroke="var(--sub)" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="183.3" y1="126" x2="183.3" y2="218" stroke="var(--sub)" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="374.8" y1="126" x2="374.8" y2="218" stroke="var(--sub)" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="220.0" y="238" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1000 × 363 ＝ 363000 ＝ 600 × 605 　→　てこがつりあう</text>
+</svg>
+      <figcaption>てこの図。A（分散 121、人数 1000）と B（分散 1089、人数 600）が、支点 484 でつりあっています。人数が多い A の側は近く、B の側は遠い、とつりあうと考えると、式の形がつかみやすくなります。</figcaption>
+    </figure>
+    <div class="easy"><span class="t">やさしい解説：なぜ「分散」を人数で重みづけするの？</span>
+      <p>全体のばらつきは、「1人ひとりが平均からどれだけ離れているか（その2乗）」を全員分平均したものです。A地域は人数が多いので、そのばらつき 121 を <b>1000 人分</b>、B地域は <b>k 人分</b>足して、全員の数で割ります。これが上の式です。</p>
+      <p>また、<b>標準偏差は足したり平均したりしてはいけません</b>。たとえば単純に「11 と 33 の平均」をとると 22 になりますが、それは人数を考えていないので、正しくありません（人数を考えると答えは 600 人になります）。</p>
+    </div>
+    <div class="check"><b>検算：</b>k = 600 を入れると　(121000 + 653400) / 1600 = 774400 / 1600 = 484　→　√484 = 22 ✓。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>①<span class="hl">標準偏差 22 は 22² = 484 に直してから</span>式に入れる。②分子の「k × 33²」の 33² を忘れない（33 のままにすると大きくずれる）。③「平均」は両方 51 なので、分散の式で平均の項は消えて、人数の重みだけが残る。</div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m"><i>k</i> = 600 人</span></span></div>
+  </div>
+</section>
+
+<!-- ================= (3) ================= -->
+<section class="prob" id="s4" data-key="s4">
+  <div class="ph"><span class="no">(3)</span><div class="htext"><span class="tag">仮説検定（母平均）</span><h2>C地域の平均は 51 より高いといえるか（有意水準 5%）</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">C地域の母平均を <span class="m"><i>m</i></span> とする。標本の大きさ 100、母標準偏差 11点。無作為抽出した 100人の平均点は 53.2点であった。有意水準 5% で「C地域の平均点は 51点より高い」といえるかを検定せよ。</p>
+
+    <h3>① 仮説を立てる</h3>
+    <div class="fb" data-label="帰無仮説と対立仮説">
+      <span class="m">帰無仮説　<span class="box"><i>H</i>₀ ： <i>m</i> = 51</span>（「変わらない」と仮定する）</span>
+      <span class="m">対立仮説　<span class="box"><i>H</i>₁ ： <i>m</i> ＞ 51</span>（「高い」といいたい）</span>
+      <span class="m">対立仮説が「＞」なので、<span class="box">右側検定</span>を行う。</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：裁判と同じしくみ</span>
+      <p>裁判では「無罪」を仮定しておき、証拠が十分強いときだけ有罪とします。仮説検定も同じで、<b>帰無仮説 H₀（＝ 今の仮定）</b>をまず正しいとしておき、観測したデータがそれでは<b>起こりにくすぎる</b>とき、H₀ を捨てて H₁ を採用します。</p>
+    </div>
+
+    <h3>② 帰無仮説のもとでの標本平均の分布</h3>
+    <div class="fb soft" data-label="標準偏差を求める">
+      <span class="m"><i>H</i>₀ のもとで <i>m</i> = 51 なので、標本平均 <i>X</i>̄ の期待値は 51。標準偏差は</span>
+      <span class="m">σ(<i>X</i>̄) = <span class="fr"><b>11</b><b>√100</b></span> = <span class="fr"><b>11</b><b>10</b></span> = <span class="box">1.1</span></span>
+      <span class="m">標本が 100人と大きいので、<i>X</i>̄ は近似的に正規分布 <i>N</i>(51, 1.1²) に従う。</span>
+    </div>
+
+    <h3>③ 検定統計量 z を求める</h3>
+    <div class="fb soft" data-label="標準化">
+      <span class="m"><span class="box"><i>z</i> = ( <i>X</i>̄ − 51 ) / ( 11 / √100 )</span></span>
+      <span class="m"><i>z</i> = ( 53.2 − 51 ) / 1.1 = 2.2 / 1.1 = <span class="box">2</span></span>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 402 264" role="img" aria-label="標準正規分布。右側5%の境界は1.64、観測値はz=2でp値は0.0228" xmlns="http://www.w3.org/2000/svg">
+<defs><clipPath id="cp-p3"><rect x="26" y="12" width="349.6" height="200"/></clipPath></defs>
+<rect x="26" y="12" width="349.6" height="200" fill="var(--panel)"/>
+<line x1="58.2" y1="12" x2="58.2" y2="212" stroke="var(--line)" stroke-width="1"/>
+<line x1="104.2" y1="12" x2="104.2" y2="212" stroke="var(--line)" stroke-width="1"/>
+<line x1="150.2" y1="12" x2="150.2" y2="212" stroke="var(--line)" stroke-width="1"/>
+<line x1="196.2" y1="12" x2="196.2" y2="212" stroke="var(--line)" stroke-width="1"/>
+<line x1="242.2" y1="12" x2="242.2" y2="212" stroke="var(--line)" stroke-width="1"/>
+<line x1="288.2" y1="12" x2="288.2" y2="212" stroke="var(--line)" stroke-width="1"/>
+<line x1="334.2" y1="12" x2="334.2" y2="212" stroke="var(--line)" stroke-width="1"/>
+
+<g clip-path="url(#cp-p3)"><polygon points="271.9,212.0 271.9,168.2 272.4,169.0 272.9,169.8 273.4,170.6 273.9,171.4 274.5,172.1 275.0,172.9 275.5,173.6 276.0,174.4 276.5,175.1 277.1,175.8 277.6,176.6 278.1,177.3 278.6,177.9 279.1,178.6 279.6,179.3 280.2,180.0 280.7,180.6 281.2,181.3 281.7,181.9 282.2,182.5 282.8,183.1 283.3,183.8 283.8,184.4 284.3,184.9 284.8,185.5 285.4,186.1 285.9,186.7 286.4,187.2 286.9,187.7 287.4,188.3 287.9,188.8 288.5,189.3 289.0,189.8 289.5,190.3 290.0,190.8 290.5,191.3 291.1,191.8 291.6,192.2 292.1,192.7 292.6,193.2 293.1,193.6 293.7,194.0 294.2,194.5 294.7,194.9 295.2,195.3 295.7,195.7 296.2,196.1 296.8,196.5 297.3,196.8 297.8,197.2 298.3,197.6 298.8,197.9 299.4,198.3 299.9,198.6 300.4,199.0 300.9,199.3 301.4,199.6 302.0,199.9 302.5,200.2 303.0,200.5 303.5,200.8 304.0,201.1 304.5,201.4 305.1,201.7 305.6,202.0 306.1,202.2 306.6,202.5 307.1,202.7 307.7,203.0 308.2,203.2 308.7,203.5 309.2,203.7 309.7,203.9 310.3,204.2 310.8,204.4 311.3,204.6 311.8,204.8 312.3,205.0 312.8,205.2 313.4,205.4 313.9,205.6 314.4,205.8 314.9,205.9 315.4,206.1 316.0,206.3 316.5,206.4 317.0,206.6 317.5,206.8 318.0,206.9 318.5,207.1 319.1,207.2 319.6,207.4 320.1,207.5 320.6,207.6 321.1,207.8 321.7,207.9 322.2,208.0 322.7,208.1 323.2,208.3 323.7,208.4 324.3,208.5 324.8,208.6 325.3,208.7 325.8,208.8 326.3,208.9 326.8,209.0 327.4,209.1 327.9,209.2 328.4,209.3 328.9,209.4 329.4,209.4 330.0,209.5 330.5,209.6 331.0,209.7 331.5,209.8 332.0,209.8 332.6,209.9 333.1,210.0 333.6,210.0 334.1,210.1 334.6,210.2 335.1,210.2 335.7,210.3 336.2,210.3 336.7,210.4 337.2,210.5 337.7,210.5 338.3,210.6 338.8,210.6 339.3,210.7 339.8,210.7 340.3,210.7 340.9,210.8 341.4,210.8 341.9,210.9 342.4,210.9 342.9,211.0 343.4,211.0 344.0,211.0 344.5,211.1 345.0,211.1 345.5,211.1 346.0,211.2 346.6,211.2 347.1,211.2 347.6,211.2 348.1,211.3 348.6,211.3 349.1,211.3 349.7,211.4 350.2,211.4 350.7,211.4 351.2,211.4 351.7,211.4 352.3,211.5 352.8,211.5 353.3,211.5 353.8,211.5 354.3,211.5 354.9,211.6 355.4,211.6 355.9,211.6 356.4,211.6 356.9,211.6 357.4,211.6 358.0,211.7 358.5,211.7 359.0,211.7 359.5,211.7 360.0,211.7 360.6,211.7 361.1,211.7 361.6,211.7 362.1,211.7 362.6,211.8 363.2,211.8 363.7,211.8 364.2,211.8 364.7,211.8 365.2,211.8 365.7,211.8 366.3,211.8 366.8,211.8 367.3,211.8 367.8,211.8 368.3,211.8 368.9,211.9 369.4,211.9 369.9,211.9 370.4,211.9 370.9,211.9 371.5,211.9 372.0,211.9 372.5,211.9 373.0,211.9 373.5,211.9 374.0,211.9 374.6,211.9 375.1,211.9 375.6,211.9 375.6,212.0" fill="var(--red)" fill-opacity="0.22" stroke="none"/><polygon points="288.2,212.0 288.2,189.1 288.6,189.5 289.1,189.9 289.5,190.3 289.9,190.8 290.4,191.2 290.8,191.6 291.3,192.0 291.7,192.4 292.1,192.7 292.6,193.1 293.0,193.5 293.4,193.9 293.9,194.2 294.3,194.6 294.8,194.9 295.2,195.3 295.6,195.6 296.1,195.9 296.5,196.3 296.9,196.6 297.4,196.9 297.8,197.2 298.3,197.5 298.7,197.8 299.1,198.1 299.6,198.4 300.0,198.7 300.4,199.0 300.9,199.3 301.3,199.5 301.7,199.8 302.2,200.1 302.6,200.3 303.1,200.6 303.5,200.8 303.9,201.1 304.4,201.3 304.8,201.6 305.2,201.8 305.7,202.0 306.1,202.2 306.6,202.5 307.0,202.7 307.4,202.9 307.9,203.1 308.3,203.3 308.7,203.5 309.2,203.7 309.6,203.9 310.1,204.1 310.5,204.3 310.9,204.4 311.4,204.6 311.8,204.8 312.2,205.0 312.7,205.1 313.1,205.3 313.5,205.5 314.0,205.6 314.4,205.8 314.9,205.9 315.3,206.1 315.7,206.2 316.2,206.3 316.6,206.5 317.0,206.6 317.5,206.8 317.9,206.9 318.4,207.0 318.8,207.1 319.2,207.3 319.7,207.4 320.1,207.5 320.5,207.6 321.0,207.7 321.4,207.8 321.8,207.9 322.3,208.0 322.7,208.1 323.2,208.2 323.6,208.3 324.0,208.4 324.5,208.5 324.9,208.6 325.3,208.7 325.8,208.8 326.2,208.9 326.7,209.0 327.1,209.0 327.5,209.1 328.0,209.2 328.4,209.3 328.8,209.3 329.3,209.4 329.7,209.5 330.2,209.6 330.6,209.6 331.0,209.7 331.5,209.8 331.9,209.8 332.3,209.9 332.8,209.9 333.2,210.0 333.6,210.0 334.1,210.1 334.5,210.2 335.0,210.2 335.4,210.3 335.8,210.3 336.3,210.4 336.7,210.4 337.1,210.4 337.6,210.5 338.0,210.5 338.5,210.6 338.9,210.6 339.3,210.7 339.8,210.7 340.2,210.7 340.6,210.8 341.1,210.8 341.5,210.8 342.0,210.9 342.4,210.9 342.8,210.9 343.3,211.0 343.7,211.0 344.1,211.0 344.6,211.1 345.0,211.1 345.4,211.1 345.9,211.1 346.3,211.2 346.8,211.2 347.2,211.2 347.6,211.2 348.1,211.3 348.5,211.3 348.9,211.3 349.4,211.3 349.8,211.4 350.3,211.4 350.7,211.4 351.1,211.4 351.6,211.4 352.0,211.5 352.4,211.5 352.9,211.5 353.3,211.5 353.8,211.5 354.2,211.5 354.6,211.5 355.1,211.6 355.5,211.6 355.9,211.6 356.4,211.6 356.8,211.6 357.2,211.6 357.7,211.6 358.1,211.7 358.6,211.7 359.0,211.7 359.4,211.7 359.9,211.7 360.3,211.7 360.7,211.7 361.2,211.7 361.6,211.7 362.1,211.7 362.5,211.8 362.9,211.8 363.4,211.8 363.8,211.8 364.2,211.8 364.7,211.8 365.1,211.8 365.5,211.8 366.0,211.8 366.4,211.8 366.9,211.8 367.3,211.8 367.7,211.8 368.2,211.8 368.6,211.8 369.0,211.9 369.5,211.9 369.9,211.9 370.4,211.9 370.8,211.9 371.2,211.9 371.7,211.9 372.1,211.9 372.5,211.9 373.0,211.9 373.4,211.9 373.9,211.9 374.3,211.9 374.7,211.9 375.2,211.9 375.6,211.9 375.6,212.0" fill="var(--red)" fill-opacity="0.55" stroke="none"/><polyline points="26.0,211.8 27.2,211.8 28.3,211.8 29.5,211.8 30.7,211.7 31.8,211.7 33.0,211.7 34.2,211.7 35.3,211.6 36.5,211.6 37.7,211.6 38.8,211.5 40.0,211.5 41.1,211.4 42.3,211.4 43.5,211.3 44.6,211.3 45.8,211.2 47.0,211.1 48.1,211.0 49.3,211.0 50.5,210.9 51.6,210.8 52.8,210.7 54.0,210.6 55.1,210.5 56.3,210.3 57.5,210.2 58.6,210.1 59.8,209.9 61.0,209.7 62.1,209.6 63.3,209.4 64.5,209.2 65.6,209.0 66.8,208.8 68.0,208.5 69.1,208.3 70.3,208.0 71.4,207.7 72.6,207.4 73.8,207.1 74.9,206.7 76.1,206.4 77.3,206.0 78.4,205.6 79.6,205.2 80.8,204.7 81.9,204.3 83.1,203.7 84.3,203.2 85.4,202.7 86.6,202.1 87.8,201.5 88.9,200.8 90.1,200.1 91.3,199.4 92.4,198.7 93.6,197.9 94.8,197.1 95.9,196.3 97.1,195.4 98.3,194.4 99.4,193.5 100.6,192.5 101.7,191.4 102.9,190.3 104.1,189.2 105.2,188.0 106.4,186.8 107.6,185.5 108.7,184.2 109.9,182.8 111.1,181.4 112.2,180.0 113.4,178.5 114.6,176.9 115.7,175.3 116.9,173.7 118.1,172.0 119.2,170.2 120.4,168.4 121.6,166.6 122.7,164.7 123.9,162.7 125.1,160.8 126.2,158.7 127.4,156.6 128.5,154.5 129.7,152.4 130.9,150.2 132.0,147.9 133.2,145.6 134.4,143.3 135.5,141.0 136.7,138.6 137.9,136.1 139.0,133.7 140.2,131.2 141.4,128.7 142.5,126.2 143.7,123.6 144.9,121.1 146.0,118.5 147.2,115.9 148.4,113.3 149.5,110.7 150.7,108.1 151.9,105.5 153.0,102.9 154.2,100.3 155.4,97.7 156.5,95.2 157.7,92.6 158.8,90.1 160.0,87.6 161.2,85.2 162.3,82.7 163.5,80.3 164.7,78.0 165.8,75.7 167.0,73.4 168.2,71.2 169.3,69.1 170.5,67.0 171.7,65.0 172.8,63.0 174.0,61.1 175.2,59.3 176.3,57.6 177.5,56.0 178.7,54.4 179.8,52.9 181.0,51.5 182.2,50.2 183.3,49.0 184.5,47.9 185.7,46.9 186.8,46.0 188.0,45.2 189.1,44.5 190.3,43.9 191.5,43.4 192.6,43.0 193.8,42.7 195.0,42.6 196.1,42.5 197.3,42.6 198.5,42.7 199.6,43.0 200.8,43.4 202.0,43.8 203.1,44.4 204.3,45.1 205.5,45.9 206.6,46.8 207.8,47.8 209.0,48.9 210.1,50.1 211.3,51.4 212.5,52.8 213.6,54.2 214.8,55.8 215.9,57.4 217.1,59.2 218.3,61.0 219.4,62.8 220.6,64.8 221.8,66.8 222.9,68.9 224.1,71.0 225.3,73.2 226.4,75.4 227.6,77.7 228.8,80.1 229.9,82.5 231.1,84.9 232.3,87.4 233.4,89.8 234.6,92.4 235.8,94.9 236.9,97.5 238.1,100.0 239.3,102.6 240.4,105.2 241.6,107.8 242.8,110.4 243.9,113.0 245.1,115.6 246.2,118.2 247.4,120.8 248.6,123.4 249.7,125.9 250.9,128.4 252.1,130.9 253.2,133.4 254.4,135.9 255.6,138.3 256.7,140.7 257.9,143.1 259.1,145.4 260.2,147.7 261.4,149.9 262.6,152.1 263.7,154.3 264.9,156.4 266.1,158.5 267.2,160.5 268.4,162.5 269.6,164.5 270.7,166.4 271.9,168.2 273.1,170.0 274.2,171.8 275.4,173.5 276.5,175.1 277.7,176.7 278.9,178.3 280.0,179.8 281.2,181.3 282.4,182.7 283.5,184.1 284.7,185.4 285.9,186.6 287.0,187.9 288.2,189.1 289.4,190.2 290.5,191.3 291.7,192.4 292.9,193.4 294.0,194.3 295.2,195.3 296.4,196.2 297.5,197.0 298.7,197.8 299.9,198.6 301.0,199.4 302.2,200.1 303.3,200.8 304.5,201.4 305.7,202.0 306.8,202.6 308.0,203.2 309.2,203.7 310.3,204.2 311.5,204.7 312.7,205.1 313.8,205.6 315.0,206.0 316.2,206.3 317.3,206.7 318.5,207.1 319.7,207.4 320.8,207.7 322.0,208.0 323.2,208.2 324.3,208.5 325.5,208.7 326.7,209.0 327.8,209.2 329.0,209.4 330.2,209.6 331.3,209.7 332.5,209.9 333.6,210.0 334.8,210.2 336.0,210.3 337.1,210.4 338.3,210.6 339.5,210.7 340.6,210.8 341.8,210.9 343.0,211.0 344.1,211.0 345.3,211.1 346.5,211.2 347.6,211.2 348.8,211.3 350.0,211.4 351.1,211.4 352.3,211.5 353.5,211.5 354.6,211.5 355.8,211.6 357.0,211.6 358.1,211.7 359.3,211.7 360.5,211.7 361.6,211.7 362.8,211.8 363.9,211.8 365.1,211.8 366.3,211.8 367.4,211.8 368.6,211.8 369.8,211.9 370.9,211.9 372.1,211.9 373.3,211.9 374.4,211.9 375.6,211.9" fill="none" stroke="var(--ink)" stroke-width="3" stroke-opacity="1.0" stroke-linecap="round" stroke-linejoin="round"/></g>
+<line x1="26" y1="212" x2="375.6" y2="212" stroke="var(--ink)" stroke-width="1.8"/>
+<rect x="26" y="12" width="349.6" height="200" fill="none" stroke="var(--sub)" stroke-width="1"/>
+<line x1="58.2" y1="212" x2="58.2" y2="217" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="58.2" y="231" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−3</text>
+<line x1="104.2" y1="212" x2="104.2" y2="217" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="104.2" y="231" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−2</text>
+<line x1="150.2" y1="212" x2="150.2" y2="217" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="150.2" y="231" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">−1</text>
+<line x1="196.2" y1="212" x2="196.2" y2="217" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="196.2" y="231" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">0</text>
+<line x1="242.2" y1="212" x2="242.2" y2="217" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="242.2" y="231" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">1</text>
+<line x1="288.2" y1="212" x2="288.2" y2="217" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="288.2" y="231" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">2</text>
+<line x1="334.2" y1="212" x2="334.2" y2="217" stroke="var(--ink)" stroke-width="1.4"/>
+<text x="334.2" y="231" font-size="11.5" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">3</text>
+<line x1="271.9" y1="212.0" x2="271.9" y2="106.9" stroke="var(--red)" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="5 4"/><line x1="288.2" y1="212.0" x2="288.2" y2="106.9" stroke="var(--red)" stroke-width="2.6" stroke-opacity="1.0"/><text x="271.9" y="95.1" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">境界 1.64</text><text x="288.2" y="95.1" font-size="13" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">z = 2</text><text x="318.1" y="161.2" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">p ≒ 0.0228</text><text x="196.2" y="25.6" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">帰無仮説のもとでの z の分布（H₀：m = 51）</text><text x="24.0" y="249" font-size="11" fill="var(--sub)" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">点数</text><text x="58.2" y="249" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">47.7</text><text x="104.2" y="249" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">48.8</text><text x="150.2" y="249" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">49.9</text><text x="196.2" y="249" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">51.0</text><text x="242.2" y="249" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">52.1</text><text x="288.2" y="249" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">53.2</text><text x="334.2" y="249" font-size="11" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">54.3</text><rect x="269.2" y="237" width="38" height="16" rx="4" fill="none" stroke="var(--red)" stroke-width="1.8"/>
+</svg>
+      <figcaption>横軸の上段は z、下段は点数。観測値 53.2 点は z＝2（平均から標準偏差 2 個分高い）。赤く塗った右側の部分（p値）が 0.0228 です。</figcaption>
+    </figure>
+
+    <h3>④ p値を求める</h3>
+    <div class="fb" data-label="p値（右側検定）">
+      <span class="m"><i>p</i>値 ＝ <i>P</i>(<i>Z</i> ≧ 2) ≒ <span class="box">0.0228</span>　（<i>Z</i> は標準正規分布に従う）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：p値とは何か</span>
+      <p>p値は「<b>もし H₀ が正しいとしたら、今回以上に極端な結果が出る確率</b>」です。今回は 53.2 点以上になる確率で、約 2.3%（100人中2〜3回程度）しか起こりません。</p>
+      <p>注意：p値は「H₀ が正しい確率」ではありません。</p>
+    </div>
+
+    <h3>⑤ 有意水準 5% で判定する</h3>
+    <div class="fb" data-label="判定">
+      <span class="m"><i>p</i>値 0.0228 ＜ 有意水準 0.05　⇒　<span class="box">帰無仮説 <i>H</i>₀ を棄却する</span></span>
+      <span class="m">（右側検定の境界は <i>z</i> ＝ 1.64。<i>z</i> = 2 は境界より外側なので、棄却される）</span>
+    </div>
+    <div class="ans"><span class="al">結論</span><span class="av"><span class="m">有意水準 5% で、<i>C</i>地域の平均点は 51点より高いといえる。</span></span></div>
+    <div class="warning"><strong>注意：</strong>「平均が高いと<b>証明した</b>」のではありません。「<b>51 だとすると、この結果はめったに起こらないので、51 とは考えにくい</b>」という判断です。また、有意水準 5% で判断しているので、5% の確率で間違える可能性はあります。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>①対立仮説の向き（＞、＜、≠）で、右側・左側・両側を決める。②p値と有意水準を比べ、<span class="hl">p値が小さければ棄却</span>。③結論は「51 より高いといえる」のように、<span class="hl">有意水準を明記</span>して書く。</div>
+    <div class="ans"><span class="al">答 (3)</span><span class="av"><span class="m"><i>z</i> = 2，<i>p</i>値 ≒ 0.0228 ＜ 0.05 より <i>H</i>₀ を棄却。有意水準 5% で「高いといえる」</span></span></div>
+  </div>
+</section>
+
+<!-- ================= まとめ ================= -->
+<section class="prob" id="pfinal" data-key="pfinal">
+  <div class="ph"><span class="no">直前</span><div class="htext"><span class="tag">FINAL CHECK</span><h2>ここだけ確認</h2></div><button class="done" type="button" aria-pressed="false">確認した</button></div>
+  <div class="body">
+    <div class="memo"><b>超重要・一言で覚える：</b>「標本平均は <b>期待値 μ</b>、<b>標準偏差 σ ÷ √n</b>」「地域をまとめるときは <b>分散を人数で重みづけ</b>」「検定は <b>z を出して p値と有意水準を比べる</b>」。</div>
+
+    <ol class="sumlist">
+      <li><b>(1)①：</b><span class="m"><i>E</i>(<i>X</i>) = 51</span>、<span class="m">σ(<i>X</i>) = 11 ÷ √25 = 2.2</span>。</li>
+      <li><b>(1)②：</b><span class="m">11/5 = 33/√<i>n</i></span> → <span class="m">√<i>n</i> = 15</span> → <span class="m"><i>n</i> = 225</span>。</li>
+      <li><b>(2)：</b>全体の分散 <span class="m">484 = (1000·121 + <i>k</i>·1089)/(1000 + <i>k</i>)</span> → <span class="m"><i>k</i> = 600</span>。標準偏差は足さない。</li>
+      <li><b>(3)：</b><span class="m"><i>H</i>₀：<i>m</i> = 51</span>、<span class="m"><i>H</i>₁：<i>m</i> ＞ 51</span>（右側）。<span class="m">σ(<i>X</i>̄) = 1.1</span>、<span class="m"><i>z</i> = 2</span>、<span class="m"><i>p</i> ≒ 0.0228 ＜ 0.05</span> → 棄却、「高いといえる」。</li>
+    </ol>
+
+    <h3>答えのまとめ</h3>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>設問</th><th>答え</th></tr></thead>
+        <tbody>
+          <tr><td>(1)①</td><td class="left"><span class="m"><i>E</i>(<i>X</i>) = 51，σ(<i>X</i>) = 2.2 点</span></td></tr>
+          <tr><td>(1)②</td><td class="left"><span class="m"><i>n</i> = 225 人</span></td></tr>
+          <tr><td>(2)</td><td class="left"><span class="m"><i>k</i> = 600 人</span></td></tr>
+          <tr><td>(3)</td><td class="left">有意水準 5% で、C地域の平均点は 51点より高いといえる（<span class="m"><i>z</i> = 2</span>、p値 ≒ 0.0228）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>「答えをかくす」をオンにすると、答えがぼやけて表示されます。タップで1つずつ見られます。「できた」の記録はこの端末のブラウザに保存されます。</footer>
+
+<script>
+(function(){
+  var KEY='math-q5-done';
+  var done={};
+  function load(){try{var v=localStorage.getItem(KEY);done=v?JSON.parse(v)||{}:{};}catch(e){done={};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  var sections=[].slice.call(document.querySelectorAll('.prob[data-key]'));
+  var progress=document.getElementById('progress');
+  function refresh(){
+    var n=0;
+    sections.forEach(function(s){
+      var b=s.querySelector('.done');var k=s.getAttribute('data-key');
+      var on=!!done[k];if(on)n++;
+      if(b)b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    progress.textContent=n+' / '+sections.length;
+  }
+  load();refresh();
+  sections.forEach(function(s){
+    var b=s.querySelector('.done');if(!b)return;
+    b.addEventListener('click',function(){
+      var k=s.getAttribute('data-key');
+      if(done[k])delete done[k];else done[k]=1;
+      save();refresh();
+    });
+  });
+  var hideBtn=document.getElementById('hideBtn');
+  hideBtn.addEventListener('click',function(){
+    var on=hideBtn.getAttribute('aria-pressed')!=='true';
+    hideBtn.setAttribute('aria-pressed',on?'true':'false');
+    document.body.classList.toggle('hide',on);
+    if(!on){[].forEach.call(document.querySelectorAll('.ans.shown'),function(a){a.classList.remove('shown');});}
+  });
+  [].forEach.call(document.querySelectorAll('.ans'),function(a){
+    a.addEventListener('click',function(){if(document.body.classList.contains('hide'))a.classList.toggle('shown');});
+  });
+})();
+</script>
+</body>
+</html>
