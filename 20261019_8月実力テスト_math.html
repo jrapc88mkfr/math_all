@@ -349,11 +349,35 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
       <p>直角三角形なら <span class="m"><i>a</i>² = <i>b</i>² + <i>c</i>²</span> ですが、角が 90° でないときは、<span class="m">−2<i>b</i><i>c</i> cos <i>A</i></span> の補正が加わります。cos 90° = 0 なので、直角のときは補正が消えて三平方の定理と同じになります。</p>
     </div>
 
-    <h3>(ii) AD の長さ（角の二等分線の長さの公式）</h3>
+    <h3>(ii) AD の長さ（三角形の面積を使う）</h3>
     <figure class="fig">
-      <svg viewBox="0 0 290 260" role="img" aria-label="三角形ABCと、∠Aの二等分線AD。BD：DC = 6：8 = 3：4" xmlns="http://www.w3.org/2000/svg"><rect width="290" height="260" fill="var(--panel)"/><polygon points="40.0,232.0 220.0,232.0 160.0,24.2" fill="var(--blue-bg)" stroke="var(--ink)" stroke-width="2.4" stroke-linejoin="round"/><line x1="40.0" y1="232.0" x2="194.3" y2="142.9" stroke="var(--red)" stroke-width="2.2" stroke-dasharray="6 5"/><path d="M 82.0,232.0 A 42 42 0 0 0 61.0,195.6" fill="none" stroke="var(--green)" stroke-width="2"/><text x="92.0" y="220.0" font-size="13" font-weight="700" fill="var(--green)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">60°</text><circle cx="40.0" cy="232.0" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="30.0" y="250.0" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">A</text><circle cx="220.0" cy="232.0" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="226.0" y="252.0" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">B</text><circle cx="160.0" cy="24.2" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="166.0" y="18.2" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">C</text><circle cx="194.3" cy="142.9" r="4.5" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><text x="200.3" y="160.9" font-size="14" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">D</text><text x="126.0" y="252.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">AB = 6</text><text x="32.0" y="172.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">AC = 8</text><text x="194.0" y="94.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">BC = 2√13</text></svg>
-      <figcaption>∠A の二等分線 AD（赤の点線）。BD：DC は AB：AC ＝ 6：8 ＝ 3：4 に分けられます。</figcaption>
+      <svg viewBox="0 0 290 260" role="img" aria-label="三角形ABCを、線分ADで△ABDと△ADCの2つに分けた図" xmlns="http://www.w3.org/2000/svg"><rect width="290" height="260" fill="var(--panel)"/><polygon points="40.0,232.0 220.0,232.0 194.3,142.9" fill="var(--blue-bg)" stroke="none"/><polygon points="40.0,232.0 194.3,142.9 160.0,24.2" fill="var(--mark-bg)" stroke="none"/><polygon points="40.0,232.0 220.0,232.0 160.0,24.2" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linejoin="round"/><line x1="40.0" y1="232.0" x2="194.3" y2="142.9" stroke="var(--red)" stroke-width="2.2" stroke-dasharray="6 5"/><text x="148.0" y="205.0" font-size="13" font-weight="700" fill="var(--blue)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">△ABD</text><text x="106.0" y="136.0" font-size="13" font-weight="700" fill="#8a5a00" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">△ADC</text><text x="86.1" y="221.2" font-size="12.5" font-weight="700" fill="var(--green)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">30°</text><text x="79.8" y="187.2" font-size="12.5" font-weight="700" fill="var(--green)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">30°</text><circle cx="40.0" cy="232.0" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="30.0" y="250.0" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">A</text><circle cx="220.0" cy="232.0" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="226.0" y="252.0" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">B</text><circle cx="160.0" cy="24.2" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="166.0" y="18.2" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">C</text><circle cx="194.3" cy="142.9" r="4.5" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><text x="200.3" y="160.9" font-size="14" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">D</text><text x="126.0" y="252.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">AB = 6</text><text x="2.0" y="172.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">AC = 8</text><text x="194.0" y="94.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">BC = 2√13</text></svg>
+      <figcaption>線分 AD（赤の点線）で、△ABC を <b>△ABD（青）と △ADC（黄）の2つ</b>に分けた図。∠A = 60° は、AD によって 30° ＋ 30° に分かれます。</figcaption>
     </figure>
+    <div class="fb" data-label="面積の分け方">
+      <span class="m"><span class="box">△<i>A</i><i>B</i><i>C</i> ＝ △<i>A</i><i>B</i><i>D</i> ＋ △<i>A</i><i>D</i><i>C</i></span></span>
+      <span class="m">2つに分けた面積は、どちらも「2辺 × その間の角 × sin × 1/2」で表せる。</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：同じ面積を2通りに数える</span>
+      <p>三角形を線で2つに分けると、<b>2つの小さな三角形の面積の合計は、もとの三角形の面積と同じ</b>になります（重なりも隙間もないから）。</p>
+      <p>ここでは、同じ △ABC の面積を「① 辺 6, 8 と角 60° で求める」と「② 2つの小さな三角形の和で求める」の2通りで表します。②の方には未知の長さ AD が入っているので、①と比べると AD が求まります。</p>
+      <p>1つの図形を別の見方で数え直す、というのがこの解き方の考え方です。</p>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>A</i><i>D</i> は ∠<i>A</i> の二等分線なので　∠<i>B</i><i>A</i><i>D</i> = ∠<i>D</i><i>A</i><i>C</i> = 30°</span>
+      <span class="m">△<i>A</i><i>B</i><i>D</i> = (1/2) · <i>A</i><i>B</i> · <i>A</i><i>D</i> · sin 30°，　△<i>A</i><i>D</i><i>C</i> = (1/2) · <i>A</i><i>C</i> · <i>A</i><i>D</i> · sin 30°</span>
+      <span class="m">△<i>A</i><i>B</i><i>C</i> = △<i>A</i><i>B</i><i>D</i> + △<i>A</i><i>D</i><i>C</i> = (1/2) · <i>A</i><i>D</i> · sin 30° · (<i>A</i><i>B</i> + <i>A</i><i>C</i>)</span>
+      <span class="m">　　　= (1/2) · <i>A</i><i>D</i> · (1/2) · (6 + 8) = (7/2) <i>A</i><i>D</i>　…①</span>
+      <span class="m">一方、△<i>A</i><i>B</i><i>C</i> = (1/2) · 6 · 8 · sin 60° = 12√3　…②</span>
+      <span class="m">①と②より　(7/2) <i>A</i><i>D</i> = 12√3　⇒　<span class="box"><i>A</i><i>D</i> = 24√3 / 7</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：sin の値が 1/2 になる理由</span>
+      <p>sin 30° = 1/2、sin 60° = √3/2 は、30°・60°・90° の直角三角形（辺の比 1 : √3 : 2）から覚えられます。sin は「斜辺に対する高さの割合」なので、30° では高さが斜辺の半分になります。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>面積の式は「<span class="hl">2辺とその間の角</span>」で書く。△ABD では AB と AD の間の角 ∠BAD = 30°、△ADC では AD と AC の間の角 ∠DAC = 30° を使うこと。角を取り違えると答えが変わります。</div>
+    <div class="check"><b>検算（別の公式）：</b>AD = 2bc cos(A/2) / (b + c) ＝ 2 · 6 · 8 · cos 30° / 14 ＝ 96 · (√3/2) / 14 ＝ 48√3 / 14 ＝ <b>24√3 / 7</b> ✓。</div>
+
+    <h3>別解：角の二等分線の長さの公式</h3>
     <div class="fb" data-label="角の二等分線の長さの公式">
       <span class="m"><span class="box"><i>A</i><i>D</i>² = <i>b</i><i>c</i> [ 1 − <i>a</i>² / (<i>b</i> + <i>c</i>)² ]</span>　（<i>b</i> = <i>A</i><i>C</i>，<i>c</i> = <i>A</i><i>B</i>，<i>a</i> = <i>B</i><i>C</i>）</span>
     </div>
@@ -362,27 +386,11 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
       <span class="m">= 48 (1 − 52/196) = 48 · 144/196 = <span class="box">1728/49</span></span>
       <span class="m"><i>A</i><i>D</i> は正なので　<span class="box"><i>A</i><i>D</i> = 24√3 / 7</span></span>
     </div>
-    <div class="easy"><span class="t">やさしい解説：二等分線の長さの公式はどこから？</span>
-      <p>三角形 ABD と ACD に分けて、余弦定理を使うと出てきます。どちらも ∠A の半分（30°）を角に持つので、「角の半分の cos」を使うと、もう1つの形の公式にもなります（検算に使えます）。</p>
+    <div class="easy"><span class="t">やさしい解説：公式は面積の考え方から出せる</span>
+      <p>この公式は、三角形 ABD と ACD に余弦定理を使うと導けます。公式を覚えるより、「面積で考えれば求まる」と分かっているほうが、忘れたときに役立ちます。</p>
     </div>
-    <div class="check"><b>検算（別の公式）：</b>AD ＝ 2bc cos(A/2) / (b + c) ＝ 2 · 6 · 8 · cos 30° / 14 ＝ 96 · (√3/2) / 14 ＝ 48√3 / 14 ＝ <b>24√3 / 7</b> ✓。</div>
-    <div class="pt"><span class="t">テストのポイント：</span>公式の b, c は <span class="hl">A をはさむ2辺（AC と AB）</span>。a は<b>向かい側の辺 BC</b>です。b と c を入れかえても結果は同じですが、a を取り違えると誤りになります。また、「長さは正」なので √ の前の符号に注意。</div>
-    <div class="ans"><span class="al">答 (4)</span><span class="av"><span class="m">(<i>i</i>) <i>B</i><i>C</i> = 2√13　　(<i>i</i><i>i</i>) <i>A</i><i>D</i> = 24√3/7</span></span></div>
-    <h3>別解：三角形の面積を使う方法</h3>
-    <div class="fb" data-label="面積で解く">
-      <span class="m">∠<i>A</i> の二等分線だから　∠<i>B</i><i>A</i><i>D</i> = ∠<i>D</i><i>A</i><i>C</i> = 30°</span>
-      <span class="m">△<i>A</i><i>B</i><i>C</i> ＝ △<i>A</i><i>B</i><i>D</i> ＋ △<i>A</i><i>D</i><i>C</i></span>
-      <span class="m">△<i>A</i><i>B</i><i>D</i> ＝ (1/2)·<i>A</i><i>B</i>·<i>A</i><i>D</i>·sin 30°，　△<i>A</i><i>D</i><i>C</i> ＝ (1/2)·<i>A</i><i>C</i>·<i>A</i><i>D</i>·sin 30°</span>
-      <span class="m">よって　△<i>A</i><i>B</i><i>C</i> ＝ (1/2)·<i>A</i><i>D</i>·sin 30°·(<i>A</i><i>B</i> + <i>A</i><i>C</i>) ＝ (1/2)·<i>A</i><i>D</i>·(1/2)·14 ＝ (7/2)<i>A</i><i>D</i></span>
-      <span class="m">一方　△<i>A</i><i>B</i><i>C</i> ＝ (1/2)·6·8·sin 60° ＝ 12√3</span>
-      <span class="m">12√3 = (7/2)<i>A</i><i>D</i>　より　<span class="box"><i>A</i><i>D</i> = 24√3/7</span></span>
-    </div>
-    <div class="easy"><span class="t">やさしい解説：面積で「辺の長さ × 辺の長さ × sin」を使う</span>
-      <p>三角形の面積は「2辺 × その間の角の sin × 1/2」で求められます。△ABC を、点 D を通る線で <b>△ABD と △ADC の2つに分ける</b>と、どちらも頂点 A から出る辺 AD を共有しています。</p>
-      <p>∠A を二等分しているので、2つの三角形の角はどちらも 30°。sin 30° = 1/2 を使うと、式がシンプルになります。</p>
-    </div>
-    <div class="pt"><span class="t">テストのポイント：</span>面積の式は「<span class="hl">2辺とその間の角</span>」で書くのがコツ。分け方を図に書いて、どの角を使うかを確認しましょう。</div>
     <p class="small">参考動画：<a href="https://www.try-it.jp/chapters-6150/sections-6262/lessons-6287/" target="_blank" rel="noopener">【高校数学Ⅰ】「角の二等分線の長さの求め方」｜映像授業の Try IT（トライイット）</a></p>
+    <div class="ans"><span class="al">答 (4)</span><span class="av"><span class="m">(<i>i</i>) <i>B</i><i>C</i> = 2√13　　(<i>i</i><i>i</i>) <i>A</i><i>D</i> = 24√3/7</span></span></div>
   </div>
 </section>
 
@@ -535,7 +543,7 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
       <li><b>(1)：</b>x の2次式として、<span class="m">6<i>y</i>² + 11<i>y</i> + 4 = (2<i>y</i> + 1)(3<i>y</i> + 4)</span>。答え <span class="m">(<i>x</i> + 2<i>y</i> + 1)(<i>x</i> + 3<i>y</i> + 4)</span>。</li>
       <li><b>(2)：</b>右へ 2 → x を x − 2、下へ 1 → 全体から 1 を引く。答え <span class="m"><i>y</i> = 2<i>x</i>² − 12<i>x</i> + 19</span>。</li>
       <li><b>(3)：</b><span class="m">cos 50° = sin 40°</span>、<span class="m">sin 140° = sin 40°</span> と書き換えて、加法定理 <span class="m">cos 40° cos 140° − sin 40° sin 140° = cos(40° + 140°)</span> = <span class="m">cos 180°</span> = <span class="m">−1</span>。</li>
-      <li><b>(4)：</b>余弦定理で <span class="m"><i>B</i><i>C</i> = 2√13</span>。角の二等分線の公式で <span class="m"><i>A</i><i>D</i> = 24√3/7</span>。</li>
+      <li><b>(4)：</b>余弦定理で <span class="m"><i>B</i><i>C</i> = 2√13</span>。△ABC ＝ △ABD ＋ △ADC の面積の式から <span class="m">(7/2)<i>A</i><i>D</i> = 12√3</span>、<span class="m"><i>A</i><i>D</i> = 24√3/7</span>（別解：二等分線の公式）。</li>
       <li><b>(5)：</b>平均は <span class="m">−2 × 21 + 3 = −39</span>、分散は <span class="m">(−2)² × 12 = 48</span>（定数は分散に影響しない）。</li>
       <li><b>(6)：</b>2解を <span class="m">2<i>k</i>，3<i>k</i></span> とおく → <span class="m">5<i>k</i> = <i>m</i> − 1</span>、<span class="m">6<i>k</i>² = <i>m</i></span> → <span class="m"><i>k</i> = 1，−1/6</span>、答え <span class="m"><i>m</i> = 6，1/6</span>。</li>
       <li><b>(7)：</b>余事象「3 で割り切れない」は <span class="m">(2/3)⁵ = 32/243</span>。答え <span class="m">211/243</span>。</li>
