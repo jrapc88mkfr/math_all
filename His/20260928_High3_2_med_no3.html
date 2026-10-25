@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>数学 中間テスト前チェック 363・392・408・442</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f5fa; --panel:#ffffff; --ink:#16233b; --sub:#54627c; --line:#d3dce8;
+  --red:#d0212f; --red-bg:#fff1f2; --red-ink:#ffffff;
+  --blue:#1d5fa8; --blue-bg:#eaf3fc;
+  --mark:#ffe873; --mark-bg:#fff8d6; --mark-line:#e0b400;
+  --ans-bg:#16233b; --ans-ink:#ffffff;
+  --grid:rgba(29,95,168,.08);
+  --shadow:0 1px 0 rgba(22,35,59,.06), 0 8px 24px -14px rgba(22,35,59,.35);
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  --math:"STIX Two Text","Times New Roman","Noto Serif JP","Yu Mincho",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+    --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+    --blue:#82bbff; --blue-bg:#13263b;
+    --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+    --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+    --grid:rgba(130,187,255,.07);
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+  --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+  --blue:#82bbff; --blue-bg:#13263b;
+  --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+  --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+  --grid:rgba(130,187,255,.07);
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:auto;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--sans);font-size:16px;line-height:1.85;
+}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.hero{max-width:920px;margin:0 auto;padding:34px 18px 8px}
+.hero h1{margin:0;font-size:clamp(1.5rem,5.2vw,2.2rem);font-weight:900;line-height:1.35;letter-spacing:.02em}
+.hero h1 span{display:inline-block;border:4px solid var(--red);border-radius:12px;padding:0 .35em;margin-right:.2em;color:var(--red);transform:rotate(-1.5deg)}
+.hero p{margin:12px 0 0;color:var(--sub);max-width:38em}
+.legend{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:22px 0 4px}
+.legend > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.88rem;line-height:1.6;box-shadow:var(--shadow)}
+.legend b{display:block;margin-bottom:4px;font-size:.92rem}
+.swatch{display:inline-block;width:1.6em;height:1em;vertical-align:-.15em;margin-right:.4em;border-radius:3px}
+.sw-red{border:2.5px solid var(--red);background:var(--red-bg)}
+.sw-blue{border-left:5px solid var(--blue);background:var(--blue-bg)}
+.sw-mark{border-left:5px solid var(--mark-line);background:var(--mark-bg)}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:920px;margin:0 auto;padding:8px 18px;display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 12px;line-height:1.7}
+.nav a:hover{border-color:var(--red);color:var(--red)}
+.tools{margin-left:auto;display:flex;gap:8px;flex:none;padding-left:8px}
+.btn{font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:3px 12px;line-height:1.7}
+.btn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.progress{font-size:.82rem;font-weight:700;color:var(--sub);white-space:nowrap;align-self:center}
+
+main{max-width:920px;margin:0 auto;padding:12px 18px 60px}
+.prob{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:26px 0;padding:0 0 18px;box-shadow:var(--shadow);overflow:hidden}
+.ph{display:flex;align-items:stretch;border-bottom:2px solid var(--ink);margin-bottom:16px}
+.ph .no{flex:none;min-width:4.6rem;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--panel);font-weight:900;font-size:1.3rem;padding:8px 12px;letter-spacing:.03em}
+.ph .htext{flex:1;align-self:center;padding:10px 16px}
+.ph .htext .tag{display:block;font-size:.74rem;font-weight:700;color:var(--red);letter-spacing:.06em;margin-bottom:1px}
+.ph h2{margin:0;font-size:1.06rem;font-weight:700;line-height:1.5}
+.ph .done{margin:8px 12px 8px 0;align-self:center}
+.body{padding:0 clamp(14px,3vw,24px)}
+h3{font-size:1rem;font-weight:900;margin:22px 0 6px;padding-bottom:3px;border-bottom:2px dotted var(--line)}
+p{margin:8px 0}
+.q{border:2px dashed var(--line);border-radius:10px;padding:10px 14px;margin:0 0 14px}
+.q::before{content:"問題";display:inline-block;font-weight:900;font-size:.8rem;background:var(--ink);color:var(--panel);border-radius:4px;padding:0 8px;margin-right:8px;line-height:1.6}
+.q .sub{display:block;margin-top:4px}
+.src{color:var(--sub);font-size:.85rem}
+
+.m{font-family:var(--math);font-size:1.12em;line-height:1.9}
+.m i,i.m{font-style:italic}
+sup,sub{line-height:0;font-size:.72em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.25;margin:0 .18em;font-size:.95em}
+.fr > b{font-weight:inherit;padding:0 .25em}
+.fr > b:first-child{border-bottom:1.5px solid currentColor}
+.vec{text-decoration:overline}
+
+.fb{position:relative;margin:24px 0 14px;padding:16px 16px 10px;border:3px solid var(--red);border-radius:12px;background:var(--red-bg)}
+.fb::before{content:attr(data-label);position:absolute;top:-.95em;left:14px;background:var(--red);color:var(--red-ink);font-weight:900;font-size:.82rem;line-height:1.7;padding:0 12px;border-radius:999px}
+.fb .m{display:block;overflow-x:auto;padding:1px 0}
+.fb .m + .m{margin-top:2px}
+.fb.soft{border-style:dashed;border-width:2.5px}
+.box{font-family:var(--math);display:inline-block;border:2.5px solid var(--red);border-radius:6px;padding:0 .4em;background:var(--panel)}
+
+.easy{margin:14px 0;padding:12px 16px;background:var(--blue-bg);border-left:6px solid var(--blue);border-radius:0 10px 10px 0}
+.easy > .t{display:block;font-weight:900;color:var(--blue);font-size:.92rem;margin-bottom:2px}
+.easy > .t::before{content:"💡 "}
+.easy ul,.easy ol{margin:6px 0;padding-left:1.3em}
+.easy li{margin:3px 0}
+.pt{margin:14px 0;padding:10px 16px;background:var(--mark-bg);border-left:6px solid var(--mark-line);border-radius:0 10px 10px 0}
+.pt > .t{font-weight:900}
+.hl{background:linear-gradient(transparent 55%,var(--mark) 55%);font-weight:700}
+
+.ans{margin:16px 0 4px;background:var(--ans-bg);color:var(--ans-ink);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.ans .al{flex:none;font-weight:900;font-size:.85rem;background:var(--red);color:var(--red-ink);border-radius:999px;padding:0 12px;line-height:1.7}
+.ans .av{font-weight:700;font-size:1.05rem;flex:1;min-width:0}
+body.hide .ans{cursor:pointer}
+body.hide .ans:not(.shown) .av{filter:blur(9px);user-select:none}
+body.hide .ans:not(.shown)::after{content:"タップで答えを見る";font-size:.78rem;opacity:.75;margin-left:auto}
+
+.check{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 12px;margin:10px 0;font-size:.92rem}
+.check b{color:var(--blue)}
+.done{font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--panel);color:var(--sub);border-radius:999px;padding:0 12px;line-height:1.9}
+.done[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--panel)}
+.done[aria-pressed="true"]::before{content:"✓ "}
+.fig{margin:14px 0;text-align:center}
+.fig svg{max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.fig figcaption{font-size:.82rem;color:var(--sub);margin-top:4px}
+.tblwrap{overflow-x:auto;margin:12px 0}
+table.tbl{border-collapse:collapse;width:100%;min-width:380px;font-size:.95rem;text-align:center}
+.tbl th,.tbl td{border:1.5px solid var(--ink);padding:5px 8px}
+.tbl th{background:var(--ink);color:var(--panel);font-weight:700}
+.tbl td.m{font-size:1.05em}
+.sumlist{list-style:none;margin:0;padding:0;counter-reset:s}
+.sumlist li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px dotted var(--line)}
+.sumlist li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--red);color:var(--red);font-weight:900;text-align:center;line-height:25px}
+.sumlist li:last-child{border-bottom:0}
+footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-size:.82rem}
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .ph .no{min-width:3.6rem;font-size:1.1rem}
+  .ph h2{font-size:1rem}
+  .fb{padding:16px 12px 8px}
+  .tools{padding-left:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .nav,.done,.tools{display:none}
+  body{background:#fff;color:#000}
+  .prob{break-inside:avoid;box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1><span>数学</span>中間テスト前チェック　363・392・408・442</h1>
+  <p>面積・数列・期待値と分散・ベクトルの4問。<strong>赤枠の公式</strong>を覚え、青いところで理由を確認、黄色のところでテストの書き方を押さえましょう。</p>
+  <div class="legend" aria-label="この資料の見かた">
+    <div><b><span class="swatch sw-red"></span>赤枠＝覚える公式・式変形</b>テストで書く式です。</div>
+    <div><b><span class="swatch sw-blue"></span>青＝やさしい解説</b>中学の知識でわかるように説明します。</div>
+    <div><b><span class="swatch sw-mark"></span>黄＝テストでのポイント</b>書き忘れ・減点されやすいところ。</div>
+  </div>
+</div>
+
+<nav class="nav" aria-label="目次">
+  <div class="nav-in">
+    <a href="#p363">363</a><a href="#p392">392</a><a href="#p408">408</a><a href="#p442">442</a><a href="#pfinal">直前</a>
+    <span class="tools">
+      <span class="progress" id="progress" aria-live="polite"></span>
+      <button class="btn" id="hideBtn" aria-pressed="false" type="button">答えをかくす</button>
+    </span>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= 363 ================= -->
+<section class="prob" id="p363" data-key="p363">
+  <div class="ph"><span class="no">363</span><div class="htext"><span class="tag">問題番号 363</span><h2>直線と放物線で囲まれる面積の最小値</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q"><i class="m">α</i> を定数とする。直線 <span class="m"><i>y</i> ＝ <i>αx</i> − <i>α</i> ＋ 3</span> と放物線 <span class="m"><i>y</i> ＝ <i>x</i><sup>2</sup></span> とで囲まれる部分の面積を <i>S</i> とする。
+      <span class="sub">(1) <i>S</i> を <i>α</i> を用いて表せ。</span>
+      <span class="sub">(2) <i>S</i> を最小にする <i>α</i> の値、およびその最小値を求めよ。</span>
+      <span class="src">※元の資料の文字化け部分を、問題の流れから「放物線 y＝x²」「係数α」として復元しています。</span></p>
+
+    <div class="fb" data-label="面積の公式（1/6公式）">
+      <span class="m">放物線と直線が2点で交わり、交点の <i>x</i> 座標が <i>x</i><sub>1</sub>, <i>x</i><sub>2</sub>（<i>x</i><sub>1</sub>＜<i>x</i><sub>2</sub>）のとき</span>
+      <span class="m">囲まれた部分の面積：<span class="box">S ＝ <span class="fr"><b>1</b><b>6</b></span> |<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>|<sup>3</sup></span>　（2次の係数が1のとき）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：この公式はどこから来る？</span>
+      <p>放物線と直線の「上－下」の差は、いつも <span class="m">(<i>x</i>−<i>x</i><sub>1</sub>)(<i>x</i>−<i>x</i><sub>2</sub>)</span> の形になります（交点でちょうど0になるから）。これを <i>x</i>₁ から <i>x</i>₂ まで積分すると、</p>
+      <p class="m">∫<sub><i>x</i>₁</sub><sup><i>x</i>₂</sup> (<i>x</i>−<i>x</i>₁)(<i>x</i>−<i>x</i>₂) <i>dx</i> ＝ −<span class="fr"><b>1</b><b>6</b></span>(<i>x</i>₂−<i>x</i>₁)<sup>3</sup></p>
+      <p>マイナスがつくのは、この区間で (<i>x</i>−<i>x</i>₁)(<i>x</i>−<i>x</i>₂) が負（下に出っ張っている）だから。面積は正の値なので、絶対値をつけて 1/6|<i>x</i>₁−<i>x</i>₂|³ です。この公式は毎回積分しなくてよいので、覚えておくと計算が速くなります。</p>
+    </div>
+
+    <h3>① まず交点の方程式を作る</h3>
+    <div class="fb soft" data-label="交点">
+      <span class="m"><i>x</i><sup>2</sup> ＝ <i>αx</i> − <i>α</i> ＋ 3　⇒　<span class="box"><i>x</i><sup>2</sup> − <i>αx</i> ＋ <i>α</i> − 3 ＝ 0</span></span>
+      <span class="m">この2つの解を <i>x</i><sub>1</sub>, <i>x</i><sub>2</sub> とする。</span>
+    </div>
+
+    <h3>② 交点の差 |x₁−x₂| を判別式から求める</h3>
+    <div class="fb" data-label="判別式と解の差">
+      <span class="m"><i>D</i> ＝ <i>α</i><sup>2</sup> − 4(<i>α</i>−3) ＝ <i>α</i><sup>2</sup> − 4<i>α</i> ＋ 12 ＝ <span class="box">(<i>α</i>−2)<sup>2</sup> ＋ 8</span></span>
+      <span class="m">係数1の2次方程式なので　|<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>| ＝ √<i>D</i> ＝ √{(<i>α</i>−2)<sup>2</sup>＋8}</span>
+    </div>
+    <div class="pt"><span class="t">確認：</span>(<i>α</i>−2)²＋8 は常に8以上なので <i>D</i>＞0。<span class="hl">どんな α でも2次方程式は異なる2つの実数解をもち、放物線と直線は必ず2点で交わる</span>と言えます（この一言は書いておくと安心）。</div>
+
+    <h3>③ 面積 S を求める</h3>
+    <div class="fb" data-label="公式にあてはめる">
+      <span class="m">S ＝ <span class="fr"><b>1</b><b>6</b></span> |<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>|<sup>3</sup> ＝ <span class="fr"><b>1</b><b>6</b></span> {√((<i>α</i>−2)<sup>2</sup>＋8)}<sup>3</sup></span>
+      <span class="m"><span class="box">S ＝ <span class="fr"><b>1</b><b>6</b></span> {(<i>α</i>−2)<sup>2</sup> ＋ 8}<sup>3/2</sup></span>　（√ の3乗 ＝ 3/2乗）</span>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av m">S ＝ {(α−2)²＋8}<sup>3/2</sup> / 6</span></div>
+
+    <h3>④ Sを最小にするα</h3>
+    <div class="easy"><span class="t">やさしい解説：中の値だけ考えればよい理由</span>
+      <p><i>y</i>＝<i>t</i><sup>3/2</sup>（<i>t</i>≧0）は <i>t</i> が大きいほど <i>y</i> も大きくなる関数です（増加関数）。だから <b>S を最小にしたければ、中の (α−2)²＋8 を最小にすればよい</b>。わざわざ全体を微分しなくても大丈夫です。</p>
+    </div>
+    <div class="fb soft" data-label="平方の最小">
+      <span class="m">(<i>α</i>−2)<sup>2</sup> ≧ 0　（2乗はいつも0以上）　⇒　等号は <span class="box"><i>α</i> ＝ 2</span> のとき</span>
+      <span class="m">最小の中身：(2−2)<sup>2</sup>＋8 ＝ 8</span>
+    </div>
+    <div class="fb" data-label="最小値の計算">
+      <span class="m">S ＝ 8<sup>3/2</sup>/6 ＝ (√8)<sup>3</sup>/6 ＝ (2√2)<sup>3</sup>/6 ＝ 16√2/6 ＝ <span class="box">8√2/3</span></span>
+    </div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av m">α ＝ 2 のとき最小値 S ＝ 8√2/3</span></div>
+    <div class="pt"><span class="t">テストの流れ：</span>①交点の2次方程式 → ②判別式 D → ③S＝(1/6)D<sup>3/2</sup> → ④D の中の (α−2)² が最小になる α を見る。</div>
+  </div>
+</section>
+
+<!-- ================= 392 ================= -->
+<section class="prob" id="p392" data-key="p392">
+  <div class="ph"><span class="no">392</span><div class="htext"><span class="tag">問題番号 392</span><h2>階差数列：bₙ＝aₙ₊₁－aₙ とおく</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q"><i class="m">a</i><sub>1</sub> ＝ 1，<i>a</i><sub><i>n</i>+1</sub> ＝ 3<i>a</i><sub><i>n</i></sub> ＋ 4<i>n</i> ＋ 1（<i>n</i>＝1, 2, 3, …）で定義される数列 {<i>a</i><sub><i>n</i></sub>} について、階差数列 {<i>b</i><sub><i>n</i></sub>}（<i>b</i><sub><i>n</i></sub>＝<i>a</i><sub><i>n</i>+1</sub>−<i>a</i><sub><i>n</i></sub>）を考え、<i>a</i><sub><i>n</i></sub> を求める。</p>
+
+    <div class="fb" data-label="階差数列の公式">
+      <span class="m">階差数列 <i>b</i><sub><i>n</i></sub> ＝ <i>a</i><sub><i>n</i>+1</sub> − <i>a</i><sub><i>n</i></sub> のとき（<i>n</i> ≧ 2）</span>
+      <span class="m"><span class="box"><i>a</i><sub><i>n</i></sub> ＝ <i>a</i><sub>1</sub> ＋ <span style="font-size:.85em">Σ</span><sub><i>k</i>=1</sub><sup><i>n</i>−1</sup> <i>b</i><sub><i>k</i></sub></span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：階差って何？</span>
+      <p>階差数列は「<b>となりの数との差</b>」を並べた数列です。<i>b</i>₁＝<i>a</i>₂−<i>a</i>₁，<i>b</i>₂＝<i>a</i>₃−<i>a</i>₂ … なので、これを全部たすと途中の項が打ち消し合って <i>a</i>₁ から <i>a</i>ₙ までの変化量になります。だから <i>a</i>ₙ ＝ <i>a</i>₁ ＋（<i>b</i>₁から<i>b</i>ₙ₋₁までの和）です。</p>
+    </div>
+
+    <h3>① b₁ を求める</h3>
+    <div class="fb soft" data-label="計算">
+      <span class="m"><i>a</i><sub>2</sub> ＝ 3<i>a</i><sub>1</sub> ＋ 4×1 ＋ 1 ＝ 3＋4＋1 ＝ 8</span>
+      <span class="m"><span class="box"><i>b</i><sub>1</sub> ＝ <i>a</i><sub>2</sub>−<i>a</i><sub>1</sub> ＝ 8−1 ＝ 7</span></span>
+    </div>
+    <div class="ans"><span class="al">答</span><span class="av m">b₁ ＝ 7</span></div>
+
+    <h3>② bₙ の漸化式を作る</h3>
+    <div class="easy"><span class="t">やさしい解説：進め方</span>
+      <p><i>b</i>ₙ と <i>b</i>ₙ₊₁ をどちらも <i>a</i>ₙ₊₁, <i>a</i>ₙ₊₂ を使って表し、もとの漸化式 <i>a</i>ₙ₊₁＝3<i>a</i>ₙ＋4<i>n</i>＋1 を使って <i>a</i> を消していくと、<i>b</i>ₙ だけの式（<i>b</i>ₙ の漸化式）が残ります。</p>
+    </div>
+    <div class="fb" data-label="式変形">
+      <span class="m"><i>b</i><sub><i>n</i></sub> ＝ <i>a</i><sub><i>n</i>+1</sub>−<i>a</i><sub><i>n</i></sub> ＝ (3<i>a</i><sub><i>n</i></sub>＋4<i>n</i>＋1)−<i>a</i><sub><i>n</i></sub> ＝ 2<i>a</i><sub><i>n</i></sub>＋4<i>n</i>＋1</span>
+      <span class="m"><i>b</i><sub><i>n</i>+1</sub> ＝ <i>a</i><sub><i>n</i>+2</sub>−<i>a</i><sub><i>n</i>+1</sub>。<i>a</i><sub><i>n</i>+2</sub>＝3<i>a</i><sub><i>n</i>+1</sub>＋4(<i>n</i>+1)＋1 なので　<i>b</i><sub><i>n</i>+1</sub> ＝ 2<i>a</i><sub><i>n</i>+1</sub>＋4<i>n</i>＋5</span>
+      <span class="m"><i>a</i><sub><i>n</i>+1</sub>＝<i>a</i><sub><i>n</i></sub>＋<i>b</i><sub><i>n</i></sub> を代入：<i>b</i><sub><i>n</i>+1</sub>＝2(<i>a</i><sub><i>n</i></sub>＋<i>b</i><sub><i>n</i></sub>)＋4<i>n</i>＋5</span>
+      <span class="m">2<i>a</i><sub><i>n</i></sub>＝<i>b</i><sub><i>n</i></sub>−4<i>n</i>−1（①の式より）を代入：<i>b</i><sub><i>n</i>+1</sub>＝(<i>b</i><sub><i>n</i></sub>−4<i>n</i>−1)＋2<i>b</i><sub><i>n</i></sub>＋4<i>n</i>＋5 ＝ <span class="box">3<i>b</i><sub><i>n</i></sub>＋4</span></span>
+    </div>
+    <div class="ans"><span class="al">答</span><span class="av m">bₙ₊₁ ＝ 3bₙ ＋ 4</span></div>
+
+    <h3>③ bₙ の一般項</h3>
+    <div class="fb" data-label="特性方程式で定数項を消す">
+      <span class="m">特性方程式：<i>x</i>＝3<i>x</i>＋4　⇒　<i>x</i>＝−2。両辺から −2 を引く：<i>b</i><sub><i>n</i>+1</sub>＋2 ＝ 3<i>b</i><sub><i>n</i></sub>＋6 ＝ 3(<i>b</i><sub><i>n</i></sub>＋2)</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ「＋2」を足す？</span>
+      <p><i>b</i>ₙ₊₁＝3<i>b</i>ₙ＋4 のままだと、+4 が邪魔で等比数列になりません。そこで「<i>c</i>ₙ＝<i>b</i>ₙ＋<i>k</i>」とおいて、<i>c</i>ₙ₊₁＝3<i>c</i>ₙ の形（きれいな等比数列）にできる <i>k</i> を探します。<i>k</i>＝2 を使うと、+4 がちょうど消えます。</p>
+    </div>
+    <div class="fb soft" data-label="等比数列として解く">
+      <span class="m"><i>b</i><sub><i>n</i></sub>＋2 は初項 <i>b</i>₁＋2＝9、公比3の等比数列：<i>b</i><sub><i>n</i></sub>＋2 ＝ 9×3<sup><i>n</i>−1</sup></span>
+      <span class="m"><span class="box"><i>b</i><sub><i>n</i></sub> ＝ 9×3<sup><i>n</i>−1</sup> − 2</span></span>
+    </div>
+
+    <h3>④ aₙ の一般項</h3>
+    <div class="fb" data-label="和の公式">
+      <span class="m"><i>a</i><sub><i>n</i></sub> ＝ <i>a</i><sub>1</sub> ＋ <span style="font-size:.85em">Σ</span><sub><i>k</i>=1</sub><sup><i>n</i>−1</sup> <i>b</i><sub><i>k</i></sub> ＝ 1 ＋ <span style="font-size:.85em">Σ</span><sub><i>k</i>=1</sub><sup><i>n</i>−1</sup> (9×3<sup><i>k</i>−1</sup>−2)</span>
+      <span class="m">等比数列の和：<span style="font-size:.85em">Σ</span>9×3<sup><i>k</i>−1</sup> ＝ <span class="fr"><b>9(3<sup><i>n</i>−1</sup>−1)</b><b>3−1</b></span> ＝ <span class="fr"><b>9(3<sup><i>n</i>−1</sup>−1)</b><b>2</b></span>　　定数部分：−2 が (<i>n</i>−1) 個で −2(<i>n</i>−1)</span>
+    </div>
+    <div class="pt"><span class="t">⚠ 注意：</span>Σ<sub><i>k</i>=1</sub><sup><i>n</i>−1</sup> の和は <span class="hl"><i>n</i>−1 個</span>の項の和です。個数を間違えないこと。<i>n</i>＝1 のとき、この和は「0個の和」なので 0 になり、<i>a</i>₁＝1 とちゃんと一致します（<i>n</i>＝1 でも成り立つか、必ず確認しましょう）。</div>
+    <div class="fb soft" data-label="まとめる">
+      <span class="m"><i>a</i><sub><i>n</i></sub> ＝ 1 ＋ <span class="fr"><b>9(3<sup><i>n</i>−1</sup>−1)</b><b>2</b></span> − 2(<i>n</i>−1)</span>
+      <span class="m">通分してまとめると　<span class="box"><i>a</i><sub><i>n</i></sub> ＝ <span class="fr"><b>3<sup><i>n</i>+1</sup> − 4<i>n</i> − 3</b><b>2</b></span></span></span>
+    </div>
+    <div class="check"><b>検算：</b><i>n</i>＝1 のとき (3²−4−3)/2＝(9−7)/2＝1 ✓。<i>n</i>＝2 のとき (3³−8−3)/2＝(27−11)/2＝8 ✓（<i>a</i>₂＝8 と一致）。</div>
+    <div class="ans"><span class="al">答</span><span class="av m">b₁＝7，bₙ₊₁＝3bₙ＋4，bₙ＝9×3ⁿ⁻¹−2，aₙ＝(3ⁿ⁺¹−4n−3)/2</span></div>
+    <div class="pt"><span class="t">覚え方：</span>階差数列は「① b₁ → ② bの漸化式 → ③ bの一般項 → ④ aの一般項」の順番。</div>
+  </div>
+</section>
+
+<!-- ================= 408 ================= -->
+<section class="prob" id="p408" data-key="p408">
+  <div class="ph"><span class="no">408</span><div class="htext"><span class="tag">問題番号 408</span><h2>期待値・分散：線形性と独立性</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">袋Aには赤3個・白5個、袋Bには赤4個・白2個が入っている。Aから2個取り出したときの赤球の個数を <i class="m">X</i>、Bから2個取り出したときの赤球の個数を <i>Y</i> とする。
+      <span class="sub">(1) E(X＋3Y)　(2) E(XY)　(3) V(2X＋3Y) を求めよ。</span></p>
+
+    <div class="fb" data-label="期待値・分散の基本公式">
+      <span class="m">期待値の線形性：<span class="box">E(<i>aX</i>＋<i>bY</i>) ＝ <i>a</i>E(<i>X</i>) ＋ <i>b</i>E(<i>Y</i>)</span>　（<i>X</i>, <i>Y</i> の独立・従属に関係なくいつも成り立つ）</span>
+      <span class="m"><i>X</i>, <i>Y</i> が独立のとき：<span class="box">E(<i>XY</i>) ＝ E(<i>X</i>)E(<i>Y</i>)</span>　と　<span class="box">V(<i>aX</i>＋<i>bY</i>) ＝ <i>a</i><sup>2</sup>V(<i>X</i>) ＋ <i>b</i><sup>2</sup>V(<i>Y</i>)</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ独立と分かる？</span>
+      <p><i>X</i> は袋Aだけから、<i>Y</i> は袋Bだけから球を取り出しています。<b>片方の結果がもう片方に影響しない</b>ので独立です。独立でない（同じ袋から両方取るなど）と、E(<i>XY</i>)＝E(<i>X</i>)E(<i>Y</i>) は成り立たない場合があるので注意。</p>
+    </div>
+
+    <h3>① X, Y の期待値</h3>
+    <div class="fb soft" data-label="超幾何分布の期待値">
+      <span class="m">袋の中で赤の割合を <i>p</i> とすると、<i>n</i> 個取るときの赤の個数の期待値は <span class="box"><i>n</i> × <i>p</i></span></span>
+      <span class="m">A：赤の割合 3/8，2個取る　⇒　E(<i>X</i>) ＝ 2×3/8 ＝ 3/4</span>
+      <span class="m">B：赤の割合 4/6，2個取る　⇒　E(<i>Y</i>) ＝ 2×4/6 ＝ 4/3</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>「1個取ったときに赤である確率」は、袋の中の赤の<b>割合</b>と同じです（3/8 や 4/6）。何個取っても、期待値は「割合×個数」で計算できます。</div>
+
+    <h3>(1) E(X＋3Y)</h3>
+    <div class="fb" data-label="計算">
+      <span class="m">E(<i>X</i>＋3<i>Y</i>) ＝ E(<i>X</i>) ＋ 3E(<i>Y</i>) ＝ 3/4 ＋ 3×4/3 ＝ 3/4 ＋ 4 ＝ <span class="box">19/4</span></span>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av m">19/4</span></div>
+
+    <h3>(2) E(XY)</h3>
+    <div class="fb" data-label="独立性を使う">
+      <span class="m">X, Y は独立　⇒　E(<i>XY</i>) ＝ E(<i>X</i>)E(<i>Y</i>) ＝ 3/4 × 4/3 ＝ <span class="box">1</span></span>
+    </div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av m">1</span></div>
+
+    <h3>③ X, Y の分散</h3>
+    <div class="fb" data-label="超幾何分布の分散">
+      <span class="m">全部 <i>N</i> 個中、赤 <i>K</i> 個から <i>n</i> 個取るとき：<span class="box">V ＝ <i>n</i> × <span class="fr"><b><i>K</i></b><b><i>N</i></b></span> × (1−<span class="fr"><b><i>K</i></b><b><i>N</i></b></span>) × <span class="fr"><b><i>N</i>−<i>n</i></b><b><i>N</i>−1</b></span></span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：最後の分数は何？</span>
+      <p>もし1個ずつ「戻しながら」取るなら、分散は <i>n</i>×<i>p</i>(1−<i>p</i>) だけで済みます（二項分布）。でも今回は<b>戻さずに</b>2個取るので、1回目の結果が2回目に少し影響します。その影響を調整するのが最後の (<i>N</i>−<i>n</i>)/(<i>N</i>−1) の部分です。</p>
+    </div>
+    <div class="fb soft" data-label="計算">
+      <span class="m">A：<i>N</i>＝8, <i>K</i>＝3, <i>n</i>＝2　⇒　V(<i>X</i>) ＝ 2 × 3/8 × 5/8 × 6/7 ＝ <span class="box">45/112</span></span>
+      <span class="m">B：<i>N</i>＝6, <i>K</i>＝4, <i>n</i>＝2　⇒　V(<i>Y</i>) ＝ 2 × 4/6 × 2/6 × 4/5 ＝ <span class="box">16/45</span></span>
+    </div>
+
+    <h3>(3) V(2X＋3Y)</h3>
+    <div class="fb" data-label="分散の公式（係数は2乗）">
+      <span class="m">V(2<i>X</i>＋3<i>Y</i>) ＝ 2<sup>2</sup>V(<i>X</i>) ＋ 3<sup>2</sup>V(<i>Y</i>) ＝ 4×45/112 ＋ 9×16/45</span>
+      <span class="m">＝ 45/28 ＋ 16/5 ＝ (225＋448)/140 ＝ <span class="box">673/140</span></span>
+    </div>
+    <div class="pt"><span class="t">⚠ 一番のミス：</span>期待値では係数はそのまま（<i>a</i>E(<i>X</i>)）ですが、<span class="hl">分散では係数を2乗</span>します（<i>a</i>²V(<i>X</i>)）。符号を間違えないこと。</div>
+    <div class="ans"><span class="al">答 (3)</span><span class="av m">673/140</span></div>
+  </div>
+</section>
+
+<!-- ================= 442 ================= -->
+<section class="prob" id="p442" data-key="p442">
+  <div class="ph"><span class="no">442</span><div class="htext"><span class="tag">問題番号 442</span><h2>ベクトル：2直線の交点を2通りに表して係数比較</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">OA＝5，AB＝6，BO＝4 である △OAB において、辺OAの中点をC、OBを2:3に内分する点をDとし、線分AD, BCの交点をEとする。<span class="m">OA</span>＝<span class="m"><b>a</b></span>，<span class="m">OB</span>＝<span class="m"><b>b</b></span> とするとき、
+      <span class="sub">(1) OE を a, b を用いて表せ。</span>
+      <span class="sub">(2) △OABの重心をGとするとき、線分EGの長さを求めよ。</span></p>
+
+    <div class="fb" data-label="内分点とベクトルの基本">
+      <span class="m">線分PQを <i>m</i>:<i>n</i> に内分する点 R：<span class="box">OR ＝ <span class="fr"><b><i>n</i>·OP ＋ <i>m</i>·OQ</b><b><i>m</i>＋<i>n</i></b></span></span></span>
+      <span class="m">2直線上の点として同じ点Eを2通りに表す　⇒　<span class="box">a, b の係数をそれぞれ比較</span>（a, b は一次独立だから）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ係数比較していい？</span>
+      <p>O, A, B が一直線上にない（三角形を作る）とき、ベクトル a と b は<b>向きが違う</b>ので、どんな点も <i>p</i>a＋<i>q</i>b の形に<b>ただ1通りに</b>表せます。だから同じ点を2通りに書いたとき、a の係数どうし・b の係数どうしがそれぞれ等しくなければいけません。</p>
+    </div>
+
+    <h3>① C, D をベクトルで表す</h3>
+    <div class="fb soft" data-label="中点・内分点">
+      <span class="m">C は OA の中点：<span class="box">OC ＝ (1/2)<b>a</b></span></span>
+      <span class="m">D は OB を 2:3 に内分：OD:DB＝2:3、全体5等分のうち2つ分　⇒　<span class="box">OD ＝ (2/5)<b>b</b></span></span>
+    </div>
+
+    <h3>② E を AD 上の点として表す</h3>
+    <div class="fb" data-label="AD上の点">
+      <span class="m">OE ＝ OA ＋ <i>t</i>·AD ＝ <b>a</b> ＋ <i>t</i>(<span class="fr"><b>2</b><b>5</b></span><b>b</b> − <b>a</b>) ＝ <span class="box">(1−<i>t</i>)<b>a</b> ＋ <span class="fr"><b>2<i>t</i></b><b>5</b></span><b>b</b></span>　（0≦<i>t</i>≦1）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>AD上の点は「Aから出発して、AからDへ向かうベクトルを <i>t</i> 倍だけ進んだ点」と考えます。<i>t</i>＝0 でA、<i>t</i>＝1 でDになります。</div>
+
+    <h3>③ E を BC 上の点としても表す</h3>
+    <div class="fb" data-label="BC上の点">
+      <span class="m">OE ＝ OB ＋ <i>s</i>·BC ＝ <b>b</b> ＋ <i>s</i>(<span class="fr"><b>1</b><b>2</b></span><b>a</b> − <b>b</b>) ＝ <span class="box"><span class="fr"><b><i>s</i></b><b>2</b></span><b>a</b> ＋ (1−<i>s</i>)<b>b</b></span>　（0≦<i>s</i>≦1）</span>
+    </div>
+
+    <h3>④ a, b の係数を比較する</h3>
+    <div class="fb soft" data-label="連立方程式">
+      <span class="m"><b>a</b> の係数：1−<i>t</i> ＝ <i>s</i>/2　…①　　<b>b</b> の係数：2<i>t</i>/5 ＝ 1−<i>s</i>　…②</span>
+      <span class="m">①より <i>s</i> ＝ 2(1−<i>t</i>)。②に代入：2<i>t</i>/5 ＝ 1−2(1−<i>t</i>) ＝ 2<i>t</i>−1</span>
+      <span class="m">両辺を5倍：2<i>t</i> ＝ 10<i>t</i>−5　⇒　8<i>t</i> ＝ 5　⇒　<span class="box"><i>t</i> ＝ 5/8</span></span>
+    </div>
+    <div class="fb" data-label="OEの計算">
+      <span class="m">OE ＝ (1−5/8)<b>a</b> ＋ (2/5 × 5/8)<b>b</b> ＝ <span class="box">(3/8)<b>a</b> ＋ (1/4)<b>b</b></span></span>
+    </div>
+    <div class="check"><b>確認：</b><i>t</i>＝5/8 は 0〜1 の間、<i>s</i>＝2(1−5/8)＝3/4 も 0〜1 の間なので、E はちゃんと線分AD, BC の内側にあります。</div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av m">OE ＝ (3/8)a ＋ (1/4)b</span></div>
+
+    <h3>⑤〜⑥ 重心Gと、EGのベクトル</h3>
+    <div class="fb" data-label="重心の公式">
+      <span class="m">△OABの重心：<span class="box">OG ＝ <span class="fr"><b>OA＋OB＋OO</b><b>3</b></span> ＝ <span class="fr"><b><b>a</b>＋<b>b</b></b><b>3</b></span></span>　（OOはゼロベクトルなので実質2項の和÷3）</span>
+    </div>
+    <div class="fb soft" data-label="EGを求める">
+      <span class="m">EG ＝ OG − OE ＝ <span class="fr"><b><b>a</b>＋<b>b</b></b><b>3</b></span> − (<span class="fr"><b>3</b><b>8</b></span><b>a</b>＋<span class="fr"><b>1</b><b>4</b></span><b>b</b>)</span>
+      <span class="m">＝ (1/3−3/8)<b>a</b> ＋ (1/3−1/4)<b>b</b> ＝ (8/24−9/24)<b>a</b> ＋ (4/12−3/12)<b>b</b></span>
+      <span class="m"><span class="box">EG ＝ −(1/24)<b>a</b> ＋ (1/12)<b>b</b> ＝ <span class="fr"><b>−<b>a</b>＋2<b>b</b></b><b>24</b></span></span></span>
+    </div>
+    <div class="pt"><span class="t">⚠ 符号に注意：</span>計算すると <b>a</b> の係数は −1/24（マイナス）です。<span class="hl">EG＝(−a＋2b)/24</span> であり、(a＋2b)/24 ではありません。長さを求めるときは2乗するのでどちらでも同じ結果になりますが、式としては正しく書きましょう。</div>
+
+    <h3>⑦ |−a＋2b| を求める（内積を先に出す）</h3>
+    <div class="easy"><span class="t">やさしい解説：長さから内積を逆算する</span>
+      <p><b>a</b>・<b>b</b>（内積）は直接わかりませんが、<b>三角形の3辺の長さ</b>（OA=5, AB=6, BO=4）は分かっています。AB＝<b>b</b>−<b>a</b> なので、|<b>b</b>−<b>a</b>|²＝AB² を展開すれば <b>a</b>・<b>b</b> が求まります。</p>
+    </div>
+    <div class="fb" data-label="内積を求める">
+      <span class="m">AB ＝ <b>b</b>−<b>a</b>（＝<b>a</b>−<b>b</b> の逆向き、2乗すれば同じ）　⇒　|<b>a</b>−<b>b</b>|<sup>2</sup> ＝ AB<sup>2</sup> ＝ 36</span>
+      <span class="m">|<b>a</b>|<sup>2</sup>＋|<b>b</b>|<sup>2</sup>−2<b>a</b>・<b>b</b> ＝ 36　⇒　25＋16−2<b>a</b>・<b>b</b> ＝ 36　⇒　<span class="box"><b>a</b>・<b>b</b> ＝ 5/2</span></span>
+    </div>
+    <div class="fb soft" data-label="|−a+2b|²の計算">
+      <span class="m">|−<b>a</b>＋2<b>b</b>|<sup>2</sup> ＝ |<b>a</b>|<sup>2</sup> ＋ 4|<b>b</b>|<sup>2</sup> − 4<b>a</b>・<b>b</b> ＝ 25 ＋ 4×16 − 4×5/2 ＝ 25＋64−10 ＝ 79</span>
+      <span class="m">|−<b>a</b>＋2<b>b</b>| ＝ <span class="box">√79</span></span>
+    </div>
+    <div class="fb" data-label="EGの長さ">
+      <span class="m">EG ＝ |−<b>a</b>＋2<b>b</b>| / 24 ＝ <span class="box">√79/24</span></span>
+    </div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av m">EG ＝ √79/24</span></div>
+    <div class="pt"><span class="t">ベクトル問題の流れ：</span>①内分点をa, bで表す → ②交点Eを2直線それぞれの上で表す → ③a, bの係数を比較して媒介変数を決める → ④長さを求めるときは辺の長さから内積を逆算する。</div>
+  </div>
+</section>
+
+<!-- ================= まとめ ================= -->
+<section class="prob" id="pfinal" data-key="pfinal">
+  <div class="ph"><span class="no">直前</span><div class="htext"><span class="tag">FINAL CHECK</span><h2>中間テスト前 最終チェック</h2></div><button class="done" type="button" aria-pressed="false">確認した</button></div>
+  <div class="body">
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>問題</th><th>ここを覚える</th></tr></thead>
+        <tbody>
+          <tr><td>363</td><td style="text-align:left;padding-left:14px">交点 → 判別式 → 根の差 → S＝(1/6)|差|³。最小は (α−2)² を見る</td></tr>
+          <tr><td>392</td><td style="text-align:left;padding-left:14px">bₙ＝aₙ₊₁−aₙ → bの漸化式 → bの一般項（特性方程式）→ aの一般項（Σ）</td></tr>
+          <tr><td>408</td><td style="text-align:left;padding-left:14px">E(aX+bY)＝aE(X)+bE(Y)。独立なら E(XY)＝E(X)E(Y)、V(aX+bY)＝a²V(X)+b²V(Y)</td></tr>
+          <tr><td>442</td><td style="text-align:left;padding-left:14px">交点を2通りに表す → a, bの係数比較 → 長さは辺の長さから内積を逆算</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>「答えをかくす」をオンにすると、答えがぼやけて表示されます。タップで1つずつ見られます。「できた」の記録はこの端末のブラウザに保存されます。</footer>
+
+<script>
+(function(){
+  var KEY='math-page3-done';
+  var done={};
+  function load(){try{var v=localStorage.getItem(KEY);done=v?JSON.parse(v)||{}:{};}catch(e){done={};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  var sections=[].slice.call(document.querySelectorAll('.prob'));
+  var progress=document.getElementById('progress');
+  function refresh(){
+    var n=0;
+    sections.forEach(function(s){
+      var b=s.querySelector('.done');var k=s.getAttribute('data-key');
+      var on=!!done[k];if(on)n++;
+      if(b)b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    progress.textContent=n+' / '+sections.length;
+  }
+  load();refresh();
+  sections.forEach(function(s){
+    var b=s.querySelector('.done');if(!b)return;
+    b.addEventListener('click',function(){
+      var k=s.getAttribute('data-key');
+      if(done[k])delete done[k];else done[k]=1;
+      save();refresh();
+    });
+  });
+  var hideBtn=document.getElementById('hideBtn');
+  hideBtn.addEventListener('click',function(){
+    var on=hideBtn.getAttribute('aria-pressed')!=='true';
+    hideBtn.setAttribute('aria-pressed',on?'true':'false');
+    document.body.classList.toggle('hide',on);
+    if(!on){[].forEach.call(document.querySelectorAll('.ans.shown'),function(a){a.classList.remove('shown');});}
+  });
+  [].forEach.call(document.querySelectorAll('.ans'),function(a){
+    a.addEventListener('click',function(){if(document.body.classList.contains('hide'))a.classList.toggle('shown');});
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>10/23 実力テスト 復習 数学演習プリント（問題1〜5）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f5fa; --panel:#ffffff; --ink:#16233b; --sub:#54627c; --line:#d3dce8;
+  --red:#d0212f; --red-bg:#fff1f2; --red-ink:#ffffff;
+  --blue:#1d5fa8; --blue-bg:#eaf3fc;
+  --mark:#ffe873; --mark-bg:#fff8d6; --mark-line:#e0b400;
+  --green:#2e7d4f; --green-bg:#eaf7ee;
+  --purp:#7b3fb0; --purp-bg:#f3ecfa;
+  --ans-bg:#16233b; --ans-ink:#ffffff;
+  --grid:rgba(29,95,168,.08);
+  --shadow:0 1px 0 rgba(22,35,59,.06), 0 8px 24px -14px rgba(22,35,59,.35);
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  --math:"STIX Two Text","Times New Roman","Noto Serif JP","Yu Mincho",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+    --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+    --blue:#82bbff; --blue-bg:#13263b;
+    --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+    --green:#7fd19f; --green-bg:#122a1c;
+    --purp:#c9a4ec; --purp-bg:#241a30;
+    --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+    --grid:rgba(130,187,255,.07);
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+  --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+  --blue:#82bbff; --blue-bg:#13263b;
+  --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+  --green:#7fd19f; --green-bg:#122a1c;
+  --purp:#c9a4ec; --purp-bg:#241a30;
+  --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+  --grid:rgba(130,187,255,.07);
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:auto;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--sans);font-size:16px;line-height:1.85;
+}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.hero{max-width:960px;margin:0 auto;padding:34px 18px 8px}
+.hero h1{margin:0;font-size:clamp(1.5rem,5vw,2.3rem);font-weight:900;line-height:1.35;letter-spacing:.02em}
+.hero h1 span{display:inline-block;border:4px solid var(--red);border-radius:12px;padding:0 .35em;margin-right:.2em;color:var(--red);transform:rotate(-1.5deg)}
+.hero p{margin:12px 0 0;color:var(--sub);max-width:42em}
+.legend{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:22px 0 4px}
+.legend > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.86rem;line-height:1.6;box-shadow:var(--shadow)}
+.legend b{display:block;margin-bottom:4px;font-size:.9rem}
+.swatch{display:inline-block;width:1.6em;height:1em;vertical-align:-.15em;margin-right:.4em;border-radius:3px}
+.sw-red{border:2.5px solid var(--red);background:var(--red-bg)}
+.sw-blue{border-left:5px solid var(--blue);background:var(--blue-bg)}
+.sw-mark{border-left:5px solid var(--mark-line);background:var(--mark-bg)}
+.sw-purp{border-left:5px solid var(--purp);background:var(--purp-bg)}
+
+.notice{max-width:960px;margin:18px auto 0;padding:0 18px}
+.notice-in{background:var(--purp-bg);border:2px solid var(--purp);border-radius:12px;padding:14px 18px;font-size:.92rem}
+.notice-in b{color:var(--purp)}
+.notice-in ul{margin:8px 0 0;padding-left:1.3em}
+.notice-in li{margin:4px 0}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:960px;margin:0 auto;padding:8px 18px;display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 12px;line-height:1.7}
+.nav a:hover{border-color:var(--red);color:var(--red)}
+.tools{margin-left:auto;display:flex;gap:8px;flex:none;padding-left:8px}
+.btn{font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:3px 12px;line-height:1.7}
+.btn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.progress{font-size:.82rem;font-weight:700;color:var(--sub);white-space:nowrap;align-self:center}
+
+main{max-width:960px;margin:0 auto;padding:12px 18px 60px}
+.prob{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:26px 0;padding:0 0 18px;box-shadow:var(--shadow);overflow:hidden}
+.ph{display:flex;align-items:stretch;border-bottom:2px solid var(--ink);margin-bottom:16px}
+.ph .no{flex:none;min-width:4.6rem;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--panel);font-weight:900;font-size:1.2rem;padding:8px 10px;letter-spacing:.03em;text-align:center;line-height:1.3}
+.ph .htext{flex:1;align-self:center;padding:10px 16px}
+.ph .htext .tag{display:block;font-size:.74rem;font-weight:700;color:var(--red);letter-spacing:.06em;margin-bottom:1px}
+.ph h2{margin:0;font-size:1.05rem;font-weight:700;line-height:1.5}
+.ph .done{margin:8px 12px 8px 0;align-self:center}
+.body{padding:0 clamp(14px,3vw,24px)}
+h3{font-size:1rem;font-weight:900;margin:22px 0 6px;padding-bottom:3px;border-bottom:2px dotted var(--line)}
+p{margin:8px 0}
+.q{border:2px dashed var(--line);border-radius:10px;padding:10px 14px;margin:0 0 14px}
+.q::before{content:"問題";display:inline-block;font-weight:900;font-size:.8rem;background:var(--ink);color:var(--panel);border-radius:4px;padding:0 8px;margin-right:8px;line-height:1.6}
+.q .sub{display:block;margin-top:4px}
+
+/* math */
+.m{font-family:var(--math);font-size:1.12em;line-height:1.9}
+.m i{font-style:italic}
+sup,sub{line-height:0;font-size:.72em}
+.fr{display:inline-block;vertical-align:middle;text-align:center;line-height:1.25;margin:0 .18em;font-size:.95em}
+.fr > b{display:block;font-weight:inherit;padding:0 .25em}
+.fr > b:first-child{border-bottom:1.5px solid currentColor}
+.int{display:inline-block;vertical-align:middle;white-space:nowrap;margin:0 .1em}
+.int .sym{display:inline-block;vertical-align:middle;font-size:2.1em;line-height:1;font-weight:300;font-family:var(--math)}
+.lim{display:inline-block;vertical-align:middle;font-size:.62em;line-height:1.1;margin-left:.1em;text-align:left}
+.lim > span{display:block}
+.lim > span:first-child{margin-bottom:1.15em}
+.int .lim{margin-left:-.25em}
+.brk{font-size:2.2em;line-height:1;font-weight:300;vertical-align:middle;display:inline-block;margin:0 .02em;font-family:var(--math)}
+
+.fb{position:relative;margin:24px 0 14px;padding:16px 16px 10px;border:3px solid var(--red);border-radius:12px;background:var(--red-bg)}
+.fb::before{content:attr(data-label);position:absolute;top:-.95em;left:14px;background:var(--red);color:var(--red-ink);font-weight:900;font-size:.82rem;line-height:1.7;padding:0 12px;border-radius:999px}
+.fb .m{display:block;overflow-x:auto;padding:1px 0}
+.fb .m + .m{margin-top:2px}
+.fb.soft{border-style:dashed;border-width:2.5px}
+.box{font-family:var(--math);display:inline-block;border:2.5px solid var(--red);border-radius:6px;padding:0 .4em;background:var(--panel)}
+
+.easy{margin:14px 0;padding:12px 16px;background:var(--blue-bg);border-left:6px solid var(--blue);border-radius:0 10px 10px 0}
+.easy > .t{display:block;font-weight:900;color:var(--blue);font-size:.92rem;margin-bottom:2px}
+.easy > .t::before{content:"💡 "}
+.easy ul,.easy ol{margin:6px 0;padding-left:1.3em}
+.easy li{margin:3px 0}
+.pt{margin:14px 0;padding:10px 16px;background:var(--mark-bg);border-left:6px solid var(--mark-line);border-radius:0 10px 10px 0}
+.pt > .t{font-weight:900}
+.hl{background:linear-gradient(transparent 55%,var(--mark) 55%);font-weight:700}
+
+.ans{margin:16px 0 4px;background:var(--ans-bg);color:var(--ans-ink);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ans .al{flex:none;font-weight:900;font-size:.85rem;background:var(--red);color:var(--red-ink);border-radius:999px;padding:0 12px;line-height:1.7}
+.ans .av{font-weight:700;font-size:1.05rem;flex:1;min-width:0}
+body.hide .ans{cursor:pointer}
+body.hide .ans:not(.shown) .av{filter:blur(9px);user-select:none}
+body.hide .ans:not(.shown)::after{content:"タップで答えを見る";font-size:.78rem;opacity:.75;margin-left:auto}
+
+.check{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 12px;margin:10px 0;font-size:.92rem}
+.check b{color:var(--blue)}
+.check .chk-row{margin:2px 0;overflow-x:auto}
+.done{font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--panel);color:var(--sub);border-radius:999px;padding:0 12px;line-height:1.9}
+.done[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--panel)}
+.done[aria-pressed="true"]::before{content:"✓ "}
+.fig{margin:14px 0;text-align:center}
+.fig svg{width:100%;max-width:460px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.fig figcaption{font-size:.84rem;color:var(--sub);margin-top:4px;line-height:1.6}
+.tblwrap{overflow-x:auto;margin:12px 0}
+table.tbl{border-collapse:collapse;width:100%;min-width:420px;font-size:.95rem;text-align:center}
+.tbl th,.tbl td{border:1.5px solid var(--ink);padding:7px 10px}
+.tbl th{background:var(--ink);color:var(--panel);font-weight:700}
+.tbl td.left{text-align:left}
+.sumlist{list-style:none;margin:0;padding:0;counter-reset:s}
+.sumlist li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px dotted var(--line)}
+.sumlist li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--red);color:var(--red);font-weight:900;text-align:center;line-height:25px}
+.sumlist li:last-child{border-bottom:0}
+.memo{background:var(--green-bg);border:2px solid var(--green);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:.95rem}
+.memo b{color:var(--green)}
+footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-size:.82rem}
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .ph .no{min-width:3.6rem;font-size:1.05rem}
+  .ph h2{font-size:1rem}
+  .fb{padding:16px 12px 8px}
+  .tools{padding-left:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .nav,.done,.tools{display:none}
+  body{background:#fff;color:#000}
+  .prob{break-inside:avoid;box-shadow:none}
+}
+
+.figgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:14px 0}
+.figgrid figure{margin:0;text-align:center}
+.figgrid svg{width:100%;max-width:300px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.figgrid figcaption{font-size:.84rem;color:var(--sub);margin-top:4px;line-height:1.5}
+.ok{color:var(--green);font-weight:900}
+.ng{color:var(--red);font-weight:900}
+.tbl td.m,.tbl td .m{font-size:1.02em}
+.tbl th,.tbl td.nw{white-space:nowrap}
+
+.vec{text-decoration:overline}
+.grid16{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.gcell{border-radius:8px;padding:8px 6px;text-align:center;font-family:"STIX Two Text","Times New Roman",serif;font-weight:700;font-size:1.05rem;letter-spacing:.08em;border:1.5px solid var(--line)}
+.gcell small{display:block;font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;font-size:.72rem;font-weight:700;letter-spacing:0;color:var(--sub);margin-top:2px}
+.c-none{background:#efe8fb;border-color:#7b3fb0}
+.c-two{background:#e6f5ec;border-color:#2e7d4f}
+.c-three{background:#eaf3fc;border-color:#1d5fa8}
+.c-four{background:#fff4c4;border-color:#c9a400}
+.legend-row{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 4px;font-size:.9rem}
+.legend-row span{display:inline-flex;align-items:center;gap:6px}
+.legend-row i{display:inline-block;width:16px;height:12px;border-radius:3px;border:1.5px solid var(--line)}
+.figbox{display:flex;justify-content:center}
+.figbox svg{width:100%;max-width:420px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+</style>
+</head><body>
+
+<div class="hero">
+  <h1><span>演習</span>10/23 実力テスト 復習（問題1〜5）</h1>
+  <p>確率・対数・ベクトル・数列・円と領域の5問です。図を見ながら「なぜそうなるか」を確かめて、答えの書き方まで整理しました。赤枠の公式、青い解説、黄色いテストのポイントで整理しています。</p>
+  <div class="legend" aria-label="この資料の見かた">
+    <div><b><span class="swatch sw-red"></span>赤枠＝覚える公式・答案の形</b>テストで書く式です。</div>
+    <div><b><span class="swatch sw-blue"></span>青＝やさしい解説</b>中学〜高2の知識で説明します。</div>
+    <div><b><span class="swatch sw-mark"></span>黄＝テストでのポイント</b>書き忘れ・減点されやすいところ。</div>
+    <div><b><span class="swatch sw-purp"></span>紫＝資料の整理について</b>元の資料からの変更点の確認。</div>
+  </div>
+</div>
+
+<div class="notice">
+  <div class="notice-in">
+    <b>元の資料について</b>
+    <ul>
+      <li>5問すべての答えを計算し直して確認しました。元の資料の訂正（問題3 (3) の <span class="m">5:8</span>・<span class="m">4:9</span>、問題5 (3) の範囲 <span class="m"><i>m</i> ≤ −3/4</span> または <span class="m"><i>m</i> ≥ (−3+2√6)/3</span>）は、いずれも正しいことを確認しました。</li>
+      <li><b>図は新しく作成しました：</b>問題1は16通りの並び、問題2は曲線と円、問題3は四面体の図、問題4は数の変化の表、問題5は2つの円と領域 D です。</li>
+      <li>問題3の図は、見やすくするため斜めから見た図です（長さは正確ではありませんが、点の位置関係と交点は正しく描いています）。</li>
+    </ul>
+  </div>
+</div>
+
+<nav class="nav" aria-label="目次">
+  <div class="nav-in">
+    <a href="#p1">問題1 確率</a><a href="#p2">問題2 対数</a><a href="#p3">問題3 ベクトル</a><a href="#p4">問題4 数列</a><a href="#p5">問題5 円</a><a href="#pfinal">直前</a>
+    <span class="tools">
+      <span class="progress" id="progress" aria-live="polite"></span>
+      <button class="btn" id="hideBtn" aria-pressed="false" type="button">答えをかくす</button>
+    </span>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= 問題1 ================= -->
+<section class="prob" id="p1" data-key="p1">
+  <div class="ph"><span class="no">問題1</span><div class="htext"><span class="tag">確率</span><h2>袋から玉を取り出す（赤を R、それ以外を N）</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">袋に赤玉2個、黄玉1個、青玉1個（合計4個）が入っている。1個取り出して色を確認し、袋に戻す操作を4回くり返す。
+      <span class="sub">(1) 4回連続して赤玉を取り出す確率、少なくとも1回は赤玉を取り出す確率を求めよ。</span>
+      <span class="sub">(2) ちょうど3回連続して赤玉、ちょうど2回連続して赤玉を取り出す確率を求めよ。</span>
+      <span class="sub">(3) 連続して赤玉を取り出さない確率、および連続して赤玉を取り出さないとき、赤玉を1回も取り出していない条件付き確率を求めよ。</span></p>
+
+    <div class="fb" data-label="基本の考え方">
+      <span class="m">赤玉の確率 ＝ 2/4 ＝ 1/2、赤玉以外（<i>N</i>）の確率 ＝ 1/2。毎回戻すので各回は独立。</span>
+      <span class="m">4回の結果は 2⁴ ＝ 16 通り。どの並びも確率は <span class="box">(1/2)⁴ ＝ 1/16</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：16通りを全部書いてみる</span>
+      <p>4回の結果は、R か N の組み合わせで、全部で16通りです。下の表は16通りを並べたものです。色は、(2)・(3) で数える条件ごとに分けています。</p>
+    </div>
+    <div class="legend-row"><span><i style="background:#efe8fb;border-color:#7b3fb0"></i>紫：RR なし（8通り）</span><span><i style="background:#e6f5ec;border-color:#2e7d4f"></i>緑：RR がちょうど1組（5通り）</span><span><i style="background:#eaf3fc;border-color:#1d5fa8"></i>青：RRR（2通り）</span><span><i style="background:#fff4c4;border-color:#c9a400"></i>金：RRRR（1通り）</span></div><div class="grid16"><div class="gcell c-four">R R R R</div><div class="gcell c-three">R R R N</div><div class="gcell c-two">R R N R</div><div class="gcell c-two">R R N N</div><div class="gcell c-two">R N R R</div><div class="gcell c-none">R N R N</div><div class="gcell c-none">R N N R</div><div class="gcell c-none">R N N N</div><div class="gcell c-three">N R R R</div><div class="gcell c-two">N R R N</div><div class="gcell c-none">N R N R</div><div class="gcell c-none">N R N N</div><div class="gcell c-two">N N R R</div><div class="gcell c-none">N N R N</div><div class="gcell c-none">N N N R</div><div class="gcell c-none">N N N N</div></div>
+    <div class="easy"><span class="t">表の読み方</span>
+      <ul>
+        <li><b>紫</b>：RR（赤が2回続けて並ぶ）を含まない＝(3)の8通り</li>
+        <li><b>緑</b>：RR がちょうど1組だけ（RRR を含まない）＝(2)の5通り</li>
+        <li><b>青</b>：RRR（3回続く）＝(2)の2通り</li>
+        <li><b>金</b>：RRRR（4回続く）＝(1)の1通り</li>
+      </ul>
+      <p>4つのグループで16通りすべてを数えられているので、数え漏れがないことも確認できます（8 + 5 + 2 + 1 = 16）。</p>
+    </div>
+
+    <h3>(1)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">4回連続して赤玉：<i>R</i><i>R</i><i>R</i><i>R</i> の1通り　⇒　(1/2)⁴ = <span class="box">1/16</span></span>
+      <span class="m">少なくとも1回は赤玉：「4回とも赤玉以外」の余事象を使う　⇒　1 − (1/2)⁴ = <span class="box">15/16</span></span>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>「少なくとも1回」は、「1回も起こらない」の余事象で計算すると速い。</div>
+
+    <h3>(2)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">ちょうど3回連続して赤玉：<i>R</i><i>R</i><i>R</i><i>N</i>，<i>N</i><i>R</i><i>R</i><i>R</i> の2通り（<i>R</i><i>R</i><i>R</i><i>R</i> は4回なので除く）　⇒　2 × 1/16 = <span class="box">1/8</span></span>
+      <span class="m">ちょうど2回連続して赤玉（<i>R</i><i>R</i> が1組、<i>R</i><i>R</i><i>R</i> はない）：<i>R</i><i>R</i><i>N</i><i>N</i>，<i>R</i><i>R</i><i>N</i><i>R</i>，<i>R</i><i>N</i><i>R</i><i>R</i>，<i>N</i><i>R</i><i>R</i><i>N</i>，<i>N</i><i>N</i><i>R</i><i>R</i> の5通り　⇒　5 × 1/16 = <span class="box">5/16</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：「ちょうど」と「以上」の違い</span>
+      <p>「ちょうど3回連続」は、RRR が続いて、その前後が R でない形です。RRRR は4回続くので、「ちょうど3回」には入りません。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>「ちょうど2回」と書かれたら、<span class="hl">RRR が含まれていないか</span>を必ず確認する。RRNR や RNRR のように、RR が前後どちらかにあるものも忘れない。</div>
+
+    <h3>(3)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>B</i>：赤玉が連続しない　⇒　表の紫の8通り（<i>N</i><i>N</i><i>N</i><i>N</i>，<i>R</i><i>N</i><i>N</i><i>N</i>，<i>N</i><i>R</i><i>N</i><i>N</i>，<i>N</i><i>N</i><i>R</i><i>N</i>，<i>N</i><i>N</i><i>N</i><i>R</i>，<i>R</i><i>N</i><i>R</i><i>N</i>，<i>R</i><i>N</i><i>N</i><i>R</i>，<i>N</i><i>R</i><i>N</i><i>R</i>）　⇒　8/16 = <span class="box">1/2</span></span>
+      <span class="m"><i>A</i>：赤玉を1回も取り出さない（<i>N</i><i>N</i><i>N</i><i>N</i>）　⇒　<i>P</i>(<i>A</i>) = 1/16</span>
+      <span class="m"><i>A</i> ⊂ <i>B</i> なので　<i>P</i>(<i>A</i> ∩ <i>B</i>) = <i>P</i>(<i>A</i>) = 1/16</span>
+      <span class="m"><i>P</i>(<i>A</i>|<i>B</i>) = <i>P</i>(<i>A</i> ∩ <i>B</i>)/<i>P</i>(<i>B</i>) = (1/16)/(1/2) = <span class="box">1/8</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：条件付き確率は「範囲をしぼる」</span>
+      <p>「連続しない」という条件のもとで、その中の8通りだけを見ます。そのうち「赤が1回も出ない」のは NNNN の1通りだけなので、1/8 です。</p>
+      <p>式で書くと、<span class="m"><i>P</i>(<i>A</i>|<i>B</i>) = <i>P</i>(<i>A</i>∩<i>B</i>)/<i>P</i>(<i>B</i>)</span>。「条件 B の中で A が起こる割合」です。</p>
+    </div>
+    <div class="check"><b>検算：</b>条件付き確率の式で、8通り（紫）のうち1通り（NNNN）なので 1/8 ✓。</div>
+    <div class="ans"><span class="al">答 (1)〜(3)</span><span class="av"><span class="m">(1) 1/16，15/16　(2) 1/8，5/16　(3) 1/2，1/8</span></span></div>
+  </div>
+</section>
+
+<!-- ================= 問題2 ================= -->
+<section class="prob" id="p2" data-key="p2">
+  <div class="ph"><span class="no">問題2</span><div class="htext"><span class="tag">対数・最大最小</span><h2>log₂x + log₂y = 3 のとき</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">x &gt; 0，y &gt; 0 で log₂x + log₂y = 3 のとき、
+      <span class="sub">(1) xy の値を求めよ。</span>
+      <span class="sub">(2) x² + y² の最小値と、そのときの x, y を求めよ。</span>
+      <span class="sub">(3) (log₂x)³ + (log₂y)³ の最小値と、そのときの x, y を求めよ。</span></p>
+
+    <div class="fb" data-label="計算の約束（対数）">
+      <span class="m">対数の<b>足し算は掛け算</b>：log₂<i>x</i> + log₂<i>y</i> = log₂(<i>x</i><i>y</i>)</span>
+      <span class="m">対数の<b>掛け算は足し算</b>：log₂(<i>x</i><i>y</i>) = log₂<i>x</i> + log₂<i>y</i>　（式を見て向きを逆にできるように）</span>
+    </div>
+
+    <h3>(1)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">log₂(<i>x</i><i>y</i>) = 3　⇒　<i>x</i><i>y</i> = 2³ = <span class="box">8</span></span>
+    </div>
+
+    <h3>(2)</h3>
+    <figure class="fig">
+      <svg viewBox="0 0 360 320" role="img" aria-label="曲線 xy=8 と円 x²+y²=16 が点 (2√2, 2√2) で接する" xmlns="http://www.w3.org/2000/svg"><rect width="360" height="320" fill="var(--panel)"/><line x1="50.0" y1="300.0" x2="325.0" y2="300.0" stroke="var(--ink)" stroke-width="1.6" stroke-opacity="1.0"/><line x1="50.0" y1="300.0" x2="50.0" y2="25.0" stroke="var(--ink)" stroke-width="1.6" stroke-opacity="1.0"/><text x="319.0" y="294.0" font-size="14" font-weight="400" fill="var(--ink)" text-anchor="end" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">x</text><text x="56.0" y="35.0" font-size="14" font-weight="400" fill="var(--ink)" text-anchor="start" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">y</text><polyline points="250.0,300.0 250.0,296.9 249.9,293.7 249.8,290.6 249.6,287.4 249.4,284.3 249.1,281.2 248.8,278.1 248.4,274.9 248.0,271.8 247.5,268.7 247.0,265.6 246.5,262.5 245.8,259.4 245.2,256.4 244.5,253.3 243.7,250.3 242.9,247.2 242.1,244.2 241.2,241.2 240.2,238.2 239.2,235.2 238.2,232.3 237.1,229.3 236.0,226.4 234.8,223.5 233.6,220.6 232.3,217.7 231.0,214.8 229.6,212.0 228.2,209.2 226.8,206.4 225.3,203.6 223.7,200.9 222.1,198.2 220.5,195.5 218.9,192.8 217.2,190.2 215.4,187.6 213.6,185.0 211.8,182.4 209.9,179.9 208.0,177.4 206.1,175.0 204.1,172.5 202.1,170.1 200.0,167.7 197.9,165.4 195.8,163.1 193.6,160.8 191.4,158.6 189.2,156.4 186.9,154.2 184.6,152.1 182.3,150.0 179.9,147.9 177.5,145.9 175.0,143.9 172.6,142.0 170.1,140.1 167.6,138.2 165.0,136.4 162.4,134.6 159.8,132.8 157.2,131.1 154.5,129.5 151.8,127.9 149.1,126.3 146.4,124.7 143.6,123.2 140.8,121.8 138.0,120.4 135.2,119.0 132.3,117.7 129.4,116.4 126.5,115.2 123.6,114.0 120.7,112.9 117.7,111.8 114.8,110.8 111.8,109.8 108.8,108.8 105.8,107.9 102.8,107.1 99.7,106.3 96.7,105.5 93.6,104.8 90.6,104.2 87.5,103.5 84.4,103.0 81.3,102.5 78.2,102.0 75.1,101.6 71.9,101.2 68.8,100.9 65.7,100.6 62.6,100.4 59.4,100.2 56.3,100.1 53.1,100.0 50.0,100.0" fill="none" stroke="var(--blue)" stroke-width="3"/><polyline points="123.5,27.9 124.5,31.5 125.5,35.1 126.5,38.6 127.5,41.9 128.5,45.2 129.5,48.4 130.5,51.6 131.5,54.6 132.5,57.6 133.5,60.5 134.5,63.3 135.5,66.1 136.5,68.8 137.5,71.4 138.5,74.0 139.5,76.5 140.5,79.0 141.5,81.4 142.5,83.8 143.5,86.1 144.5,88.4 145.5,90.6 146.5,92.7 147.5,94.9 148.5,97.0 149.5,99.0 150.5,101.0 151.5,103.0 152.5,104.9 153.5,106.8 154.5,108.6 155.5,110.4 156.5,112.2 157.5,114.0 158.5,115.7 159.5,117.4 160.5,119.0 161.5,120.6 162.5,122.2 163.5,123.8 164.5,125.3 165.5,126.8 166.5,128.3 167.5,129.8 168.5,131.2 169.5,132.6 170.5,134.0 171.5,135.4 172.5,136.7 173.5,138.1 174.5,139.4 175.5,140.6 176.5,141.9 177.5,143.1 178.5,144.4 179.5,145.6 180.5,146.7 181.5,147.9 182.5,149.1 183.5,150.2 184.5,151.3 185.5,152.4 186.5,153.5 187.5,154.5 188.5,155.6 189.5,156.6 190.5,157.7 191.5,158.7 192.5,159.6 193.5,160.6 194.5,161.6 195.5,162.5 196.5,163.5 197.5,164.4 198.5,165.3 199.5,166.2 200.5,167.1 201.5,168.0 202.5,168.9 203.5,169.7 204.5,170.6 205.5,171.4 206.5,172.2 207.5,173.0 208.5,173.8 209.5,174.6 210.5,175.4 211.5,176.2 212.5,176.9 213.5,177.7 214.5,178.4 215.5,179.2 216.5,179.9 217.5,180.6 218.5,181.3 219.5,182.0 220.5,182.7 221.5,183.4 222.5,184.1 223.5,184.7 224.5,185.4 225.5,186.0 226.5,186.7 227.5,187.3 228.5,188.0 229.5,188.6 230.5,189.2 231.5,189.8 232.5,190.4 233.5,191.0 234.5,191.6 235.5,192.2 236.5,192.8 237.5,193.3 238.5,193.9 239.5,194.5 240.5,195.0 241.5,195.6 242.5,196.1 243.5,196.6 244.5,197.2 245.5,197.7 246.5,198.2 247.5,198.7 248.5,199.2 249.5,199.7 250.5,200.2 251.5,200.7 252.5,201.2 253.5,201.7 254.5,202.2 255.5,202.7 256.5,203.1 257.5,203.6 258.5,204.1 259.5,204.5 260.5,205.0 261.5,205.4 262.5,205.9 263.5,206.3 264.5,206.8 265.5,207.2 266.5,207.6 267.5,208.0 268.5,208.5 269.5,208.9 270.5,209.3 271.5,209.7 272.5,210.1 273.5,210.5 274.5,210.9 275.5,211.3 276.5,211.7 277.5,212.1 278.5,212.5 279.5,212.9 280.5,213.2 281.5,213.6 282.5,214.0 283.5,214.3 284.5,214.7 285.5,215.1 286.5,215.4 287.5,215.8 288.5,216.1 289.5,216.5 290.5,216.8 291.5,217.2 292.5,217.5 293.5,217.9 294.5,218.2 295.5,218.5 296.5,218.9 297.5,219.2 298.5,219.5 299.5,219.8 300.5,220.2 301.5,220.5 302.5,220.8 303.5,221.1 304.5,221.4 305.5,221.7 306.5,222.0 307.5,222.3 308.5,222.6 309.5,222.9 310.5,223.2 311.5,223.5 312.5,223.8 313.5,224.1 314.5,224.4 315.5,224.7 316.5,225.0 317.5,225.2 318.5,225.5 319.5,225.8 320.5,226.1 321.5,226.3 322.5,226.6 323.5,226.9 324.5,227.1 325.5,227.4 326.5,227.7 327.5,227.9 328.5,228.2 329.5,228.4 330.5,228.7 331.5,229.0" fill="none" stroke="var(--red)" stroke-width="3"/><line x1="50.0" y1="300.0" x2="300.0" y2="50.0" stroke="var(--sub)" stroke-width="1.5" stroke-opacity="1.0" stroke-dasharray="5 4"/><circle cx="191.4" cy="158.6" r="6" fill="var(--ink)" stroke="var(--ink)" stroke-width="2.2"/><text x="201.4" y="148.6" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">(2√2, 2√2)</text><text x="255.0" y="195.0" font-size="13" font-weight="700" fill="var(--blue)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">x²+y²=16</text><text x="285.0" y="230.0" font-size="13" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">xy=8</text><text x="42.0" y="316.0" font-size="13" font-weight="400" fill="var(--ink)" text-anchor="end" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">O</text><text x="60.0" y="80.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">半径4の円</text></svg>
+      <figcaption>曲線 xy = 8（赤）と、円 x² + y² = 16（青）。点 (2√2, 2√2) で接します。接点のとき、x² + y² が最小になります。</figcaption>
+    </figure>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">(<i>x</i> − <i>y</i>)² ≥ 0 より　<i>x</i>² − 2<i>x</i><i>y</i> + <i>y</i>² ≥ 0　⇒　<i>x</i>² + <i>y</i>² ≥ 2<i>x</i><i>y</i> = 16</span>
+      <span class="m">等号成立は <i>x</i> = <i>y</i> のとき。<i>x</i><i>y</i> = 8 と合わせて <i>x</i>² = 8，<i>x</i> &gt; 0 より <i>x</i> = <i>y</i> = 2√2</span>
+      <span class="m">よって最小値は <span class="box">16</span>（<i>x</i> = <i>y</i> = 2√2 のとき）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：図で見ると「接したところが最小」</span>
+      <p>x² + y² = r² は原点中心の円です。xy = 8 の曲線に、円が外から接するところで r² が最小になります。図の接点が (2√2, 2√2) で、そのとき r² = 8 + 8 = 16 です。</p>
+      <p>「二乗の和 ≥ 2 × 積」は、(x − y)² ≥ 0 を展開すれば必ず出てきます。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>最小値だけでなく、<span class="hl">等号が成り立つ条件（x = y）</span>を書き、そこから x, y を求める。x, y &gt; 0 の確認も忘れない。</div>
+
+    <h3>(3)</h3>
+    <div class="fb" data-label="3乗の和の公式">
+      <span class="m"><i>a</i>³ + <i>b</i>³ = (<i>a</i> + <i>b</i>)³ − 3<i>a</i><i>b</i>(<i>a</i> + <i>b</i>)</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>a</i> = log₂<i>x</i>，<i>b</i> = log₂<i>y</i> とおくと、条件は <i>a</i> + <i>b</i> = 3</span>
+      <span class="m"><i>a</i>³ + <i>b</i>³ = 27 − 3<i>a</i><i>b</i> · 3 = 27 − 9<i>a</i><i>b</i></span>
+      <span class="m"><i>a</i><i>b</i> を最大にすると <i>a</i>³ + <i>b</i>³ は最小になる。(<i>a</i> − <i>b</i>)² ≥ 0 より (<i>a</i> + <i>b</i>)² ≥ 4<i>a</i><i>b</i>　⇒　9 ≥ 4<i>a</i><i>b</i>　⇒　<i>a</i><i>b</i> ≤ 9/4</span>
+      <span class="m">等号は <i>a</i> = <i>b</i> = 3/2 のとき。よって最小値は　27 − 9 × 9/4 = <span class="box">27/4</span></span>
+      <span class="m"><i>a</i> = <i>b</i> = 3/2 より <i>x</i> = <i>y</i> = 2^(3/2) = <span class="box">2√2</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ ab を大きくすると小さくなる？</span>
+      <p>a + b = 3 は変わらないので、a³ + b³ = 27 − 9ab の形になります。式の中で ab だけが変化する部分で、ab が大きいほど引く量が大きくなり、全体は小さくなります。</p>
+    </div>
+    <div class="check"><b>検算：</b>x = y = 2√2 のとき log₂x = 3/2，a³ + b³ = 2 × (3/2)³ = 2 × 27/8 = 27/4 ✓。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>対数の値 a, b に置きかえると、和の一定の条件が見えやすい。最後に a, b から x, y に戻すのを忘れない。</div>
+    <div class="ans"><span class="al">答 (1)〜(3)</span><span class="av"><span class="m">(1) <i>x</i><i>y</i> = 8　(2) 最小値 16，<i>x</i> = <i>y</i> = 2√2　(3) 最小値 27/4，<i>x</i> = <i>y</i> = 2√2</span></span></div>
+  </div>
+</section>
+
+<!-- ================= 問題3 ================= -->
+<section class="prob" id="p3" data-key="p3">
+  <div class="ph"><span class="no">問題3</span><div class="htext"><span class="tag">ベクトル（四面体）</span><h2>内分点と平面・直線の交点</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">四面体 OABC において、辺 OA を 1:3 に内分する点を P、辺 OB を 1:2 に内分する点を Q、辺 AC の中点を R とする。平面 PQR と辺 BC の交点を S とする。<span class="vec">OA</span> = a，<span class="vec">OB</span> = b，<span class="vec">OC</span> = c とする。
+      <span class="sub">(1) <span class="vec">PQ</span>，<span class="vec">PR</span> を a，b，c で表せ。</span>
+      <span class="sub">(2) BS : SC = t : (1 − t) とおく。<span class="vec">PS</span> を a，b，c，t で表せ。また、t の値を求めよ。</span>
+      <span class="sub">(3) 直線 PS と直線 QR の交点を T とする。PT : TS，QT : TR をそれぞれ求めよ。</span></p>
+
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 360 310" role="img" aria-label="四面体OABCの斜め投影図。P, Q, R, S を通る平面と、直線PSとQRの交点T" xmlns="http://www.w3.org/2000/svg"><rect width="360" height="310" fill="var(--panel)"/><polygon points="113.5,286.0 69.3,222.7 231.0,211.0" fill="var(--mark)" fill-opacity="0.45" stroke="none" stroke-width="0" stroke-linejoin="round"/><line x1="56.0" y1="286.0" x2="286.0" y2="286.0" stroke="var(--ink)" stroke-width="2" stroke-opacity="1.0"/><line x1="286.0" y1="286.0" x2="96.0" y2="96.0" stroke="var(--ink)" stroke-width="2" stroke-opacity="1.0"/><line x1="286.0" y1="286.0" x2="176.0" y2="136.0" stroke="var(--ink)" stroke-width="2" stroke-opacity="1.0"/><line x1="56.0" y1="286.0" x2="96.0" y2="96.0" stroke="var(--ink)" stroke-width="2" stroke-opacity="1.0"/><line x1="56.0" y1="286.0" x2="176.0" y2="136.0" stroke="var(--ink)" stroke-width="2" stroke-opacity="1.0"/><line x1="96.0" y1="96.0" x2="176.0" y2="136.0" stroke="var(--ink)" stroke-width="2" stroke-opacity="1.0"/><line x1="113.5" y1="286.0" x2="128.0" y2="112.0" stroke="var(--red)" stroke-width="2.4" stroke-opacity="1.0" stroke-dasharray="7 4"/><line x1="69.3" y1="222.7" x2="231.0" y2="211.0" stroke="var(--blue)" stroke-width="2.4" stroke-opacity="1.0" stroke-dasharray="7 4"/><circle cx="56.0" cy="286.0" r="4.5" fill="var(--ink)" stroke="var(--ink)" stroke-width="2.2"/><text x="48.0" y="302.0" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">O</text><circle cx="286.0" cy="286.0" r="4.5" fill="var(--ink)" stroke="var(--ink)" stroke-width="2.2"/><text x="294.0" y="290.0" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">A</text><circle cx="96.0" cy="96.0" r="4.5" fill="var(--ink)" stroke="var(--ink)" stroke-width="2.2"/><text x="88.0" y="88.0" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">B</text><circle cx="176.0" cy="136.0" r="4.5" fill="var(--ink)" stroke="var(--ink)" stroke-width="2.2"/><text x="184.0" y="130.0" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">C</text><circle cx="113.5" cy="286.0" r="4.5" fill="var(--red)" stroke="var(--red)" stroke-width="2.2"/><text x="107.5" y="304.0" font-size="14" font-weight="700" fill="var(--red)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">P</text><circle cx="69.3" cy="222.7" r="4.5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2.2"/><text x="61.3" y="228.7" font-size="14" font-weight="700" fill="var(--blue)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">Q</text><circle cx="231.0" cy="211.0" r="4.5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2.2"/><text x="239.0" y="205.0" font-size="14" font-weight="700" fill="var(--blue)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">R</text><circle cx="128.0" cy="112.0" r="4.5" fill="var(--red)" stroke="var(--red)" stroke-width="2.2"/><text x="136.0" y="104.0" font-size="14" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">S</text><circle cx="119.1" cy="219.1" r="5.5" fill="var(--sub)" stroke="var(--sub)" stroke-width="2.2"/><text x="127.1" y="235.1" font-size="14" font-weight="700" fill="var(--sub)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">T</text></svg></div>
+      <figcaption>四面体 OABC を斜めから見た図（点の位置関係は正しい）。赤い点線は PS、青い点線は QR。その交点が T です。</figcaption>
+    </figure>
+
+    <div class="fb" data-label="内分点の位置ベクトル">
+      <span class="m"><i>O</i><i>P</i> 上で <i>O</i><i>P</i> : <i>P</i><i>A</i> = 1 : 3 ⇒ <span class="box"><i>O</i><i>P</i> = (1/4) <i>a</i></span>　（全体を 4 等分して 1 つ分）</span>
+      <span class="m"><i>O</i><i>Q</i> : <i>Q</i><i>B</i> = 1 : 2 ⇒ <span class="box"><i>O</i><i>Q</i> = (1/3) <i>b</i></span>　（全体を 3 等分して 1 つ分）</span>
+      <span class="m"><i>R</i> は <i>A</i><i>C</i> の中点 ⇒ <span class="box"><i>O</i><i>R</i> = (<i>a</i> + <i>c</i>)/2</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：「1:3」の意味</span>
+      <p>OP : PA = 1 : 3 は、線分 OA を 4 等分して、O から 1 つ分のところに P があるという意味です。だから OP は OA の 1/4 です。「1:3 の 1 は近い方（O 側）」と覚えておくと間違えにくくなります。</p>
+    </div>
+
+    <h3>(1)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><span class="vec"><i>P</i><i>Q</i></span> = <i>O</i><i>Q</i> − <i>O</i><i>P</i> = (1/3)<i>b</i> − (1/4)<i>a</i> = <span class="box">−(1/4)<i>a</i> + (1/3)<i>b</i></span></span>
+      <span class="m"><span class="vec"><i>P</i><i>R</i></span> = <i>O</i><i>R</i> − <i>O</i><i>P</i> = (<i>a</i> + <i>c</i>)/2 − (1/4)<i>a</i> = <span class="box">(1/4)<i>a</i> + (1/2)<i>c</i></span></span>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>ベクトルは「<span class="hl">終点 − 始点</span>」。PQ は P から Q へ行くので、OQ − OP。</div>
+
+    <h3>(2)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>B</i><i>S</i> : <i>S</i><i>C</i> = <i>t</i> : (1 − <i>t</i>) より　<i>O</i><i>S</i> = (1 − <i>t</i>)<i>b</i> + <i>t</i><i>c</i></span>
+      <span class="m"><span class="vec"><i>P</i><i>S</i></span> = <i>O</i><i>S</i> − <i>O</i><i>P</i> = −(1/4)<i>a</i> + (1 − <i>t</i>)<i>b</i> + <i>t</i><i>c</i></span>
+      <span class="m"><i>S</i> は平面 <i>P</i><i>Q</i><i>R</i> 上にあるので、<span class="vec"><i>P</i><i>S</i></span> = <i>u</i><span class="vec"><i>P</i><i>Q</i></span> + <i>v</i><span class="vec"><i>P</i><i>R</i></span> とおける。</span>
+      <span class="m">右辺を整理すると　<i>a</i> の係数：−<i>u</i>/4 + <i>v</i>/4，<i>b</i> の係数：<i>u</i>/3，<i>c</i> の係数：<i>v</i>/2</span>
+      <span class="m"><i>a</i>，<i>b</i>，<i>c</i> は同じ平面上にない（一次独立）ので、係数を比べる：</span>
+      <span class="m">　−1/4 = −<i>u</i>/4 + <i>v</i>/4　⇒　−1 = −<i>u</i> + <i>v</i>　…①</span>
+      <span class="m">　1 − <i>t</i> = <i>u</i>/3　⇒　<i>u</i> = 3(1 − <i>t</i>)　…②</span>
+      <span class="m">　<i>t</i> = <i>v</i>/2　⇒　<i>v</i> = 2<i>t</i>　…③</span>
+      <span class="m">②，③を①に代入：−1 = −3(1 − <i>t</i>) + 2<i>t</i> = −3 + 5<i>t</i>　⇒　<span class="box"><i>t</i> = 2/5</span></span>
+      <span class="m">よって　<span class="box"><span class="vec"><i>P</i><i>S</i></span> = −(1/4)<i>a</i> + (3/5)<i>b</i> + (2/5)<i>c</i></span></span>
+    </div>
+    <div class="check"><b>検算：</b>t = 2/5 のとき、u = 3 × 3/5 = 9/5、v = 4/5。<span class="vec">PS</span> = (9/5)<span class="vec">PQ</span> + (4/5)<span class="vec">PR</span> の a 係数：−(9/5)(1/4) + (4/5)(1/4) = −5/20 = −1/4 ✓。</div>
+    <div class="easy"><span class="t">やさしい解説：なぜ係数を比べてよい？</span>
+      <p>a，b，c は三角錐の3辺で、同じ平面上にないので、「a の何倍＋b の何倍＋c の何倍」の形は1通りに決まります。だから、左辺と右辺で a，b，c の係数がそれぞれ等しくなります。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>「平面上の点」は、その平面内の2つのベクトルの和で表す。係数を比べる式は、<span class="hl">①a，②b，③c の順にていねいに立てる</span>。</div>
+
+    <h3>(3)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>T</i> は直線 <i>P</i><i>S</i> 上：<span class="vec"><i>P</i><i>T</i></span> = <i>k</i><span class="vec"><i>P</i><i>S</i></span>　⇒　<i>O</i><i>T</i> = (1 − <i>k</i>)/4 · <i>a</i> + 3<i>k</i>/5 · <i>b</i> + 2<i>k</i>/5 · <i>c</i>　…①</span>
+      <span class="m"><i>T</i> は直線 <i>Q</i><i>R</i> 上：<span class="vec"><i>Q</i><i>T</i></span> = <i>m</i><span class="vec"><i>Q</i><i>R</i></span>，<span class="vec"><i>Q</i><i>R</i></span> = (1/2)<i>a</i> − (1/3)<i>b</i> + (1/2)<i>c</i></span>
+      <span class="m">　⇒　<i>O</i><i>T</i> = (<i>m</i>/2)<i>a</i> + (1 − <i>m</i>)/3 · <i>b</i> + (<i>m</i>/2)<i>c</i>　…②</span>
+      <span class="m">①，②の <i>a</i> の係数と <i>c</i> の係数を比べる：(1 − <i>k</i>)/4 = <i>m</i>/2，　2<i>k</i>/5 = <i>m</i>/2</span>
+      <span class="m">2式から (1 − <i>k</i>)/4 = 2<i>k</i>/5　⇒　5(1 − <i>k</i>) = 8<i>k</i>　⇒　<span class="box"><i>k</i> = 5/13</span>，　<i>m</i> = 4<i>k</i>/5 = <span class="box">4/13</span></span>
+      <span class="m"><i>b</i> の係数で確かめる：3<i>k</i>/5 = 3/13，(1 − <i>m</i>)/3 = (9/13)/3 = 3/13 ✓</span>
+      <span class="m"><i>P</i><i>T</i> : <i>T</i><i>S</i> = <i>k</i> : (1 − <i>k</i>) = 5/13 : 8/13 = <span class="box">5 : 8</span></span>
+      <span class="m"><i>Q</i><i>T</i> : <i>T</i><i>R</i> = <i>m</i> : (1 − <i>m</i>) = 4/13 : 9/13 = <span class="box">4 : 9</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：交点は「2通りに表して等しい」</span>
+      <p>T は2つの直線の両方にあるので、OT を2通りの式で表せます。その2つの式が等しいとき、係数が一致します。これが「交点を2通りに表す」方法です。</p>
+      <p>「PT : TS = k : (1 − k)」は、PS 全体を 1 としたとき、P から T までが k の割合だからです。</p>
+    </div>
+    <div class="check"><b>検算：</b>図で、T は PS の約 38%（5/13 ≒ 0.385）の位置にあり、QR の約 31%（4/13 ≒ 0.31）の位置にあります。図の交点の位置とも一致します。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>係数比較のとき、<span class="hl">k と m の意味（何の割合か）</span>を書いておくと、PT : TS と QT : TR を取り違えない。</div>
+    <div class="ans"><span class="al">答 (1)〜(3)</span><span class="av"><span class="m">(1) −(1/4)<i>a</i> + (1/3)<i>b</i>，　(1/4)<i>a</i> + (1/2)<i>c</i>　(2) <i>P</i><i>S</i> = −(1/4)<i>a</i> + (3/5)<i>b</i> + (2/5)<i>c</i>，<i>t</i> = 2/5　(3) <i>P</i><i>T</i> : <i>T</i><i>S</i> = 5 : 8，<i>Q</i><i>T</i> : <i>T</i><i>R</i> = 4 : 9</span></span></div>
+  </div>
+</section>
+
+<!-- ================= 問題4 ================= -->
+<section class="prob" id="p4" data-key="p4">
+  <div class="ph"><span class="no">問題4</span><div class="htext"><span class="tag">数列</span><h2>和 Sₙ から漸化式をつくる</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">数列 {aₙ} は a₁ = 1，初めから第 n 項までの和を Sₙ とすると、Sₙ₊₁ = 4aₙ + 3（n = 1, 2, 3, …）を満たす。
+      <span class="sub">(1) a₂ を求めよ。また、aₙ₊₂ を aₙ₊₁ と aₙ で表せ。</span>
+      <span class="sub">(2) bₙ = aₙ₊₁ − 2aₙ とおく。数列 {bₙ} の一般項を求めよ。</span>
+      <span class="sub">(3) 数列 {aₙ} の一般項を求めよ。</span></p>
+
+    <div class="fb" data-label="和と項の関係">
+      <span class="m"><span class="box"><i>S</i>ₙ₊₁ − <i>S</i>ₙ = <i>a</i>ₙ₊₁</span>　（和の差は、次の1項）</span>
+      <span class="m">この問題では、<i>S</i>ₙ₊₂ − <i>S</i>ₙ₊₁ = <i>a</i>ₙ₊₂ を使う。</span>
+    </div>
+
+    <h3>(1)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>n</i> = 1 を代入：<i>S</i>₂ = 4<i>a</i>₁ + 3 = 7　　<i>S</i>₂ = <i>a</i>₁ + <i>a</i>₂ より　1 + <i>a</i>₂ = 7　⇒　<span class="box"><i>a</i>₂ = 6</span></span>
+      <span class="m"><i>S</i>ₙ₊₂ = 4<i>a</i>ₙ₊₁ + 3，<i>S</i>ₙ₊₁ = 4<i>a</i>ₙ + 3 の差をとると</span>
+      <span class="m"><i>S</i>ₙ₊₂ − <i>S</i>ₙ₊₁ = 4<i>a</i>ₙ₊₁ − 4<i>a</i>ₙ　⇒　<span class="box"><i>a</i>ₙ₊₂ = 4<i>a</i>ₙ₊₁ − 4<i>a</i>ₙ</span></span>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>添字に注意。Sₙ₊₂ − Sₙ₊₁ は <span class="hl">aₙ₊₂</span>（第 n+2 項）。</div>
+
+    <h3>(2)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>b</i>ₙ₊₁ = <i>a</i>ₙ₊₂ − 2<i>a</i>ₙ₊₁ = (4<i>a</i>ₙ₊₁ − 4<i>a</i>ₙ) − 2<i>a</i>ₙ₊₁ = 2<i>a</i>ₙ₊₁ − 4<i>a</i>ₙ = 2(<i>a</i>ₙ₊₁ − 2<i>a</i>ₙ) = 2<i>b</i>ₙ</span>
+      <span class="m">よって {<i>b</i>ₙ} は公比 2 の等比数列。<i>b</i>₁ = <i>a</i>₂ − 2<i>a</i>₁ = 6 − 2 = 4</span>
+      <span class="m"><i>b</i>ₙ = 4 · 2ⁿ⁻¹ = <span class="box">2ⁿ⁺¹</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：「2倍になる」形を見つける</span>
+      <p>(1) の式 aₙ₊₂ = 4aₙ₊₁ − 4aₙ を、「aₙ₊₁ − 2aₙ」の形にまとめ直すと、同じ比（2倍）が出てくるのがポイントです。</p>
+    </div>
+
+    <h3>(3)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>a</i>ₙ₊₁ − 2<i>a</i>ₙ = 2ⁿ⁺¹ より　<i>a</i>ₙ₊₁ = 2<i>a</i>ₙ + 2ⁿ⁺¹</span>
+      <span class="m"><i>c</i>ₙ = <i>a</i>ₙ / 2ⁿ⁻¹ とおくと、<i>a</i>ₙ = 2ⁿ⁻¹ <i>c</i>ₙ，<i>a</i>ₙ₊₁ = 2ⁿ <i>c</i>ₙ₊₁</span>
+      <span class="m">2ⁿ <i>c</i>ₙ₊₁ = 2 · 2ⁿ⁻¹ <i>c</i>ₙ + 2ⁿ⁺¹ = 2ⁿ <i>c</i>ₙ + 2ⁿ⁺¹　⇒　<i>c</i>ₙ₊₁ = <i>c</i>ₙ + 2</span>
+      <span class="m"><i>c</i>₁ = <i>a</i>₁ = 1，公差 2 の等差数列　⇒　<i>c</i>ₙ = 2<i>n</i> − 1</span>
+      <span class="m">よって　<span class="box"><i>a</i>ₙ = (2<i>n</i> − 1) · 2ⁿ⁻¹</span></span>
+    </div>
+    <figure class="fig">
+      <div class="tblwrap"><table class="tbl"><thead><tr><th class="left">項目</th><th>n = 1</th><th>n = 2</th><th>n = 3</th><th>n = 4</th><th>n = 5</th></tr></thead><tbody><tr><td class="left"><span class="m"><i>a</i>ₙ</span></td><td class="m">1</td><td class="m">6</td><td class="m">20</td><td class="m">56</td><td class="m">144</td></tr><tr><td class="left"><span class="m">2ⁿ⁻¹</span></td><td class="m">1</td><td class="m">2</td><td class="m">4</td><td class="m">8</td><td class="m">16</td></tr><tr><td class="left"><span class="m"><i>c</i>ₙ = <i>a</i>ₙ / 2ⁿ⁻¹</span></td><td class="m" style="color:var(--green)">1</td><td class="m" style="color:var(--green)">3</td><td class="m" style="color:var(--green)">5</td><td class="m" style="color:var(--green)">7</td><td class="m" style="color:var(--green)">9</td></tr><tr><td class="left"><span class="m"><i>b</i>ₙ = <i>a</i>ₙ₊₁ − 2<i>a</i>ₙ</span></td><td class="m" style="color:var(--blue)">4</td><td class="m" style="color:var(--blue)">8</td><td class="m" style="color:var(--blue)">16</td><td class="m" style="color:var(--blue)">32</td><td class="m" style="color:var(--blue)">—</td></tr></tbody></table></div>
+      <figcaption>数の変化の表。aₙ は a₁ から順に作ったもの。cₙ = aₙ ÷ 2ⁿ⁻¹ は、1, 3, 5, 7, 9 と毎回 2 ずつ増える（等差数列）。</figcaption>
+    </figure>
+    <div class="easy"><span class="t">やさしい解説：2ⁿ⁻¹ で割ると、ふつうの数列になる</span>
+      <p>aₙ は 1, 6, 20, 56, 144 と急に大きくなります。そこで 2ⁿ⁻¹ で割ると、cₙ = 1, 3, 5, 7, 9 と、規則正しく増える数列になります。これが「指数の部分をそろえる」考え方です。</p>
+    </div>
+    <div class="check"><b>検算：</b>a₃ = (2·3 − 1)·2² = 5 · 4 = 20。漸化式から a₃ = 4a₂ − 4a₁ = 24 − 4 = 20 ✓。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>最後の一般項は、<span class="hl">n = 1, 2 を代入して確かめる</span>と、ミスを防げる。</div>
+    <div class="ans"><span class="al">答 (1)〜(3)</span><span class="av"><span class="m">(1) <i>a</i>₂ = 6，<i>a</i>ₙ₊₂ = 4<i>a</i>ₙ₊₁ − 4<i>a</i>ₙ　(2) <i>b</i>ₙ = 2ⁿ⁺¹　(3) <i>a</i>ₙ = (2<i>n</i> − 1)·2ⁿ⁻¹</span></span></div>
+  </div>
+</section>
+
+<!-- ================= 問題5 ================= -->
+<section class="prob" id="p5" data-key="p5">
+  <div class="ph"><span class="no">問題5</span><div class="htext"><span class="tag">円・直線・領域</span><h2>2つの円と領域 D、直線が D と交わる条件</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">2つの円 C₁：x² + y² − 1 = 0，C₂：x² + y² − 4x − 2y + 1 = 0 がある。
+      <span class="sub">(1) C₁，C₂ の交点の座標を求めよ。</span>
+      <span class="sub">(2) (x² + y² − 1)(x² + y² − 4x − 2y + 1) ≤ 0 で表される領域 D を図示せよ。</span>
+      <span class="sub">(3) 直線 ℓ：y = m(x − 1) − 2 と領域 D が共有点をもつような m の範囲を求めよ。</span></p>
+
+    <h3>(1) 交点</h3>
+    <div class="fb" data-label="2円の交点の求め方">
+      <span class="m">2つの円の式の差をとると直線になる（交点を通る直線）。</span>
+      <span class="m"><i>C</i>₂ − <i>C</i>₁ ： −4<i>x</i> − 2<i>y</i> + 2 = 0　⇒　<span class="box"><i>y</i> = 1 − 2<i>x</i></span></span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>y</i> = 1 − 2<i>x</i> を <i>x</i>² + <i>y</i>² = 1 に代入：<i>x</i>² + (1 − 2<i>x</i>)² = 1</span>
+      <span class="m">5<i>x</i>² − 4<i>x</i> = 0　⇒　<i>x</i>(5<i>x</i> − 4) = 0　⇒　<i>x</i> = 0，4/5</span>
+      <span class="m"><i>y</i> = 1 − 2<i>x</i> より　<i>x</i> = 0 のとき <i>y</i> = 1，<i>x</i> = 4/5 のとき <i>y</i> = −3/5</span>
+      <span class="m">よって交点は <span class="box">(0, 1)，(4/5, −3/5)</span></span>
+    </div>
+    <div class="check"><b>検算：</b>(0, 1) を C₂ に代入：0 + 1 − 0 − 2 + 1 = 0 ✓。(4/5, −3/5) を C₂ に代入：16/25 + 9/25 − 16/5 + 6/5 + 1 = 1 − 2 + 1 = 0 ✓。</div>
+
+    <h3>(2) 領域 D</h3>
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 360 346" role="img" aria-label="円C1、C2と、領域D（色の部分）。点Pを通る直線のうち、Dと交わらないものの例" xmlns="http://www.w3.org/2000/svg"><rect width="360" height="346" fill="var(--panel)"/><defs><clipPath id="cc1"><circle cx="119.0" cy="183.0" r="54.0"/></clipPath></defs><circle cx="119.0" cy="183.0" r="54.0" fill="var(--blue-bg)" stroke="none"/><circle cx="227.0" cy="129.0" r="108.0" fill="var(--green-bg)" stroke="none"/><circle cx="227.0" cy="129.0" r="108.0" fill="#ffffff" clip-path="url(#cc1)"/><circle cx="119.0" cy="183.0" r="54.0" fill="none" stroke="var(--blue)" stroke-width="2.6"/><circle cx="227.0" cy="129.0" r="108.0" fill="none" stroke="var(--green)" stroke-width="2.6"/><line x1="38.0" y1="189.8" x2="362.0" y2="432.8" stroke="var(--red)" stroke-width="2.4" stroke-opacity="1.0"/><line x1="38.0" y1="376.5" x2="362.0" y2="171.4" stroke="var(--red)" stroke-width="2.4" stroke-opacity="1.0"/><line x1="38.0" y1="291.0" x2="362.0" y2="291.0" stroke="var(--sub)" stroke-width="1.8" stroke-opacity="1.0" stroke-dasharray="6 5"/><circle cx="173.0" cy="291.0" r="5.5" fill="var(--ink)" stroke="var(--ink)" stroke-width="2.2"/><text x="181.0" y="295.0" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">P(1, −2)</text><circle cx="119.0" cy="129.0" r="4.5" fill="var(--ink)" stroke="var(--ink)" stroke-width="2.2"/><circle cx="162.2" cy="215.4" r="4.5" fill="var(--ink)" stroke="var(--ink)" stroke-width="2.2"/><text x="113.0" y="119.0" font-size="12" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">(0, 1)</text><text x="170.2" y="221.4" font-size="12" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">(4/5, −3/5)</text><text x="92.0" y="210.0" font-size="14" font-weight="700" fill="var(--blue)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">C₁</text><text x="259.4" y="85.8" font-size="14" font-weight="700" fill="var(--green)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">C₂</text><text x="43.4" y="199.2" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round"></text><text x="254.0" y="266.7" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">m = 0（交わらない）</text><text x="194.6" y="350.4" font-size="11.5" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">m = −3/4（C₁に接する）</text></svg></div>
+      <figcaption>色のついた部分が領域 D（円周を含む）。青は C₁ の内側で C₂ の外側、緑は C₂ の内側で C₁ の外側。2つの円の重なった部分（白）は D に入りません。点 P(1, −2) を通る直線の例も示しています。</figcaption>
+    </figure>
+    <div class="fb" data-label="積が 0 以下のとき">
+      <span class="m">（<i>x</i>² + <i>y</i>² − 1）と（<i>x</i>² + <i>y</i>² − 4<i>x</i> − 2<i>y</i> + 1）の積が 0 以下</span>
+      <span class="m">⇔ <span class="box">一方が 0（円周上），または 2つの符号が逆</span></span>
+      <span class="m"><i>f</i>₁ = <i>x</i>² + <i>y</i>² − 1 ＝ 0 は <i>C</i>₁ の円周，<i>f</i>₁ ≤ 0 は <i>C</i>₁ の内側（円盤の内部）</span>
+      <span class="m"><i>f</i>₂ ≤ 0 は <i>C</i>₂ の内側，<i>f</i>₂ ≥ 0 は <i>C</i>₂ の外側</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：「片方の内側・もう片方の外側」</span>
+      <p>2つの数の積が 0 以下になるのは、「一方が 0」か「符号が逆」のときです。つまり、<b>C₁ の内側かつ C₂ の外側</b>、または <b>C₂ の内側かつ C₁ の外側</b>の部分です。2つの円が重なった部分は、どちらも内側なので積は正になり、含まれません。</p>
+      <p>円周上は積が 0 になるので、円周も含まれます。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>「≤ 0」は、<span class="hl">円周を含む</span>。また「重なった部分は除く」ことを、図で必ず確認する。</div>
+
+    <h3>(3) 直線と領域 D が交わる条件</h3>
+    <div class="fb" data-label="直線が D と交わる条件（考え方）">
+      <span class="m">円周は <i>D</i> に含まれる。直線が <i>C</i>₁ か <i>C</i>₂ のどちらかと交わるなら、その交点は <i>D</i> の中にある。</span>
+      <span class="m">逆に、どちらの円とも交わらない直線は、2つの円の外側だけを通るので、<i>D</i> とは交わらない。</span>
+      <span class="m">よって「<i>C</i>₁ と交わる」または「<i>C</i>₂ と交わる」の範囲を合わせればよい。</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ円と交われば十分？</span>
+      <p>直線は円盤の中だけを通ることはできません（まっすぐ伸びて外に出るから）。直線が2つの円のどちらとも交わらなければ、直線全体は円の外にあるので、D にも入りません。</p>
+      <p>逆に、円と交わればその交点は円周上の点で、円周は D に含まれます。</p>
+    </div>
+    <div class="fb" data-label="直線と円が交わる条件（距離）">
+      <span class="m"><span class="box">円の中心から直線までの距離 ≤ 半径</span></span>
+      <span class="m">直線は <i>m</i><i>x</i> − <i>y</i> − <i>m</i> − 2 = 0（<i>y</i> = <i>m</i>(<i>x</i> − 1) − 2 を変形）。点と直線の距離の公式を使う。</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><b><i>C</i>₁（中心 (0, 0)，半径 1）と交わる条件</b></span>
+      <span class="m">|<i>m</i> + 2| / √(<i>m</i>² + 1) ≤ 1　⇒　(<i>m</i> + 2)² ≤ <i>m</i>² + 1　⇒　4<i>m</i> + 4 ≤ 1　⇒　<span class="box"><i>m</i> ≤ −3/4</span></span>
+      <span class="m"><b><i>C</i>₂（中心 (2, 1)，半径 2）と交わる条件</b></span>
+      <span class="m">|2<i>m</i> − 1 − <i>m</i> − 2| / √(<i>m</i>² + 1) ≤ 2　⇒　|<i>m</i> − 3| ≤ 2√(<i>m</i>² + 1)</span>
+      <span class="m">(<i>m</i> − 3)² ≤ 4(<i>m</i>² + 1)　⇒　3<i>m</i>² + 6<i>m</i> − 5 ≥ 0</span>
+      <span class="m">3<i>m</i>² + 6<i>m</i> − 5 = 0 の解は <i>m</i> = (−3 ± 2√6)/3。下に凸ではなく上に開く式なので、<span class="box"><i>m</i> ≤ (−3 − 2√6)/3，または <i>m</i> ≥ (−3 + 2√6)/3</span></span>
+      <span class="m">2つの条件を合わせる。(−3 − 2√6)/3 ≈ −2.63 は <i>m</i> ≤ −3/4 に含まれ、(−3 + 2√6)/3 ≈ 0.63 は <i>m</i> ≤ −3/4 に含まれない。</span>
+      <span class="m">よって求める範囲は　<span class="box"><i>m</i> ≤ −3/4　または　<i>m</i> ≥ (−3 + 2√6)/3</span></span>
+    </div>
+    <div class="check"><b>検算：</b>m = 0（図の破線）は、C₁ とも C₂ とも交わらない（m = 0 は範囲 −3/4 &lt; m &lt; 0.63 の中）✓。m = −3/4 のとき C₁ に接する（距離がちょうど 1）✓。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>元の解答の「−3/4 ≤ m ≤ (−3+2√6)/3」は誤り。<span class="hl">円周も D に含まれる</span>ので、C₁ と交わる範囲（m ≤ −3/4）はそのまま答えに入る。2つの範囲の「または」を正しく書く。</div>
+    <div class="ans"><span class="al">答 (1)〜(3)</span><span class="av"><span class="m">(1) (0, 1)，(4/5, −3/5)　(2) 2つの円盤の内側どうしの重なりを除いた部分（円周を含む）　(3) <i>m</i> ≤ −3/4，または <i>m</i> ≥ (−3 + 2√6)/3</span></span></div>
+  </div>
+</section>
+
+<!-- ================= まとめ ================= -->
+<section class="prob" id="pfinal" data-key="pfinal">
+  <div class="ph"><span class="no">直前</span><div class="htext"><span class="tag">FINAL CHECK</span><h2>ここだけ確認</h2></div><button class="done" type="button" aria-pressed="false">確認した</button></div>
+  <div class="body">
+    <div class="memo"><b>超重要・一言で覚える：</b>「独立な試行は、ちょうど・以上・余事象を整理して数える」「対数は足し算が掛け算、割り算が引き算」「平面上の点は2つのベクトルで、係数を比べる」「和 Sₙ の差は次の1項」「円周は領域に含まれる、交点は中心と半径で判断」。</div>
+
+    <ol class="sumlist">
+      <li><b>問題1：</b>16通りを4グループに分けて数える（8 + 5 + 2 + 1 = 16）。答えは 1/16，15/16，1/8，5/16，1/2，1/8。</li>
+      <li><b>問題2：</b>xy = 8。x² + y² ≥ 2xy = 16（等号は x = y = 2√2）。a = log₂x，b = log₂y とおくと、a³ + b³ = 27 − 9ab の最小は 27/4。</li>
+      <li><b>問題3：</b>OP = a/4，OQ = b/3，OR = (a + c)/2。係数比較で t = 2/5，PT : TS = 5 : 8，QT : TR = 4 : 9。</li>
+      <li><b>問題4：</b>a₂ = 6，aₙ₊₂ = 4aₙ₊₁ − 4aₙ。bₙ = aₙ₊₁ − 2aₙ = 2ⁿ⁺¹。cₙ = aₙ/2ⁿ⁻¹ は等差数列，aₙ = (2n − 1)·2ⁿ⁻¹。</li>
+      <li><b>問題5：</b>交点 (0, 1)，(4/5, −3/5)。D は2円の「内側どうしの重なりを除いた部分」。直線が C₁ か C₂ と交わればよく、答えは m ≤ −3/4 または m ≥ (−3 + 2√6)/3。</li>
+    </ol>
+
+    <h3>答えのまとめ</h3>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>問題</th><th>答え</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td class="left">(1) 1/16，15/16　(2) 1/8，5/16　(3) 1/2，1/8</td></tr>
+          <tr><td>2</td><td class="left">(1) xy = 8　(2) 最小値 16（x = y = 2√2）　(3) 最小値 27/4（x = y = 2√2）</td></tr>
+          <tr><td>3</td><td class="left">(1) PQ = −(1/4)a + (1/3)b，PR = (1/4)a + (1/2)c　(2) t = 2/5　(3) PT : TS = 5 : 8，QT : TR = 4 : 9</td></tr>
+          <tr><td>4</td><td class="left">(1) a₂ = 6　(2) bₙ = 2ⁿ⁺¹　(3) aₙ = (2n − 1)·2ⁿ⁻¹</td></tr>
+          <tr><td>5</td><td class="left">(1) (0, 1)，(4/5, −3/5)　(3) m ≤ −3/4，または m ≥ (−3 + 2√6)/3</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>数学演習プリント（10/23 実力テスト復習）｜「答えをかくす」をオンにすると、答えがぼやけて表示されます。「できた」の記録はこの端末のブラウザに保存されます。</footer>
+
+<script>
+(function(){
+  var KEY='practice-1-5-done';
+  var done={};
+  function load(){try{var v=localStorage.getItem(KEY);done=v?JSON.parse(v)||{}:{};}catch(e){done={};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  var sections=[].slice.call(document.querySelectorAll('.prob[data-key]'));
+  var progress=document.getElementById('progress');
+  function refresh(){
+    var n=0;
+    sections.forEach(function(s){
+      var b=s.querySelector('.done');var k=s.getAttribute('data-key');
+      var on=!!done[k];if(on)n++;
+      if(b)b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    progress.textContent=n+' / '+sections.length;
+  }
+  load();refresh();
+  sections.forEach(function(s){
+    var b=s.querySelector('.done');if(!b)return;
+    b.addEventListener('click',function(){
+      var k=s.getAttribute('data-key');
+      if(done[k])delete done[k];else done[k]=1;
+      save();refresh();
+    });
+  });
+  var hideBtn=document.getElementById('hideBtn');
+  hideBtn.addEventListener('click',function(){
+    var on=hideBtn.getAttribute('aria-pressed')!=='true';
+    hideBtn.setAttribute('aria-pressed',on?'true':'false');
+    document.body.classList.toggle('hide',on);
+    if(!on){[].forEach.call(document.querySelectorAll('.ans.shown'),function(a){a.classList.remove('shown');});}
+  });
+  [].forEach.call(document.querySelectorAll('.ans'),function(a){
+    a.addEventListener('click',function(){if(document.body.classList.contains('hide'))a.classList.toggle('shown');});
+  });
+})();
+</script>
+</body>
+</html>

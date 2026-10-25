@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>数学 演習チェック ページ2（確率・展開・領域・三角関数）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f5fa; --panel:#ffffff; --ink:#16233b; --sub:#54627c; --line:#d3dce8;
+  --red:#d0212f; --red-bg:#fff1f2; --red-ink:#ffffff;
+  --blue:#1d5fa8; --blue-bg:#eaf3fc;
+  --mark:#ffe873; --mark-bg:#fff8d6; --mark-line:#e0b400;
+  --ans-bg:#16233b; --ans-ink:#ffffff;
+  --grid:rgba(29,95,168,.08);
+  --shadow:0 1px 0 rgba(22,35,59,.06), 0 8px 24px -14px rgba(22,35,59,.35);
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  --math:"STIX Two Text","Times New Roman","Noto Serif JP","Yu Mincho",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+    --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+    --blue:#82bbff; --blue-bg:#13263b;
+    --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+    --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+    --grid:rgba(130,187,255,.07);
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+  --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+  --blue:#82bbff; --blue-bg:#13263b;
+  --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+  --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+  --grid:rgba(130,187,255,.07);
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:auto;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--sans);font-size:16px;line-height:1.85;
+}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.hero{max-width:920px;margin:0 auto;padding:34px 18px 8px}
+.hero h1{margin:0;font-size:clamp(1.6rem,5.6vw,2.4rem);font-weight:900;line-height:1.3;letter-spacing:.02em}
+.hero h1 span{display:inline-block;border:4px solid var(--red);border-radius:12px;padding:0 .35em;margin-right:.2em;color:var(--red);transform:rotate(-1.5deg)}
+.hero p{margin:12px 0 0;color:var(--sub);max-width:38em}
+.legend{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:22px 0 4px}
+.legend > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.88rem;line-height:1.6;box-shadow:var(--shadow)}
+.legend b{display:block;margin-bottom:4px;font-size:.92rem}
+.swatch{display:inline-block;width:1.6em;height:1em;vertical-align:-.15em;margin-right:.4em;border-radius:3px}
+.sw-red{border:2.5px solid var(--red);background:var(--red-bg)}
+.sw-blue{border-left:5px solid var(--blue);background:var(--blue-bg)}
+.sw-mark{border-left:5px solid var(--mark-line);background:var(--mark-bg)}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:920px;margin:0 auto;padding:8px 18px;display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 12px;line-height:1.7}
+.nav a:hover{border-color:var(--red);color:var(--red)}
+.tools{margin-left:auto;display:flex;gap:8px;flex:none;padding-left:8px}
+.btn{font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:3px 12px;line-height:1.7}
+.btn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.progress{font-size:.82rem;font-weight:700;color:var(--sub);white-space:nowrap;align-self:center}
+
+main{max-width:920px;margin:0 auto;padding:12px 18px 60px}
+.prob{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:26px 0;padding:0 0 18px;box-shadow:var(--shadow);overflow:hidden}
+.ph{display:flex;align-items:stretch;border-bottom:2px solid var(--ink);margin-bottom:16px}
+.ph .no{flex:none;min-width:4.4rem;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--panel);font-weight:900;font-size:1.1rem;padding:8px 12px;letter-spacing:.03em;text-align:center;line-height:1.3}
+.ph h2{margin:0;padding:10px 16px;font-size:1.08rem;font-weight:700;line-height:1.5;flex:1;align-self:center}
+.ph .done{margin:8px 12px 8px 0;align-self:center}
+.body{padding:0 clamp(14px,3vw,24px)}
+h3{font-size:1rem;font-weight:900;margin:22px 0 6px;padding-bottom:3px;border-bottom:2px dotted var(--line)}
+p{margin:8px 0}
+.q{border:2px dashed var(--line);border-radius:10px;padding:10px 14px;margin:0 0 14px}
+.q::before{content:"問題";display:inline-block;font-weight:900;font-size:.8rem;background:var(--ink);color:var(--panel);border-radius:4px;padding:0 8px;margin-right:8px;line-height:1.6}
+.q .sub{display:block;margin-top:4px}
+.src{color:var(--sub);font-size:.85rem}
+
+.m{font-family:var(--math);font-size:1.12em;line-height:1.9}
+.m i,i.m{font-style:italic}
+sup,sub{line-height:0;font-size:.72em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.25;margin:0 .18em;font-size:.95em}
+.fr > b{font-weight:inherit;padding:0 .25em}
+.fr > b:first-child{border-bottom:1.5px solid currentColor}
+
+.fb{position:relative;margin:24px 0 14px;padding:16px 16px 10px;border:3px solid var(--red);border-radius:12px;background:var(--red-bg)}
+.fb::before{content:attr(data-label);position:absolute;top:-.95em;left:14px;background:var(--red);color:var(--red-ink);font-weight:900;font-size:.82rem;line-height:1.7;padding:0 12px;border-radius:999px}
+.fb .m{display:block;overflow-x:auto;padding:1px 0}
+.fb .m + .m{margin-top:2px}
+.fb.soft{border-style:dashed;border-width:2.5px}
+.box{font-family:var(--math);display:inline-block;border:2.5px solid var(--red);border-radius:6px;padding:0 .4em;background:var(--panel)}
+
+.easy{margin:14px 0;padding:12px 16px;background:var(--blue-bg);border-left:6px solid var(--blue);border-radius:0 10px 10px 0}
+.easy > .t{display:block;font-weight:900;color:var(--blue);font-size:.92rem;margin-bottom:2px}
+.easy > .t::before{content:"💡 "}
+.easy ul,.easy ol{margin:6px 0;padding-left:1.3em}
+.easy li{margin:3px 0}
+.pt{margin:14px 0;padding:10px 16px;background:var(--mark-bg);border-left:6px solid var(--mark-line);border-radius:0 10px 10px 0}
+.pt > .t{font-weight:900}
+.hl{background:linear-gradient(transparent 55%,var(--mark) 55%);font-weight:700}
+
+.ans{margin:16px 0 4px;background:var(--ans-bg);color:var(--ans-ink);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.ans .al{flex:none;font-weight:900;font-size:.85rem;background:var(--red);color:var(--red-ink);border-radius:999px;padding:0 12px;line-height:1.7}
+.ans .av{font-weight:700;font-size:1.05rem;flex:1;min-width:0}
+body.hide .ans{cursor:pointer}
+body.hide .ans:not(.shown) .av{filter:blur(9px);user-select:none}
+body.hide .ans:not(.shown)::after{content:"タップで答えを見る";font-size:.78rem;opacity:.75;margin-left:auto}
+
+.check{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 12px;margin:10px 0;font-size:.92rem}
+.check b{color:var(--blue)}
+.done{font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--panel);color:var(--sub);border-radius:999px;padding:0 12px;line-height:1.9}
+.done[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--panel)}
+.done[aria-pressed="true"]::before{content:"✓ "}
+.fig{margin:14px 0;text-align:center}
+.fig svg{max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.fig figcaption{font-size:.82rem;color:var(--sub);margin-top:4px}
+.tblwrap{overflow-x:auto;margin:12px 0}
+table.tbl{border-collapse:collapse;width:100%;min-width:460px;font-size:.95rem;text-align:center}
+.tbl th,.tbl td{border:1.5px solid var(--ink);padding:5px 8px}
+.tbl th{background:var(--ink);color:var(--panel);font-weight:700}
+.tbl td.m{font-size:1.05em}
+.tbl tr.total td{background:var(--red-bg);font-weight:700}
+.sumlist{list-style:none;margin:0;padding:0;counter-reset:s}
+.sumlist li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px dotted var(--line)}
+.sumlist li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--red);color:var(--red);font-weight:900;text-align:center;line-height:25px}
+.sumlist li:last-child{border-bottom:0}
+footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-size:.82rem}
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .ph .no{min-width:3.6rem;font-size:1rem}
+  .ph h2{font-size:1rem;padding:8px 10px}
+  .fb{padding:16px 12px 8px}
+  .tools{padding-left:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .nav,.done,.tools{display:none}
+  body{background:#fff;color:#000}
+  .prob{break-inside:avoid;box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1><span>数学</span>演習チェック　ページ2</h1>
+  <p>確率・展開・領域・三角関数の4問。ページ1と同じく、<strong>赤枠の公式</strong>を覚え、青いところで理由を確認、黄色のところでテストの書き方を押さえましょう。</p>
+  <div class="legend" aria-label="この資料の見かた">
+    <div><b><span class="swatch sw-red"></span>赤枠＝覚える公式・式変形</b>テストで書く式です。</div>
+    <div><b><span class="swatch sw-blue"></span>青＝やさしい解説</b>中学の知識でわかるように説明します。</div>
+    <div><b><span class="swatch sw-mark"></span>黄＝テストでのポイント</b>書き忘れ・減点されやすいところ。</div>
+  </div>
+</div>
+
+<nav class="nav" aria-label="目次">
+  <div class="nav-in">
+    <a href="#p1">148</a><a href="#p2">202</a><a href="#p3">283</a><a href="#p4">302</a><a href="#pfinal">直前</a>
+    <span class="tools">
+      <span class="progress" id="progress" aria-live="polite"></span>
+      <button class="btn" id="hideBtn" aria-pressed="false" type="button">答えをかくす</button>
+    </span>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= ① Exercise A 148 ================= -->
+<section class="prob" id="p1" data-key="p1">
+  <div class="ph"><span class="no">A148</span><h2>先に4勝したら優勝：引き分けのあるゲームの確率</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">A と B の2人があるゲームを繰り返し行い、先に4勝した方を優勝とする。1回のゲームで A が勝つ確率が 1/3、B が勝つ確率が 1/3 のとき、次の問いに答えよ。
+      <span class="sub">(1) ちょうど6回目のゲームで A が優勝する確率を求めよ。</span>
+      <span class="sub">(2) A が優勝する確率を求めよ。</span></p>
+
+    <div class="fb" data-label="使う公式：二項係数（組み合わせ）">
+      <span class="m">同じ試行を <i>n</i> 回くり返し、「当たり」が <i>r</i> 回・「はずれ」が <i>n</i>−<i>r</i> 回となる並べ方の数：<span class="box"><sub><i>n</i></sub>C<sub><i>r</i></sub></span></span>
+      <span class="m">当たりの確率が <i>p</i> のとき、その並び方1通りの確率 ＝ <i>p</i><sup><i>r</i></sup>(1−<i>p</i>)<sup><i>n</i>−<i>r</i></sup>　⇒　全体 ＝ <span class="box"><sub><i>n</i></sub>C<sub><i>r</i></sub> <i>p</i><sup><i>r</i></sup>(1−<i>p</i>)<sup><i>n</i>−<i>r</i></sup></span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：2種類に「まとめて」しまう</span>
+      <p>1回の結果は「A勝ち（1/3）・B勝ち（1/3）・引き分け（1/3）」の3通り。でも今回知りたいのは<b>Aが何回勝ったか</b>だけなので、「B勝ち」と「引き分け」は区別せずに、まとめて<b>「Aが勝たなかった」</b>という1つのグループにしてしまいます。</p>
+      <p>「Aが勝たなかった」確率 ＝ 1/3（B勝ち）＋1/3（引き分け）＝ <b>2/3</b>。こうすると、1回ごとに「Aが勝つ（1/3）」か「Aが勝たない（2/3）」かの<b>2通りだけ</b>になり、<sub><i>n</i></sub>C<sub><i>r</i></sub> を使う普通の確率計算ができます。</p>
+    </div>
+
+    <h3>(1) ちょうど6回目に A が優勝する</h3>
+    <div class="easy"><span class="t">状況を言いかえる</span>
+      <p>6回目にAが4勝目 ⇒ <b>5回目までにAがちょうど3勝</b>（残り2回はどちらも「Aが勝たない」）、そして6回目はAの勝ち。</p>
+    </div>
+    <div class="fb soft" data-label="5回のうち3回がA勝ちの並べ方">
+      <span class="m">5回のうち、どの3回がAの勝ちかを選ぶ：<span class="box"><sub>5</sub>C<sub>3</sub> ＝ <sub>5</sub>C<sub>2</sub> ＝ 10</span> 通り</span>
+      <span class="m">1つの並び方の確率：(1/3)<sup>3</sup> × (2/3)<sup>2</sup>　（A勝ち3回 × Aが勝たない2回）</span>
+    </div>
+    <div class="easy"><span class="t">なぜ ₅C₃ と ₅C₂ は同じ？</span>「5回のうちAが勝つ3回を選ぶ」のと「5回のうちAが勝たない2回を選ぶ」のは<b>同じ選び方を裏返しただけ</b>。だから ₅C₃＝₅C₂＝10 になります（どちらを使ってもOK）。</div>
+    <div class="fb" data-label="計算">
+      <span class="m"><i>P</i> ＝ <sub>5</sub>C<sub>3</sub> (1/3)<sup>3</sup>(2/3)<sup>2</sup> × (1/3)　　　← 最後の×(1/3)は「6回目にAが勝つ」確率</span>
+      <span class="m">＝ 10 × <span class="fr"><b>1</b><b>27</b></span> × <span class="fr"><b>4</b><b>9</b></span> × <span class="fr"><b>1</b><b>3</b></span> ＝ <span class="fr"><b>40</b><b>729</b></span></span>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av m">40/729</span></div>
+    <div class="pt"><span class="t">テストで書く一言：</span>「B勝ちと引き分けをまとめて『Aが勝たない』（確率2/3）として扱う」と一言書いておくと、なぜ3通りなのに2通りの計算でよいのかが伝わります。</div>
+
+    <h3>(2) A が優勝する確率</h3>
+    <div class="easy"><span class="t">引き分けは「先送り」にすぎない</span>
+      <p>引き分けは、AにもBにも勝ち星がつかないので、<b>誰が優勝するかには影響しません</b>。ただゲームが1回分長引くだけです。だから「引き分けを全部とばして、AかBが決着した回（＝勝負がついた回）だけを見る」と考えても、最終的にどちらが先に4勝するかは変わりません。</p>
+      <p>「勝負がついた回」だけを見ると、Aが勝つかBが勝つかの確率はそれぞれ (1/3)：(1/3) ＝ <b>1：1</b>。つまりAが勝つ条件付き確率は <span class="box">1/2</span>（五分五分のコイン投げと同じ）になります。</p>
+    </div>
+    <div class="fb" data-label="五分五分のコイン投げで「先に4勝」">
+      <span class="m">「勝負がついた回」を1回のコイン投げ（A勝ち確率 1/2）とみなすと、Aが<i>ちょうどk</i>回目の決着で4勝目をあげる確率は</span>
+      <span class="m"><span class="box"><sub><i>k</i>−1</sub>C<sub>3</sub> (1/2)<sup><i>k</i>−1</sup> × (1/2)</span>　（<i>k</i>＝4, 5, 6, 7）</span>
+    </div>
+    <div class="easy"><span class="t">なぜ k は4〜7だけ？</span>4勝するには最低4回の決着が必要（<i>k</i>＝4）。また、相手Bも4勝すれば終わるので、決着は最大でも7回（4勝3敗）まで。だから <i>k</i>＝4,5,6,7 の4通りを全部たせば、Aが優勝するすべての場合をもれなく数えられます。</div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th><i>k</i>（決着の回数）</th><th>4</th><th>5</th><th>6</th><th>7</th></tr></thead>
+        <tbody>
+          <tr><td>確率</td><td class="m"><sub>3</sub>C<sub>3</sub>(1/2)<sup>4</sup>＝1/16</td><td class="m"><sub>4</sub>C<sub>3</sub>(1/2)<sup>5</sup>＝1/8</td><td class="m"><sub>5</sub>C<sub>3</sub>(1/2)<sup>6</sup>＝5/32</td><td class="m"><sub>6</sub>C<sub>3</sub>(1/2)<sup>7</sup>＝5/32</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fb soft" data-label="合計">
+      <span class="m"><i>P</i>(A優勝) ＝ 1/16＋1/8＋5/32＋5/32 ＝ 2/32＋4/32＋5/32＋5/32 ＝ <span class="box">16/32 ＝ 1/2</span></span>
+    </div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av m">1/2</span></div>
+    <div class="pt"><span class="t">検算のショートカット：</span>AとBは条件が完全に対称（どちらも勝つ確率1/3）なので、最初から <i>P</i>(A優勝)＋<i>P</i>(B優勝)＝1、<i>P</i>(A優勝)＝<i>P</i>(B優勝) より <span class="hl">1/2</span> と即答することもできます。上の組み合わせの計算は、それが本当に正しいことを確かめる裏付けになっています。</div>
+  </div>
+</section>
+
+<!-- ================= ② Exercise 202 ================= -->
+<section class="prob" id="p2" data-key="p2">
+  <div class="ph"><span class="no">202</span><h2>2項定理：x² の係数から a を求め、x⁻⁶ の係数を出す</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q"><i class="m">a</i>＞0 とする。<span class="m">(<i>ax</i> ＋ <span class="fr"><b>2</b><b><i>a</i><sup>2</sup><i>x</i></b></span>)<sup>10</sup></span> を展開したとき、<i>x</i><sup>2</sup> の項の係数が 560 であった。<i>a</i> の値を求めよ。また、そのときの <i>x</i><sup>−6</sup>（＝1/<i>x</i><sup>6</sup>）の項の係数を求めよ。</p>
+
+    <div class="fb" data-label="2項定理（公式）">
+      <span class="m">(<i>X</i>＋<i>Y</i>)<sup><i>n</i></sup> の一般項（<i>r</i>＝0,1,…,<i>n</i>）：<span class="box"><sub><i>n</i></sub>C<sub><i>r</i></sub> <i>X</i><sup><i>n</i>−<i>r</i></sup><i>Y</i><sup><i>r</i></sup></span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：2項定理は「10個のカッコから選ぶ」</span>
+      <p>(<i>X</i>＋<i>Y</i>)<sup>10</sup> は (<i>X</i>＋<i>Y</i>) を10回かけ算したもの。10個のカッコそれぞれから <i>X</i> か <i>Y</i> のどちらかを1つ選んで掛け合わせると考えると、「<i>Y</i> を <i>r</i> 個選ぶ（残り10−<i>r</i>個は<i>X</i>）」の選び方が <sub>10</sub>C<sub><i>r</i></sub> 通り。今回は <i>X</i>＝<i>ax</i>，<i>Y</i>＝2/(<i>a</i><sup>2</sup><i>x</i>) です。</p>
+    </div>
+
+    <h3>① 一般項を作る</h3>
+    <div class="fb soft" data-label="展開式の一般項">
+      <span class="m"><sub>10</sub>C<sub><i>r</i></sub> (<i>ax</i>)<sup>10−<i>r</i></sup> <span class="fr"><b>2</b><b><i>a</i><sup>2</sup><i>x</i></b></span><sup><i>r</i></sup> ＝ <span class="box"><sub>10</sub>C<sub><i>r</i></sub> · <span class="fr"><b>2<sup><i>r</i></sup><i>a</i><sup>10−<i>r</i></sup></b><b><i>a</i><sup>2<i>r</i></sup></b></span> · <span class="fr"><b><i>x</i><sup>10−<i>r</i></sup></b><b><i>x</i><sup><i>r</i></sup></b></span></span></span>
+    </div>
+    <div class="pt"><span class="t">この先にやること：</span>これが <i>x</i>² および 1/<i>x</i>⁶ の項を表すような <i>r</i> の値を、それぞれ求めます。</div>
+
+    <h3>② x² の項の r を決める</h3>
+    <div class="fb" data-label="xの指数をそろえる">
+      <span class="m"><span class="fr"><b><i>x</i><sup>10−<i>r</i></sup></b><b><i>x</i><sup><i>r</i></sup></b></span> ＝ <i>x</i><sup>2</sup> とすると　<i>x</i><sup>10−<i>r</i></sup> ＝ <i>x</i><sup>2+<i>r</i></sup>　より　10−<i>r</i> ＝ 2＋<i>r</i>　すなわち　<span class="box"><i>r</i> ＝ 4</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>分数のまま「＝x²」とするのではなく、まず <i>x</i><sup>10−<i>r</i></sup>＝<i>x</i><sup>2</sup>·<i>x</i><sup><i>r</i></sup>＝<i>x</i><sup>2+<i>r</i></sup> の形にしてから、<b>指数どうしを＝で結ぶ</b>のがコツです。</div>
+    <div class="fb soft" data-label="x²の項の係数">
+      <span class="m"><sub>10</sub>C<sub>4</sub> · <span class="fr"><b>2<sup>4</sup><i>a</i><sup>6</sup></b><b><i>a</i><sup>8</sup></b></span> ＝ <span class="fr"><b>10·9·8·7</b><b>4·3·2·1</b></span> · 2<sup>4</sup> · <span class="fr"><b>1</b><b><i>a</i><sup>2</sup></b></span> ＝ <span class="box">3360/<i>a</i><sup>2</sup></span></span>
+    </div>
+    <div class="fb" data-label="aを求める">
+      <span class="m">これが560となるから　3360/<i>a</i><sup>2</sup> ＝ 560　⇒　<i>a</i><sup>2</sup> ＝ 6</span>
+      <span class="m"><i>a</i>＞0 より　<span class="box"><i>a</i> ＝ √6</span></span>
+    </div>
+    <div class="ans"><span class="al">答</span><span class="av m">a ＝ √6</span></div>
+
+    <h3>③ 1/x⁶ の項の係数（a＝√6 を使う）</h3>
+    <div class="fb soft" data-label="xの指数をそろえる">
+      <span class="m"><span class="fr"><b><i>x</i><sup>10−<i>r</i></sup></b><b><i>x</i><sup><i>r</i></sup></b></span> ＝ <span class="fr"><b>1</b><b><i>x</i><sup>6</sup></b></span> とすると　<i>x</i><sup>10−<i>r</i></sup>·<i>x</i><sup>6</sup> ＝ <i>x</i><sup><i>r</i></sup>　より　<i>x</i><sup>16−<i>r</i></sup> ＝ <i>x</i><sup><i>r</i></sup>　すなわち　16−<i>r</i> ＝ <i>r</i>　よって　<span class="box"><i>r</i> ＝ 8</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>②と同じく、分母をはらってから（両辺に<i>x</i><sup>6</sup>をかけて）指数を比べます。「両辺の<i>x</i>の肩（指数）が等しい」という1本の式にしてしまうのがポイントです。</div>
+    <div class="fb" data-label="1/x⁶の項の係数">
+      <span class="m"><sub>10</sub>C<sub>8</sub> · <span class="fr"><b>2<sup>8</sup>(√6)<sup>2</sup></b><b>(√6)<sup>16</sup></b></span> ＝ <sub>10</sub>C<sub>2</sub> · <span class="fr"><b>2<sup>8</sup></b><b>6<sup>7</sup></b></span> ＝ <span class="fr"><b>10·9</b><b>2·1</b></span> · <span class="fr"><b>2<sup>8</sup></b><b>2<sup>7</sup>×3<sup>7</sup></b></span> ＝ <span class="fr"><b>10</b><b>3<sup>5</sup></b></span> ＝ <span class="box">10/243</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：√6の2乗と16乗</span>(√6)²＝6はすぐ計算できます。(√6)¹⁶は、6⁷×(√6)²＝6⁷×6＝6⁸…としてもよいのですが、上の式では<sub>10</sub>C₈・2⁸(√6)²を(√6)¹⁶で割る形のまま、6＝2×3に分解して2のべき乗・3のべき乗を別々に約分すると計算がラクになります。</div>
+    <div class="ans"><span class="al">答</span><span class="av m">1/x⁶ の項の係数：10/243</span></div>
+
+    <div class="pt"><span class="t">一般項の指数の作り方（まとめ）：</span>
+      <span class="m">₁₀Cᵣ·<i>a</i><sup>10−<i>r</i></sup>·<i>x</i><sup>10−<i>r</i></sup>·2<sup><i>r</i></sup>·<i>a</i><sup>−2<i>r</i></sup>·<i>x</i><sup>−<i>r</i></sup> ＝ ₁₀Cᵣ <i>a</i><sup>10−3<i>r</i></sup>·2<sup><i>r</i></sup>·<i>x</i><sup>10−2<i>r</i></sup>　← これが係数（<i>a</i>の部分）×<i>x</i><sup>10−2<i>r</i></sup></span>
+      この「10−2<i>r</i>」の部分を2とおいたり−6とおいたりすれば、<i>r</i>が一発で決まります（②③で使った手順と同じ結果になる近道です）。
+    </div>
+  </div>
+</section>
+
+<!-- ================= ③ Exercise 283 ================= -->
+<section class="prob" id="p3" data-key="p3">
+  <div class="ph"><span class="no">283</span><h2>絶対値の不等式が表す領域と、最大・最小</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">座標平面上で不等式 <span class="m">|<i>x</i>−3| ＋ |<i>y</i>−3| ≦ 2</span> で表される領域を <i>D</i> とする。<span class="src">（同志社大）</span>
+      <span class="sub">(1) 領域 <i>D</i> を図示せよ。</span>
+      <span class="sub">(2) 点 (<i>x</i>, <i>y</i>) が <i>D</i> を動くとき、2<i>x</i>＋<i>y</i> の最大値と、そのときの <i>x</i>, <i>y</i> の値を求めよ。</span>
+      <span class="sub">(3) 点 (<i>x</i>, <i>y</i>) が <i>D</i> を動くとき、<i>x</i><sup>2</sup>＋<i>y</i><sup>2</sup>−4<i>x</i>−2<i>y</i> の最大値と、そのときの <i>x</i>, <i>y</i> の値を求めよ。</span></p>
+
+    <h3>(1) 領域を図示する</h3>
+    <div class="fb" data-label="ひし形の領域">
+      <span class="m">|<i>x</i>−<i>a</i>| ＋ |<i>y</i>−<i>b</i>| ≦ <i>r</i> は、中心 (<i>a</i>, <i>b</i>)，中心から頂点までの距離 <i>r</i> の<span class="box">ひし形（内部と周を含む）</span></span>
+      <span class="m">この問題：中心 (3, 3)，<i>r</i>＝2　⇒　頂点 <span class="box">(5, 3)　(3, 5)　(1, 3)　(3, 1)</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：絶対値は「場合分け」で外す</span>
+      <p>絶対値の中の符号が分からないので、<i>u</i>＝<i>x</i>−3，<i>v</i>＝<i>y</i>−3 とおいて、|<i>u</i>|＋|<i>v</i>|≦2 を <b>u, v それぞれの符号で4つに場合分け</b>します。</p>
+    </div>
+    <div class="fb soft" data-label="4つの場合分け">
+      <span class="m">① <i>u</i>≧0, <i>v</i>≧0 のとき：|<i>u</i>|＝<i>u</i>，|<i>v</i>|＝<i>v</i> ⇒ <span class="box"><i>u</i>＋<i>v</i>≦2</span></span>
+      <span class="m">② <i>u</i>≧0, <i>v</i>＜0 のとき：|<i>u</i>|＝<i>u</i>，|<i>v</i>|＝−<i>v</i> ⇒ <span class="box"><i>u</i>−<i>v</i>≦2</span></span>
+      <span class="m">③ <i>u</i>＜0, <i>v</i>≧0 のとき：|<i>u</i>|＝−<i>u</i>，|<i>v</i>|＝<i>v</i> ⇒ <span class="box">−<i>u</i>＋<i>v</i>≦2</span></span>
+      <span class="m">④ <i>u</i>＜0, <i>v</i>＜0 のとき：|<i>u</i>|＝−<i>u</i>，|<i>v</i>|＝−<i>v</i> ⇒ <span class="box">−<i>u</i>−<i>v</i>≦2</span>　（＝<i>u</i>＋<i>v</i>≧−2）</span>
+    </div>
+    <div class="easy"><span class="t">4つの式を絵にすると…</span>
+      <p>①〜④はどれも「傾き±1の直線より内側」を表す不等式です。<i>uv</i>平面上でこの4つを同時に満たす範囲は、4点 (2,0)，(0,2)，(−2,0)，(0,−2) を頂点とするひし形になります（①の u+v≦2 は右上の辺、②の u−v≦2 は右下の辺、…というように、4つの式がひし形の4辺をそれぞれ1本ずつ作ります）。</p>
+      <p><i>u</i>＝<i>x</i>−3，<i>v</i>＝<i>y</i>−3 を元に戻す（<i>x</i>軸方向に+3、<i>y</i>軸方向に+3ずらす）と、頂点は (5,3)，(3,5)，(1,3)，(3,1) になります。</p>
+    </div>
+    <div class="pt"><span class="t">検算：</span>①の頂点は u＋v＝2 上で v＝0（u軸上）の点 u＝2 → (x,y)=(5,3)、u＝0（v軸上）の点 v＝2 → (x,y)=(3,5)。同じように②③④からも残り2つの頂点が出て、先に求めた4頂点と一致します。</div>
+    <figure class="fig">
+      <svg viewBox="0 0 440 440" role="img" aria-label="中心(3,3)のひし形の領域D">
+        <defs><pattern id="g3" width="60" height="60" patternUnits="userSpaceOnUse" x="40" y="40"><path d="M60 0H0V60" fill="none" stroke="var(--line)" stroke-width="1"/></pattern></defs>
+        <rect x="40" y="40" width="360" height="360" fill="url(#g3)"/>
+        <line x1="40" y1="400" x2="415" y2="400" stroke="var(--ink)" stroke-width="2"/>
+        <line x1="40" y1="400" x2="40" y2="25" stroke="var(--ink)" stroke-width="2"/>
+        <g font-size="13" fill="var(--sub)" font-family="sans-serif" text-anchor="middle">
+          <text x="40" y="418">0</text><text x="100" y="418">1</text><text x="160" y="418">2</text><text x="220" y="418">3</text><text x="280" y="418">4</text><text x="340" y="418">5</text><text x="400" y="418">6</text>
+          <text x="28" y="404" text-anchor="end">0</text><text x="28" y="344" text-anchor="end">1</text><text x="28" y="284" text-anchor="end">2</text><text x="28" y="224" text-anchor="end">3</text><text x="28" y="164" text-anchor="end">4</text><text x="28" y="104" text-anchor="end">5</text><text x="28" y="44" text-anchor="end">6</text>
+        </g>
+        <text x="425" y="404" font-size="14" fill="var(--ink)" font-family="serif" font-style="italic">x</text>
+        <text x="46" y="30" font-size="14" fill="var(--ink)" font-family="serif" font-style="italic">y</text>
+        <polygon points="340,220 220,100 100,220 220,340" fill="var(--red-bg)" stroke="var(--red)" stroke-width="3.5" stroke-linejoin="round"/>
+        <!-- line 2x+y=13 -->
+        <line x1="280" y1="100" x2="400" y2="340" stroke="var(--blue)" stroke-width="2.5" stroke-dasharray="7 5"/>
+        <!-- segment from (2,1) to (3,5) -->
+        <line x1="160" y1="340" x2="220" y2="100" stroke="var(--ink)" stroke-width="2" stroke-dasharray="3 4"/>
+        <g fill="var(--red)"><circle cx="340" cy="220" r="5"/><circle cx="220" cy="100" r="5"/><circle cx="100" cy="220" r="5"/><circle cx="220" cy="340" r="5"/></g>
+        <circle cx="220" cy="220" r="3.5" fill="var(--ink)"/>
+        <circle cx="160" cy="340" r="5" fill="var(--ink)"/>
+        <g font-size="13" font-family="sans-serif" font-weight="700">
+          <text x="348" y="214" fill="var(--red)">(5,3)</text>
+          <text x="228" y="96" fill="var(--red)">(3,5)</text>
+          <text x="56" y="214" fill="var(--red)">(1,3)</text>
+          <text x="228" y="358" fill="var(--red)">(3,1)</text>
+          <text x="200" y="240" fill="var(--sub)" font-weight="400">中心(3,3)</text>
+          <text x="168" y="326" fill="var(--ink)" font-weight="400">(2,1)</text>
+          <text x="330" y="150" fill="var(--blue)" font-weight="400">2x+y=13</text>
+        </g>
+      </svg>
+      <figcaption>赤＝領域 <i>D</i>（ひし形）。青の点線＝(2)の直線 2<i>x</i>＋<i>y</i>＝13、黒の点線＝(3)で使う(2,1)から(3,5)への線</figcaption>
+    </figure>
+    <div class="ans"><span class="al">答 (1)</span><span class="av m">中心 (3, 3)，頂点 (5, 3)，(3, 5)，(1, 3)，(3, 1) のひし形（内部と周を含む）</span></div>
+
+    <h3>(2) 2x＋y の最大値</h3>
+    <div class="fb" data-label="1次式の最大・最小">
+      <span class="m">領域が多角形のとき、<i>ax</i>＋<i>by</i> の形の1次式の最大・最小は<span class="box">頂点</span>でとる</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：直線 2x＋y＝k を動かす</span>
+      <p>2<i>x</i>＋<i>y</i>＝<i>k</i> は、<i>k</i> を変えると平行に動く直線（傾き −2）です。<i>k</i> を大きくしていくと、直線は右上へ動き、<b>領域に最後に触れるところ</b>が最大になります。ひし形の辺の傾きは ±1 で、この直線（傾き −2）より緩やかなので、最後に触れるのは辺ではなく<b>右の頂点 (5, 3)</b> です。</p>
+    </div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>頂点 (<i>x</i>, <i>y</i>)</th><th>(5, 3)</th><th>(3, 5)</th><th>(1, 3)</th><th>(3, 1)</th></tr></thead>
+        <tbody><tr><td>2<i>x</i>＋<i>y</i></td><td class="m"><b>13</b></td><td class="m">11</td><td class="m">5</td><td class="m">7</td></tr></tbody>
+      </table>
+    </div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av m">最大値 13（(<i>x</i>, <i>y</i>) ＝ (5, 3) のとき）</span></div>
+
+    <h3>(3) x²＋y²−4x−2y の最大値</h3>
+    <div class="fb" data-label="平方完成">
+      <span class="m"><i>x</i><sup>2</sup>＋<i>y</i><sup>2</sup>−4<i>x</i>−2<i>y</i> ＝ (<i>x</i>−2)<sup>2</sup>−4 ＋ (<i>y</i>−1)<sup>2</sup>−1 ＝ <span class="box">(<i>x</i>−2)<sup>2</sup> ＋ (<i>y</i>−1)<sup>2</sup> − 5</span></span>
+      <span class="m">(<i>x</i>−2)<sup>2</sup>＋(<i>y</i>−1)<sup>2</sup> ＝ 点 (<i>x</i>, <i>y</i>) と点 A(2, 1) の<span class="box">距離の2乗</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：一番遠い点を探す</span>
+      <p>A(2, 1) を中心に円をだんだん大きくしていくと、領域 <i>D</i> に<b>最後まで触れている</b>のは、A から一番遠い点です。ひし形（ふくらんでいない多角形）では、それはいつも<b>頂点</b>のどれかになります。だから4つの頂点だけ調べればOK。</p>
+    </div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>頂点 (<i>x</i>, <i>y</i>)</th><th>(5, 3)</th><th>(3, 5)</th><th>(1, 3)</th><th>(3, 1)</th></tr></thead>
+        <tbody><tr><td>(<i>x</i>−2)²＋(<i>y</i>−1)²</td><td class="m">9＋4＝13</td><td class="m"><b>1＋16＝17</b></td><td class="m">1＋4＝5</td><td class="m">1＋0＝1</td></tr></tbody>
+      </table>
+    </div>
+    <div class="fb" data-label="答えの計算">
+      <span class="m">最大の距離² ＝ 17（頂点 (3, 5)）⇒ 最大値 ＝ 17 − 5 ＝ <span class="box">12</span></span>
+    </div>
+    <div class="ans"><span class="al">答 (3)</span><span class="av m">最大値 12（(<i>x</i>, <i>y</i>) ＝ (3, 5) のとき）</span></div>
+    <div class="pt"><span class="t">テストで書く一言：</span>「<span class="hl">領域は凸な多角形なので、最大値は頂点でとる</span>」と書いてから頂点の値を表にすると、根拠のある答案になります。</div>
+  </div>
+</section>
+
+<!-- ================= ④ 三角関数 ================= -->
+<section class="prob" id="p4" data-key="p4">
+  <div class="ph"><span class="no">302</span><h2>2倍角で変形 → 合成 → 最大・最小と解の個数</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">0 ≦ <i class="m">θ</i> ≦ π を満たす実数 <i>θ</i> について、<span class="m"><i>f</i>(<i>θ</i>) ＝ 2sin<sup>2</sup><i>θ</i> − 4cos<sup>2</sup><i>θ</i> ＋ 6√3 sin<i>θ</i> cos<i>θ</i></span> とする。
+      <span class="sub">(1) <i>f</i>(<i>θ</i>) を2倍角を用いた形に変形せよ。</span>
+      <span class="sub">(2) <i>f</i>(<i>θ</i>) ＝ −1 ＋ 6sin(2<i>θ</i>−<i>α</i>) と表すとき、<i>α</i> を求めよ。</span>
+      <span class="sub">(3) <i>f</i>(<i>θ</i>) の最大値・最小値を求めよ。また <i>f</i>(<i>θ</i>)＝4 を満たす <i>θ</i> の個数を求めよ。</span>
+      <span class="src">※元の資料に文字化けがあり、読み取った式です。教科書の式と一致するか確認してください。</span></p>
+
+    <h3>(1) 加法定理だけで2θの形に変形</h3>
+    <div class="fb" data-label="覚える公式はこれだけ：加法定理">
+      <span class="m">sin(<i>A</i>＋<i>B</i>) ＝ sin<i>A</i>cos<i>B</i> ＋ cos<i>A</i>sin<i>B</i></span>
+      <span class="m">cos(<i>A</i>＋<i>B</i>) ＝ cos<i>A</i>cos<i>B</i> − sin<i>A</i>sin<i>B</i></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：2倍角は「覚えるもの」ではなく「その場で作るもの」</span>
+      <p>2倍角の公式（sin2θ＝…，cos2θ＝…）を別に丸暗記する必要はありません。加法定理で <i>A</i>＝<i>B</i>＝<i>θ</i> と<b>同じ角を2つ入れるだけ</b>で、その場で作れます。</p>
+    </div>
+    <div class="fb soft" data-label="加法定理にA=B=θを代入する">
+      <span class="m">sin2<i>θ</i> ＝ sin(<i>θ</i>＋<i>θ</i>) ＝ sin<i>θ</i>cos<i>θ</i>＋cos<i>θ</i>sin<i>θ</i> ＝ <span class="box">2sin<i>θ</i>cos<i>θ</i></span></span>
+      <span class="m">cos2<i>θ</i> ＝ cos(<i>θ</i>＋<i>θ</i>) ＝ cos<i>θ</i>cos<i>θ</i>−sin<i>θ</i>sin<i>θ</i> ＝ <span class="box">cos<sup>2</sup><i>θ</i>−sin<sup>2</sup><i>θ</i></span></span>
+    </div>
+    <div class="easy"><span class="t">sin²θ・cos²θ をcos2θで表す（使うのはsin²θ+cos²θ=1だけ）</span>
+      <p>cos2<i>θ</i>＝cos²<i>θ</i>−sin²<i>θ</i> と、おなじみの sin²<i>θ</i>＋cos²<i>θ</i>＝1 を連立させます。</p>
+      <p>たす：cos2<i>θ</i>＋1＝2cos²<i>θ</i>　⇒　cos²<i>θ</i>＝(1＋cos2<i>θ</i>)/2</p>
+      <p>ひく：1−cos2<i>θ</i>＝2sin²<i>θ</i>　⇒　sin²<i>θ</i>＝(1−cos2<i>θ</i>)/2</p>
+    </div>
+    <div class="pt"><span class="t">ここまでの道具：</span>使ったのは<span class="hl">加法定理</span>と<span class="hl">sin²θ+cos²θ=1</span>の2つだけ。「2倍角の公式」や「半角の公式」を別物として覚える必要はありません。</div>
+
+    <h3>f(θ)に代入して整理する</h3>
+    <div class="fb" data-label="変形">
+      <span class="m">2sin<sup>2</sup><i>θ</i> ＝ 2×(1−cos2<i>θ</i>)/2 ＝ 1 − cos2<i>θ</i></span>
+      <span class="m">−4cos<sup>2</sup><i>θ</i> ＝ −4×(1＋cos2<i>θ</i>)/2 ＝ −2 − 2cos2<i>θ</i></span>
+      <span class="m">6√3 sin<i>θ</i>cos<i>θ</i> ＝ 3√3×(2sin<i>θ</i>cos<i>θ</i>) ＝ 3√3 sin2<i>θ</i>　（sin2θ＝2sinθcosθ を使った）</span>
+    </div>
+    <div class="fb soft" data-label="合計">
+      <span class="m"><i>f</i>(<i>θ</i>) ＝ (1−cos2<i>θ</i>) ＋ (−2−2cos2<i>θ</i>) ＋ 3√3 sin2<i>θ</i></span>
+      <span class="m">＝ (1−2) ＋ (−cos2<i>θ</i>−2cos2<i>θ</i>) ＋ 3√3 sin2<i>θ</i> ＝ <span class="box">−1 − 3cos2<i>θ</i> ＋ 3√3 sin2<i>θ</i></span></span>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av m"><i>f</i>(<i>θ</i>) ＝ −1 − 3cos2<i>θ</i> ＋ 3√3 sin2<i>θ</i></span></div>
+
+    <h3>(2) 三角関数の合成</h3>
+    <div class="fb" data-label="合成の公式">
+      <span class="m"><i>a</i> sin<i>X</i> ＋ <i>b</i> cos<i>X</i> ＝ <span class="box"><i>r</i> sin(<i>X</i> ＋ <i>β</i>)</span>　ただし <i>r</i>＝√(<i>a</i><sup>2</sup>＋<i>b</i><sup>2</sup>)，cos<i>β</i>＝<i>a</i>/<i>r</i>，sin<i>β</i>＝<i>b</i>/<i>r</i></span>
+      <span class="m">この問題では <i>X</i>＝2<i>θ</i>，<i>a</i>＝3√3，<i>b</i>＝−3　⇒　<i>r</i> ＝ √(27＋9) ＝ 6</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：係数を比べる</span>
+      <p>目標の形 6sin(2<i>θ</i>−<i>α</i>) を加法定理で開くと <span class="m">6cos<i>α</i>·sin2<i>θ</i> − 6sin<i>α</i>·cos2<i>θ</i></span>。これを 3√3 sin2<i>θ</i> − 3cos2<i>θ</i> と見比べます。</p>
+    </div>
+    <div class="fb soft" data-label="係数の比較">
+      <span class="m">6cos<i>α</i> ＝ 3√3，　6sin<i>α</i> ＝ 3　⇒　cos<i>α</i> ＝ √3/2，sin<i>α</i> ＝ 1/2</span>
+      <span class="m">この2つを同時に満たす角は　<span class="box"><i>α</i> ＝ π/6</span>（30°）</span>
+    </div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av m"><i>α</i> ＝ π/6　　<i>f</i>(<i>θ</i>) ＝ −1 ＋ 6sin(2<i>θ</i> − π/6)</span></div>
+    <div class="check"><b>検算：</b><i>θ</i>＝0 を元の式に入れると <i>f</i>(0)＝0−4＋0＝−4。合成した式でも −1＋6sin(−π/6)＝−1−3＝−4 ✓。</div>
+
+    <h3>(3) 最大値・最小値と f(θ)＝4 の解の個数</h3>
+    <div class="easy"><span class="t">まず範囲を確認（ここが大事）</span>
+      <p><i>φ</i>＝2<i>θ</i>−π/6 とおくと、0 ≦ <i>θ</i> ≦ π から <b>−π/6 ≦ <i>φ</i> ≦ 11π/6</b>（−30° 〜 330°）。幅が 2π（360°）ちょうどなので、sin<i>φ</i> は −1 から 1 までの<b>すべての値</b>をとります。</p>
+      <ul>
+        <li>sin<i>φ</i>＝1：<i>φ</i>＝π/2 ⇒ 2<i>θ</i>＝2π/3 ⇒ <i>θ</i>＝π/3</li>
+        <li>sin<i>φ</i>＝−1：<i>φ</i>＝3π/2 ⇒ 2<i>θ</i>＝5π/3 ⇒ <i>θ</i>＝5π/6（0 ≦ <i>θ</i> ≦ π の中 ✓）</li>
+      </ul>
+    </div>
+    <div class="fb" data-label="最大・最小">
+      <span class="m">−1 ≦ sin(2<i>θ</i>−π/6) ≦ 1　⇒　−7 ≦ <i>f</i>(<i>θ</i>) ≦ 5</span>
+      <span class="m">最大値 <span class="box">5</span>（<i>θ</i>＝π/3）　　最小値 <span class="box">−7</span>（<i>θ</i>＝5π/6）</span>
+    </div>
+    <div class="pt"><span class="t">テストの落とし穴：</span>「−1≦sin≦1 だから最大 5・最小 −7」とだけ書くのは不十分なことがあります。<span class="hl"><i>θ</i> の範囲で sin が本当に ±1 になるか</span>（そのときの <i>θ</i> が範囲内か）を確認して書きましょう。</div>
+
+    <div class="fb soft" data-label="f(θ)＝4 の解の個数">
+      <span class="m">−1 ＋ 6sin<i>φ</i> ＝ 4　⇒　<span class="box">sin<i>φ</i> ＝ 5/6</span>（≒ 0.83）　<i>φ</i> は −30° ≦ <i>φ</i> ≦ 330°</span>
+    </div>
+    <div class="easy"><span class="t">単位円で数える</span>sin<i>φ</i> は単位円の点の「高さ」。高さ 5/6 の点は、円の上に<b>2つ</b>（第1象限と第2象限）あります。角度で言うと約 56.4° と 約 123.6°。どちらも −30°〜330° の中。1周を超えた分（＋360°）は範囲外、負の側（−360°）も範囲外です。よって <i>φ</i> は2個、それに対応して <i>θ</i> も <b>2個</b>。</div>
+    <figure class="fig">
+      <svg id="trigGraph" viewBox="0 0 560 300" role="img" aria-label="f(θ)のグラフとy=4の交点2つ"></svg>
+      <figcaption>y＝<i>f</i>(<i>θ</i>) のグラフ（0≦<i>θ</i>≦π）。y＝4 の線と<b>2点</b>で交わります。</figcaption>
+    </figure>
+    <div class="ans"><span class="al">答 (3)</span><span class="av m">最大値 5，最小値 −7。<i>f</i>(<i>θ</i>)＝4 を満たす <i>θ</i> は 2個</span></div>
+  </div>
+</section>
+
+<!-- ================= まとめ ================= -->
+<section class="prob" id="pfinal" data-key="pfinal">
+  <div class="ph"><span class="no">直前</span><h2>ここだけ確認</h2><button class="done" type="button" aria-pressed="false">確認した</button></div>
+  <div class="body">
+    <ol class="sumlist">
+      <li><b>148（確率）：</b>「Aが勝たない」（B勝ち＋引分＝2/3）とまとめてCで計算。(1) ₅C₃(1/3)³(2/3)²×(1/3)＝<span class="box">40/729</span>。(2) 引き分けを除いて決着回だけのコイン投げ(1/2)に直し、k=4〜7を合計 → <span class="box">1/2</span>。</li>
+      <li><b>202（2項定理）：</b>一般項 <sub>10</sub>C<sub><i>r</i></sub>2<sup><i>r</i></sup><i>a</i><sup>10−3<i>r</i></sup><i>x</i><sup>10−2<i>r</i></sup>。x²は<i>r</i>＝4でa＝√6、x⁻⁶は<i>r</i>＝8で係数10/243。</li>
+      <li><b>283（領域）：</b>|<i>x</i>−3|＋|<i>y</i>−3|≦2 は中心(3,3)のひし形。(2) 最大 13 at (5,3)。(3) (<i>x</i>−2)²＋(<i>y</i>−1)²−5 で最大 12 at (3,5)。<span class="hl">最大・最小は頂点</span>。</li>
+      <li><b>三角関数：</b>2倍角で <i>f</i>＝−1−3cos2<i>θ</i>＋3√3sin2<i>θ</i> → 合成して −1＋6sin(2<i>θ</i>−π/6)（<i>α</i>＝π/6）。最大 5，最小 −7，<i>f</i>＝4 は2個。<span class="hl"><i>θ</i> の範囲チェック</span>を忘れずに。</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+<footer>「答えをかくす」をオンにすると、答えがぼやけて表示されます。タップで1つずつ見られます。「できた」の記録はこの端末のブラウザに保存されます。</footer>
+
+<script>
+(function(){
+  var KEY='math-page2-done';
+  var done={};
+  function load(){try{var v=localStorage.getItem(KEY);done=v?JSON.parse(v)||{}:{};}catch(e){done={};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  var sections=[].slice.call(document.querySelectorAll('.prob'));
+  var progress=document.getElementById('progress');
+  function refresh(){
+    var n=0;
+    sections.forEach(function(s){
+      var b=s.querySelector('.done');var k=s.getAttribute('data-key');
+      var on=!!done[k];if(on)n++;
+      if(b)b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    progress.textContent=n+' / '+sections.length;
+  }
+  load();refresh();
+  sections.forEach(function(s){
+    var b=s.querySelector('.done');if(!b)return;
+    b.addEventListener('click',function(){
+      var k=s.getAttribute('data-key');
+      if(done[k])delete done[k];else done[k]=1;
+      save();refresh();
+    });
+  });
+  var hideBtn=document.getElementById('hideBtn');
+  hideBtn.addEventListener('click',function(){
+    var on=hideBtn.getAttribute('aria-pressed')!=='true';
+    hideBtn.setAttribute('aria-pressed',on?'true':'false');
+    document.body.classList.toggle('hide',on);
+    if(!on){[].forEach.call(document.querySelectorAll('.ans.shown'),function(a){a.classList.remove('shown');});}
+  });
+  [].forEach.call(document.querySelectorAll('.ans'),function(a){
+    a.addEventListener('click',function(){if(document.body.classList.contains('hide'))a.classList.toggle('shown');});
+  });
+
+  /* graph of f(theta) = -1 + 6 sin(2 theta - pi/6) on [0, pi] */
+  var svg=document.getElementById('trigGraph');
+  if(svg){
+    var NS='http://www.w3.org/2000/svg';
+    var L=56,R=20,T=20,W=560,H=300,plotW=W-L-R,plotH=230;
+    function X(t){return L+t/Math.PI*plotW;}
+    function Y(v){return T+(5-v)/12*plotH;}
+    function f(t){return -1+6*Math.sin(2*t-Math.PI/6);}
+    function el(n,a,txt){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(txt!==undefined)e.textContent=txt;svg.appendChild(e);return e;}
+    var ink='var(--ink)',line='var(--line)',sub='var(--sub)',red='var(--red)',blue='var(--blue)';
+    [-7,-4,-1,4,5].forEach(function(v){
+      el('line',{x1:L,y1:Y(v),x2:W-R,y2:Y(v),stroke:line,'stroke-width':1});
+      el('text',{x:L-8,y:Y(v)+4,'text-anchor':'end','font-size':12,fill:sub,'font-family':'sans-serif'},String(v));
+    });
+    el('line',{x1:L,y1:Y(0),x2:W-R,y2:Y(0),stroke:ink,'stroke-width':1.5});
+    el('line',{x1:L,y1:T-8,x2:L,y2:Y(-7)+8,stroke:ink,'stroke-width':1.5});
+    [['0',0],['π/3',Math.PI/3],['π/2',Math.PI/2],['5π/6',5*Math.PI/6],['π',Math.PI]].forEach(function(p){
+      el('line',{x1:X(p[1]),y1:Y(-7),x2:X(p[1]),y2:Y(-7)+5,stroke:ink});
+      el('text',{x:X(p[1]),y:Y(-7)+20,'text-anchor':'middle','font-size':12,fill:sub,'font-family':'sans-serif'},p[0]);
+    });
+    var d='';
+    for(var i=0;i<=240;i++){var t=Math.PI*i/240;d+=(i?'L':'M')+X(t).toFixed(1)+' '+Y(f(t)).toFixed(1);}
+    el('path',{d:d,fill:'none',stroke:blue,'stroke-width':3,'stroke-linejoin':'round'});
+    el('line',{x1:L,y1:Y(4),x2:W-R,y2:Y(4),stroke:red,'stroke-width':2.5,'stroke-dasharray':'7 5'});
+    el('text',{x:W-R-4,y:Y(4)-6,'text-anchor':'end','font-size':13,fill:red,'font-family':'sans-serif','font-weight':700},'y = 4');
+    var p1=Math.PI/2*0+ (Math.asin(5/6)+Math.PI/6)/2;
+    var p2=(Math.PI-Math.asin(5/6)+Math.PI/6)/2;
+    [p1,p2].forEach(function(t){el('circle',{cx:X(t),cy:Y(4),r:5.5,fill:red});});
+    el('circle',{cx:X(Math.PI/3),cy:Y(5),r:5,fill:ink});
+    el('text',{x:X(Math.PI/3)+9,y:Y(5)+14,'font-size':12,fill:ink,'font-family':'sans-serif','font-weight':700},'最大 5');
+    el('circle',{cx:X(5*Math.PI/6),cy:Y(-7),r:5,fill:ink});
+    el('text',{x:X(5*Math.PI/6)-9,y:Y(-7)-8,'text-anchor':'end','font-size':12,fill:ink,'font-family':'sans-serif','font-weight':700},'最小 −7');
+    el('text',{x:W-R,y:Y(0)-6,'text-anchor':'end','font-size':13,fill:ink,'font-family':'serif','font-style':'italic'},'θ');
+  }
+})();
+</script>
+</body>
+</html>

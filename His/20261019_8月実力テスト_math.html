@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>令和8年度 3年 文系数学 8月実力考査① 第1問</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f5fa; --panel:#ffffff; --ink:#16233b; --sub:#54627c; --line:#d3dce8;
+  --red:#d0212f; --red-bg:#fff1f2; --red-ink:#ffffff;
+  --blue:#1d5fa8; --blue-bg:#eaf3fc;
+  --mark:#ffe873; --mark-bg:#fff8d6; --mark-line:#e0b400;
+  --green:#2e7d4f; --green-bg:#eaf7ee;
+  --purp:#7b3fb0; --purp-bg:#f3ecfa;
+  --ans-bg:#16233b; --ans-ink:#ffffff;
+  --grid:rgba(29,95,168,.08);
+  --shadow:0 1px 0 rgba(22,35,59,.06), 0 8px 24px -14px rgba(22,35,59,.35);
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  --math:"STIX Two Text","Times New Roman","Noto Serif JP","Yu Mincho",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+    --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+    --blue:#82bbff; --blue-bg:#13263b;
+    --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+    --green:#7fd19f; --green-bg:#122a1c;
+    --purp:#c9a4ec; --purp-bg:#241a30;
+    --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+    --grid:rgba(130,187,255,.07);
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+  --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+  --blue:#82bbff; --blue-bg:#13263b;
+  --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+  --green:#7fd19f; --green-bg:#122a1c;
+  --purp:#c9a4ec; --purp-bg:#241a30;
+  --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+  --grid:rgba(130,187,255,.07);
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:auto;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--sans);font-size:16px;line-height:1.85;
+}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.hero{max-width:960px;margin:0 auto;padding:34px 18px 8px}
+.hero h1{margin:0;font-size:clamp(1.5rem,5vw,2.3rem);font-weight:900;line-height:1.35;letter-spacing:.02em}
+.hero h1 span{display:inline-block;border:4px solid var(--red);border-radius:12px;padding:0 .35em;margin-right:.2em;color:var(--red);transform:rotate(-1.5deg)}
+.hero p{margin:12px 0 0;color:var(--sub);max-width:42em}
+.legend{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:22px 0 4px}
+.legend > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.86rem;line-height:1.6;box-shadow:var(--shadow)}
+.legend b{display:block;margin-bottom:4px;font-size:.9rem}
+.swatch{display:inline-block;width:1.6em;height:1em;vertical-align:-.15em;margin-right:.4em;border-radius:3px}
+.sw-red{border:2.5px solid var(--red);background:var(--red-bg)}
+.sw-blue{border-left:5px solid var(--blue);background:var(--blue-bg)}
+.sw-mark{border-left:5px solid var(--mark-line);background:var(--mark-bg)}
+.sw-purp{border-left:5px solid var(--purp);background:var(--purp-bg)}
+
+.notice{max-width:960px;margin:18px auto 0;padding:0 18px}
+.notice-in{background:var(--purp-bg);border:2px solid var(--purp);border-radius:12px;padding:14px 18px;font-size:.92rem}
+.notice-in b{color:var(--purp)}
+.notice-in ul{margin:8px 0 0;padding-left:1.3em}
+.notice-in li{margin:4px 0}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:960px;margin:0 auto;padding:8px 18px;display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 12px;line-height:1.7}
+.nav a:hover{border-color:var(--red);color:var(--red)}
+.tools{margin-left:auto;display:flex;gap:8px;flex:none;padding-left:8px}
+.btn{font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:3px 12px;line-height:1.7}
+.btn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.progress{font-size:.82rem;font-weight:700;color:var(--sub);white-space:nowrap;align-self:center}
+
+main{max-width:960px;margin:0 auto;padding:12px 18px 60px}
+.prob{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:26px 0;padding:0 0 18px;box-shadow:var(--shadow);overflow:hidden}
+.ph{display:flex;align-items:stretch;border-bottom:2px solid var(--ink);margin-bottom:16px}
+.ph .no{flex:none;min-width:4.6rem;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--panel);font-weight:900;font-size:1.2rem;padding:8px 10px;letter-spacing:.03em;text-align:center;line-height:1.3}
+.ph .htext{flex:1;align-self:center;padding:10px 16px}
+.ph .htext .tag{display:block;font-size:.74rem;font-weight:700;color:var(--red);letter-spacing:.06em;margin-bottom:1px}
+.ph h2{margin:0;font-size:1.05rem;font-weight:700;line-height:1.5}
+.ph .done{margin:8px 12px 8px 0;align-self:center}
+.body{padding:0 clamp(14px,3vw,24px)}
+h3{font-size:1rem;font-weight:900;margin:22px 0 6px;padding-bottom:3px;border-bottom:2px dotted var(--line)}
+p{margin:8px 0}
+.q{border:2px dashed var(--line);border-radius:10px;padding:10px 14px;margin:0 0 14px}
+.q::before{content:"問題";display:inline-block;font-weight:900;font-size:.8rem;background:var(--ink);color:var(--panel);border-radius:4px;padding:0 8px;margin-right:8px;line-height:1.6}
+.q .sub{display:block;margin-top:4px}
+
+/* math */
+.m{font-family:var(--math);font-size:1.12em;line-height:1.9}
+.m i{font-style:italic}
+sup,sub{line-height:0;font-size:.72em}
+.fr{display:inline-block;vertical-align:middle;text-align:center;line-height:1.25;margin:0 .18em;font-size:.95em}
+.fr > b{display:block;font-weight:inherit;padding:0 .25em}
+.fr > b:first-child{border-bottom:1.5px solid currentColor}
+.int{display:inline-block;vertical-align:middle;white-space:nowrap;margin:0 .1em}
+.int .sym{display:inline-block;vertical-align:middle;font-size:2.1em;line-height:1;font-weight:300;font-family:var(--math)}
+.lim{display:inline-block;vertical-align:middle;font-size:.62em;line-height:1.1;margin-left:.1em;text-align:left}
+.lim > span{display:block}
+.lim > span:first-child{margin-bottom:1.15em}
+.int .lim{margin-left:-.25em}
+.brk{font-size:2.2em;line-height:1;font-weight:300;vertical-align:middle;display:inline-block;margin:0 .02em;font-family:var(--math)}
+
+.fb{position:relative;margin:24px 0 14px;padding:16px 16px 10px;border:3px solid var(--red);border-radius:12px;background:var(--red-bg)}
+.fb::before{content:attr(data-label);position:absolute;top:-.95em;left:14px;background:var(--red);color:var(--red-ink);font-weight:900;font-size:.82rem;line-height:1.7;padding:0 12px;border-radius:999px}
+.fb .m{display:block;overflow-x:auto;padding:1px 0}
+.fb .m + .m{margin-top:2px}
+.fb.soft{border-style:dashed;border-width:2.5px}
+.box{font-family:var(--math);display:inline-block;border:2.5px solid var(--red);border-radius:6px;padding:0 .4em;background:var(--panel)}
+
+.easy{margin:14px 0;padding:12px 16px;background:var(--blue-bg);border-left:6px solid var(--blue);border-radius:0 10px 10px 0}
+.easy > .t{display:block;font-weight:900;color:var(--blue);font-size:.92rem;margin-bottom:2px}
+.easy > .t::before{content:"💡 "}
+.easy ul,.easy ol{margin:6px 0;padding-left:1.3em}
+.easy li{margin:3px 0}
+.pt{margin:14px 0;padding:10px 16px;background:var(--mark-bg);border-left:6px solid var(--mark-line);border-radius:0 10px 10px 0}
+.pt > .t{font-weight:900}
+.hl{background:linear-gradient(transparent 55%,var(--mark) 55%);font-weight:700}
+
+.ans{margin:16px 0 4px;background:var(--ans-bg);color:var(--ans-ink);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ans .al{flex:none;font-weight:900;font-size:.85rem;background:var(--red);color:var(--red-ink);border-radius:999px;padding:0 12px;line-height:1.7}
+.ans .av{font-weight:700;font-size:1.05rem;flex:1;min-width:0}
+body.hide .ans{cursor:pointer}
+body.hide .ans:not(.shown) .av{filter:blur(9px);user-select:none}
+body.hide .ans:not(.shown)::after{content:"タップで答えを見る";font-size:.78rem;opacity:.75;margin-left:auto}
+
+.check{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 12px;margin:10px 0;font-size:.92rem}
+.check b{color:var(--blue)}
+.check .chk-row{margin:2px 0;overflow-x:auto}
+.done{font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--panel);color:var(--sub);border-radius:999px;padding:0 12px;line-height:1.9}
+.done[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--panel)}
+.done[aria-pressed="true"]::before{content:"✓ "}
+.fig{margin:14px 0;text-align:center}
+.fig svg{width:100%;max-width:460px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.fig figcaption{font-size:.84rem;color:var(--sub);margin-top:4px;line-height:1.6}
+.tblwrap{overflow-x:auto;margin:12px 0}
+table.tbl{border-collapse:collapse;width:100%;min-width:420px;font-size:.95rem;text-align:center}
+.tbl th,.tbl td{border:1.5px solid var(--ink);padding:7px 10px}
+.tbl th{background:var(--ink);color:var(--panel);font-weight:700}
+.tbl td.left{text-align:left}
+.sumlist{list-style:none;margin:0;padding:0;counter-reset:s}
+.sumlist li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px dotted var(--line)}
+.sumlist li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--red);color:var(--red);font-weight:900;text-align:center;line-height:25px}
+.sumlist li:last-child{border-bottom:0}
+.memo{background:var(--green-bg);border:2px solid var(--green);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:.95rem}
+.memo b{color:var(--green)}
+footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-size:.82rem}
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .ph .no{min-width:3.6rem;font-size:1.05rem}
+  .ph h2{font-size:1rem}
+  .fb{padding:16px 12px 8px}
+  .tools{padding-left:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .nav,.done,.tools{display:none}
+  body{background:#fff;color:#000}
+  .prob{break-inside:avoid;box-shadow:none}
+}
+
+.figgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:14px 0}
+.figgrid figure{margin:0;text-align:center}
+.figgrid svg{width:100%;max-width:300px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.figgrid figcaption{font-size:.84rem;color:var(--sub);margin-top:4px;line-height:1.5}
+.ok{color:var(--green);font-weight:900}
+.ng{color:var(--red);font-weight:900}
+.tbl td.m,.tbl td .m{font-size:1.02em}
+.tbl th,.tbl td.nw{white-space:nowrap}
+</style>
+</head><body>
+
+<div class="hero">
+  <h1><span>第1問</span>令和8年度 3年 文系数学 8月実力考査①</h1>
+  <p>数学Ⅰ（(1)〜(5)）、数学Ⅱ（(6)、(8)）、数学A（(7)）の8問です。それぞれ、<strong>答案の形</strong>と<strong>考え方</strong>を分けて整理しました。図があるところは図で位置関係を確かめながら進めましょう。赤枠の公式、青い解説、黄色いテストのポイントで整理しています。</p>
+  <div class="legend" aria-label="この資料の見かた">
+    <div><b><span class="swatch sw-red"></span>赤枠＝覚える公式・答案の形</b>テストで書く式です。</div>
+    <div><b><span class="swatch sw-blue"></span>青＝やさしい解説</b>中学の知識でわかるように説明します。</div>
+    <div><b><span class="swatch sw-mark"></span>黄＝テストでのポイント</b>書き忘れ・減点されやすいところ。</div>
+    <div><b><span class="swatch sw-purp"></span>紫＝資料の整理について</b>元の資料からの変更点の確認。</div>
+  </div>
+</div>
+
+<div class="notice">
+  <div class="notice-in">
+    <b>元の資料について</b>
+    <ul>
+      <li>8問すべての答えを計算し直して確認しました。元の解答とすべて一致しています（(1) <span class="m">(<i>x</i> + 2<i>y</i> + 1)(<i>x</i> + 3<i>y</i> + 4)</span>、(2) <span class="m"><i>y</i> = 2<i>x</i>² − 12<i>x</i> + 19</span>、(3) <span class="m">−1</span>、(4) <span class="m"><i>B</i><i>C</i> = 2√13</span>・<span class="m"><i>A</i><i>D</i> = 24√3/7</span>、(5) 平均 −39・分散 48、(6) <span class="m"><i>m</i> = 6，1/6</span>、(7) <span class="m">211/243</span>、(8) 中心 (−3, 3)・接線 <span class="m">2<i>x</i> − 3<i>y</i> + 2 = 0</span>）。</li>
+      <li><b>(6) について：</b><span class="m"><i>m</i> = 1/6</span> のときの解は <span class="m">−1/3，−1/2</span> で、比は <span class="m">2 : 3</span>（絶対値の比）になります。どちらの <span class="m"><i>m</i></span> も条件を満たすので、両方が答えです。</li>
+      <li><b>図の追加：</b>(2)、(3)、(4)、(8) に図を入れました。</li>
+    </ul>
+  </div>
+</div>
+
+<nav class="nav" aria-label="目次">
+  <div class="nav-in">
+    <a href="#p1">(1)</a><a href="#p2">(2)</a><a href="#p3">(3)</a><a href="#p4">(4)</a><a href="#p5">(5)</a><a href="#p6">(6)</a><a href="#p7">(7)</a><a href="#p8">(8)</a><a href="#pfinal">直前</a>
+    <span class="tools">
+      <span class="progress" id="progress" aria-live="polite"></span>
+      <button class="btn" id="hideBtn" aria-pressed="false" type="button">答えをかくす</button>
+    </span>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= (1) ================= -->
+<section class="prob" id="p1" data-key="p1">
+  <div class="ph"><span class="no">(1)</span><div class="htext"><span class="tag">数学Ⅰ・数と式</span><h2>因数分解：x の2次式として見る</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q"><span class="m"><i>x</i>² + 5(<i>y</i> + 1)<i>x</i> + 6<i>y</i>² + 11<i>y</i> + 4</span> を因数分解せよ。</p>
+
+    <div class="fb" data-label="たすき掛けの考え方">
+      x について見ると <span class="m"><i>x</i>² + (・)<i>x</i> + (・)</span> の形の2次式。定数項 <span class="m">6<i>y</i>² + 11<i>y</i> + 4</span> を2つの式の積に分けて、<b>掛けて定数項、足して x の係数</b>になるようにする。
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">6<i>y</i>² + 11<i>y</i> + 4 = (2<i>y</i> + 1)(3<i>y</i> + 4)</span>
+      <span class="m">(2<i>y</i> + 1) + (3<i>y</i> + 4) = 5(<i>y</i> + 1)</span>
+      <span class="m">よって　<span class="box">(<i>x</i> + 2<i>y</i> + 1)(<i>x</i> + 3<i>y</i> + 4)</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ 2y+1 と 3y+4 を選ぶの？</span>
+      <p>(x + p)(x + q) を展開すると <span class="m"><i>x</i>² + (<i>p</i> + <i>q</i>)<i>x</i> + <i>p</i><i>q</i></span> になります。今回は <span class="m"><i>p</i> + <i>q</i> = 5(<i>y</i> + 1)</span>、<span class="m"><i>p</i><i>q</i> = 6<i>y</i>² + 11<i>y</i> + 4</span> を満たす p, q を探します。</p>
+      <p><span class="m">6<i>y</i>² + 11<i>y</i> + 4</span> を (2y + 1)(3y + 4) と分けると、<span class="m">2<i>y</i> + 1 + 3<i>y</i> + 4 = 5<i>y</i> + 5 = 5(<i>y</i> + 1)</span> になり、ちょうど真ん中の係数と一致します。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>答えを展開して元の式と一致するか確かめる習慣をつけましょう。<span class="m">(<i>x</i> + 2<i>y</i> + 1)(<i>x</i> + 3<i>y</i> + 4)</span> を展開すると、<span class="m"><i>x</i>² + (5<i>y</i> + 5)<i>x</i> + (2<i>y</i> + 1)(3<i>y</i> + 4)</span> となり、元の式と一致します ✓。</div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m">(<i>x</i> + 2<i>y</i> + 1)(<i>x</i> + 3<i>y</i> + 4)</span></span></div>
+  </div>
+</section>
+
+<!-- ================= (2) ================= -->
+<section class="prob" id="p2" data-key="p2">
+  <div class="ph"><span class="no">(2)</span><div class="htext"><span class="tag">数学Ⅰ・二次関数</span><h2>平行移動：x を x − 2 に、全体から 1 を引く</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">二次関数 <span class="m"><i>y</i> = 2<i>x</i>² − 4<i>x</i> + 4</span> のグラフを、x軸方向に 2、y軸方向に −1 だけ平行移動したグラフの方程式を求めよ。</p>
+
+    <div class="fb" data-label="平行移動の公式">
+      <span class="m"><i>x</i>軸方向に <i>p</i>、<i>y</i>軸方向に <i>q</i> だけ移動 ⇒ <span class="box"><i>y</i> − <i>q</i> = <i>f</i>(<i>x</i> − <i>p</i>)</span></span>
+      <span class="m">今回は <i>p</i> = 2、<i>q</i> = −1 なので　<span class="box"><i>y</i> + 1 = <i>f</i>(<i>x</i> − 2)</span>　⇒　<span class="box"><i>y</i> = <i>f</i>(<i>x</i> − 2) − 1</span></span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>y</i> = 2(<i>x</i> − 2)² − 4(<i>x</i> − 2) + 4 − 1</span>
+      <span class="m">= 2(<i>x</i>² − 4<i>x</i> + 4) − 4<i>x</i> + 8 + 3</span>
+      <span class="m">= 2<i>x</i>² − 8<i>x</i> + 8 − 4<i>x</i> + 11 = <span class="box">2<i>x</i>² − 12<i>x</i> + 19</span></span>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 340 280" role="img" aria-label="y=2x²−4x+4（灰の点線）を右へ2、下へ1 動かした y=2x²−12x+19（青）" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="280" fill="var(--panel)"/><line x1="0.0" y1="235.6" x2="340.0" y2="235.6" stroke="var(--ink)" stroke-width="1.4"/><line x1="65.0" y1="0.0" x2="65.0" y2="280.0" stroke="var(--ink)" stroke-width="1.4"/><text x="326.0" y="229.6" font-size="14" font-weight="400" fill="var(--ink)" text-anchor="end" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">x</text><text x="73.0" y="14.0" font-size="14" font-weight="400" fill="var(--ink)" text-anchor="start" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">y</text><polyline points="40.0,188.8 41.2,189.9 42.5,190.9 43.8,192.0 45.0,193.0 46.2,194.0 47.5,195.0 48.8,195.9 50.0,196.9 51.2,197.8 52.5,198.7 53.8,199.6 55.0,200.5 56.2,201.3 57.5,202.2 58.8,203.0 60.0,203.8 61.2,204.6 62.5,205.3 63.8,206.1 65.0,206.8 66.2,207.5 67.5,208.2 68.8,208.9 70.0,209.5 71.2,210.2 72.5,210.8 73.8,211.4 75.0,212.0 76.2,212.6 77.5,213.1 78.8,213.6 80.0,214.1 81.2,214.6 82.5,215.1 83.8,215.6 85.0,216.0 86.2,216.4 87.5,216.8 88.8,217.2 90.0,217.6 91.2,218.0 92.5,218.3 93.8,218.6 95.0,218.9 96.2,219.2 97.5,219.4 98.8,219.7 100.0,219.9 101.2,220.1 102.5,220.3 103.8,220.5 105.0,220.6 106.2,220.8 107.5,220.9 108.8,221.0 110.0,221.1 111.2,221.1 112.5,221.2 113.8,221.2 115.0,221.2 116.2,221.2 117.5,221.2 118.8,221.1 120.0,221.1 121.2,221.0 122.5,220.9 123.8,220.8 125.0,220.6 126.2,220.5 127.5,220.3 128.8,220.1 130.0,219.9 131.2,219.7 132.5,219.4 133.8,219.2 135.0,218.9 136.2,218.6 137.5,218.3 138.8,218.0 140.0,217.6 141.2,217.2 142.5,216.8 143.8,216.4 145.0,216.0 146.2,215.6 147.5,215.1 148.8,214.6 150.0,214.1 151.2,213.6 152.5,213.1 153.8,212.6 155.0,212.0 156.2,211.4 157.5,210.8 158.8,210.2 160.0,209.5 161.2,208.9 162.5,208.2 163.8,207.5 165.0,206.8 166.2,206.1 167.5,205.3 168.8,204.6 170.0,203.8 171.2,203.0 172.5,202.2 173.8,201.3 175.0,200.5 176.2,199.6 177.5,198.7 178.8,197.8 180.0,196.9 181.2,195.9 182.5,195.0 183.8,194.0 185.0,193.0 186.2,192.0 187.5,190.9 188.8,189.9 190.0,188.8 191.2,187.7 192.5,186.6 193.8,185.5 195.0,184.3 196.2,183.2 197.5,182.0 198.8,180.8 200.0,179.6 201.2,178.4 202.5,177.1 203.8,175.8 205.0,174.5 206.2,173.2 207.5,171.9 208.8,170.6 210.0,169.2 211.2,167.8 212.5,166.4 213.8,165.0 215.0,163.6 216.2,162.2 217.5,160.7 218.8,159.2 220.0,157.7 221.2,156.2 222.5,154.6 223.8,153.1 225.0,151.5 226.2,149.9 227.5,148.3 228.8,146.7 230.0,145.0 231.2,143.4 232.5,141.7 233.8,140.0 235.0,138.3 236.2,136.5 237.5,134.8 238.8,133.0 240.0,131.2 241.3,129.4 242.5,127.6 243.8,125.7 245.0,123.9 246.2,122.0 247.5,120.1 248.8,118.2 250.0,116.2 251.2,114.3 252.5,112.3 253.8,110.3 255.0,108.3 256.2,106.3 257.5,104.2 258.8,102.2 260.0,100.1 261.2,98.0 262.5,95.9 263.8,93.8 265.0,91.6 266.2,89.4 267.5,87.2 268.8,85.0 270.0,82.8 271.2,80.6 272.5,78.3 273.8,76.0 275.0,73.7 276.2,71.4 277.5,69.1 278.8,66.8 280.0,64.4 281.2,62.0 282.5,59.6 283.8,57.2 285.0,54.7 286.2,52.3 287.5,49.8 288.8,47.3 290.0,44.8 291.2,42.3 292.5,39.7 293.8,37.2 295.0,34.6 296.2,32.0 297.5,29.4 298.8,26.7 300.0,24.1 301.2,21.4 302.5,18.7 303.8,16.0 305.0,13.3 306.2,10.5 307.5,7.8 308.8,5.0 310.0,2.2 311.2,-0.6 312.5,-3.5 313.8,-6.3 315.0,-9.2 316.2,-12.1 317.5,-15.0 318.8,-17.9 320.0,-20.9" fill="none" stroke="var(--sub)" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/><polyline points="40.0,52.0 41.2,54.5 42.5,57.0 43.8,59.5 45.0,61.9 46.2,64.4 47.5,66.8 48.8,69.2 50.0,71.6 51.2,74.0 52.5,76.3 53.8,78.6 55.0,80.9 56.2,83.2 57.5,85.5 58.8,87.8 60.0,90.0 61.2,92.2 62.5,94.4 63.8,96.6 65.0,98.8 66.2,101.0 67.5,103.1 68.8,105.2 70.0,107.3 71.2,109.4 72.5,111.4 73.8,113.5 75.0,115.5 76.2,117.5 77.5,119.5 78.8,121.5 80.0,123.4 81.2,125.4 82.5,127.3 83.8,129.2 85.0,131.1 86.2,132.9 87.5,134.8 88.8,136.6 90.0,138.4 91.2,140.2 92.5,142.0 93.8,143.7 95.0,145.5 96.2,147.2 97.5,148.9 98.8,150.6 100.0,152.2 101.2,153.9 102.5,155.5 103.8,157.1 105.0,158.7 106.2,160.3 107.5,161.8 108.8,163.4 110.0,164.9 111.2,166.4 112.5,167.9 113.8,169.4 115.0,170.8 116.2,172.2 117.5,173.6 118.8,175.0 120.0,176.4 121.2,177.8 122.5,179.1 123.8,180.4 125.0,181.7 126.2,183.0 127.5,184.3 128.8,185.6 130.0,186.8 131.2,188.0 132.5,189.2 133.8,190.4 135.0,191.5 136.2,192.7 137.5,193.8 138.8,194.9 140.0,196.0 141.2,197.1 142.5,198.1 143.8,199.2 145.0,200.2 146.2,201.2 147.5,202.2 148.8,203.1 150.0,204.1 151.2,205.0 152.5,205.9 153.8,206.8 155.0,207.7 156.2,208.5 157.5,209.4 158.8,210.2 160.0,211.0 161.2,211.8 162.5,212.5 163.8,213.3 165.0,214.0 166.2,214.7 167.5,215.4 168.8,216.1 170.0,216.7 171.2,217.4 172.5,218.0 173.8,218.6 175.0,219.2 176.2,219.8 177.5,220.3 178.8,220.8 180.0,221.3 181.2,221.8 182.5,222.3 183.8,222.8 185.0,223.2 186.2,223.6 187.5,224.0 188.8,224.4 190.0,224.8 191.2,225.2 192.5,225.5 193.8,225.8 195.0,226.1 196.2,226.4 197.5,226.6 198.8,226.9 200.0,227.1 201.2,227.3 202.5,227.5 203.8,227.7 205.0,227.8 206.2,228.0 207.5,228.1 208.8,228.2 210.0,228.3 211.2,228.3 212.5,228.4 213.8,228.4 215.0,228.4 216.2,228.4 217.5,228.4 218.8,228.3 220.0,228.3 221.2,228.2 222.5,228.1 223.8,228.0 225.0,227.8 226.2,227.7 227.5,227.5 228.8,227.3 230.0,227.1 231.2,226.9 232.5,226.6 233.8,226.4 235.0,226.1 236.2,225.8 237.5,225.5 238.8,225.2 240.0,224.8 241.3,224.4 242.5,224.0 243.8,223.6 245.0,223.2 246.2,222.8 247.5,222.3 248.8,221.8 250.0,221.3 251.2,220.8 252.5,220.3 253.8,219.8 255.0,219.2 256.2,218.6 257.5,218.0 258.8,217.4 260.0,216.7 261.2,216.1 262.5,215.4 263.8,214.7 265.0,214.0 266.2,213.3 267.5,212.5 268.8,211.8 270.0,211.0 271.2,210.2 272.5,209.4 273.8,208.5 275.0,207.7 276.2,206.8 277.5,205.9 278.8,205.0 280.0,204.1 281.2,203.1 282.5,202.2 283.8,201.2 285.0,200.2 286.2,199.2 287.5,198.1 288.8,197.1 290.0,196.0 291.2,194.9 292.5,193.8 293.8,192.7 295.0,191.5 296.2,190.4 297.5,189.2 298.8,188.0 300.0,186.8 301.2,185.6 302.5,184.3 303.8,183.0 305.0,181.7 306.2,180.4 307.5,179.1 308.8,177.8 310.0,176.4 311.2,175.0 312.5,173.6 313.8,172.2 315.0,170.8 316.2,169.4 317.5,167.9 318.8,166.4 320.0,164.9 321.2,163.4 322.5,161.8 323.8,160.3 325.0,158.7 326.2,157.1 327.5,155.5 328.8,153.9 330.0,152.2 331.2,150.6 332.5,148.9 333.8,147.2 335.0,145.5 336.2,143.7 337.5,142.0 338.8,140.2 340.0,138.4" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round"/><line x1="115.0" y1="221.2" x2="215.0" y2="221.2" stroke="var(--ink)" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="215.0" y1="221.2" x2="215.0" y2="228.4" stroke="var(--red)" stroke-width="1.8" stroke-dasharray="3 3"/><circle cx="115.0" cy="221.2" r="5.5" fill="var(--sub)" stroke="var(--panel)" stroke-width="1.5"/><text x="115.0" y="243.2" font-size="12.5" font-weight="700" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">頂点 (1, 2)</text><circle cx="215.0" cy="228.4" r="5.5" fill="var(--blue)" stroke="var(--panel)" stroke-width="1.5"/><text x="221.0" y="250.4" font-size="12.5" font-weight="700" fill="var(--blue)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">頂点 (3, 1)</text><text x="137.0" y="213.2" font-size="12" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">x方向 +2</text><text x="221.0" y="224.8" font-size="12" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">y方向 −1</text><rect x="10" y="8" width="236" height="50" rx="6" fill="var(--panel)" stroke="var(--line)"/><line x1="20.0" y1="26.0" x2="48.0" y2="26.0" stroke="var(--sub)" stroke-width="3" stroke-dasharray="6 5"/><text x="56.0" y="31.0" font-size="12.5" font-weight="700" fill="var(--sub)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">元：y = 2x² − 4x + 4</text><line x1="20.0" y1="46.0" x2="48.0" y2="46.0" stroke="var(--blue)" stroke-width="3"/><text x="56.0" y="51.0" font-size="12.5" font-weight="700" fill="var(--blue)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">移動後：y = 2x² − 12x + 19</text></svg>
+      <figcaption>灰の点線が元の放物線（頂点 (1, 2)）、青が移動後（頂点 (3, 1)）。頂点が右へ 2、下へ 1 動いています。</figcaption>
+    </figure>
+    <div class="easy"><span class="t">やさしい解説：「右へ2」は x を x − 2 に</span>
+      <p>グラフを右へ動かすと、同じ形の山（谷）が右側に移ります。例えば「x = 1 で最小だった放物線」が右へ 2 動くと、「x = 3 で最小」になります。そのため、式の中の x に <span class="m"><i>x</i> − 2</span> を代入します（x に −2 を足すと左へ、＋2 を足すと右へ動く、とは逆なので注意）。</p>
+      <p>「下へ1」は、式全体から 1 を引くだけです。</p>
+    </div>
+    <div class="check"><b>検算：</b>頂点で確かめると、元の頂点 (1, 2) を右へ 2、下へ 1 動かすと (3, 1)。移動後の式 <span class="m">2<i>x</i>² − 12<i>x</i> + 19 = 2(<i>x</i> − 3)² + 1</span> の頂点も (3, 1) で一致 ✓。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>「右へ 2」は <span class="hl">x → x − 2</span>。符号を逆にして <span class="m"><i>x</i> + 2</span> とすると誤りです。また、y方向の移動は式の外側（全体）に作用します。</div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m"><i>y</i> = 2<i>x</i>² − 12<i>x</i> + 19</span></span></div>
+  </div>
+</section>
+
+<!-- ================= (3) ================= -->
+<section class="prob" id="p3" data-key="p3">
+  <div class="ph"><span class="no">(3)</span><div class="htext"><span class="tag">数学Ⅰ・加法定理</span><h2>加法定理で cos を1つにまとめる</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q"><span class="m">cos 40° cos 140° − sin 40° cos 50°</span> を求めよ。</p>
+
+    <div class="fb" data-label="加法定理（使う公式）">
+      <span class="m"><span class="box">cos(α + β) = cos α cos β − sin α sin β</span></span>
+      <span class="m"><span class="box">sin(α + β) = sin α cos β + cos α sin β</span></span>
+      <span class="m">引き算の形（β を −β と考える）：<span class="box">cos(α − β) = cos α cos β + sin α sin β</span>，<span class="box">sin(α − β) = sin α cos β − cos α sin β</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：式の形を加法定理に合わせる</span>
+      <p>問題の式は <span class="m">cos 40° cos 140° − sin 40° cos 50°</span> です。加法定理の <span class="m">cos α cos β − sin α sin β</span> の形に似ていますが、2つ目の項の角が 40° と 50° で揃っていません。</p>
+      <p>そこで、<b>cos 50° と sin 40° をそれぞれ加法定理で書き換え</b>、2つの角を揃えます。</p>
+    </div>
+
+    <h3>STEP 1　cos 50° を sin 40° にする</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">cos 50° = cos(90° − 40°) = cos 90° cos 40° + sin 90° sin 40°</span>
+      <span class="m">cos 90° = 0、sin 90° = 1 より　= 0 + 1 · sin 40° = <span class="box">sin 40°</span></span>
+      <span class="m">よって　cos 50° = sin 40°</span>
+    </div>
+
+    <h3>STEP 2　sin 140° を sin 40° にする</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">sin 140° = sin(180° − 40°) = sin 180° cos 40° − cos 180° sin 40°</span>
+      <span class="m">sin 180° = 0、cos 180° = −1 より　= 0 · cos 40° − (−1) · sin 40° = <span class="box">sin 40°</span></span>
+      <span class="m">よって　sin 140° = sin 40°</span>
+    </div>
+
+    <h3>STEP 3　式を書き直す</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">cos 40° cos 140° − sin 40° cos 50°</span>
+      <span class="m">= cos 40° cos 140° − sin 40° · sin 40°　（<i>S</i><i>T</i><i>E</i><i>P</i> 1 より cos 50° = sin 40°）</span>
+      <span class="m">= cos 40° cos 140° − sin 40° · sin 140°　（<i>S</i><i>T</i><i>E</i><i>P</i> 2 より sin 40° = sin 140°）</span>
+    </div>
+
+    <h3>STEP 4　加法定理でまとめる</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">cos 40° cos 140° − sin 40° sin 140° = cos(40° + 140°)　（加法定理 cos(α + β) の形）</span>
+      <span class="m">= cos 180° = <span class="box">−1</span></span>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 300 280" role="img" aria-label="単位円。40°と140°は、y軸について対称。cos140°＝−cos40°" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="280" fill="var(--panel)"/><line x1="0.0" y1="150.0" x2="300.0" y2="150.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="150.0" y1="0.0" x2="150.0" y2="280.0" stroke="var(--ink)" stroke-width="1.4"/><circle cx="150" cy="150" r="110" fill="none" stroke="var(--sub)" stroke-width="1.6"/><line x1="150.0" y1="150.0" x2="234.3" y2="79.3" stroke="var(--blue)" stroke-width="2.4"/><line x1="150.0" y1="150.0" x2="65.7" y2="79.3" stroke="var(--red)" stroke-width="2.4"/><line x1="234.3" y1="79.3" x2="234.3" y2="150.0" stroke="var(--blue)" stroke-width="1.4" stroke-dasharray="4 3"/><line x1="65.7" y1="79.3" x2="65.7" y2="150.0" stroke="var(--red)" stroke-width="1.4" stroke-dasharray="4 3"/><circle cx="234.3" cy="79.3" r="5" fill="var(--blue)" stroke="var(--panel)" stroke-width="1.5"/><text x="242.3" y="71.3" font-size="13" font-weight="700" fill="var(--blue)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">40°</text><circle cx="65.7" cy="79.3" r="5" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><text x="57.7" y="71.3" font-size="13" font-weight="700" fill="var(--red)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">140°</text><text x="234.3" y="170.0" font-size="12.5" font-weight="700" fill="var(--blue)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">cos 40°</text><text x="65.7" y="170.0" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−cos 40°</text><text x="158.0" y="18.0" font-size="14" font-weight="400" fill="var(--ink)" text-anchor="start" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">y</text><text x="288.0" y="142.0" font-size="14" font-weight="400" fill="var(--ink)" text-anchor="end" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">x</text></svg>
+      <figcaption>単位円。40° と 140° は y軸について対称なので、sin は等しく（sin 140° = sin 40°）、cos は符号だけ反対になります。</figcaption>
+    </figure>
+    <div class="easy"><span class="t">やさしい解説：なぜ「cos(40°+140°)」になる？</span>
+      <p>加法定理 <span class="m">cos(α + β) = cos α cos β − sin α sin β</span> を右から左へ読みます。α = 40°、β = 140° とすると、右辺は <span class="m">cos 40° cos 140° − sin 40° sin 140°</span> になり、STEP 3 で作った式と同じ形です。</p>
+      <p>つまり、<b>式を加法定理の右辺の形に直してから、左辺にまとめる</b>のがこの問題の流れです。cos 180° は単位円で x 座標が −1 の点なので、−1 になります。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>問題の式を見て「<span class="hl">cos α cos β − sin α sin β の形になっていないか</span>」を確かめる。なっていなければ、<b>角を揃える（cos 50° → sin 40°、sin 40° → sin 140°）</b>で形を作る。最後に cos(α + β) の値を、単位円や特別な角で求める。</div>
+    <div class="check"><b>検算（数値）：</b>cos 40° ≒ 0.7660、cos 140° ≒ −0.7660、sin 40° ≒ 0.6428、sin 140° ≒ 0.6428。<br>
+      cos 40° cos 140° − sin 40° sin 140° ≒ −0.5868 − 0.4132 = −1.0000 ✓（cos 180° = −1 と一致）</div>
+    <div class="ans"><span class="al">答 (3)</span><span class="av"><span class="m">−1</span>（加法定理 cos(40° + 140°) = cos 180° を使う）</span></div>
+  </div>
+</section>
+
+<!-- ================= (4) ================= -->
+<section class="prob" id="p4" data-key="p4">
+  <div class="ph"><span class="no">(4)</span><div class="htext"><span class="tag">数学Ⅰ・図形と計量</span><h2>余弦定理と、角の二等分線の長さ</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">△ABC において、<span class="m"><i>A</i><i>B</i> = 6，<i>A</i><i>C</i> = 8，∠<i>A</i> = 60°</span> とする。
+      <span class="sub">(i) <span class="m"><i>B</i><i>C</i></span> の長さを求めよ。</span>
+      <span class="sub">(ii) ∠A の二等分線と <span class="m"><i>B</i><i>C</i></span> との交点を D とするとき、<span class="m"><i>A</i><i>D</i></span> の長さを求めよ。</span></p>
+
+    <h3>(i) BC の長さ（余弦定理）</h3>
+    <div class="fb" data-label="余弦定理">
+      <span class="m"><span class="box"><i>a</i>² = <i>b</i>² + <i>c</i>² − 2<i>b</i><i>c</i> cos <i>A</i></span>　（<i>a</i> は向かい側の辺、<i>b</i>, <i>c</i> は <i>A</i> をはさむ2辺）</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>B</i><i>C</i>² = 6² + 8² − 2 · 6 · 8 · cos 60° = 36 + 64 − 48 = 52</span>
+      <span class="m"><i>B</i><i>C</i> は正なので　<span class="box"><i>B</i><i>C</i> = 2√13</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：三平方の定理の一般形</span>
+      <p>直角三角形なら <span class="m"><i>a</i>² = <i>b</i>² + <i>c</i>²</span> ですが、角が 90° でないときは、<span class="m">−2<i>b</i><i>c</i> cos <i>A</i></span> の補正が加わります。cos 90° = 0 なので、直角のときは補正が消えて三平方の定理と同じになります。</p>
+    </div>
+
+    <h3>(ii) AD の長さ（三角形の面積を使う）</h3>
+    <figure class="fig">
+      <svg viewBox="0 0 290 260" role="img" aria-label="三角形ABCを、線分ADで△ABDと△ADCの2つに分けた図" xmlns="http://www.w3.org/2000/svg"><rect width="290" height="260" fill="var(--panel)"/><polygon points="40.0,232.0 220.0,232.0 194.3,142.9" fill="var(--blue-bg)" stroke="none"/><polygon points="40.0,232.0 194.3,142.9 160.0,24.2" fill="var(--mark-bg)" stroke="none"/><polygon points="40.0,232.0 220.0,232.0 160.0,24.2" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linejoin="round"/><line x1="40.0" y1="232.0" x2="194.3" y2="142.9" stroke="var(--red)" stroke-width="2.2" stroke-dasharray="6 5"/><text x="148.0" y="205.0" font-size="13" font-weight="700" fill="var(--blue)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">△ABD</text><text x="106.0" y="136.0" font-size="13" font-weight="700" fill="#8a5a00" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">△ADC</text><text x="86.1" y="221.2" font-size="12.5" font-weight="700" fill="var(--green)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">30°</text><text x="79.8" y="187.2" font-size="12.5" font-weight="700" fill="var(--green)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">30°</text><circle cx="40.0" cy="232.0" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="30.0" y="250.0" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">A</text><circle cx="220.0" cy="232.0" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="226.0" y="252.0" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">B</text><circle cx="160.0" cy="24.2" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="166.0" y="18.2" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">C</text><circle cx="194.3" cy="142.9" r="4.5" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><text x="200.3" y="160.9" font-size="14" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">D</text><text x="126.0" y="252.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">AB = 6</text><text x="2.0" y="172.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">AC = 8</text><text x="194.0" y="94.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">BC = 2√13</text></svg>
+      <figcaption>線分 AD（赤の点線）で、△ABC を <b>△ABD（青）と △ADC（黄）の2つ</b>に分けた図。∠A = 60° は、AD によって 30° ＋ 30° に分かれます。</figcaption>
+    </figure>
+    <div class="fb" data-label="面積の分け方">
+      <span class="m"><span class="box">△<i>A</i><i>B</i><i>C</i> ＝ △<i>A</i><i>B</i><i>D</i> ＋ △<i>A</i><i>D</i><i>C</i></span></span>
+      <span class="m">2つに分けた面積は、どちらも「2辺 × その間の角 × sin × 1/2」で表せる。</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：同じ面積を2通りに数える</span>
+      <p>三角形を線で2つに分けると、<b>2つの小さな三角形の面積の合計は、もとの三角形の面積と同じ</b>になります（重なりも隙間もないから）。</p>
+      <p>ここでは、同じ △ABC の面積を「① 辺 6, 8 と角 60° で求める」と「② 2つの小さな三角形の和で求める」の2通りで表します。②の方には未知の長さ AD が入っているので、①と比べると AD が求まります。</p>
+      <p>1つの図形を別の見方で数え直す、というのがこの解き方の考え方です。</p>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>A</i><i>D</i> は ∠<i>A</i> の二等分線なので　∠<i>B</i><i>A</i><i>D</i> = ∠<i>D</i><i>A</i><i>C</i> = 30°</span>
+      <span class="m">△<i>A</i><i>B</i><i>D</i> = (1/2) · <i>A</i><i>B</i> · <i>A</i><i>D</i> · sin 30°，　△<i>A</i><i>D</i><i>C</i> = (1/2) · <i>A</i><i>C</i> · <i>A</i><i>D</i> · sin 30°</span>
+      <span class="m">△<i>A</i><i>B</i><i>C</i> = △<i>A</i><i>B</i><i>D</i> + △<i>A</i><i>D</i><i>C</i> = (1/2) · <i>A</i><i>D</i> · sin 30° · (<i>A</i><i>B</i> + <i>A</i><i>C</i>)</span>
+      <span class="m">　　　= (1/2) · <i>A</i><i>D</i> · (1/2) · (6 + 8) = (7/2) <i>A</i><i>D</i>　…①</span>
+      <span class="m">一方、△<i>A</i><i>B</i><i>C</i> = (1/2) · 6 · 8 · sin 60° = 12√3　…②</span>
+      <span class="m">①と②より　(7/2) <i>A</i><i>D</i> = 12√3　⇒　<span class="box"><i>A</i><i>D</i> = 24√3 / 7</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：sin の値が 1/2 になる理由</span>
+      <p>sin 30° = 1/2、sin 60° = √3/2 は、30°・60°・90° の直角三角形（辺の比 1 : √3 : 2）から覚えられます。sin は「斜辺に対する高さの割合」なので、30° では高さが斜辺の半分になります。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>面積の式は「<span class="hl">2辺とその間の角</span>」で書く。△ABD では AB と AD の間の角 ∠BAD = 30°、△ADC では AD と AC の間の角 ∠DAC = 30° を使うこと。角を取り違えると答えが変わります。</div>
+    <div class="check"><b>検算（別の公式）：</b>AD = 2bc cos(A/2) / (b + c) ＝ 2 · 6 · 8 · cos 30° / 14 ＝ 96 · (√3/2) / 14 ＝ 48√3 / 14 ＝ <b>24√3 / 7</b> ✓。</div>
+
+    <h3>別解：角の二等分線の長さの公式</h3>
+    <div class="fb" data-label="角の二等分線の長さの公式">
+      <span class="m"><span class="box"><i>A</i><i>D</i>² = <i>b</i><i>c</i> [ 1 − <i>a</i>² / (<i>b</i> + <i>c</i>)² ]</span>　（<i>b</i> = <i>A</i><i>C</i>，<i>c</i> = <i>A</i><i>B</i>，<i>a</i> = <i>B</i><i>C</i>）</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>A</i><i>D</i>² = 6 · 8 [ 1 − (2√13)² / (6 + 8)² ]</span>
+      <span class="m">= 48 (1 − 52/196) = 48 · 144/196 = <span class="box">1728/49</span></span>
+      <span class="m"><i>A</i><i>D</i> は正なので　<span class="box"><i>A</i><i>D</i> = 24√3 / 7</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：公式は面積の考え方から出せる</span>
+      <p>この公式は、三角形 ABD と ACD に余弦定理を使うと導けます。公式を覚えるより、「面積で考えれば求まる」と分かっているほうが、忘れたときに役立ちます。</p>
+    </div>
+    <p class="small">参考動画：<a href="https://www.try-it.jp/chapters-6150/sections-6262/lessons-6287/" target="_blank" rel="noopener">【高校数学Ⅰ】「角の二等分線の長さの求め方」｜映像授業の Try IT（トライイット）</a></p>
+    <div class="ans"><span class="al">答 (4)</span><span class="av"><span class="m">(<i>i</i>) <i>B</i><i>C</i> = 2√13　　(<i>i</i><i>i</i>) <i>A</i><i>D</i> = 24√3/7</span></span></div>
+  </div>
+</section>
+
+<!-- ================= (5) ================= -->
+<section class="prob" id="p5" data-key="p5">
+  <div class="ph"><span class="no">(5)</span><div class="htext"><span class="tag">数学Ⅰ・データの分析</span><h2>y = −2x + 3 のときの平均と分散</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">変量 x の平均が 21、分散が 12 である。<span class="m"><i>y</i> = −2<i>x</i> + 3</span> とするとき、変量 y の平均と分散を求めよ。</p>
+
+    <div class="fb" data-label="変換の公式（y = ax + b のとき）">
+      <span class="m">平均：<span class="box">ȳ = <i>a</i>·<i>x</i>̄ + <i>b</i></span>　（<i>x</i>̄ は <i>x</i> の平均）</span>
+      <span class="m">分散：<span class="box"><i>s</i>_<i>y</i>² = <i>a</i>² <i>s</i>_<i>x</i>²</span>　（<i>b</i> は分散に影響しない）</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">平均　ȳ = −2 × 21 + 3 = <span class="box">−39</span></span>
+      <span class="m">分散　<i>V</i>(<i>y</i>) = (−2)² × 12 = <span class="box">48</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ分散は b を無視するの？</span>
+      <p>全部の値に同じ数を足しても、「平均からのズレ」は変わりません。例えば、どの点数にも 3 点を足すと、平均は 3 点上がりますが、一人ひとりの平均との差はそのままです。だから分散は変わりません。</p>
+      <p>一方、−2 倍すると、ズレも 2 倍になります。分散は「ズレの2乗の平均」なので、<b>(−2)² = 4 倍</b>になります。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>平均は「そのまま代入」、分散は「定数の2乗倍」。<span class="hl">分散に「+3」を足さない</span>こと、また「−2」を2乗して「+4」にすることを確認しましょう。</div>
+    <div class="ans"><span class="al">答 (5)</span><span class="av"><span class="m">平均 −39，　分散 48</span></span></div>
+  </div>
+</section>
+
+<!-- ================= (6) ================= -->
+<section class="prob" id="p6" data-key="p6">
+  <div class="ph"><span class="no">(6)</span><div class="htext"><span class="tag">数学Ⅱ・解と係数の関係</span><h2>2解の比が 2 : 3 となる m の値</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">2次方程式 <span class="m"><i>x</i>² − (<i>m</i> − 1)<i>x</i> + <i>m</i> = 0</span> の2解の比が <span class="m">2 : 3</span> であるとき、m の値を求めよ。</p>
+
+    <div class="fb" data-label="解と係数の関係">
+      2次方程式 <span class="m"><i>a</i><i>x</i>² + <i>b</i><i>x</i> + <i>c</i> = 0</span> の2解を α, β とすると
+      <span class="m"><span class="box">α + β = −<i>b</i>/<i>a</i>，　αβ = <i>c</i>/<i>a</i></span></span>
+      <span class="m">例：<i>x</i>² + 3<i>x</i> + 2 = 0 では　<i>a</i> = 1，<i>b</i> = 3，<i>c</i> = 2　⇒　和 ＝ −3，積 ＝ 2</span>
+      <span class="m">（確認：(<i>x</i> + 1)(<i>x</i> + 2) = 0 より解は −1，−2。和 −3、積 2 で一致 ✓）</span>
+      <span class="m">この問題（<i>a</i> = 1）では　<span class="box">和 ＝ <i>m</i> − 1，積 ＝ <i>m</i></span></span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">2解を 2<i>k</i>，3<i>k</i> とおく。解と係数の関係より</span>
+      <span class="m">2<i>k</i> + 3<i>k</i> = <i>m</i> − 1 より　<i>m</i> = 5<i>k</i> + 1　…①</span>
+      <span class="m">2<i>k</i> · 3<i>k</i> = <i>m</i> より　6<i>k</i>² = <i>m</i>　…②</span>
+      <span class="m">①を②に代入して　6<i>k</i>² = 5<i>k</i> + 1　⇒　6<i>k</i>² − 5<i>k</i> − 1 = 0</span>
+      <span class="m">(6<i>k</i> + 1)(<i>k</i> − 1) = 0　⇒　<i>k</i> = 1，−1/6</span>
+      <span class="m"><i>k</i> = 1 のとき <i>m</i> = 6，　<i>k</i> = −1/6 のとき <i>m</i> = 1/6</span>
+      <span class="m">よって　<span class="box"><i>m</i> = 6，1/6</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：「比」を文字で表す</span>
+      <p>2 : 3 の比は、「2 と 3 の倍率が同じ」という意味です。そこで、2解を <span class="m">2<i>k</i>，3<i>k</i></span> と置くと、比が自動的に 2 : 3 になります。k は「1 あたりの大きさ」のようなものです。</p>
+      <p>このように、「未知数を1つ増やして、条件を式にする」のが比の問題の定番です。</p>
+    </div>
+    <div class="check"><b>検算：</b><span class="m"><i>m</i> = 6</span> のとき、<span class="m"><i>x</i>² − 5<i>x</i> + 6 = 0</span>、解は 2 と 3 で比は 2 : 3 ✓。<span class="m"><i>m</i> = 1/6</span> のとき、<span class="m">6<i>x</i>² + 5<i>x</i> + 1 = 0</span>、解は <span class="m">−1/2，−1/3</span>。絶対値の比は <span class="m">1/2 : 1/3 = 3 : 2</span>、逆向きの <span class="m">2 : 3</span> と同じ組み合わせ ✓。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>k の値が2つ出たとき、<span class="hl">両方が条件を満たすか確認</span>する。また、解が負の数のときは、比を「符号を除いた大きさ」で考えるのがふつうです。答えは <span class="m"><i>m</i> = 6，1/6</span> の2つ。</div>
+    <div class="ans"><span class="al">答 (6)</span><span class="av"><span class="m"><i>m</i> = 6，　1/6</span></span></div>
+  </div>
+</section>
+
+<!-- ================= (7) ================= -->
+<section class="prob" id="p7" data-key="p7">
+  <div class="ph"><span class="no">(7)</span><div class="htext"><span class="tag">数学A・確率</span><h2>5回の積が 3 の倍数になる確率（余事象）</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">サイコロを5回投げる。出た目の積を X とする。X が 3 で割り切れる確率を求めよ。</p>
+
+    <div class="fb" data-label="余事象の考え方">
+      <span class="m"><span class="box"><i>P</i>(<i>A</i>) = 1 − <i>P</i>(<i>A</i>の余事象)</span></span>
+      <span class="m">「積が 3 で割り切れる」の余事象は「積が 3 で割り切れない」。</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>X</i> が 3 で割り切れない ⇔ 5回とも 3 の倍数（3 と 6）が出ない ⇔ 5回とも 1, 2, 4, 5 のいずれか</span>
+      <span class="m">1回で 3 の倍数以外が出る確率は 4/6 ＝ 2/3。各回は独立なので</span>
+      <span class="m"><i>P</i>(3 で割り切れない) = (4/6)⁵ = (2/3)⁵ = <span class="box">32/243</span></span>
+      <span class="m">よって　<i>P</i>(3 で割り切れる) = 1 − 32/243 = <span class="box">211/243</span></span>
+    </div>
+    <div class="pt"><span class="t">注意：</span><span class="hl">分数は先に約分してから計算する</span>。4/6 は 2/3 に約分してから5乗すると、(2/3)⁵ ＝ 2⁵/3⁵ ＝ 32/243 と、数字が小さく済みます。約分せずに (4/6)⁵ のまま計算すると、途中の数が大きくなり、計算ミスの原因になります。</div>
+    <div class="easy"><span class="t">やさしい解説：「割り切れる」を直接数えるのは大変</span>
+      <p>積が 3 で割り切れるのは、「5回のうち少なくとも1回は 3 か 6 が出る」ときです。1回だけ、2回だけ、と場合分けすると、とても長くなります。</p>
+      <p>そこで、<b>反対（割り切れない）</b>の場合を考えます。「割り切れない」は「どの回も 3 と 6 が出ない」という1つの条件なので、かけ算で計算できます。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>「積が 3 の倍数」⇔「3 の因数が少なくとも1回」なので、<span class="hl">3 と 6 が出る</span>ことがポイント。「1, 2, 4, 5 を選ぶ」の5回分の積を忘れずに。「1 − 余事象」の形で答えを書くと、途中式も伝わりやすくなります。</div>
+    <div class="check"><b>検算：</b>1回で 3 か 6 が出る確率は 2/6 = 1/3。5回のうち少なくとも1回出る確率は <span class="m">1 − (2/3)⁵ = 1 − 32/243 = 211/243</span> ✓。</div>
+    <div class="ans"><span class="al">答 (7)</span><span class="av"><span class="m">211/243</span></span></div>
+  </div>
+</section>
+
+<!-- ================= (8) ================= -->
+<section class="prob" id="p8" data-key="p8">
+  <div class="ph"><span class="no">(8)</span><div class="htext"><span class="tag">数学Ⅱ・円</span><h2>円の中心と、円周上の点における接線</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">円 <span class="m"><i>x</i>² + <i>y</i>² + 6<i>x</i> − 6<i>y</i> + 5 = 0</span> について、
+      <span class="sub">(i) 中心の座標を求めよ。</span>
+      <span class="sub">(ii) 点 <span class="m">(−1, 0)</span> における接線の方程式を求めよ。</span></p>
+
+    <h3>(i) 中心の座標（平方完成）</h3>
+    <div class="fb" data-label="円の標準形">
+      <span class="m"><span class="box">(<i>x</i> − <i>a</i>)² + (<i>y</i> − <i>b</i>)² = <i>r</i>²</span>　中心 (<i>a</i>, <i>b</i>)，半径 <i>r</i></span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>x</i>² + 6<i>x</i> + <i>y</i>² − 6<i>y</i> + 5 = 0</span>
+      <span class="m">(<i>x</i> + 3)² − 9 + (<i>y</i> − 3)² − 9 + 5 = 0</span>
+      <span class="m">(<i>x</i> + 3)² + (<i>y</i> − 3)² = 13</span>
+      <span class="m">よって中心は　<span class="box">(−3, 3)</span>（半径 √13）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：平方完成で中心を出す</span>
+      <p>x の項 <span class="m"><i>x</i>² + 6<i>x</i></span> は <span class="m">(<i>x</i> + 3)² − 9</span>、y の項 <span class="m"><i>y</i>² − 6<i>y</i></span> は <span class="m">(<i>y</i> − 3)² − 9</span> に直せます。定数項をまとめると <span class="m">−9 − 9 + 5 = −13</span> なので、右辺に移すと <span class="m">13</span> になります。</p>
+    </div>
+
+    <h3>(ii) 点 (−1, 0) における接線</h3>
+    <figure class="fig">
+      <svg viewBox="0 0 268 354" role="img" aria-label="円 (x+3)²+(y−3)²=13 と、点P(−1, 0)における接線。接線は半径CPに垂直" xmlns="http://www.w3.org/2000/svg"><rect width="268" height="354" fill="var(--panel)"/><circle cx="134.0" cy="132.0" r="108.2" fill="var(--blue-bg)" stroke="var(--blue)" stroke-width="2.6"/><line x1="14.0" y1="342.0" x2="254.0" y2="182.0" stroke="var(--red)" stroke-width="2.4"/><line x1="134.0" y1="132.0" x2="194.0" y2="222.0" stroke="var(--ink)" stroke-width="2" stroke-dasharray="6 5"/><polyline points="201.5,233.2 209.0,244.5 201.5,233.2" fill="none" stroke="var(--ink)" stroke-width="1.6"/><circle cx="134.0" cy="132.0" r="5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="124.0" y="122.0" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">C(−3, 3)</text><circle cx="194.0" cy="222.0" r="6" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><text x="206.0" y="244.0" font-size="13" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">P(−1, 0)</text><text x="17.0" y="249.0" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">接線 2x − 3y + 2 = 0</text><text x="152.0" y="165.0" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">半径 CP</text></svg>
+      <figcaption>円（青）と、点 P(−1, 0) における接線（赤）。接線は、中心 C と P を結ぶ半径に垂直です。</figcaption>
+    </figure>
+    <div class="fb" data-label="2点を通る直線の式（おさらい）">
+      <span class="m">2点 (<i>x</i>₁, <i>y</i>₁)，(<i>x</i>₂, <i>y</i>₂) を通る直線の傾き：<span class="box"><i>m</i> = (<i>y</i>₂ − <i>y</i>₁) / (<i>x</i>₂ − <i>x</i>₁)</span></span>
+      <span class="m">点 (<i>x</i>₁, <i>y</i>₁) を通り傾き <i>m</i> の直線：<span class="box"><i>y</i> − <i>y</i>₁ = <i>m</i>(<i>x</i> − <i>x</i>₁)</span></span>
+      <span class="m">例：(1, 2) と (3, 6) を通る直線　⇒　<i>m</i> = (6 − 2)/(3 − 1) = 2　⇒　<i>y</i> − 2 = 2(<i>x</i> − 1)　⇒　<i>y</i> = 2<i>x</i></span>
+    </div>
+    <div class="fb" data-label="接線と半径の関係">
+      <span class="m">円の接線は、接点を通る半径に<b>垂直</b>。</span>
+      <span class="m"><span class="box">垂直な2直線の傾きの積 = −1</span>（傾きが <i>m</i> のとき、垂直な直線の傾きは −1/<i>m</i>）</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><b><i>S</i><i>T</i><i>E</i><i>P</i> 1　直線 <i>C</i><i>P</i> の式</b>（<i>C</i>(−3, 3)，<i>P</i>(−1, 0) の2点を通る）</span>
+      <span class="m">傾き ＝ (0 − 3)/(−1 + 3) = −3/2　より　<i>y</i> − 0 = −3/2 (<i>x</i> + 1)</span>
+      <span class="m">両辺に 2 をかけて　2<i>y</i> = −3<i>x</i> − 3　よって　<span class="box">直線 <i>C</i><i>P</i>：3<i>x</i> + 2<i>y</i> + 3 = 0</span></span>
+      <span class="m">（確認：<i>C</i> を代入 −9 + 6 + 3 = 0 ✓、<i>P</i> を代入 −3 + 0 + 3 = 0 ✓）</span>
+      <span class="m"><b><i>S</i><i>T</i><i>E</i><i>P</i> 2　接線</b>（<i>C</i><i>P</i> に垂直で、<i>P</i>(−1, 0) を通る直線）</span>
+      <span class="m"><i>C</i><i>P</i> の傾きが −3/2 なので、垂直な接線の傾きは　−1 ÷ (−3/2) = <span class="box">2/3</span></span>
+      <span class="m">点 (−1, 0) を通るので　<i>y</i> = (2/3)(<i>x</i> + 1)　両辺に 3 をかけて　3<i>y</i> = 2<i>x</i> + 2</span>
+      <span class="m">よって　<span class="box">2<i>x</i> − 3<i>y</i> + 2 = 0</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ傾きを「逆数で符号反対」にする？</span>
+      <p>傾きが −3/2 の線（急に右下がり）に直角に交わる線は、右上がりの緩やかな線になります。傾きは <span class="m">−1/(−3/2) = 2/3</span> です。</p>
+      <p>直角に交わる2本の線は、「傾きどうしを掛けると −1 になる」と覚えておきましょう。</p>
+    </div>
+    <div class="check"><b>検算：</b>点 (−1, 0) が円上にあるか確認：<span class="m">(−1)² + 0² + 6(−1) − 6 · 0 + 5 = 1 − 6 + 5 = 0</span> ✓。接線 <span class="m">2<i>x</i> − 3<i>y</i> + 2 = 0</span> に (−1, 0) を代入すると <span class="m">−2 + 0 + 2 = 0</span> ✓。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>接線の問題は「<span class="hl">接点が円上にあるか</span>」を最初に確かめる。円の外の点からの接線は、この方法では求められません（別の解き方が必要）。今回の点は円周上なので、中心との傾きで求められます。</div>
+    <div class="note"><strong>確認ポイント：</strong>接線は半径と垂直です。点 (−1, 0) はこの円周上にあるため、その点での接線を求められます。</div>
+    <div class="ans"><span class="al">答 (8)</span><span class="av"><span class="m">(<i>i</i>) 中心 (−3, 3)　　(<i>i</i><i>i</i>) 2<i>x</i> − 3<i>y</i> + 2 = 0</span></span></div>
+  </div>
+</section>
+
+<!-- ================= まとめ ================= -->
+<section class="prob" id="pfinal" data-key="pfinal">
+  <div class="ph"><span class="no">直前</span><div class="htext"><span class="tag">FINAL CHECK</span><h2>ここだけ確認</h2></div><button class="done" type="button" aria-pressed="false">確認した</button></div>
+  <div class="body">
+    <div class="memo"><b>超重要・一言で覚える：</b>「因数分解は2次式として見る」「右へ p は x → x − p」「cos(α + β) の形（cos α cos β − sin α sin β）に角を揃えてまとめる」「余弦定理は b, c は A をはさむ2辺」「比は 2k，3k とおく」「数の積の割り切れは余事象」「接線は中心との傾きが垂直」。</div>
+
+    <ol class="sumlist">
+      <li><b>(1)：</b>x の2次式として、<span class="m">6<i>y</i>² + 11<i>y</i> + 4 = (2<i>y</i> + 1)(3<i>y</i> + 4)</span>。答え <span class="m">(<i>x</i> + 2<i>y</i> + 1)(<i>x</i> + 3<i>y</i> + 4)</span>。</li>
+      <li><b>(2)：</b>右へ 2 → x を x − 2、下へ 1 → 全体から 1 を引く。答え <span class="m"><i>y</i> = 2<i>x</i>² − 12<i>x</i> + 19</span>。</li>
+      <li><b>(3)：</b><span class="m">cos 50° = sin 40°</span>、<span class="m">sin 140° = sin 40°</span> と書き換えて、加法定理 <span class="m">cos 40° cos 140° − sin 40° sin 140° = cos(40° + 140°)</span> = <span class="m">cos 180°</span> = <span class="m">−1</span>。</li>
+      <li><b>(4)：</b>余弦定理で <span class="m"><i>B</i><i>C</i> = 2√13</span>。△ABC ＝ △ABD ＋ △ADC の面積の式から <span class="m">(7/2)<i>A</i><i>D</i> = 12√3</span>、<span class="m"><i>A</i><i>D</i> = 24√3/7</span>（別解：二等分線の公式）。</li>
+      <li><b>(5)：</b>平均は <span class="m">−2 × 21 + 3 = −39</span>、分散は <span class="m">(−2)² × 12 = 48</span>（定数は分散に影響しない）。</li>
+      <li><b>(6)：</b>2解を <span class="m">2<i>k</i>，3<i>k</i></span> とおく → <span class="m">5<i>k</i> = <i>m</i> − 1</span>、<span class="m">6<i>k</i>² = <i>m</i></span> → <span class="m"><i>k</i> = 1，−1/6</span>、答え <span class="m"><i>m</i> = 6，1/6</span>。</li>
+      <li><b>(7)：</b>余事象「3 で割り切れない」は <span class="m">(2/3)⁵ = 32/243</span>。答え <span class="m">211/243</span>。</li>
+      <li><b>(8)：</b>平方完成で中心 (−3, 3)。接線は半径 CP に垂直なので、傾き 2/3、答え <span class="m">2<i>x</i> − 3<i>y</i> + 2 = 0</span>。</li>
+    </ol>
+
+    <h3>答えのまとめ</h3>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>設問</th><th>答え</th></tr></thead>
+        <tbody>
+          <tr><td>(1)</td><td class="left"><span class="m">(<i>x</i> + 2<i>y</i> + 1)(<i>x</i> + 3<i>y</i> + 4)</span></td></tr>
+          <tr><td>(2)</td><td class="left"><span class="m"><i>y</i> = 2<i>x</i>² − 12<i>x</i> + 19</span></td></tr>
+          <tr><td>(3)</td><td class="left"><span class="m">−1</span></td></tr>
+          <tr><td>(4)</td><td class="left"><span class="m">(<i>i</i>) <i>B</i><i>C</i> = 2√13　(<i>i</i><i>i</i>) <i>A</i><i>D</i> = 24√3/7</span></td></tr>
+          <tr><td>(5)</td><td class="left"><span class="m">平均 −39，　分散 48</span></td></tr>
+          <tr><td>(6)</td><td class="left"><span class="m"><i>m</i> = 6，　1/6</span></td></tr>
+          <tr><td>(7)</td><td class="left"><span class="m">211/243</span></td></tr>
+          <tr><td>(8)</td><td class="left"><span class="m">(<i>i</i>) 中心 (−3, 3)　(<i>i</i><i>i</i>) 2<i>x</i> − 3<i>y</i> + 2 = 0</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>令和8年度 3年 文系数学 8月実力考査①｜学習用まとめ。「答えをかくす」をオンにすると、答えがぼやけて表示されます。「できた」の記録はこの端末のブラウザに保存されます。</footer>
+
+<script>
+(function(){
+  var KEY='reiwa8-test1-done';
+  var done={};
+  function load(){try{var v=localStorage.getItem(KEY);done=v?JSON.parse(v)||{}:{};}catch(e){done={};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  var sections=[].slice.call(document.querySelectorAll('.prob[data-key]'));
+  var progress=document.getElementById('progress');
+  function refresh(){
+    var n=0;
+    sections.forEach(function(s){
+      var b=s.querySelector('.done');var k=s.getAttribute('data-key');
+      var on=!!done[k];if(on)n++;
+      if(b)b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    progress.textContent=n+' / '+sections.length;
+  }
+  load();refresh();
+  sections.forEach(function(s){
+    var b=s.querySelector('.done');if(!b)return;
+    b.addEventListener('click',function(){
+      var k=s.getAttribute('data-key');
+      if(done[k])delete done[k];else done[k]=1;
+      save();refresh();
+    });
+  });
+  var hideBtn=document.getElementById('hideBtn');
+  hideBtn.addEventListener('click',function(){
+    var on=hideBtn.getAttribute('aria-pressed')!=='true';
+    hideBtn.setAttribute('aria-pressed',on?'true':'false');
+    document.body.classList.toggle('hide',on);
+    if(!on){[].forEach.call(document.querySelectorAll('.ans.shown'),function(a){a.classList.remove('shown');});}
+  });
+  [].forEach.call(document.querySelectorAll('.ans'),function(a){
+    a.addEventListener('click',function(){if(document.body.classList.contains('hide'))a.classList.toggle('shown');});
+  });
+})();
+</script>
+</body>
+</html>

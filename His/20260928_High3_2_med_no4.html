@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>数学 入試問題チェック 451（旭川医科大）・472（筑波大）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f5fa; --panel:#ffffff; --ink:#16233b; --sub:#54627c; --line:#d3dce8;
+  --red:#d0212f; --red-bg:#fff1f2; --red-ink:#ffffff;
+  --blue:#1d5fa8; --blue-bg:#eaf3fc;
+  --mark:#ffe873; --mark-bg:#fff8d6; --mark-line:#e0b400;
+  --purp:#7b3fb0; --purp-bg:#f3ecfa;
+  --ans-bg:#16233b; --ans-ink:#ffffff;
+  --grid:rgba(29,95,168,.08);
+  --shadow:0 1px 0 rgba(22,35,59,.06), 0 8px 24px -14px rgba(22,35,59,.35);
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  --math:"STIX Two Text","Times New Roman","Noto Serif JP","Yu Mincho",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+    --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+    --blue:#82bbff; --blue-bg:#13263b;
+    --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+    --purp:#c9a4ec; --purp-bg:#241a30;
+    --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+    --grid:rgba(130,187,255,.07);
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+  --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+  --blue:#82bbff; --blue-bg:#13263b;
+  --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+  --purp:#c9a4ec; --purp-bg:#241a30;
+  --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+  --grid:rgba(130,187,255,.07);
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:auto;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--sans);font-size:16px;line-height:1.85;
+}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.hero{max-width:940px;margin:0 auto;padding:34px 18px 8px}
+.hero h1{margin:0;font-size:clamp(1.5rem,5vw,2.3rem);font-weight:900;line-height:1.35;letter-spacing:.02em}
+.hero h1 span{display:inline-block;border:4px solid var(--red);border-radius:12px;padding:0 .35em;margin-right:.2em;color:var(--red);transform:rotate(-1.5deg)}
+.hero p{margin:12px 0 0;color:var(--sub);max-width:40em}
+.legend{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:22px 0 4px}
+.legend > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.86rem;line-height:1.6;box-shadow:var(--shadow)}
+.legend b{display:block;margin-bottom:4px;font-size:.9rem}
+.swatch{display:inline-block;width:1.6em;height:1em;vertical-align:-.15em;margin-right:.4em;border-radius:3px}
+.sw-red{border:2.5px solid var(--red);background:var(--red-bg)}
+.sw-blue{border-left:5px solid var(--blue);background:var(--blue-bg)}
+.sw-mark{border-left:5px solid var(--mark-line);background:var(--mark-bg)}
+.sw-purp{border-left:5px solid var(--purp);background:var(--purp-bg)}
+
+.notice{max-width:940px;margin:18px auto 0;padding:0 18px}
+.notice-in{background:var(--purp-bg);border:2px solid var(--purp);border-radius:12px;padding:14px 18px;font-size:.92rem}
+.notice-in b{color:var(--purp)}
+.notice-in ul{margin:8px 0 0;padding-left:1.3em}
+.notice-in li{margin:4px 0}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:940px;margin:0 auto;padding:8px 18px;display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 12px;line-height:1.7}
+.nav a:hover{border-color:var(--red);color:var(--red)}
+.tools{margin-left:auto;display:flex;gap:8px;flex:none;padding-left:8px}
+.btn{font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:3px 12px;line-height:1.7}
+.btn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.progress{font-size:.82rem;font-weight:700;color:var(--sub);white-space:nowrap;align-self:center}
+
+main{max-width:940px;margin:0 auto;padding:12px 18px 60px}
+.prob{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:26px 0;padding:0 0 18px;box-shadow:var(--shadow);overflow:hidden}
+.ph{display:flex;align-items:stretch;border-bottom:2px solid var(--ink);margin-bottom:16px}
+.ph .no{flex:none;min-width:4.6rem;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--panel);font-weight:900;font-size:1.3rem;padding:8px 12px;letter-spacing:.03em}
+.ph .htext{flex:1;align-self:center;padding:10px 16px}
+.ph .htext .tag{display:block;font-size:.74rem;font-weight:700;color:var(--red);letter-spacing:.06em;margin-bottom:1px}
+.ph h2{margin:0;font-size:1.06rem;font-weight:700;line-height:1.5}
+.ph .done{margin:8px 12px 8px 0;align-self:center}
+.body{padding:0 clamp(14px,3vw,24px)}
+h3{font-size:1rem;font-weight:900;margin:22px 0 6px;padding-bottom:3px;border-bottom:2px dotted var(--line)}
+p{margin:8px 0}
+.q{border:2px dashed var(--line);border-radius:10px;padding:10px 14px;margin:0 0 14px}
+.q::before{content:"問題";display:inline-block;font-weight:900;font-size:.8rem;background:var(--ink);color:var(--panel);border-radius:4px;padding:0 8px;margin-right:8px;line-height:1.6}
+.q .sub{display:block;margin-top:4px}
+.src{color:var(--sub);font-size:.85rem}
+
+.m{font-family:var(--math);font-size:1.12em;line-height:1.9}
+.m i,i.m{font-style:italic}
+sup,sub{line-height:0;font-size:.72em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.25;margin:0 .18em;font-size:.95em}
+.fr > b{font-weight:inherit;padding:0 .25em}
+.fr > b:first-child{border-bottom:1.5px solid currentColor}
+
+.fb{position:relative;margin:24px 0 14px;padding:16px 16px 10px;border:3px solid var(--red);border-radius:12px;background:var(--red-bg)}
+.fb::before{content:attr(data-label);position:absolute;top:-.95em;left:14px;background:var(--red);color:var(--red-ink);font-weight:900;font-size:.82rem;line-height:1.7;padding:0 12px;border-radius:999px}
+.fb .m{display:block;overflow-x:auto;padding:1px 0}
+.fb .m + .m{margin-top:2px}
+.fb.soft{border-style:dashed;border-width:2.5px}
+.box{font-family:var(--math);display:inline-block;border:2.5px solid var(--red);border-radius:6px;padding:0 .4em;background:var(--panel)}
+
+.easy{margin:14px 0;padding:12px 16px;background:var(--blue-bg);border-left:6px solid var(--blue);border-radius:0 10px 10px 0}
+.easy > .t{display:block;font-weight:900;color:var(--blue);font-size:.92rem;margin-bottom:2px}
+.easy > .t::before{content:"💡 "}
+.easy ul,.easy ol{margin:6px 0;padding-left:1.3em}
+.easy li{margin:3px 0}
+.pt{margin:14px 0;padding:10px 16px;background:var(--mark-bg);border-left:6px solid var(--mark-line);border-radius:0 10px 10px 0}
+.pt > .t{font-weight:900}
+.hl{background:linear-gradient(transparent 55%,var(--mark) 55%);font-weight:700}
+.fix{margin:14px 0;padding:12px 16px;background:var(--purp-bg);border-left:6px solid var(--purp);border-radius:0 10px 10px 0}
+.fix > .t{display:block;font-weight:900;color:var(--purp);font-size:.92rem;margin-bottom:2px}
+.fix > .t::before{content:"✏️ "}
+
+.ans{margin:16px 0 4px;background:var(--ans-bg);color:var(--ans-ink);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.ans .al{flex:none;font-weight:900;font-size:.85rem;background:var(--red);color:var(--red-ink);border-radius:999px;padding:0 12px;line-height:1.7}
+.ans .av{font-weight:700;font-size:1.05rem;flex:1;min-width:0}
+body.hide .ans{cursor:pointer}
+body.hide .ans:not(.shown) .av{filter:blur(9px);user-select:none}
+body.hide .ans:not(.shown)::after{content:"タップで答えを見る";font-size:.78rem;opacity:.75;margin-left:auto}
+
+.check{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 12px;margin:10px 0;font-size:.92rem}
+.check b{color:var(--blue)}
+.done{font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--panel);color:var(--sub);border-radius:999px;padding:0 12px;line-height:1.9}
+.done[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--panel)}
+.done[aria-pressed="true"]::before{content:"✓ "}
+.fig{margin:14px 0;text-align:center}
+.fig svg{max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.fig figcaption{font-size:.82rem;color:var(--sub);margin-top:4px}
+.sumlist{list-style:none;margin:0;padding:0;counter-reset:s}
+.sumlist li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px dotted var(--line)}
+.sumlist li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--red);color:var(--red);font-weight:900;text-align:center;line-height:25px}
+.sumlist li:last-child{border-bottom:0}
+footer{max-width:940px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-size:.82rem}
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .ph .no{min-width:3.6rem;font-size:1.1rem}
+  .ph h2{font-size:1rem}
+  .fb{padding:16px 12px 8px}
+  .tools{padding-left:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .nav,.done,.tools{display:none}
+  body{background:#fff;color:#000}
+  .prob{break-inside:avoid;box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1><span>数学</span>入試問題チェック　451・472</h1>
+  <p>旭川医科大（451）と筑波大（472）の2問。図形の設定がやや複雑なので、<strong>赤枠の公式</strong>と図で流れをつかみ、青い解説で理由を確認しましょう。</p>
+  <div class="legend" aria-label="この資料の見かた">
+    <div><b><span class="swatch sw-red"></span>赤枠＝覚える公式・式変形</b>テストで書く式です。</div>
+    <div><b><span class="swatch sw-blue"></span>青＝やさしい解説</b>中学〜高2の知識で説明します。</div>
+    <div><b><span class="swatch sw-mark"></span>黄＝テストでのポイント</b>書き忘れ・減点されやすいところ。</div>
+    <div><b><span class="swatch sw-purp"></span>紫＝入力ミスの修正</b>元データの誤りを直した箇所。</div>
+  </div>
+</div>
+
+<div class="notice">
+  <div class="notice-in">
+    <b>この2問は問題文の文字化けや、別解の計算ミスがあったため、正しい原題を確認したうえで作り直しています。</b>
+    <ul>
+      <li><b>451：</b>「∠BAC＝1/3」は文字化けで、正しくは <b>∠BAC＝2π/3</b>（120°）です（旭川医科大 2014年の原題で確認）。この角度で計算するときれいな数（S＝(2π/3＋√3)a²）になります。</li>
+      <li><b>472：</b>点Qに「x≧0」の制限はありません（制限があるのは点Pだけ）。Qを楕円全体で探すと、面積が最大になるのは x が負の側の点で、答えは <b>9/4</b> になります。</li>
+    </ul>
+  </div>
+</div>
+
+<nav class="nav" aria-label="目次">
+  <div class="nav-in">
+    <a href="#p451">451</a><a href="#p472">472</a><a href="#pfinal">直前</a>
+    <span class="tools">
+      <span class="progress" id="progress" aria-live="polite"></span>
+      <button class="btn" id="hideBtn" aria-pressed="false" type="button">答えをかくす</button>
+    </span>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= 451 ================= -->
+<section class="prob" id="p451" data-key="p451">
+  <div class="ph"><span class="no">451</span><div class="htext"><span class="tag">問題番号 451　旭川医科大</span><h2>ベクトルの条件式 → 円の方程式 → 通過範囲の面積</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q"><i class="m">a</i> を正の定数とする。AB＝<i>a</i>，AC＝2<i>a</i>，∠BAC＝2π/3 である △ABC と、<span class="m">|2AP−2BP−CP| ＝ <i>a</i></span> を満たす動点 P がある。
+      <span class="sub">(1) 辺BCを1:2に内分する点をDとするとき、|AD| を求めよ。</span>
+      <span class="sub">(2) |AP| の最大値を求めよ。</span>
+      <span class="sub">(3) 線分APが通過してできる図形の面積 S を求めよ。</span>
+      <span class="src">（旭川医科大 2014年）</span></p>
+
+    <div class="fix"><span class="t">文字化けの修正</span>元データでは「AC＝24」「∠BAC＝1/3」となっていましたが、これは「AC＝<b>2a</b>」「∠BAC＝<b>2π/3</b>」の文字化けです（πの記号が消え、係数だけ残ったと考えられます）。この角度で計算すると、後の答えがきれいな数になることからも確認できます。</div>
+
+    <h3>① ベクトルを設定して条件式を整理する</h3>
+    <div class="fb" data-label="準備：内積を求める">
+      <span class="m">A を基準にして、<b>b</b> ＝ AB，<b>c</b> ＝ AC とおく。|<b>b</b>|＝<i>a</i>，|<b>c</b>|＝2<i>a</i></span>
+      <span class="m"><b>b</b>・<b>c</b> ＝ |<b>b</b>||<b>c</b>| cos∠BAC ＝ <i>a</i>·2<i>a</i>·cos(2π/3) ＝ 2<i>a</i><sup>2</sup>×(−1/2) ＝ <span class="box">−<i>a</i><sup>2</sup></span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：内積とcos</span><b>b</b>・<b>c</b>＝|<b>b</b>||<b>c</b>|cosθ は「2つのベクトルのなす角」を使って内積を求める基本公式。2π/3（120°）は鈍角なので cos は<b>マイナス</b>になります（90°より開いた角では内積が負）。</div>
+
+    <div class="fb soft" data-label="条件式を書きかえる">
+      <span class="m">AP ＝ <b>p</b> とおくと、BP ＝ <b>p</b>−<b>b</b>，CP ＝ <b>p</b>−<b>c</b></span>
+      <span class="m">2AP−2BP−CP ＝ 2<b>p</b> − 2(<b>p</b>−<b>b</b>) − (<b>p</b>−<b>c</b>) ＝ −<b>p</b> ＋ 2<b>b</b> ＋ <b>c</b></span>
+      <span class="m">条件は |−<b>p</b>＋2<b>b</b>＋<b>c</b>| ＝ <i>a</i>、つまり <span class="box">|<b>p</b> − (2<b>b</b>＋<b>c</b>)| ＝ <i>a</i></span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：これは何を表す？</span>点Xの位置ベクトルを <b>x</b> とすると、|<b>x</b>−<b>k</b>|＝<i>r</i> は「<b>k</b>を中心、半径<i>r</i>の円」を表します（中学の円の方程式 (x−p)²+(y−q)²=r² のベクトル版）。<br>
+    だから、<span class="hl">P は「AO＝2b+c」となる点Oを中心とする、半径aの円周上</span>を動きます。</div>
+
+    <h3>② D の位置とO との関係</h3>
+    <div class="fb" data-label="内分点の公式">
+      <span class="m">BD:DC＝1:2 のとき　<span class="box">AD ＝ <span class="fr"><b>2<b>b</b>＋<b>c</b></b><b>3</b></span></span>　（全体を3等分した点）</span>
+    </div>
+    <div class="pt"><span class="t">気づいておきたいこと：</span>①の円の中心は AO＝2<b>b</b>＋<b>c</b>。これは <span class="hl">AD の3倍</span>（AO＝3AD）です。つまり、<b>点Oは直線AD上にあり、AからOまでの距離はAからDまでの距離のちょうど3倍</b>。図をかくとき、まずDを打ち、その延長線上に円の中心Oがあることを意識すると図がかきやすくなります。</div>
+
+    <div class="fb soft" data-label="|AD|の計算">
+      <span class="m">|AD|<sup>2</sup> ＝ (1/9)|2<b>b</b>＋<b>c</b>|<sup>2</sup> ＝ (1/9)(4|<b>b</b>|<sup>2</sup>＋|<b>c</b>|<sup>2</sup>＋4<b>b</b>・<b>c</b>)</span>
+      <span class="m">＝ (1/9)(4<i>a</i><sup>2</sup>＋4<i>a</i><sup>2</sup>＋4×(−<i>a</i><sup>2</sup>)) ＝ (1/9)(4<i>a</i><sup>2</sup>) ＝ <span class="box">4<i>a</i><sup>2</sup>/9</span></span>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av m">|AD| ＝ 2a/3</span></div>
+
+    <h3>③ 円の半径R（＝AOの長さ）</h3>
+    <div class="fb" data-label="AOの長さ">
+      <span class="m">AO ＝ 2<b>b</b>＋<b>c</b> ＝ 3AD　なので　|AO| ＝ 3|AD| ＝ 3×(2<i>a</i>/3) ＝ <span class="box"><i>R</i> ＝ 2<i>a</i></span></span>
+    </div>
+
+    <h3>(2) APの最大値</h3>
+    <div class="fb soft" data-label="円上の点までの距離の最大">
+      <span class="m">Pは中心O・半径<i>a</i>の円周上を動く。A は円の外にある（AO＝2<i>a</i>＞半径<i>a</i>）。</span>
+      <span class="m">円周上の点で A から最も遠いのは、<span class="box">直線AO上で、Oより向こう側にある点</span></span>
+      <span class="m">|AP|の最大値 ＝ AO＋半径 ＝ 2<i>a</i>＋<i>a</i> ＝ <span class="box">3<i>a</i></span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>円の中心から出発して、円周上の点までの距離は「中心までの距離 ± 半径」の間で変わります。一番遠いのは、中心の<b>向こう側</b>（Aから見て中心をこえた先）にある点です。</div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av m">3a</span></div>
+
+    <h3>(3) 線分APが通過する図形の面積 S</h3>
+    <div class="easy"><span class="t">やさしい解説：どんな図形になる？</span>
+      <p>Aは円の外にある点。Pは円周上のあらゆる点を動きます。<b>Aから円周上の各点Pへ線分を引いて、その線分がすべて通った跡</b>を考えます。</p>
+      <p>Aから円に2本の接線を引き、接点を T₁, T₂ とします。この2本の接線と円で囲まれた形（下の図の色の部分）が、線分APの通過部分＝面積Sです。これは「点Aと円（内部を含む）を、はみ出さないように囲む一番小さい形」（凸包）と同じです。</p>
+    </div>
+
+    <div class="fb" data-label="図形を2つに分ける">
+      <span class="m">面積 S ＝ <span class="box">四角形 A-T₁-O-T₂（たこ形）</span> ＋ <span class="box">円の「大きい方」の扇形（T₁からT₂まで、Aから遠い側を回る）</span></span>
+    </div>
+    <div class="easy"><span class="t">なぜこの2つに分けられる？</span>四角形AT₁OT₂は、直角三角形AOT₁と直角三角形AOT₂を2つ合わせた形（OT₁⊥AT₁，OT₂⊥AT₂：接線は半径に垂直）。この四角形は、AからみてOより手前の部分をすべてカバーします。残りの「円のOより奥の部分」は、扇形（中心角が大きい方）でちょうど埋まります。2つを合わせると、隙間も重なりもなく S になります。</div>
+
+    <h3>④ 直角三角形AOT₁を調べる（きれいな角度が出る）</h3>
+    <div class="fb soft" data-label="30°・60°・90°の直角三角形">
+      <span class="m">△AOT₁は、∠AT₁O＝90°（接線⊥半径）、OT₁＝<i>a</i>（半径）、AO＝<i>R</i>＝2<i>a</i>＝2×OT₁</span>
+      <span class="m">斜辺が「短い方の辺の2倍」⇒ <span class="box">30°・60°・90°の直角三角形</span>（∠OAT₁＝30°，∠AOT₁＝60°）</span>
+      <span class="m">AT₁ ＝ √(<i>R</i><sup>2</sup>−<i>a</i><sup>2</sup>) ＝ √(4<i>a</i><sup>2</sup>−<i>a</i><sup>2</sup>) ＝ <span class="box">√3<i>a</i></span></span>
+    </div>
+    <div class="pt"><span class="t">覚えておくと便利：</span>斜辺が他の1辺のちょうど2倍の直角三角形は、必ず<span class="hl">30°・60°・90°</span>になります（覚えておくと角度をすぐ判断できる）。</div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 480 380" role="img" aria-label="点Aと円、接線T1・T2、たこ形と大きい扇形">
+        <circle cx="330" cy="190" r="70" fill="var(--blue-bg)" stroke="var(--blue)" stroke-width="2.5"/>
+        <!-- major sector fill (angle 2π-2ψ, ψ=60°, so major = 240°, facing away from A which is to the left) -->
+        <path d="M 330 190 L 365 129.4 A 70 70 0 1 0 365 250.6 Z" fill="var(--red-bg)" stroke="none" opacity="0.85"/>
+        <circle cx="330" cy="190" r="70" fill="none" stroke="var(--red)" stroke-width="3"/>
+        <polygon points="90,190 365,129.4 330,190 365,250.6" fill="var(--mark-bg)" stroke="none" opacity="0.9"/>
+        <line x1="90" y1="190" x2="365" y2="129.4" stroke="var(--ink)" stroke-width="2.5"/>
+        <line x1="90" y1="190" x2="365" y2="250.6" stroke="var(--ink)" stroke-width="2.5"/>
+        <line x1="330" y1="190" x2="365" y2="129.4" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <line x1="330" y1="190" x2="365" y2="250.6" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <line x1="90" y1="190" x2="330" y2="190" stroke="var(--sub)" stroke-width="1.5" stroke-dasharray="2 4"/>
+        <circle cx="90" cy="190" r="5" fill="var(--ink)"/>
+        <circle cx="330" cy="190" r="5" fill="var(--ink)"/>
+        <circle cx="365" cy="129.4" r="4.5" fill="var(--red)"/>
+        <circle cx="365" cy="250.6" r="4.5" fill="var(--red)"/>
+        <g font-size="14" font-family="sans-serif" font-weight="700">
+          <text x="80" y="212" fill="var(--ink)" text-anchor="middle">A</text>
+          <text x="330" y="212" fill="var(--ink)" text-anchor="middle">O</text>
+          <text x="378" y="126" fill="var(--red)">T₁</text>
+          <text x="378" y="258" fill="var(--red)">T₂</text>
+          <text x="205" y="150" fill="var(--ink)" font-weight="400" font-size="13">たこ形（黄）</text>
+          <text x="300" y="95" fill="var(--red)" font-weight="400" font-size="13">大きい扇形（赤）</text>
+        </g>
+      </svg>
+      <figcaption>黄＝四角形AT₁OT₂（たこ形）、赤＝中心角の大きい方の扇形。この2つの合計が面積S。</figcaption>
+    </figure>
+
+    <h3>⑤ それぞれの面積を計算する</h3>
+    <div class="fb" data-label="たこ形の面積">
+      <span class="m">たこ形 ＝ 直角三角形AOT₁ × 2 ＝ <span class="fr"><b>1</b><b>2</b></span>×<i>a</i>×√3<i>a</i>×2 ＝ <span class="box"><i>a</i>·AT₁ ＝ √3<i>a</i><sup>2</sup></span></span>
+    </div>
+    <div class="fb soft" data-label="大きい扇形の面積">
+      <span class="m">∠AOT₁＝60° なので、たこ形側（近い側）の中心角は 120°。大きい方（遠い側）の中心角は <span class="box">360°−120°＝240° ＝ 4π/3</span></span>
+      <span class="m">扇形の面積 ＝ <span class="fr"><b>1</b><b>2</b></span><i>a</i><sup>2</sup>×<span class="fr"><b>4π</b><b>3</b></span> ＝ <span class="box">(2π/3)<i>a</i><sup>2</sup></span></span>
+    </div>
+    <div class="fb" data-label="合計">
+      <span class="m">S ＝ たこ形 ＋ 大きい扇形 ＝ √3<i>a</i><sup>2</sup> ＋ (2π/3)<i>a</i><sup>2</sup></span>
+    </div>
+    <div class="ans"><span class="al">答 (3)</span><span class="av m">S ＝ (2π/3 ＋ √3) a²</span></div>
+    <div class="pt"><span class="t">テストでの流れ：</span>①条件式を整理して円の方程式にする → ②内分点Dと円の中心Oの関係（AO＝3AD）を確認 → ③APの最大＝AO＋半径 → ④接線と半径のなす直角三角形から角度を出し、たこ形＋大きい扇形で面積を出す。</div>
+  </div>
+</section>
+
+<!-- ================= 472 ================= -->
+<section class="prob" id="p472" data-key="p472">
+  <div class="ph"><span class="no">472</span><div class="htext"><span class="tag">問題番号 472　筑波大</span><h2>楕円上の点までの距離の最大と、三角形の面積の最大</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">楕円 <span class="m">C: <span class="fr"><b><i>x</i><sup>2</sup></b><b>3</b></span> ＋ <i>y</i><sup>2</sup> ＝ 1</span> 上の点で、<i>x</i>≧0 の範囲にあり、定点 A(0, 1) との距離が最大となる点を P とする。
+      <span class="sub">(1) 点Pの座標と線分APの長さを求めよ。</span>
+      <span class="sub">(2) 点Qは楕円C上を動くとする（<i>x</i>の範囲の制限はなし）。△APQの面積が最大となるとき、点Qの座標および△APQの面積を求めよ。</span>
+      <span class="src">（筑波大）</span></p>
+
+    <div class="fix"><span class="t">元データの誤りについて</span>元の資料は「x²/3+y²=1」の指数が抜けて「x/3+y2=1」と表示されていました（もとの式として復元しています）。また、Qを求める段階で「x≧0」の制限をつけて計算していましたが、<b>x≧0 の制限があるのは点Pだけ</b>で、Qにはありません。正しく楕円全体で探すと、答えが変わります。</div>
+
+    <div class="fb" data-label="楕円の媒介変数表示">
+      <span class="m">楕円 <span class="fr"><b><i>x</i><sup>2</sup></b><b>3</b></span>＋<i>y</i><sup>2</sup>＝1 上の点は　<span class="box"><i>x</i> ＝ √3 cos<i>θ</i>，　<i>y</i> ＝ sin<i>θ</i></span>　と表せる</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>円 <i>x</i>²＋<i>y</i>²＝1 上の点は (cos<i>θ</i>, sin<i>θ</i>) と表せます（三角関数の定義そのもの）。楕円はこの円を<b>横だけ √3 倍に伸ばした形</b>なので、<i>x</i> 座標だけ √3 倍すれば楕円のどの点も表せます。</div>
+
+    <h3>(1) 点Pの座標とAPの長さ</h3>
+    <div class="fb soft" data-label="距離の2乗を計算">
+      <span class="m">AP<sup>2</sup> ＝ <i>x</i><sup>2</sup> ＋ (<i>y</i>−1)<sup>2</sup> ＝ 3cos<sup>2</sup><i>θ</i> ＋ (sin<i>θ</i>−1)<sup>2</sup></span>
+      <span class="m">＝ 3(1−sin<sup>2</sup><i>θ</i>) ＋ sin<sup>2</sup><i>θ</i> − 2sin<i>θ</i> ＋ 1 ＝ 4 − 2sin<sup>2</sup><i>θ</i> − 2sin<i>θ</i></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説</span>cos²θ が残っていると扱いにくいので、cos²θ＝1−sin²θ を使って <b>sinθ だけの式</b>に統一します。これで2次関数の問題に変えられます。</div>
+
+    <div class="fb" data-label="s=sinθ とおいて2次関数の最大">
+      <span class="m"><i>s</i>＝sin<i>θ</i> とおくと（<i>x</i>≧0 より <i>θ</i>∈[−π/2, π/2]、この範囲で <i>s</i> は −1〜1 のすべての値をとる）</span>
+      <span class="m">AP<sup>2</sup> ＝ −2<i>s</i><sup>2</sup>−2<i>s</i>＋4 ＝ −2(<i>s</i>＋<span class="fr"><b>1</b><b>2</b></span>)<sup>2</sup> ＋ <span class="box"><span class="fr"><b>9</b><b>2</b></span></span>　（上に凸の放物線）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：平方完成</span><i>s</i>²の係数が負（−2）の放物線は上に凸＝山の形なので、頂点でAP²が<b>最大</b>になります。頂点は <i>s</i>＝−1/2（−1〜1の範囲に入っている）。最大値は 9/2。</div>
+    <div class="fb soft" data-label="Pの座標">
+      <span class="m">AP ＝ √(9/2) ＝ <span class="box">3/√2 ＝ 3√2/2</span></span>
+      <span class="m"><i>s</i>＝sin<i>θ</i>＝−1/2 のとき、cos<i>θ</i>＝√(1−1/4)＝√3/2（<i>x</i>≧0 だから正の方を選ぶ）</span>
+      <span class="m"><i>x</i> ＝ √3×(√3/2) ＝ 3/2，　<i>y</i> ＝ −1/2　⇒　<span class="box">P ＝ (3/2, −1/2)</span></span>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av m">P ＝ (3/2, −1/2)，AP ＝ 3√2/2</span></div>
+
+    <h3>(2) △APQ の面積の最大</h3>
+    <div class="fb" data-label="直線APと距離の関係">
+      <span class="m">A(0,1)，P(3/2,−1/2) を通る直線：傾き ＝ (−1/2−1)/(3/2−0) ＝ −1　⇒　<span class="box"><i>x</i>＋<i>y</i>−1＝0</span></span>
+      <span class="m">△APQ の面積 ＝ <span class="fr"><b>1</b><b>2</b></span> × AP × （Qから直線APまでの距離）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：底辺×高さ</span>AとPを結ぶ直線を<b>底辺</b>と考えると、面積を最大にするには、<b>Qを直線から一番遠い場所</b>に置けばよいことになります。底辺の長さAPは(1)で決まっているので、あとは「Qと直線の距離」をどう最大化するかだけを考えます。</div>
+
+    <div class="fb soft" data-label="点と直線の距離の公式">
+      <span class="m">点 (<i>x</i>, <i>y</i>) と直線 <i>x</i>＋<i>y</i>−1＝0 の距離 ＝ <span class="box"><span class="fr"><b>|<i>x</i>＋<i>y</i>−1|</b><b>√2</b></span></span></span>
+    </div>
+
+    <div class="fix"><span class="t">ここが元データとの分かれ道：</span>元の資料はここで「<i>x</i>≧0」に限定して探していました。しかし Q にその制限はありません。<span class="hl">楕円全体（x が負の部分も含めて）</span>から、直線に一番遠い点を探します。</div>
+
+    <h3>① 「傾きが同じ接線」を探す方法</h3>
+    <div class="fb" data-label="接線が平行になる点が最も遠い">
+      <span class="m">楕円上の点 (<i>x</i>₀, <i>y</i>₀) における接線：<span class="box"><span class="fr"><b><i>x</i>₀<i>x</i></b><b>3</b></span ＋ <i>y</i>₀<i>y</i> ＝ 1</span>、傾き ＝ −<i>x</i>₀/(3<i>y</i>₀)</span>
+      <span class="m">直線AP（傾き−1）と接線が<span class="box">平行</span>になるとき、その接点が直線から一番遠い（＝距離が最大or最小になる）点</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ「平行な接線」でよい？</span>直線から一番遠い（または一番近い）楕円上の点では、その点での楕円の接線が、もとの直線と<b>同じ傾き</b>になります。イメージとしては、直線を外側にずらしていって、楕円にギリギリ触れる瞬間（接する瞬間）が、その方向で一番遠い点だからです。</div>
+
+    <div class="fb soft" data-label="計算">
+      <span class="m">−<i>x</i>₀/(3<i>y</i>₀) ＝ −1　⇒　<i>x</i>₀ ＝ 3<i>y</i>₀</span>
+      <span class="m">楕円の式に代入：(3<i>y</i>₀)²/3＋<i>y</i>₀²＝1　⇒　3<i>y</i>₀²＋<i>y</i>₀²＝1　⇒　<i>y</i>₀² ＝ 1/4　⇒　<i>y</i>₀ ＝ ±1/2</span>
+      <span class="m"><i>y</i>₀＝1/2 のとき <i>x</i>₀＝3/2　／　<i>y</i>₀＝−1/2 のとき <i>x</i>₀＝−3/2</span>
+    </div>
+
+    <h3>② どちらが「遠い」かを調べる</h3>
+    <div class="fb" data-label="距離を比較">
+      <span class="m">候補①(3/2, 1/2)：|3/2＋1/2−1|/√2 ＝ |1|/√2 ＝ 1/√2（近い方）</span>
+      <span class="m">候補②(−3/2, −1/2)：|−3/2−1/2−1|/√2 ＝ |−3|/√2 ＝ <span class="box">3/√2（遠い方）</span></span>
+    </div>
+    <div class="pt"><span class="t">ここが分かれ道：</span>候補①は<i>x</i>≧0側、候補②は<i>x</i>＜0側です。<span class="hl">Qにはx≧0の制限がない</span>ので、②の方が正しい候補。①だけで判断すると、元データのように答えを間違えます。</div>
+
+    <div class="fb soft" data-label="Qの座標と面積">
+      <span class="m"><span class="box">Q ＝ (−3/2, −1/2)</span></span>
+      <span class="m">面積 ＝ (1/2)×AP×距離 ＝ (1/2)×(3√2/2)×(3/√2) ＝ <span class="box">9/4</span></span>
+    </div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av m">Q ＝ (−3/2, −1/2)，△APQ の最大面積 ＝ 9/4</span></div>
+
+    <h3>③ 検算：底辺×高さで確かめる</h3>
+    <div class="check"><b>検算：</b>P(3/2, −1/2) と Q(−3/2, −1/2) は <b>y座標が同じ（−1/2）</b>なので、PQ は水平な線分。<br>
+    PQの長さ＝3/2−(−3/2)＝3。Aからこの水平線までの高さ＝|1−(−1/2)|＝3/2。<br>
+    面積＝(1/2)×3×(3/2)＝<b>9/4</b> ✓ 同じ答えになりました。</div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 420 400" role="img" aria-label="楕円と点A、P、Q、三角形APQ">
+        <defs><pattern id="g4" width="40" height="40" patternUnits="userSpaceOnUse" x="10" y="10"><path d="M40 0H0V40" fill="none" stroke="var(--line)" stroke-width="1"/></pattern></defs>
+        <rect x="10" y="10" width="400" height="380" fill="url(#g4)"/>
+        <line x1="10" y1="200" x2="410" y2="200" stroke="var(--ink)" stroke-width="1.5"/>
+        <line x1="210" y1="10" x2="210" y2="390" stroke="var(--ink)" stroke-width="1.5"/>
+        <ellipse cx="210" cy="200" rx="138.6" ry="80" fill="var(--blue-bg)" stroke="var(--blue)" stroke-width="2.5"/>
+        <polygon points="210,120 340,240 80,240" fill="var(--mark-bg)" stroke="var(--ink)" stroke-width="2" opacity="0.9"/>
+        <line x1="210" y1="120" x2="340" y2="240" stroke="var(--red)" stroke-width="2" stroke-dasharray="6 4"/>
+        <line x1="80" y1="240" x2="410" y2="530" stroke="var(--red)" stroke-width="1.6" stroke-dasharray="3 5" opacity="0.55"/>
+        <circle cx="210" cy="120" r="5" fill="var(--ink)"/>
+        <circle cx="340" cy="240" r="5" fill="var(--ink)"/>
+        <circle cx="80" cy="240" r="5" fill="var(--ink)"/>
+        <g font-size="14" font-family="sans-serif" font-weight="700">
+          <text x="220" y="115" fill="var(--ink)">A(0,1)</text>
+          <text x="350" y="236" fill="var(--ink)">P(3/2,−1/2)</text>
+          <text x="10" y="256" fill="var(--ink)">Q(−3/2,−1/2)</text>
+          <text x="240" y="175" fill="var(--red)" font-weight="400" font-size="12">直線 x+y−1=0</text>
+        </g>
+      </svg>
+      <figcaption>黄＝△APQ。PとQのy座標がそろっているので、底辺PQ・高さ（Aからの垂直距離）で面積が確認できます。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= まとめ ================= -->
+<section class="prob" id="pfinal" data-key="pfinal">
+  <div class="ph"><span class="no">直前</span><div class="htext"><span class="tag">FINAL CHECK</span><h2>ここだけ確認</h2></div><button class="done" type="button" aria-pressed="false">確認した</button></div>
+  <div class="body">
+    <ol class="sumlist">
+      <li><b>451：</b>条件式を整理 → |p−(2b+c)|＝a（円）。AO＝2b+c＝3AD。APの最大＝AO+半径＝3a。面積はたこ形（30-60-90三角形×2）＋大きい扇形（中心角240°）＝(2π/3+√3)a²。</li>
+      <li><b>472：</b>媒介変数 x=√3cosθ, y=sinθ で距離の2乗を2次関数に。Pの座標(3/2,−1/2)、AP=3√2/2。</li>
+      <li><b>472(2)：</b>Qは楕円<span class="hl">全体</span>から探す（x≧0の制限なし）。直線APと平行な接線をもつ点が2つ出るので、<b>両方とも</b>計算して距離を比べる。答えはQ=(−3/2,−1/2)、面積9/4。</li>
+      <li><b>共通の注意：</b>問題の条件（どの変数にどんな制限があるか）を最初に整理してから計算を始めると、途中で範囲を混同するミスを防げる。</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+<footer>「答えをかくす」をオンにすると、答えがぼやけて表示されます。タップで1つずつ見られます。「できた」の記録はこの端末のブラウザに保存されます。</footer>
+
+<script>
+(function(){
+  var KEY='math-page4-done';
+  var done={};
+  function load(){try{var v=localStorage.getItem(KEY);done=v?JSON.parse(v)||{}:{};}catch(e){done={};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  var sections=[].slice.call(document.querySelectorAll('.prob'));
+  var progress=document.getElementById('progress');
+  function refresh(){
+    var n=0;
+    sections.forEach(function(s){
+      var b=s.querySelector('.done');var k=s.getAttribute('data-key');
+      var on=!!done[k];if(on)n++;
+      if(b)b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    progress.textContent=n+' / '+sections.length;
+  }
+  load();refresh();
+  sections.forEach(function(s){
+    var b=s.querySelector('.done');if(!b)return;
+    b.addEventListener('click',function(){
+      var k=s.getAttribute('data-key');
+      if(done[k])delete done[k];else done[k]=1;
+      save();refresh();
+    });
+  });
+  var hideBtn=document.getElementById('hideBtn');
+  hideBtn.addEventListener('click',function(){
+    var on=hideBtn.getAttribute('aria-pressed')!=='true';
+    hideBtn.setAttribute('aria-pressed',on?'true':'false');
+    document.body.classList.toggle('hide',on);
+    if(!on){[].forEach.call(document.querySelectorAll('.ans.shown'),function(a){a.classList.remove('shown');});}
+  });
+  [].forEach.call(document.querySelectorAll('.ans'),function(a){
+    a.addEventListener('click',function(){if(document.body.classList.contains('hide'))a.classList.toggle('shown');});
+  });
+})();
+</script>
+</body>
+</html>
