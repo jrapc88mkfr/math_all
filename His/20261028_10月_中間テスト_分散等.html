@@ -2,114 +2,692 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>数学｜大問8 仮説検定</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2学期中間テスト 数学 大問1〜8 解答・解説</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#202938;--muted:#5b6574;--line:#d9e0e8;--blue:#2457a7;--green:#176b48;--green-light:#e8f7ef;--yellow:#fff7d6;--yellow-line:#e7c95e;--red:#b42332;--red-light:#fff0f1}
-*{box-sizing:border-box}body{margin:0;background:#f3f6fa;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI","Yu Gothic UI","Meiryo",sans-serif;line-height:1.8}
-header{background:#172c4d;color:#fff;padding:28px 18px}header .inner,main{max-width:920px;margin:auto}header h1{margin:0;font-size:clamp(1.45rem,4vw,2.1rem);line-height:1.4}header p{margin:8px 0 0;color:#dce7f8}
-nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}nav a{color:#fff;text-decoration:none;border:1px solid #8092ad;border-radius:999px;padding:5px 12px;font-size:.9rem}
-main{padding:20px 14px 50px}section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:clamp(16px,3vw,28px);margin:18px 0;box-shadow:0 3px 12px #14233b0a}
-h2{font-size:1.4rem;margin:0 0 18px;padding-bottom:10px;border-bottom:3px solid var(--blue)}h3{font-size:1.12rem;margin:24px 0 10px;color:var(--blue)}h4{margin:16px 0 6px}p{margin:8px 0}
-.math{font-family:"Cambria Math","Times New Roman",serif;font-size:1.08rem;overflow-wrap:anywhere}.eq{background:#f7f9fc;border-left:4px solid #9aaecb;padding:10px 14px;margin:10px 0;border-radius:4px}
-.answer{background:var(--green-light);border-left:4px solid var(--green);padding:10px 14px;margin:12px 0;border-radius:4px}.answer strong{color:var(--green)}
-.note{background:var(--yellow);border:1px solid var(--yellow-line);padding:12px 14px;border-radius:8px;margin:12px 0}.warning{background:var(--red-light);border-left:4px solid var(--red);padding:12px 14px;border-radius:6px;margin:12px 0}.explain{background:#f5f8ff;padding:12px 14px;border-radius:8px;margin:12px 0}
-.small{font-size:.92rem;color:var(--muted)}ol,ul{padding-left:1.5rem}li{margin:6px 0}details{border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:12px 0}summary{cursor:pointer;font-weight:700;color:var(--blue)}
-footer{text-align:center;color:var(--muted);font-size:.85rem;padding:12px}
-@media print{body{background:#fff;font-size:10.5pt}header{background:#fff;color:#000;padding:8px 0;border-bottom:2px solid #222}header p{color:#333}nav{display:none}main{padding:0;max-width:none}section{box-shadow:none;border:0;border-radius:0;padding:10px 0;margin:0;break-inside:avoid}h2{color:#000;border-color:#333}.answer,.note,.warning,.explain,.eq{background:#fff}details{break-inside:avoid}}
+:root{
+  --bg:#f1f5fa; --panel:#ffffff; --ink:#16233b; --sub:#54627c; --line:#d3dce8;
+  --red:#d0212f; --red-bg:#fff1f2; --red-ink:#ffffff;
+  --blue:#1d5fa8; --blue-bg:#eaf3fc;
+  --mark:#ffe873; --mark-bg:#fff8d6; --mark-line:#e0b400;
+  --green:#2e7d4f; --green-bg:#eaf7ee;
+  --purp:#7b3fb0; --purp-bg:#f3ecfa;
+  --ans-bg:#16233b; --ans-ink:#ffffff;
+  --grid:rgba(29,95,168,.08);
+  --shadow:0 1px 0 rgba(22,35,59,.06), 0 8px 24px -14px rgba(22,35,59,.35);
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  --math:"STIX Two Text","Times New Roman","Noto Serif JP","Yu Mincho",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+    --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+    --blue:#82bbff; --blue-bg:#13263b;
+    --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+    --green:#7fd19f; --green-bg:#122a1c;
+    --purp:#c9a4ec; --purp-bg:#241a30;
+    --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+    --grid:rgba(130,187,255,.07);
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+  --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+  --blue:#82bbff; --blue-bg:#13263b;
+  --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+  --green:#7fd19f; --green-bg:#122a1c;
+  --purp:#c9a4ec; --purp-bg:#241a30;
+  --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+  --grid:rgba(130,187,255,.07);
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:auto;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--sans);font-size:16px;line-height:1.85;
+}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.hero{max-width:960px;margin:0 auto;padding:34px 18px 8px}
+.hero h1{margin:0;font-size:clamp(1.5rem,5vw,2.3rem);font-weight:900;line-height:1.35;letter-spacing:.02em}
+.hero h1 span{display:inline-block;border:4px solid var(--red);border-radius:12px;padding:0 .35em;margin-right:.2em;color:var(--red);transform:rotate(-1.5deg)}
+.hero p{margin:12px 0 0;color:var(--sub);max-width:42em}
+.legend{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:22px 0 4px}
+.legend > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.86rem;line-height:1.6;box-shadow:var(--shadow)}
+.legend b{display:block;margin-bottom:4px;font-size:.9rem}
+.swatch{display:inline-block;width:1.6em;height:1em;vertical-align:-.15em;margin-right:.4em;border-radius:3px}
+.sw-red{border:2.5px solid var(--red);background:var(--red-bg)}
+.sw-blue{border-left:5px solid var(--blue);background:var(--blue-bg)}
+.sw-mark{border-left:5px solid var(--mark-line);background:var(--mark-bg)}
+.sw-purp{border-left:5px solid var(--purp);background:var(--purp-bg)}
+
+.notice{max-width:960px;margin:18px auto 0;padding:0 18px}
+.notice-in{background:var(--purp-bg);border:2px solid var(--purp);border-radius:12px;padding:14px 18px;font-size:.92rem}
+.notice-in b{color:var(--purp)}
+.notice-in ul{margin:8px 0 0;padding-left:1.3em}
+.notice-in li{margin:4px 0}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:960px;margin:0 auto;padding:8px 18px;display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 12px;line-height:1.7}
+.nav a:hover{border-color:var(--red);color:var(--red)}
+.tools{margin-left:auto;display:flex;gap:8px;flex:none;padding-left:8px}
+.btn{font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:3px 12px;line-height:1.7}
+.btn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.progress{font-size:.82rem;font-weight:700;color:var(--sub);white-space:nowrap;align-self:center}
+
+main{max-width:960px;margin:0 auto;padding:12px 18px 60px}
+.prob{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:26px 0;padding:0 0 18px;box-shadow:var(--shadow);overflow:hidden}
+.ph{display:flex;align-items:stretch;border-bottom:2px solid var(--ink);margin-bottom:16px}
+.ph .no{flex:none;min-width:4.6rem;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--panel);font-weight:900;font-size:1.2rem;padding:8px 10px;letter-spacing:.03em;text-align:center;line-height:1.3}
+.ph .htext{flex:1;align-self:center;padding:10px 16px}
+.ph .htext .tag{display:block;font-size:.74rem;font-weight:700;color:var(--red);letter-spacing:.06em;margin-bottom:1px}
+.ph h2{margin:0;font-size:1.05rem;font-weight:700;line-height:1.5}
+.ph .done{margin:8px 12px 8px 0;align-self:center}
+.body{padding:0 clamp(14px,3vw,24px)}
+h3{font-size:1rem;font-weight:900;margin:22px 0 6px;padding-bottom:3px;border-bottom:2px dotted var(--line)}
+p{margin:8px 0}
+.q{border:2px dashed var(--line);border-radius:10px;padding:10px 14px;margin:0 0 14px}
+.q::before{content:"問題";display:inline-block;font-weight:900;font-size:.8rem;background:var(--ink);color:var(--panel);border-radius:4px;padding:0 8px;margin-right:8px;line-height:1.6}
+.q .sub{display:block;margin-top:4px}
+
+/* math */
+.m{font-family:var(--math);font-size:1.12em;line-height:1.9}
+.m i{font-style:italic}
+sup,sub{line-height:0;font-size:.72em}
+.fr{display:inline-block;vertical-align:middle;text-align:center;line-height:1.25;margin:0 .18em;font-size:.95em}
+.fr > b{display:block;font-weight:inherit;padding:0 .25em}
+.fr > b:first-child{border-bottom:1.5px solid currentColor}
+.int{display:inline-block;vertical-align:middle;white-space:nowrap;margin:0 .1em}
+.int .sym{display:inline-block;vertical-align:middle;font-size:2.1em;line-height:1;font-weight:300;font-family:var(--math)}
+.lim{display:inline-block;vertical-align:middle;font-size:.62em;line-height:1.1;margin-left:.1em;text-align:left}
+.lim > span{display:block}
+.lim > span:first-child{margin-bottom:1.15em}
+.int .lim{margin-left:-.25em}
+.brk{font-size:2.2em;line-height:1;font-weight:300;vertical-align:middle;display:inline-block;margin:0 .02em;font-family:var(--math)}
+
+.fb{position:relative;margin:24px 0 14px;padding:16px 16px 10px;border:3px solid var(--red);border-radius:12px;background:var(--red-bg)}
+.fb::before{content:attr(data-label);position:absolute;top:-.95em;left:14px;background:var(--red);color:var(--red-ink);font-weight:900;font-size:.82rem;line-height:1.7;padding:0 12px;border-radius:999px}
+.fb .m{display:block;overflow-x:auto;padding:1px 0}
+.fb .m + .m{margin-top:2px}
+.fb.soft{border-style:dashed;border-width:2.5px}
+.box{font-family:var(--math);display:inline-block;border:2.5px solid var(--red);border-radius:6px;padding:0 .4em;background:var(--panel)}
+
+.easy{margin:14px 0;padding:12px 16px;background:var(--blue-bg);border-left:6px solid var(--blue);border-radius:0 10px 10px 0}
+.easy > .t{display:block;font-weight:900;color:var(--blue);font-size:.92rem;margin-bottom:2px}
+.easy > .t::before{content:"💡 "}
+.easy ul,.easy ol{margin:6px 0;padding-left:1.3em}
+.easy li{margin:3px 0}
+.pt{margin:14px 0;padding:10px 16px;background:var(--mark-bg);border-left:6px solid var(--mark-line);border-radius:0 10px 10px 0}
+.pt > .t{font-weight:900}
+.hl{background:linear-gradient(transparent 55%,var(--mark) 55%);font-weight:700}
+
+.ans{margin:16px 0 4px;background:var(--ans-bg);color:var(--ans-ink);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ans .al{flex:none;font-weight:900;font-size:.85rem;background:var(--red);color:var(--red-ink);border-radius:999px;padding:0 12px;line-height:1.7}
+.ans .av{font-weight:700;font-size:1.05rem;flex:1;min-width:0}
+body.hide .ans{cursor:pointer}
+body.hide .ans:not(.shown) .av{filter:blur(9px);user-select:none}
+body.hide .ans:not(.shown)::after{content:"タップで答えを見る";font-size:.78rem;opacity:.75;margin-left:auto}
+
+.check{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 12px;margin:10px 0;font-size:.92rem}
+.check b{color:var(--blue)}
+.check .chk-row{margin:2px 0;overflow-x:auto}
+.done{font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--panel);color:var(--sub);border-radius:999px;padding:0 12px;line-height:1.9}
+.done[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--panel)}
+.done[aria-pressed="true"]::before{content:"✓ "}
+.fig{margin:14px 0;text-align:center}
+.fig svg{width:100%;max-width:460px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.fig figcaption{font-size:.84rem;color:var(--sub);margin-top:4px;line-height:1.6}
+.tblwrap{overflow-x:auto;margin:12px 0}
+table.tbl{border-collapse:collapse;width:100%;min-width:420px;font-size:.95rem;text-align:center}
+.tbl th,.tbl td{border:1.5px solid var(--ink);padding:7px 10px}
+.tbl th{background:var(--ink);color:var(--panel);font-weight:700}
+.tbl td.left{text-align:left}
+.sumlist{list-style:none;margin:0;padding:0;counter-reset:s}
+.sumlist li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px dotted var(--line)}
+.sumlist li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--red);color:var(--red);font-weight:900;text-align:center;line-height:25px}
+.sumlist li:last-child{border-bottom:0}
+.memo{background:var(--green-bg);border:2px solid var(--green);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:.95rem}
+.memo b{color:var(--green)}
+footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-size:.82rem}
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .ph .no{min-width:3.6rem;font-size:1.05rem}
+  .ph h2{font-size:1rem}
+  .fb{padding:16px 12px 8px}
+  .tools{padding-left:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .nav,.done,.tools{display:none}
+  body{background:#fff;color:#000}
+  .prob{break-inside:avoid;box-shadow:none}
+}
+
+.figgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:14px 0}
+.figgrid figure{margin:0;text-align:center}
+.figgrid svg{width:100%;max-width:300px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.figgrid figcaption{font-size:.84rem;color:var(--sub);margin-top:4px;line-height:1.5}
+.ok{color:var(--green);font-weight:900}
+.ng{color:var(--red);font-weight:900}
+.tbl td.m,.tbl td .m{font-size:1.02em}
+.tbl th,.tbl td.nw{white-space:nowrap}
+
+.vec{text-decoration:overline}
+.grid16{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.gcell{border-radius:8px;padding:8px 6px;text-align:center;font-family:"STIX Two Text","Times New Roman",serif;font-weight:700;font-size:1.05rem;letter-spacing:.08em;border:1.5px solid var(--line)}
+.gcell small{display:block;font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;font-size:.72rem;font-weight:700;letter-spacing:0;color:var(--sub);margin-top:2px}
+.c-none{background:#efe8fb;border-color:#7b3fb0}
+.c-two{background:#e6f5ec;border-color:#2e7d4f}
+.c-three{background:#eaf3fc;border-color:#1d5fa8}
+.c-four{background:#fff4c4;border-color:#c9a400}
+.legend-row{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 4px;font-size:.9rem}
+.legend-row span{display:inline-flex;align-items:center;gap:6px}
+.legend-row i{display:inline-block;width:16px;height:12px;border-radius:3px;border:1.5px solid var(--line)}
+.figbox{display:flex;justify-content:center}
+.figbox svg{width:100%;max-width:420px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.figbox svg{width:100%;max-width:420px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.tblwrap table td.left{text-align:left}
 </style>
-</head>
-<body>
-<header><div class="inner">
-<h1>数学｜大問8　仮説検定</h1>
-<p>二項分布・標準化・有意水準5％の両側検定</p>
-<nav><a href="#problem">問題</a><a href="#solution">解答・解説</a><a href="#flow">検定の手順</a><a href="#summary">公式まとめ</a></nav>
-</div></header>
+</head><body>
+
+<div class="hero">
+  <h1><span>中間</span>2学期数学　大問1〜8（確率・正規分布・検定）</h1>
+  <p>問題・解答・解説を、大問ごとに並べました。<strong>確率の計算</strong>、<strong>正規分布の読み取り</strong>、<strong>標本平均と信頼区間</strong>、<strong>仮説検定</strong>の流れを、図で確かめながら進めましょう。赤枠の公式、青い解説、黄色いテストのポイントで整理しています。</p>
+  <div class="legend" aria-label="この資料の見かた">
+    <div><b><span class="swatch sw-red"></span>赤枠＝覚える公式・答案の形</b>テストで書く式です。</div>
+    <div><b><span class="swatch sw-blue"></span>青＝やさしい解説</b>中学〜高2の知識で説明します。</div>
+    <div><b><span class="swatch sw-mark"></span>黄＝テストでのポイント</b>書き忘れ・減点されやすいところ。</div>
+    <div><b><span class="swatch sw-purp"></span>紫＝資料の整理について</b>元の資料からの変更点の確認。</div>
+  </div>
+</div>
+
+<div class="notice">
+  <div class="notice-in">
+    <b>元の資料について（確認して修正した点）</b>
+    <ul>
+      <li>8問すべての答えを計算し直して確認しました。</li>
+      <li><b>大問7 (2)：</b>連続補正を使った場合の近似値は、元の「約0.72」ではなく <span class="m">0.706</span> が正しいです（正確な二項分布の値は <span class="m">0.7064</span> で、ほぼ一致します）。</li>
+      <li><b>大問1 (1)②：</b>元の資料の「原本で確認」という注意書きは不要なので削除しました。<span class="m"><i>E</i>(<i>Y</i>) = 18/5</span> は正しい値です。</li>
+      <li>図は、正規分布の面積、二項分布の確率、信頼区間を、数式と対応させて作りました。</li>
+    </ul>
+  </div>
+</div>
+
+<nav class="nav" aria-label="目次">
+  <div class="nav-in">
+    <a href="#p1">大問1</a><a href="#p2">大問2</a><a href="#p3">大問3</a><a href="#p4">大問4</a><a href="#p5">大問5</a><a href="#p6">大問6</a><a href="#p7">大問7</a><a href="#p8">大問8</a><a href="#pfinal">直前</a>
+    <span class="tools">
+      <span class="progress" id="progress" aria-live="polite"></span>
+      <button class="btn" id="hideBtn" aria-pressed="false" type="button">答えをかくす</button>
+    </span>
+  </div>
+</nav>
+
 <main>
-<section id="problem">
-<h2>大問8　問題</h2>
-<p>ある1個のさいころを180回投げたところ、1の目が24回出た。</p>
-<p>このさいころは「1の目が出る確率が <span class="math">1/6</span> ではない」といえるか、有意水準5％で両側検定を行う。</p>
-<h3>(1)</h3>
-<p>1の目が出る確率を <span class="math">p</span> とし、帰無仮説 <span class="math">H₀:p=1/6</span> を立てる。この仮説が正しいとすると、1の目が出る回数 <span class="math">X</span> はどの分布に従うか。また、標準化した確率変数 <span class="math">Z</span> を求めよ。</p>
-<h3>(2)</h3>
-<p>観測された回数が24回だったとき、このさいころは「1の目が出る確率が <span class="math">1/6</span> ではない」と判断してよいか。</p>
-<h3>(3)</h3>
-<p>翌日さらに180回投げたところ、今度は1の目が14回出た。この結果から、このさいころは1の目が出る確率が <span class="math">1/6</span> ではないと判断してよいか。</p>
+
+<!-- ================= 大問1 ================= -->
+<section class="prob" id="p1" data-key="p1">
+  <div class="ph"><span class="no">大問1</span><div class="htext"><span class="tag">期待値・分散・二項分布</span><h2>独立な確率変数の期待値、さいころの分散、二項分布</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">(1) 2つの確率変数 X，Y は互いに独立で、次の分布に従う。
+      <span class="sub">X：値 1，3 ／ 確率 2/3，1/3。　Y：値 2，4 ／ 確率 1/5，4/5。</span>
+      <span class="sub">① E(X)　② E(Y)　③ E(XY) を求めよ。</span>
+      (2) 大小2個のさいころを投げ、出る目を X，Y とする。E(X)，E(X²)，V(X)，V(X+Y) を求めよ。
+      (3) 1回の試行で事象 A の起こる確率を p とし、n 回くり返して A の起こる回数を X とする。E(X)，V(X) を求めよ。
+      (4) X が正規分布 N(m, σ²) に従うとき、標準化した Z を表せ。
+      (5) 母平均 m、母標準偏差 σ の母集団から大きさ n の無作為標本を取り、標本平均を X̄ とする。E(X̄)，σ(X̄) を求めよ。</p>
+
+    <h3>(1) 期待値と独立な確率変数</h3>
+    <div class="fb" data-label="期待値の計算">
+      <span class="m"><i>E</i>(<i>X</i>) ＝ Σ（値 × 確率）　　独立のとき　<span class="box"><i>E</i>(<i>X</i><i>Y</i>) ＝ <i>E</i>(<i>X</i>)<i>E</i>(<i>Y</i>)</span></span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">① <i>E</i>(<i>X</i>) = 1 × 2/3 + 3 × 1/3 = 2/3 + 1 = <span class="box">5/3</span></span>
+      <span class="m">② <i>E</i>(<i>Y</i>) = 2 × 1/5 + 4 × 4/5 = 2/5 + 16/5 = <span class="box">18/5</span></span>
+      <span class="m">③ <i>X</i>，<i>Y</i> は独立なので　<i>E</i>(<i>X</i><i>Y</i>) = <i>E</i>(<i>X</i>)<i>E</i>(<i>Y</i>) = 5/3 × 18/5 = <span class="box">6</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：独立とは</span>
+      <p>「X が何になっても Y の確率は変わらない」という関係です。独立なら、積の期待値は期待値どうしの積になります。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>期待値は「値 × その値の確率」をすべて足す。独立でないときは <span class="m"><i>E</i>(<i>X</i><i>Y</i>) = <i>E</i>(<i>X</i>)<i>E</i>(<i>Y</i>)</span> を使えないので注意。</div>
+
+    <h3>(2) さいころの期待値・分散</h3>
+    <div class="fb" data-label="分散の公式">
+      <span class="m"><span class="box"><i>V</i>(<i>X</i>) = <i>E</i>(<i>X</i>²) − {<i>E</i>(<i>X</i>)}²</span>　（2乗してから平均する。平均してから2乗するのとは違う）</span>
+      <span class="m"><i>X</i>，<i>Y</i> が独立なら　<span class="box"><i>V</i>(<i>X</i> + <i>Y</i>) = <i>V</i>(<i>X</i>) + <i>V</i>(<i>Y</i>)</span></span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>E</i>(<i>X</i>) = <i>E</i>(<i>Y</i>) = (1 + 2 + 3 + 4 + 5 + 6)/6 = <span class="box">7/2</span></span>
+      <span class="m"><i>E</i>(<i>X</i>²) = <i>E</i>(<i>Y</i>²) = (1² + 2² + ⋯ + 6²)/6 = 91/6 = <span class="box">91/6</span></span>
+      <span class="m"><i>V</i>(<i>X</i>) = <i>V</i>(<i>Y</i>) = 91/6 − (7/2)² = 182/12 − 147/12 = <span class="box">35/12</span></span>
+      <span class="m"><i>V</i>(<i>X</i> + <i>Y</i>) = 35/12 + 35/12 = <span class="box">35/6</span></span>
+    </div>
+    <div class="check"><b>検算：</b>1〜6の平方の和は 1 + 4 + 9 + 16 + 25 + 36 = 91 ✓。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>E(X²) は「2乗した値の平均」。E(X) を2乗した (7/2)² は引く方。両方を混同しない。</div>
+
+    <h3>(3) 二項分布</h3>
+    <div class="fb" data-label="二項分布 B(n, p) の期待値・分散">
+      <span class="m"><i>X</i> ～ <i>B</i>(<i>n</i>, <i>p</i>) のとき　<span class="box"><i>E</i>(<i>X</i>) = <i>n</i><i>p</i></span>，　<span class="box"><i>V</i>(<i>X</i>) = <i>n</i><i>p</i>(1 − <i>p</i>)</span>，　σ = √{<i>n</i><i>p</i>(1 − <i>p</i>)}</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ np なのか</span>
+      <p>1回あたりの期待値は p。n 回くり返すので、全部で np です。分散は1回ごとの分散 p(1 − p) を n 回ぶん足します。</p>
+    </div>
+    <div class="ans"><span class="al">答 (3)</span><span class="av"><span class="m"><i>E</i>(<i>X</i>) = <i>n</i><i>p</i>，　<i>V</i>(<i>X</i>) = <i>n</i><i>p</i>(1 − <i>p</i>)</span></span></div>
+
+    <h3>(4) 標準化</h3>
+    <div class="fb" data-label="標準化の式">
+      <span class="m"><span class="box"><i>Z</i> = (<i>X</i> − <i>m</i>)/σ</span>　（<i>Z</i> は平均 0，標準偏差 1 の標準正規分布 <i>N</i>(0, 1) に従う）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：標準化は「ものさしをそろえる」</span>
+      <p>平均 m を引いて中心を 0 にし、標準偏差 σ で割って単位をそろえます。割るのは分散 σ² ではなく標準偏差 σ です。</p>
+    </div>
+    <div class="ans"><span class="al">答 (4)</span><span class="av"><span class="m"><i>Z</i> = (<i>X</i> − <i>m</i>)/σ</span></span></div>
+
+    <h3>(5) 標本平均</h3>
+    <div class="fb" data-label="標本平均の公式">
+      <span class="m"><span class="box"><i>E</i>(<i>X</i>̄) = <i>m</i></span>　　<span class="box">σ(<i>X</i>̄) = σ/√<i>n</i></span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ √n で割る？</span>
+      <p>標本平均は、1人ずつのばらつきが「平均されて」小さくなります。人数 n が増えるほど、平均のばらつきは √n に反比例して小さくなります。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>期待値は変わらない（m のまま）、標準偏差だけが <span class="m">σ/√<i>n</i></span> になる。「期待値も割る」と混同しない。</div>
+    <div class="ans"><span class="al">答 (5)</span><span class="av"><span class="m"><i>E</i>(<i>X</i>̄) = <i>m</i>，　σ(<i>X</i>̄) = σ/√<i>n</i></span></span></div>
+  </div>
 </section>
 
-<section id="solution">
-<h2>解答・解説</h2>
-<h3>(1) 分布と標準化</h3>
-<p>帰無仮説 <span class="math">H₀:p=1/6</span> が正しいと仮定する。180回の試行で1が出る回数なので、<span class="math">X</span> は二項分布に従う。</p>
-<div class="eq math">X∼B(180,1/6)</div>
-<p>期待値は</p>
-<div class="eq math">μ=np=180×1/6=30</div>
-<p>分散と標準偏差は</p>
-<div class="eq math">V(X)=np(1−p)=180×1/6×5/6=25</div>
-<div class="eq math">σ=√25=5</div>
-<p>よって標準化すると</p>
-<div class="eq math">Z=(X−30)/5</div>
-<div class="answer"><strong>答え：</strong><span class="math">X∼B(180,1/6),　Z=(X−30)/5</span></div>
-<div class="explain">検定では、まず帰無仮説が正しいと仮定して、観測値がどれくらい珍しいかを調べる。ここでは帰無仮説のもとで平均30回、標準偏差5回となる。</div>
+<!-- ================= 大問2 ================= -->
+<section class="prob" id="p2" data-key="p2">
+  <div class="ph"><span class="no">大問2</span><div class="htext"><span class="tag">二項分布</span><h2>さいころを5回投げて「2以下」が出る回数</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">1個のさいころを5回投げて、2以下の目が出る回数を X とする。
+      <span class="sub">(1) P(X = 2) を求めよ。</span>
+      <span class="sub">(2) P(2 ≤ X ≤ 4) を求めよ。</span></p>
 
-<h3>(2) 24回出た場合</h3>
-<p>観測値 <span class="math">X=24</span> を標準化する。</p>
-<div class="eq math">z=(24−30)/5=−6/5=−1.2</div>
-<p>有意水準5％の両側検定では、標準正規分布の臨界値はおよそ <span class="math">−1.96</span> と <span class="math">1.96</span>。したがって、<span class="math">|z|&gt;1.96</span> のとき帰無仮説を棄却する。</p>
-<div class="eq math">|−1.2|=1.2&lt;1.96</div>
-<div class="answer"><strong>答え：</strong>帰無仮説は棄却できない。<span class="math">p=1/6</span> ではないと判断する十分な証拠はない。</div>
-<p>参考として、標準正規分布表より <span class="math">P(0≤Z≤1.2)=0.3849</span> なので、左側の片側確率は</p>
-<div class="eq math">P(Z≤−1.2)=0.5−0.3849=0.1151</div>
-<p>両側の確率はおよそ</p>
-<div class="eq math">2×0.1151=0.2302</div>
-<div class="explain">両側確率は約23.0％で、有意水準5％より大きい。24回という結果は、帰無仮説のもとでも十分起こりうる範囲と考えられる。</div>
+    <div class="fb" data-label="準備：二項分布 B(5, 1/3)">
+      <span class="m">1回で2以下が出る確率 ＝ 2/6 ＝ 1/3。5回くり返すので　<span class="box"><i>X</i> ～ <i>B</i>(5, 1/3)</span></span>
+      <span class="m"><span class="box"><i>P</i>(<i>X</i> = <i>r</i>) = ₅<i>C</i>ᵣ (1/3)ʳ (2/3)⁵⁻ʳ</span></span>
+    </div>
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 340 210" role="img" aria-label="二項分布 B(5, 1/3) の確率分布。X = 2, 3, 4 を赤で示す" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="210" fill="var(--panel)"/><line x1="34.0" y1="178.0" x2="328.0" y2="178.0" stroke="var(--ink)" stroke-width="1.6"/><rect x="43.8" y="125.3" width="29.4" height="52.7" fill="var(--sub)" fill-opacity="0.45" rx="3"/><text x="58.5" y="196.0" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">0</text><text x="58.5" y="119.3" font-size="10.5" font-weight="600" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">32/243</text><rect x="92.8" y="46.3" width="29.4" height="131.7" fill="var(--sub)" fill-opacity="0.45" rx="3"/><text x="107.5" y="196.0" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">1</text><text x="107.5" y="40.3" font-size="10.5" font-weight="600" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">80/243</text><rect x="141.8" y="46.3" width="29.4" height="131.7" fill="var(--red)" fill-opacity="0.9" rx="3"/><text x="156.5" y="196.0" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">2</text><text x="156.5" y="40.3" font-size="10.5" font-weight="600" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">80/243</text><rect x="190.8" y="112.2" width="29.4" height="65.8" fill="var(--red)" fill-opacity="0.9" rx="3"/><text x="205.5" y="196.0" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">3</text><text x="205.5" y="106.2" font-size="10.5" font-weight="600" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">40/243</text><rect x="239.8" y="161.5" width="29.4" height="16.5" fill="var(--red)" fill-opacity="0.9" rx="3"/><text x="254.5" y="196.0" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">4</text><text x="254.5" y="155.5" font-size="10.5" font-weight="600" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">10/243</text><rect x="288.8" y="176.4" width="29.4" height="1.6" fill="var(--sub)" fill-opacity="0.45" rx="3"/><text x="303.5" y="196.0" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">5</text><text x="303.5" y="170.4" font-size="10.5" font-weight="600" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">1/243</text><text x="328.0" y="32.0" font-size="11.5" font-weight="700" fill="var(--red)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">赤：X = 2，3，4（P = 130/243 ≒ 0.535）</text></svg></div>
+      <figcaption>二項分布 B(5, 1/3) の確率。赤が X = 2，3，4（2 ≦ X ≦ 4 の部分）。</figcaption>
+    </figure>
 
-<h3>(3) 14回出た場合</h3>
-<p>今度は観測値 <span class="math">X=14</span>。同じ平均30、標準偏差5を用いて標準化する。</p>
-<div class="eq math">z=(14−30)/5=−16/5=−3.2</div>
-<div class="eq math">|z|=3.2&gt;1.96</div>
-<div class="answer"><strong>答え：</strong>帰無仮説を棄却する。有意水準5％で、1の目が出る確率は <span class="math">1/6</span> ではないと判断する。</div>
-<div class="explain">14回は期待値30回より16回少なく、標準偏差5回の3.2倍も平均から離れている。帰無仮説が正しいとしたときに起こりにくい結果なので、帰無仮説を棄却する。</div>
-<div class="warning"><strong>結論の書き方に注意：</strong>「帰無仮説を棄却できない」は「帰無仮説が正しいと証明された」という意味ではない。また、検定で棄却した場合も、確率が必ず特定の値だと確定するわけではなく、データが帰無仮説と整合しにくいと判断する。</div>
+    <h3>(1) P(X = 2)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>P</i>(<i>X</i> = 2) = ₅<i>C</i>₂ (1/3)² (2/3)³ = 10 × 1/9 × 8/27 = <span class="box">80/243</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ ₅C₂ を掛けるの？</span>
+      <p>5回のうち「2以下」が起こる2回の位置の選び方は ₅C₂ = 10 通り。どの並び方も確率は同じ (1/3)²(2/3)³ なので、10 通りを掛けます。</p>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m">80/243</span></span></div>
+
+    <h3>(2) P(2 ≤ X ≤ 4)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>P</i>(<i>X</i> = 3) = ₅<i>C</i>₃ (1/3)³ (2/3)² = 10 × 1/27 × 4/9 = 40/243</span>
+      <span class="m"><i>P</i>(<i>X</i> = 4) = ₅<i>C</i>₄ (1/3)⁴ (2/3) = 5 × 1/81 × 2/3 = 10/243</span>
+      <span class="m"><i>P</i>(2 ≤ <i>X</i> ≤ 4) = 80/243 + 40/243 + 10/243 = <span class="box">130/243</span></span>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>「2 ≦ X ≦ 4」は、2, 3, 4 の確率を <span class="hl">すべて足す</span>。「ちょうど2回」だけを取り出すと間違える。</div>
+    <div class="check"><b>検算：</b>X = 0〜5 の確率の合計が 1 になることは、二項分布の性質。ここでは 2, 3, 4 の和 130/243 ≒ 0.535 ✓（図の赤い部分）。</div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m">130/243</span></span></div>
+  </div>
 </section>
 
-<section id="flow">
-<h2>仮説検定の手順</h2>
-<ol>
-<li><strong>帰無仮説を立てる：</strong><span class="math">H₀:p=1/6</span></li>
-<li><strong>帰無仮説のもとで平均・標準偏差を求める：</strong><span class="math">μ=np=30</span>、<span class="math">σ=√{np(1−p)}=5</span></li>
-<li><strong>観測値を標準化する：</strong><span class="math">Z=(X−30)/5</span></li>
-<li><strong>臨界値と比較する：</strong>有意水準5％の両側検定では、およそ <span class="math">|Z|&gt;1.96</span> なら棄却。</li>
-<li><strong>文で結論を書く：</strong>棄却できるか、棄却できないかを問題の言葉に合わせて答える。</li>
-</ol>
-<table>
-<tr><th>観測回数</th><th>Z値</th><th>判定</th></tr>
-<tr><td>24回</td><td>−1.2</td><td>棄却できない</td></tr>
-<tr><td>14回</td><td>−3.2</td><td>棄却する</td></tr>
-</table>
+<!-- ================= 大問3 ================= -->
+<section class="prob" id="p3" data-key="p3">
+  <div class="ph"><span class="no">大問3</span><div class="htext"><span class="tag">正規分布</span><h2>身長の分布：確率・上位・区間</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">鹿児島県における高校3年生男子の身長の平均は 168 cm、標準偏差は 5 cm。身長を X cm とすると、X ～ N(168, 5²) とみなす。
+      <span class="sub">(1) Z = (X − 168)/5 はどのような分布に従うか。</span>
+      <span class="sub">(2) 身長 174 cm 以上の人は約何％いるか。</span>
+      <span class="sub">(3) 高い方から 4％ 以内にいる人の身長は何 cm 以上か。</span>
+      <span class="sub">(4) 身長が 156 cm 以上 162 cm 以下の人は約何％いるか。</span></p>
+
+    <div class="fb" data-label="標準化と表の読み方">
+      <span class="m"><span class="box"><i>Z</i> = (<i>X</i> − 168)/5</span> は <i>N</i>(0, 1) に従う（平均 0，標準偏差 1）</span>
+      <span class="m">標準正規分布表は、多くの場合 <b>0 から <i>z</i> までの面積</b> を表す。右側の面積は 0.5 からそれを引く。</span>
+    </div>
+
+    <h3>(1)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><span class="box"><i>Z</i> ～ <i>N</i>(0, 1)</span>（標準正規分布）</span>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m">標準正規分布 <i>N</i>(0, 1)</span></span></div>
+
+    <h3>(2) 174 cm 以上</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>z</i> = (174 − 168)/5 = 1.2</span>
+      <span class="m"><i>P</i>(0 ≦ <i>Z</i> ≦ 1.2) = 0.3849　より　<i>P</i>(<i>Z</i> ≧ 1.2) = 0.5 − 0.3849 = <span class="box">0.1151</span></span>
+    </div>
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 340 200" role="img" aria-label="右側の面積（z ≧ 1.2）" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="200" fill="var(--panel)"/><path d="M 215.6,166.0 L 215.6,106.5 L 217.4,109.8 L 219.1,113.0 L 220.9,116.2 L 222.7,119.3 L 224.5,122.2 L 226.2,125.1 L 228.0,127.9 L 229.8,130.5 L 231.6,133.1 L 233.3,135.5 L 235.1,137.8 L 236.9,140.0 L 238.7,142.1 L 240.4,144.1 L 242.2,145.9 L 244.0,147.6 L 245.7,149.2 L 247.5,150.7 L 249.3,152.1 L 251.1,153.4 L 252.8,154.6 L 254.6,155.8 L 256.4,156.8 L 258.2,157.7 L 259.9,158.6 L 261.7,159.4 L 263.5,160.1 L 265.3,160.7 L 267.0,161.3 L 268.8,161.8 L 270.6,162.3 L 272.3,162.7 L 274.1,163.1 L 275.9,163.5 L 277.7,163.8 L 279.4,164.1 L 281.2,164.3 L 283.0,164.5 L 284.8,164.7 L 286.5,164.9 L 288.3,165.0 L 290.1,165.2 L 291.9,165.3 L 293.6,165.4 L 295.4,165.5 L 297.2,165.5 L 298.9,165.6 L 300.7,165.7 L 302.5,165.7 L 304.3,165.8 L 306.0,165.8 L 307.8,165.8 L 309.6,165.9 L 311.4,165.9 L 313.1,165.9 L 314.9,165.9 L 316.7,165.9 L 318.5,165.9 L 320.2,166.0 L 322.0,166.0 L 322.0,166.0 Z" fill="var(--red)" fill-opacity="0.55" stroke="none"/><polyline points="18.0,166.0 19.5,166.0 21.0,165.9 22.6,165.9 24.1,165.9 25.6,165.9 27.1,165.9 28.6,165.9 30.2,165.9 31.7,165.8 33.2,165.8 34.7,165.8 36.2,165.8 37.8,165.7 39.3,165.7 40.8,165.6 42.3,165.6 43.8,165.5 45.4,165.4 46.9,165.4 48.4,165.3 49.9,165.2 51.4,165.1 53.0,164.9 54.5,164.8 56.0,164.6 57.5,164.5 59.0,164.3 60.6,164.1 62.1,163.8 63.6,163.6 65.1,163.3 66.6,163.0 68.2,162.6 69.7,162.3 71.2,161.8 72.7,161.4 74.2,160.9 75.8,160.4 77.3,159.8 78.8,159.1 80.3,158.5 81.8,157.7 83.4,156.9 84.9,156.1 86.4,155.1 87.9,154.1 89.4,153.1 91.0,151.9 92.5,150.7 94.0,149.5 95.5,148.1 97.0,146.7 98.6,145.1 100.1,143.5 101.6,141.8 103.1,140.0 104.6,138.2 106.2,136.2 107.7,134.1 109.2,132.0 110.7,129.8 112.2,127.5 113.8,125.1 115.3,122.7 116.8,120.1 118.3,117.5 119.8,114.9 121.4,112.1 122.9,109.3 124.4,106.5 125.9,103.6 127.4,100.7 129.0,97.8 130.5,94.8 132.0,91.9 133.5,88.9 135.0,86.0 136.6,83.0 138.1,80.1 139.6,77.2 141.1,74.4 142.6,71.7 144.2,69.0 145.7,66.4 147.2,63.9 148.7,61.5 150.2,59.2 151.8,57.1 153.3,55.1 154.8,53.2 156.3,51.4 157.8,49.9 159.4,48.5 160.9,47.2 162.4,46.2 163.9,45.3 165.4,44.7 167.0,44.2 168.5,43.9 170.0,43.8 171.5,43.9 173.0,44.2 174.6,44.7 176.1,45.3 177.6,46.2 179.1,47.2 180.6,48.5 182.2,49.9 183.7,51.4 185.2,53.2 186.7,55.1 188.2,57.1 189.8,59.2 191.3,61.5 192.8,63.9 194.3,66.4 195.8,69.0 197.4,71.7 198.9,74.4 200.4,77.2 201.9,80.1 203.4,83.0 205.0,86.0 206.5,88.9 208.0,91.9 209.5,94.8 211.0,97.8 212.6,100.7 214.1,103.6 215.6,106.5 217.1,109.3 218.6,112.1 220.2,114.9 221.7,117.5 223.2,120.1 224.7,122.7 226.2,125.1 227.8,127.5 229.3,129.8 230.8,132.0 232.3,134.1 233.8,136.2 235.4,138.2 236.9,140.0 238.4,141.8 239.9,143.5 241.4,145.1 243.0,146.7 244.5,148.1 246.0,149.5 247.5,150.7 249.0,151.9 250.6,153.1 252.1,154.1 253.6,155.1 255.1,156.1 256.6,156.9 258.2,157.7 259.7,158.5 261.2,159.1 262.7,159.8 264.2,160.4 265.8,160.9 267.3,161.4 268.8,161.8 270.3,162.3 271.8,162.6 273.4,163.0 274.9,163.3 276.4,163.6 277.9,163.8 279.4,164.1 281.0,164.3 282.5,164.5 284.0,164.6 285.5,164.8 287.0,164.9 288.6,165.1 290.1,165.2 291.6,165.3 293.1,165.4 294.6,165.4 296.2,165.5 297.7,165.6 299.2,165.6 300.7,165.7 302.2,165.7 303.8,165.8 305.3,165.8 306.8,165.8 308.3,165.8 309.8,165.9 311.4,165.9 312.9,165.9 314.4,165.9 315.9,165.9 317.4,165.9 319.0,165.9 320.5,166.0 322.0,166.0" fill="none" stroke="var(--ink)" stroke-width="2.6"/><line x1="18.0" y1="166.0" x2="322.0" y2="166.0" stroke="var(--ink)" stroke-width="1.6"/><line x1="18.0" y1="166.0" x2="18.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="18.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−4</text><line x1="56.0" y1="166.0" x2="56.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="56.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−3</text><line x1="94.0" y1="166.0" x2="94.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="94.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−2</text><line x1="132.0" y1="166.0" x2="132.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="132.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−1</text><line x1="170.0" y1="166.0" x2="170.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="170.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">0</text><line x1="208.0" y1="166.0" x2="208.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="208.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">1</text><line x1="246.0" y1="166.0" x2="246.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="246.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">2</text><line x1="284.0" y1="166.0" x2="284.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="284.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">3</text><line x1="322.0" y1="166.0" x2="322.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="322.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">4</text><line x1="215.6" y1="166.0" x2="215.6" y2="104.5" stroke="var(--red)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="215.6" y="24.0" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">z = 1.2</text></svg></div>
+      <figcaption>赤い部分が z ≧ 1.2（174 cm 以上）。面積は約 0.115。</figcaption>
+    </figure>
+    <div class="easy"><span class="t">やさしい解説：右側の面積を求める</span>
+      <p>正規分布の右半分の面積は 0.5。表は中央から 1.2 までの面積（0.3849）を教えてくれるので、右端の部分は 0.5 から引きます。</p>
+    </div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m">約 11.5％</span></span></div>
+
+    <h3>(3) 上位 4％ の身長</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">右側の面積が 0.04 なので、中央から境界までの面積は 0.5 − 0.04 = 0.46</span>
+      <span class="m">表から 0.46 に対応する <i>z</i> ≈ 1.75</span>
+      <span class="m">(<i>X</i> − 168)/5 = 1.75　⇒　<i>X</i> = 168 + 5 × 1.75 = 176.75</span>
+      <span class="m"><span class="box">約 176.8 <i>c</i><i>m</i> 以上</span></span>
+    </div>
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 340 200" role="img" aria-label="上位4％（z ≧ 1.75）" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="200" fill="var(--panel)"/><path d="M 236.5,166.0 L 236.5,139.6 L 237.9,141.3 L 239.3,142.9 L 240.8,144.4 L 242.2,145.9 L 243.6,147.3 L 245.0,148.6 L 246.5,149.9 L 247.9,151.1 L 249.3,152.2 L 250.8,153.2 L 252.2,154.2 L 253.6,155.1 L 255.0,156.0 L 256.5,156.8 L 257.9,157.6 L 259.3,158.3 L 260.7,158.9 L 262.1,159.5 L 263.6,160.1 L 265.0,160.6 L 266.4,161.1 L 267.9,161.6 L 269.3,162.0 L 270.7,162.4 L 272.1,162.7 L 273.5,163.0 L 275.0,163.3 L 276.4,163.6 L 277.8,163.8 L 279.2,164.0 L 280.7,164.2 L 282.1,164.4 L 283.5,164.6 L 284.9,164.7 L 286.4,164.9 L 287.8,165.0 L 289.2,165.1 L 290.6,165.2 L 292.1,165.3 L 293.5,165.4 L 294.9,165.5 L 296.4,165.5 L 297.8,165.6 L 299.2,165.6 L 300.6,165.7 L 302.1,165.7 L 303.5,165.7 L 304.9,165.8 L 306.3,165.8 L 307.8,165.8 L 309.2,165.9 L 310.6,165.9 L 312.0,165.9 L 313.4,165.9 L 314.9,165.9 L 316.3,165.9 L 317.7,165.9 L 319.1,165.9 L 320.6,166.0 L 322.0,166.0 L 322.0,166.0 Z" fill="var(--red)" fill-opacity="0.55" stroke="none"/><polyline points="18.0,166.0 19.5,166.0 21.0,165.9 22.6,165.9 24.1,165.9 25.6,165.9 27.1,165.9 28.6,165.9 30.2,165.9 31.7,165.8 33.2,165.8 34.7,165.8 36.2,165.8 37.8,165.7 39.3,165.7 40.8,165.6 42.3,165.6 43.8,165.5 45.4,165.4 46.9,165.4 48.4,165.3 49.9,165.2 51.4,165.1 53.0,164.9 54.5,164.8 56.0,164.6 57.5,164.5 59.0,164.3 60.6,164.1 62.1,163.8 63.6,163.6 65.1,163.3 66.6,163.0 68.2,162.6 69.7,162.3 71.2,161.8 72.7,161.4 74.2,160.9 75.8,160.4 77.3,159.8 78.8,159.1 80.3,158.5 81.8,157.7 83.4,156.9 84.9,156.1 86.4,155.1 87.9,154.1 89.4,153.1 91.0,151.9 92.5,150.7 94.0,149.5 95.5,148.1 97.0,146.7 98.6,145.1 100.1,143.5 101.6,141.8 103.1,140.0 104.6,138.2 106.2,136.2 107.7,134.1 109.2,132.0 110.7,129.8 112.2,127.5 113.8,125.1 115.3,122.7 116.8,120.1 118.3,117.5 119.8,114.9 121.4,112.1 122.9,109.3 124.4,106.5 125.9,103.6 127.4,100.7 129.0,97.8 130.5,94.8 132.0,91.9 133.5,88.9 135.0,86.0 136.6,83.0 138.1,80.1 139.6,77.2 141.1,74.4 142.6,71.7 144.2,69.0 145.7,66.4 147.2,63.9 148.7,61.5 150.2,59.2 151.8,57.1 153.3,55.1 154.8,53.2 156.3,51.4 157.8,49.9 159.4,48.5 160.9,47.2 162.4,46.2 163.9,45.3 165.4,44.7 167.0,44.2 168.5,43.9 170.0,43.8 171.5,43.9 173.0,44.2 174.6,44.7 176.1,45.3 177.6,46.2 179.1,47.2 180.6,48.5 182.2,49.9 183.7,51.4 185.2,53.2 186.7,55.1 188.2,57.1 189.8,59.2 191.3,61.5 192.8,63.9 194.3,66.4 195.8,69.0 197.4,71.7 198.9,74.4 200.4,77.2 201.9,80.1 203.4,83.0 205.0,86.0 206.5,88.9 208.0,91.9 209.5,94.8 211.0,97.8 212.6,100.7 214.1,103.6 215.6,106.5 217.1,109.3 218.6,112.1 220.2,114.9 221.7,117.5 223.2,120.1 224.7,122.7 226.2,125.1 227.8,127.5 229.3,129.8 230.8,132.0 232.3,134.1 233.8,136.2 235.4,138.2 236.9,140.0 238.4,141.8 239.9,143.5 241.4,145.1 243.0,146.7 244.5,148.1 246.0,149.5 247.5,150.7 249.0,151.9 250.6,153.1 252.1,154.1 253.6,155.1 255.1,156.1 256.6,156.9 258.2,157.7 259.7,158.5 261.2,159.1 262.7,159.8 264.2,160.4 265.8,160.9 267.3,161.4 268.8,161.8 270.3,162.3 271.8,162.6 273.4,163.0 274.9,163.3 276.4,163.6 277.9,163.8 279.4,164.1 281.0,164.3 282.5,164.5 284.0,164.6 285.5,164.8 287.0,164.9 288.6,165.1 290.1,165.2 291.6,165.3 293.1,165.4 294.6,165.4 296.2,165.5 297.7,165.6 299.2,165.6 300.7,165.7 302.2,165.7 303.8,165.8 305.3,165.8 306.8,165.8 308.3,165.8 309.8,165.9 311.4,165.9 312.9,165.9 314.4,165.9 315.9,165.9 317.4,165.9 319.0,165.9 320.5,166.0 322.0,166.0" fill="none" stroke="var(--ink)" stroke-width="2.6"/><line x1="18.0" y1="166.0" x2="322.0" y2="166.0" stroke="var(--ink)" stroke-width="1.6"/><line x1="18.0" y1="166.0" x2="18.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="18.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−4</text><line x1="56.0" y1="166.0" x2="56.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="56.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−3</text><line x1="94.0" y1="166.0" x2="94.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="94.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−2</text><line x1="132.0" y1="166.0" x2="132.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="132.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−1</text><line x1="170.0" y1="166.0" x2="170.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="170.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">0</text><line x1="208.0" y1="166.0" x2="208.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="208.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">1</text><line x1="246.0" y1="166.0" x2="246.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="246.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">2</text><line x1="284.0" y1="166.0" x2="284.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="284.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">3</text><line x1="322.0" y1="166.0" x2="322.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="322.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">4</text><line x1="236.5" y1="166.0" x2="236.5" y2="137.6" stroke="var(--red)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="236.5" y="24.0" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">z ≈ 1.75</text></svg></div>
+      <figcaption>右端の赤い部分の面積が 4％（0.04）になる境界が z ≈ 1.75，身長でいうと約 176.8 cm。</figcaption>
+    </figure>
+    <div class="pt"><span class="t">テストのポイント：</span>「上位 4％」は右端の面積が 0.04。表には <b>0.46</b> を探す（0.5 − 0.04）。0.04 をそのまま探すと誤る。</div>
+    <div class="check"><b>検算：</b>z = 1.75 のとき、表の面積は約 0.4599 ✓。</div>
+    <div class="ans"><span class="al">答 (3)</span><span class="av"><span class="m">約 176.8 <i>c</i><i>m</i> 以上</span></span></div>
+
+    <h3>(4) 156 cm 以上 162 cm 以下</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>z</i>₁ = (156 − 168)/5 = −2.4，　<i>z</i>₂ = (162 − 168)/5 = −1.2</span>
+      <span class="m"><i>P</i>(−2.4 ≦ <i>Z</i> ≦ −1.2) = <i>P</i>(1.2 ≦ <i>Z</i> ≦ 2.4)（左右対称）</span>
+      <span class="m">= <i>P</i>(0 ≦ <i>Z</i> ≦ 2.4) − <i>P</i>(0 ≦ <i>Z</i> ≦ 1.2) = 0.4918 − 0.3849 = <span class="box">0.1069</span></span>
+    </div>
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 340 200" role="img" aria-label="156〜162cm（z = −2.4〜−1.2）" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="200" fill="var(--panel)"/><path d="M 78.8,166.0 L 78.8,159.1 L 79.6,158.8 L 80.3,158.5 L 81.1,158.1 L 81.8,157.7 L 82.6,157.3 L 83.4,156.9 L 84.1,156.5 L 84.9,156.1 L 85.6,155.6 L 86.4,155.1 L 87.2,154.6 L 87.9,154.1 L 88.7,153.6 L 89.4,153.1 L 90.2,152.5 L 91.0,151.9 L 91.7,151.4 L 92.5,150.7 L 93.2,150.1 L 94.0,149.5 L 94.8,148.8 L 95.5,148.1 L 96.3,147.4 L 97.0,146.7 L 97.8,145.9 L 98.6,145.1 L 99.3,144.3 L 100.1,143.5 L 100.8,142.7 L 101.6,141.8 L 102.4,140.9 L 103.1,140.0 L 103.9,139.1 L 104.6,138.2 L 105.4,137.2 L 106.2,136.2 L 106.9,135.2 L 107.7,134.1 L 108.4,133.1 L 109.2,132.0 L 110.0,130.9 L 110.7,129.8 L 111.5,128.7 L 112.2,127.5 L 113.0,126.3 L 113.8,125.1 L 114.5,123.9 L 115.3,122.7 L 116.0,121.4 L 116.8,120.1 L 117.6,118.8 L 118.3,117.5 L 119.1,116.2 L 119.8,114.9 L 120.6,113.5 L 121.4,112.1 L 122.1,110.7 L 122.9,109.3 L 123.6,107.9 L 124.4,106.5 L 124.4,166.0 Z" fill="var(--red)" fill-opacity="0.55" stroke="none"/><polyline points="18.0,166.0 19.5,166.0 21.0,165.9 22.6,165.9 24.1,165.9 25.6,165.9 27.1,165.9 28.6,165.9 30.2,165.9 31.7,165.8 33.2,165.8 34.7,165.8 36.2,165.8 37.8,165.7 39.3,165.7 40.8,165.6 42.3,165.6 43.8,165.5 45.4,165.4 46.9,165.4 48.4,165.3 49.9,165.2 51.4,165.1 53.0,164.9 54.5,164.8 56.0,164.6 57.5,164.5 59.0,164.3 60.6,164.1 62.1,163.8 63.6,163.6 65.1,163.3 66.6,163.0 68.2,162.6 69.7,162.3 71.2,161.8 72.7,161.4 74.2,160.9 75.8,160.4 77.3,159.8 78.8,159.1 80.3,158.5 81.8,157.7 83.4,156.9 84.9,156.1 86.4,155.1 87.9,154.1 89.4,153.1 91.0,151.9 92.5,150.7 94.0,149.5 95.5,148.1 97.0,146.7 98.6,145.1 100.1,143.5 101.6,141.8 103.1,140.0 104.6,138.2 106.2,136.2 107.7,134.1 109.2,132.0 110.7,129.8 112.2,127.5 113.8,125.1 115.3,122.7 116.8,120.1 118.3,117.5 119.8,114.9 121.4,112.1 122.9,109.3 124.4,106.5 125.9,103.6 127.4,100.7 129.0,97.8 130.5,94.8 132.0,91.9 133.5,88.9 135.0,86.0 136.6,83.0 138.1,80.1 139.6,77.2 141.1,74.4 142.6,71.7 144.2,69.0 145.7,66.4 147.2,63.9 148.7,61.5 150.2,59.2 151.8,57.1 153.3,55.1 154.8,53.2 156.3,51.4 157.8,49.9 159.4,48.5 160.9,47.2 162.4,46.2 163.9,45.3 165.4,44.7 167.0,44.2 168.5,43.9 170.0,43.8 171.5,43.9 173.0,44.2 174.6,44.7 176.1,45.3 177.6,46.2 179.1,47.2 180.6,48.5 182.2,49.9 183.7,51.4 185.2,53.2 186.7,55.1 188.2,57.1 189.8,59.2 191.3,61.5 192.8,63.9 194.3,66.4 195.8,69.0 197.4,71.7 198.9,74.4 200.4,77.2 201.9,80.1 203.4,83.0 205.0,86.0 206.5,88.9 208.0,91.9 209.5,94.8 211.0,97.8 212.6,100.7 214.1,103.6 215.6,106.5 217.1,109.3 218.6,112.1 220.2,114.9 221.7,117.5 223.2,120.1 224.7,122.7 226.2,125.1 227.8,127.5 229.3,129.8 230.8,132.0 232.3,134.1 233.8,136.2 235.4,138.2 236.9,140.0 238.4,141.8 239.9,143.5 241.4,145.1 243.0,146.7 244.5,148.1 246.0,149.5 247.5,150.7 249.0,151.9 250.6,153.1 252.1,154.1 253.6,155.1 255.1,156.1 256.6,156.9 258.2,157.7 259.7,158.5 261.2,159.1 262.7,159.8 264.2,160.4 265.8,160.9 267.3,161.4 268.8,161.8 270.3,162.3 271.8,162.6 273.4,163.0 274.9,163.3 276.4,163.6 277.9,163.8 279.4,164.1 281.0,164.3 282.5,164.5 284.0,164.6 285.5,164.8 287.0,164.9 288.6,165.1 290.1,165.2 291.6,165.3 293.1,165.4 294.6,165.4 296.2,165.5 297.7,165.6 299.2,165.6 300.7,165.7 302.2,165.7 303.8,165.8 305.3,165.8 306.8,165.8 308.3,165.8 309.8,165.9 311.4,165.9 312.9,165.9 314.4,165.9 315.9,165.9 317.4,165.9 319.0,165.9 320.5,166.0 322.0,166.0" fill="none" stroke="var(--ink)" stroke-width="2.6"/><line x1="18.0" y1="166.0" x2="322.0" y2="166.0" stroke="var(--ink)" stroke-width="1.6"/><line x1="18.0" y1="166.0" x2="18.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="18.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−4</text><line x1="56.0" y1="166.0" x2="56.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="56.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−3</text><line x1="94.0" y1="166.0" x2="94.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="94.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−2</text><line x1="132.0" y1="166.0" x2="132.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="132.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−1</text><line x1="170.0" y1="166.0" x2="170.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="170.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">0</text><line x1="208.0" y1="166.0" x2="208.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="208.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">1</text><line x1="246.0" y1="166.0" x2="246.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="246.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">2</text><line x1="284.0" y1="166.0" x2="284.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="284.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">3</text><line x1="322.0" y1="166.0" x2="322.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="322.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">4</text><line x1="78.8" y1="166.0" x2="78.8" y2="157.1" stroke="var(--red)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="78.8" y="24.0" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−2.4</text><line x1="124.4" y1="166.0" x2="124.4" y2="104.5" stroke="var(--red)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="124.4" y="24.0" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−1.2</text></svg></div>
+      <figcaption>赤い部分が 156 cm 以上 162 cm 以下（z の範囲は −2.4 から −1.2）。面積は約 0.107。</figcaption>
+    </figure>
+    <div class="easy"><span class="t">やさしい解説：区間の面積は「大きい方 − 小さい方」</span>
+      <p>0 から 2.4 までの面積から、0 から 1.2 までの面積を引くと、1.2 から 2.4 の部分だけが残ります。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>負の z は、<span class="hl">左右対称で正の値に直す</span>と表が使える。</div>
+    <div class="ans"><span class="al">答 (4)</span><span class="av"><span class="m">約 10.7％</span></span></div>
+  </div>
 </section>
 
-<section id="summary">
-<h2>公式まとめ</h2>
-<ul>
-<li>二項分布：<span class="math">X∼B(n,p)</span></li>
-<li>期待値：<span class="math">μ=np</span></li>
-<li>分散：<span class="math">V(X)=np(1−p)</span></li>
-<li>標準偏差：<span class="math">σ=√{np(1−p)}</span></li>
-<li>標準化：<span class="math">Z=(X−μ)/σ</span></li>
-<li>有意水準5％・両側検定：臨界値はおよそ <span class="math">±1.96</span></li>
-</ul>
-<details><summary>テスト直前チェック</summary>
-<ul>
-<li>「ではない」とあるので両側検定。両端2.5％ずつを見る。</li>
-<li>帰無仮説のもとで期待値と標準偏差を計算する。</li>
-<li><span class="math">|Z|</span> が1.96より大きいか比較する。</li>
-<li>棄却できない場合は「正しいと証明された」と書かない。</li>
-</ul>
-</details>
+<!-- ================= 大問4 ================= -->
+<section class="prob" id="p4" data-key="p4">
+  <div class="ph"><span class="no">大問4</span><div class="htext"><span class="tag">復元抽出・標本平均</span><h2>1と2のカードから3枚を取り出す</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">1 と 2 の数字が書かれたカードが、それぞれ 50 枚ずつ合計 100 枚ある。復元抽出で大きさ 3 の無作為標本を取り、出た数字を順に X₁，X₂，X₃ とする。
+      <span class="sub">(1) X₁ + X₂ + X₃ のとりうる値を求めよ。</span>
+      <span class="sub">(2) 標本平均 X̄ の期待値を求めよ。</span></p>
+
+    <h3>(1) 和のとりうる値</h3>
+    <div class="fb" data-label="数え方">
+      <span class="m">1 が <i>k</i> 枚（<i>k</i> ＝ 0〜3）なら、2 は（3 − <i>k</i>）枚。</span>
+      <span class="m">和 ＝ <i>k</i> × 1 + (3 − <i>k</i>) × 2 ＝ 6 − <i>k</i></span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">3枚とも 1 のとき　1 + 1 + 1 = 3（最小）</span>
+      <span class="m">1 が2枚，2 が1枚　1 + 1 + 2 = 4</span>
+      <span class="m">1 が1枚，2 が2枚　1 + 2 + 2 = 5</span>
+      <span class="m">3枚とも 2 のとき　2 + 2 + 2 = 6（最大）</span>
+      <span class="m">よって和のとりうる値は <span class="box">3，4，5，6</span>（4通り）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：「何枚が 1 か」で決まる</span>
+      <p>3枚の中で 1 が何枚あるかだけで、和が決まります。1 が 0〜3 枚のとき、和は 6〜3 の 4 通りです。</p>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m">3，4，5，6</span></span></div>
+
+    <h3>(2) 標本平均の期待値</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">母平均 μ = 1 × 1/2 + 2 × 1/2 = 3/2</span>
+      <span class="m">標本平均の期待値は母平均に等しい　⇒　<i>E</i>(<i>X</i>̄) = <span class="box">3/2</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：標本の大きさに関係ない</span>
+      <p>標本を何個取っても、平均の期待値は母平均のまま変わりません。復元抽出なので、毎回 1 と 2 が 1/2 ずつで出ます。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>(1) は「重複を含む」点に注意（1, 1, 2 のような組み合わせを忘れない）。</div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m">3/2</span></span></div>
+  </div>
 </section>
-<footer>数学 学習用HTML｜ブラウザで開いて学習・印刷できます。</footer>
+
+<!-- ================= 大問5 ================= -->
+<section class="prob" id="p5" data-key="p5">
+  <div class="ph"><span class="no">大問5</span><div class="htext"><span class="tag">標本平均の分布</span><h2>母平均 50，母標準偏差 20，標本の大きさ 100</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">母平均 50，母標準偏差 20 の母集団から大きさ 100 の無作為標本を抽出し、標本平均を X̄ とする。
+      <span class="sub">(1) X̄ の期待値と標準偏差を求めよ。</span>
+      <span class="sub">(2) Z = (X̄ − 50)/2 はどのような分布に従うか。</span>
+      <span class="sub">(3) X̄ が 54 より大きい確率を求めよ。</span></p>
+
+    <h3>(1)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>E</i>(<i>X</i>̄) = 50</span>
+      <span class="m">σ(<i>X</i>̄) = 20/√100 = 20/10 = <span class="box">2</span></span>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m">期待値 50，標準偏差 2</span></span></div>
+
+    <h3>(2)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">(<i>X</i>̄ − 50)/2 は、平均 50，標準偏差 2 で標準化した式　⇒　<span class="box"><i>Z</i> ～ <i>N</i>(0, 1)</span></span>
+    </div>
+    <div class="note"><strong>注意：</strong>標本平均が正規分布に従うのは、母集団が正規分布のとき。そうでない場合も、標本の大きさ 100 が十分大きいので正規分布で近似する（中心極限定理）。</div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m">標準正規分布 <i>N</i>(0, 1)</span></span></div>
+
+    <h3>(3)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>z</i> = (54 − 50)/2 = 2</span>
+      <span class="m"><i>P</i>(<i>X</i>̄ ＞ 54) = <i>P</i>(<i>Z</i> ＞ 2) = 0.5 − <i>P</i>(0 ≦ <i>Z</i> ≦ 2) = 0.5 − 0.4772 = <span class="box">0.0228</span></span>
+    </div>
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 340 200" role="img" aria-label="標本平均 54 より大きい（z ＞ 2）" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="200" fill="var(--panel)"/><path d="M 246.0,166.0 L 246.0,149.5 L 247.3,150.5 L 248.5,151.6 L 249.8,152.5 L 251.1,153.4 L 252.3,154.3 L 253.6,155.1 L 254.9,155.9 L 256.1,156.6 L 257.4,157.3 L 258.7,158.0 L 259.9,158.6 L 261.2,159.1 L 262.5,159.7 L 263.7,160.2 L 265.0,160.6 L 266.3,161.1 L 267.5,161.5 L 268.8,161.8 L 270.1,162.2 L 271.3,162.5 L 272.6,162.8 L 273.9,163.1 L 275.1,163.3 L 276.4,163.6 L 277.7,163.8 L 278.9,164.0 L 280.2,164.2 L 281.5,164.3 L 282.7,164.5 L 284.0,164.6 L 285.3,164.8 L 286.5,164.9 L 287.8,165.0 L 289.1,165.1 L 290.3,165.2 L 291.6,165.3 L 292.9,165.3 L 294.1,165.4 L 295.4,165.5 L 296.7,165.5 L 297.9,165.6 L 299.2,165.6 L 300.5,165.7 L 301.7,165.7 L 303.0,165.7 L 304.3,165.8 L 305.5,165.8 L 306.8,165.8 L 308.1,165.8 L 309.3,165.9 L 310.6,165.9 L 311.9,165.9 L 313.1,165.9 L 314.4,165.9 L 315.7,165.9 L 316.9,165.9 L 318.2,165.9 L 319.5,165.9 L 320.7,166.0 L 322.0,166.0 L 322.0,166.0 Z" fill="var(--red)" fill-opacity="0.55" stroke="none"/><polyline points="18.0,166.0 19.5,166.0 21.0,165.9 22.6,165.9 24.1,165.9 25.6,165.9 27.1,165.9 28.6,165.9 30.2,165.9 31.7,165.8 33.2,165.8 34.7,165.8 36.2,165.8 37.8,165.7 39.3,165.7 40.8,165.6 42.3,165.6 43.8,165.5 45.4,165.4 46.9,165.4 48.4,165.3 49.9,165.2 51.4,165.1 53.0,164.9 54.5,164.8 56.0,164.6 57.5,164.5 59.0,164.3 60.6,164.1 62.1,163.8 63.6,163.6 65.1,163.3 66.6,163.0 68.2,162.6 69.7,162.3 71.2,161.8 72.7,161.4 74.2,160.9 75.8,160.4 77.3,159.8 78.8,159.1 80.3,158.5 81.8,157.7 83.4,156.9 84.9,156.1 86.4,155.1 87.9,154.1 89.4,153.1 91.0,151.9 92.5,150.7 94.0,149.5 95.5,148.1 97.0,146.7 98.6,145.1 100.1,143.5 101.6,141.8 103.1,140.0 104.6,138.2 106.2,136.2 107.7,134.1 109.2,132.0 110.7,129.8 112.2,127.5 113.8,125.1 115.3,122.7 116.8,120.1 118.3,117.5 119.8,114.9 121.4,112.1 122.9,109.3 124.4,106.5 125.9,103.6 127.4,100.7 129.0,97.8 130.5,94.8 132.0,91.9 133.5,88.9 135.0,86.0 136.6,83.0 138.1,80.1 139.6,77.2 141.1,74.4 142.6,71.7 144.2,69.0 145.7,66.4 147.2,63.9 148.7,61.5 150.2,59.2 151.8,57.1 153.3,55.1 154.8,53.2 156.3,51.4 157.8,49.9 159.4,48.5 160.9,47.2 162.4,46.2 163.9,45.3 165.4,44.7 167.0,44.2 168.5,43.9 170.0,43.8 171.5,43.9 173.0,44.2 174.6,44.7 176.1,45.3 177.6,46.2 179.1,47.2 180.6,48.5 182.2,49.9 183.7,51.4 185.2,53.2 186.7,55.1 188.2,57.1 189.8,59.2 191.3,61.5 192.8,63.9 194.3,66.4 195.8,69.0 197.4,71.7 198.9,74.4 200.4,77.2 201.9,80.1 203.4,83.0 205.0,86.0 206.5,88.9 208.0,91.9 209.5,94.8 211.0,97.8 212.6,100.7 214.1,103.6 215.6,106.5 217.1,109.3 218.6,112.1 220.2,114.9 221.7,117.5 223.2,120.1 224.7,122.7 226.2,125.1 227.8,127.5 229.3,129.8 230.8,132.0 232.3,134.1 233.8,136.2 235.4,138.2 236.9,140.0 238.4,141.8 239.9,143.5 241.4,145.1 243.0,146.7 244.5,148.1 246.0,149.5 247.5,150.7 249.0,151.9 250.6,153.1 252.1,154.1 253.6,155.1 255.1,156.1 256.6,156.9 258.2,157.7 259.7,158.5 261.2,159.1 262.7,159.8 264.2,160.4 265.8,160.9 267.3,161.4 268.8,161.8 270.3,162.3 271.8,162.6 273.4,163.0 274.9,163.3 276.4,163.6 277.9,163.8 279.4,164.1 281.0,164.3 282.5,164.5 284.0,164.6 285.5,164.8 287.0,164.9 288.6,165.1 290.1,165.2 291.6,165.3 293.1,165.4 294.6,165.4 296.2,165.5 297.7,165.6 299.2,165.6 300.7,165.7 302.2,165.7 303.8,165.8 305.3,165.8 306.8,165.8 308.3,165.8 309.8,165.9 311.4,165.9 312.9,165.9 314.4,165.9 315.9,165.9 317.4,165.9 319.0,165.9 320.5,166.0 322.0,166.0" fill="none" stroke="var(--ink)" stroke-width="2.6"/><line x1="18.0" y1="166.0" x2="322.0" y2="166.0" stroke="var(--ink)" stroke-width="1.6"/><line x1="18.0" y1="166.0" x2="18.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="18.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−4</text><line x1="56.0" y1="166.0" x2="56.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="56.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−3</text><line x1="94.0" y1="166.0" x2="94.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="94.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−2</text><line x1="132.0" y1="166.0" x2="132.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="132.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−1</text><line x1="170.0" y1="166.0" x2="170.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="170.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">0</text><line x1="208.0" y1="166.0" x2="208.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="208.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">1</text><line x1="246.0" y1="166.0" x2="246.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="246.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">2</text><line x1="284.0" y1="166.0" x2="284.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="284.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">3</text><line x1="322.0" y1="166.0" x2="322.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="322.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">4</text><line x1="246.0" y1="166.0" x2="246.0" y2="147.5" stroke="var(--red)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="246.0" y="24.0" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">z = 2</text></svg></div>
+      <figcaption>赤い部分が X̄ ＞ 54（z ＞ 2）。面積は約 0.0228（約 2.3％）。</figcaption>
+    </figure>
+    <div class="pt"><span class="t">テストのポイント：</span>「より大きい」は右側の面積。0.5 から引くのを忘れない。</div>
+    <div class="ans"><span class="al">答 (3)</span><span class="av"><span class="m">0.0228（約 2.28％）</span></span></div>
+  </div>
+</section>
+
+<!-- ================= 大問6 ================= -->
+<section class="prob" id="p6" data-key="p6">
+  <div class="ph"><span class="no">大問6</span><div class="htext"><span class="tag">母平均の信頼区間</span><h2>400個の重さの標本から、母平均の95％信頼区間を求める</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">製品から 400 個を無作為抽出して重さを測ったところ、標本平均は 98.8 g，標本標準偏差は 2.0 g であった。母平均を μ g とする。
+      <span class="sub">(1) Z = (98.8 − μ)/0.1 はどのような分布に従うか。</span>
+      <span class="sub">(2) 母平均 μ の 95％ 信頼区間を求めよ。</span></p>
+
+    <h3>(1)</h3>
+    <div class="fb" data-label="標準誤差">
+      <span class="m">標準誤差 ＝ 標本標準偏差 ÷ √標本の大きさ ＝ 2.0/√400 ＝ 2.0/20 ＝ <span class="box">0.1</span></span>
+      <span class="m">標準化した量は、近似的に <span class="box"><i>Z</i> ～ <i>N</i>(0, 1)</span></span>
+    </div>
+    <div class="note"><strong>前提：</strong>標本の大きさ 400 が大きいので、正規分布で近似する。母標準偏差の代わりに標本標準偏差を使う。</div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m">標準正規分布 <i>N</i>(0, 1)（近似）</span></span></div>
+
+    <h3>(2) 95％ 信頼区間</h3>
+    <div class="fb" data-label="信頼区間の式">
+      <span class="m"><span class="box">標本平均 ± 1.96 × 標準誤差</span>　（標準正規分布の中央 95％ は −1.96 ≦ <i>Z</i> ≦ 1.96）</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">98.8 ± 1.96 × 0.1 = 98.8 ± 0.196</span>
+      <span class="m">下限 98.8 − 0.196 = 98.604，上限 98.8 + 0.196 = 98.996</span>
+      <span class="m"><span class="box">98.604 ≦ μ ≦ 98.996</span>（小数第1位までなら 98.6 ≦ μ ≦ 99.0）</span>
+    </div>
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 340 150" role="img" aria-label="母平均の95％信頼区間 98.604 から 98.996 の数直線" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="150" fill="var(--panel)"/><line x1="20.0" y1="100.0" x2="320.0" y2="100.0" stroke="var(--ink)" stroke-width="1.6"/><line x1="70.0" y1="100.0" x2="70.0" y2="105.0" stroke="var(--ink)" stroke-width="1.2"/><text x="70.0" y="120.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">98.6</text><line x1="120.0" y1="100.0" x2="120.0" y2="105.0" stroke="var(--ink)" stroke-width="1.2"/><text x="120.0" y="120.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">98.7</text><line x1="170.0" y1="100.0" x2="170.0" y2="105.0" stroke="var(--ink)" stroke-width="1.2"/><text x="170.0" y="120.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">98.8</text><line x1="220.0" y1="100.0" x2="220.0" y2="105.0" stroke="var(--ink)" stroke-width="1.2"/><text x="220.0" y="120.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">98.9</text><line x1="270.0" y1="100.0" x2="270.0" y2="105.0" stroke="var(--ink)" stroke-width="1.2"/><text x="270.0" y="120.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">99.0</text><rect x="72.0" y="60" width="196.0" height="20" rx="8" fill="var(--blue)" fill-opacity="0.22"/><line x1="72.0" y1="70.0" x2="268.0" y2="70.0" stroke="var(--blue)" stroke-width="3.5"/><line x1="170.0" y1="52.0" x2="170.0" y2="80.0" stroke="var(--red)" stroke-width="2"/><text x="170.0" y="44.0" font-size="12" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">標本平均 98.8</text><text x="72.0" y="56.0" font-size="11.5" font-weight="700" fill="var(--blue)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">98.604</text><text x="268.0" y="56.0" font-size="11.5" font-weight="700" fill="var(--blue)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">98.996</text></svg></div>
+      <figcaption>母平均の 95％ 信頼区間（青）。標本平均 98.8 がその中央にあります。</figcaption>
+    </figure>
+    <div class="easy"><span class="t">やさしい解説：信頼区間は「幅のある推定」</span>
+      <p>標本平均 98.8 は母平均の「ひとつの推定値」です。標本がずれることもあるので、±0.196 の幅で「母平均はこの範囲にある」と言います。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>途中で丸めず、最後に指定された桁数に丸める。「±1.96 × 標準誤差」の式を正確に書く。</div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m">98.604 ≦ μ ≦ 98.996（約 98.6 ≦ μ ≦ 99.0）</span></span></div>
+  </div>
+</section>
+
+<!-- ================= 大問7 ================= -->
+<section class="prob" id="p7" data-key="p7">
+  <div class="ph"><span class="no">大問7</span><div class="htext"><span class="tag">二項分布の正規近似</span><h2>720回投げて1の目が110〜130回になる確率</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">1個のさいころを 720 回投げ、1 の目が出る回数を X とする。
+      <span class="sub">(1) X の分布、期待値 μ、標準偏差 σ を求めよ。</span>
+      <span class="sub">(2) 110 ≦ X ≦ 130 となる確率を、正規分布で近似して求めよ。</span></p>
+
+    <h3>(1)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">1 の目が出る確率は <i>p</i> = 1/6。720 回の成功回数なので　<span class="box"><i>X</i> ～ <i>B</i>(720, 1/6)</span></span>
+      <span class="m">μ = <i>n</i><i>p</i> = 720 × 1/6 = <span class="box">120</span></span>
+      <span class="m">σ = √{<i>n</i><i>p</i>(1 − <i>p</i>)} = √{720 × 1/6 × 5/6} = √100 = <span class="box">10</span></span>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m"><i>X</i> ～ <i>B</i>(720, 1/6)，μ = 120，σ = 10</span></span></div>
+
+    <h3>(2)</h3>
+    <div class="fb" data-label="正規近似の手順">
+      <span class="m">二項分布 <i>B</i>(720, 1/6) を、平均 120，標準偏差 10 の正規分布で近似する。</span>
+      <span class="m"><i>Z</i> = (<i>X</i> − 120)/10</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">110 → <i>z</i> = (110 − 120)/10 = −1，　130 → <i>z</i> = (130 − 120)/10 = 1</span>
+      <span class="m"><i>P</i>(110 ≦ <i>X</i> ≦ 130) ≒ <i>P</i>(−1 ≦ <i>Z</i> ≦ 1) = 2 × <i>P</i>(0 ≦ <i>Z</i> ≦ 1) = 2 × 0.3413 = <span class="box">0.6826</span></span>
+    </div>
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 340 200" role="img" aria-label="−1 ≦ z ≦ 1" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="200" fill="var(--panel)"/><path d="M 132.0,166.0 L 132.0,91.9 L 133.3,89.4 L 134.5,86.9 L 135.8,84.5 L 137.1,82.0 L 138.3,79.6 L 139.6,77.2 L 140.9,74.9 L 142.1,72.6 L 143.4,70.3 L 144.7,68.1 L 145.9,66.0 L 147.2,63.9 L 148.5,61.9 L 149.7,60.0 L 151.0,58.1 L 152.3,56.4 L 153.5,54.7 L 154.8,53.2 L 156.1,51.7 L 157.3,50.4 L 158.6,49.2 L 159.9,48.0 L 161.1,47.1 L 162.4,46.2 L 163.7,45.5 L 164.9,44.9 L 166.2,44.4 L 167.5,44.0 L 168.7,43.8 L 170.0,43.8 L 171.3,43.8 L 172.5,44.0 L 173.8,44.4 L 175.1,44.9 L 176.3,45.5 L 177.6,46.2 L 178.9,47.1 L 180.1,48.0 L 181.4,49.2 L 182.7,50.4 L 183.9,51.7 L 185.2,53.2 L 186.5,54.7 L 187.7,56.4 L 189.0,58.1 L 190.3,60.0 L 191.5,61.9 L 192.8,63.9 L 194.1,66.0 L 195.3,68.1 L 196.6,70.3 L 197.9,72.6 L 199.1,74.9 L 200.4,77.2 L 201.7,79.6 L 202.9,82.0 L 204.2,84.5 L 205.5,86.9 L 206.7,89.4 L 208.0,91.9 L 208.0,166.0 Z" fill="var(--blue)" fill-opacity="0.3" stroke="none"/><polyline points="18.0,166.0 19.5,166.0 21.0,165.9 22.6,165.9 24.1,165.9 25.6,165.9 27.1,165.9 28.6,165.9 30.2,165.9 31.7,165.8 33.2,165.8 34.7,165.8 36.2,165.8 37.8,165.7 39.3,165.7 40.8,165.6 42.3,165.6 43.8,165.5 45.4,165.4 46.9,165.4 48.4,165.3 49.9,165.2 51.4,165.1 53.0,164.9 54.5,164.8 56.0,164.6 57.5,164.5 59.0,164.3 60.6,164.1 62.1,163.8 63.6,163.6 65.1,163.3 66.6,163.0 68.2,162.6 69.7,162.3 71.2,161.8 72.7,161.4 74.2,160.9 75.8,160.4 77.3,159.8 78.8,159.1 80.3,158.5 81.8,157.7 83.4,156.9 84.9,156.1 86.4,155.1 87.9,154.1 89.4,153.1 91.0,151.9 92.5,150.7 94.0,149.5 95.5,148.1 97.0,146.7 98.6,145.1 100.1,143.5 101.6,141.8 103.1,140.0 104.6,138.2 106.2,136.2 107.7,134.1 109.2,132.0 110.7,129.8 112.2,127.5 113.8,125.1 115.3,122.7 116.8,120.1 118.3,117.5 119.8,114.9 121.4,112.1 122.9,109.3 124.4,106.5 125.9,103.6 127.4,100.7 129.0,97.8 130.5,94.8 132.0,91.9 133.5,88.9 135.0,86.0 136.6,83.0 138.1,80.1 139.6,77.2 141.1,74.4 142.6,71.7 144.2,69.0 145.7,66.4 147.2,63.9 148.7,61.5 150.2,59.2 151.8,57.1 153.3,55.1 154.8,53.2 156.3,51.4 157.8,49.9 159.4,48.5 160.9,47.2 162.4,46.2 163.9,45.3 165.4,44.7 167.0,44.2 168.5,43.9 170.0,43.8 171.5,43.9 173.0,44.2 174.6,44.7 176.1,45.3 177.6,46.2 179.1,47.2 180.6,48.5 182.2,49.9 183.7,51.4 185.2,53.2 186.7,55.1 188.2,57.1 189.8,59.2 191.3,61.5 192.8,63.9 194.3,66.4 195.8,69.0 197.4,71.7 198.9,74.4 200.4,77.2 201.9,80.1 203.4,83.0 205.0,86.0 206.5,88.9 208.0,91.9 209.5,94.8 211.0,97.8 212.6,100.7 214.1,103.6 215.6,106.5 217.1,109.3 218.6,112.1 220.2,114.9 221.7,117.5 223.2,120.1 224.7,122.7 226.2,125.1 227.8,127.5 229.3,129.8 230.8,132.0 232.3,134.1 233.8,136.2 235.4,138.2 236.9,140.0 238.4,141.8 239.9,143.5 241.4,145.1 243.0,146.7 244.5,148.1 246.0,149.5 247.5,150.7 249.0,151.9 250.6,153.1 252.1,154.1 253.6,155.1 255.1,156.1 256.6,156.9 258.2,157.7 259.7,158.5 261.2,159.1 262.7,159.8 264.2,160.4 265.8,160.9 267.3,161.4 268.8,161.8 270.3,162.3 271.8,162.6 273.4,163.0 274.9,163.3 276.4,163.6 277.9,163.8 279.4,164.1 281.0,164.3 282.5,164.5 284.0,164.6 285.5,164.8 287.0,164.9 288.6,165.1 290.1,165.2 291.6,165.3 293.1,165.4 294.6,165.4 296.2,165.5 297.7,165.6 299.2,165.6 300.7,165.7 302.2,165.7 303.8,165.8 305.3,165.8 306.8,165.8 308.3,165.8 309.8,165.9 311.4,165.9 312.9,165.9 314.4,165.9 315.9,165.9 317.4,165.9 319.0,165.9 320.5,166.0 322.0,166.0" fill="none" stroke="var(--ink)" stroke-width="2.6"/><line x1="18.0" y1="166.0" x2="322.0" y2="166.0" stroke="var(--ink)" stroke-width="1.6"/><line x1="18.0" y1="166.0" x2="18.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="18.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−4</text><line x1="56.0" y1="166.0" x2="56.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="56.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−3</text><line x1="94.0" y1="166.0" x2="94.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="94.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−2</text><line x1="132.0" y1="166.0" x2="132.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="132.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−1</text><line x1="170.0" y1="166.0" x2="170.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="170.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">0</text><line x1="208.0" y1="166.0" x2="208.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="208.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">1</text><line x1="246.0" y1="166.0" x2="246.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="246.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">2</text><line x1="284.0" y1="166.0" x2="284.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="284.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">3</text><line x1="322.0" y1="166.0" x2="322.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="322.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">4</text><line x1="132.0" y1="166.0" x2="132.0" y2="89.9" stroke="var(--ink)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="132.0" y="24.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−1</text><line x1="208.0" y1="166.0" x2="208.0" y2="89.9" stroke="var(--ink)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="208.0" y="24.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">1</text></svg></div>
+      <figcaption>水色の部分が −1 ≦ z ≦ 1（110〜130 回に対応）。面積は約 0.683。</figcaption>
+    </figure>
+    <div class="note"><strong>連続補正について：</strong>二項分布は整数の値しかとらないので、より精密な近似では <span class="m">109.5 ≦ <i>X</i> ≦ 130.5</span> として計算する（連続補正）。このとき　z = ±1.05 となり、<span class="m"><i>P</i>(−1.05 ≦ <i>Z</i> ≦ 1.05) ≒ 0.706</span> と、約 0.706 になる。正確な二項分布の値は約 0.7064 で、これに近い。授業・問題集で指定された方法に合わせること。</div>
+    <div class="easy"><span class="t">やさしい解説：4段階で解く</span>
+      <p>①二項分布だと見抜く → ②平均 np と標準偏差 √{np(1 − p)} を求める → ③標準化する → ④表から面積を読む。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>「正規分布で近似せよ」と指定があれば、<span class="hl">平均 np と標準偏差を必ず使う</span>。連続補正を使うかどうかは、問題の指示に従う。</div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m">0.6826（連続補正なし）／ 約 0.706（連続補正あり）</span></span></div>
+  </div>
+</section>
+
+<!-- ================= 大問8 ================= -->
+<section class="prob" id="p8" data-key="p8">
+  <div class="ph"><span class="no">大問8</span><div class="htext"><span class="tag">仮説検定</span><h2>さいころの1の目の確率は 1/6 といえるか（両側検定）</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">1個のさいころを 180 回投げたところ、1 の目が 24 回出た。「1 の目が出る確率が 1/6 ではない」といえるか、有意水準 5％ で両側検定を行う。
+      <span class="sub">(1) 帰無仮説 H₀：p = 1/6 のもとで、1 の目の回数 X の分布と標準化 Z を求めよ。</span>
+      <span class="sub">(2) 24 回出た場合、H₀ を棄却してよいか。</span>
+      <span class="sub">(3) 翌日さらに 180 回投げて 1 の目が 14 回出た。H₀ を棄却してよいか。</span></p>
+
+    <div class="fb" data-label="検定の手順（5ステップ）">
+      <span class="m">① 帰無仮説 <i>H</i>₀ を立てる　② <i>H</i>₀ のもとで μ，σ を求める　③ 標準化する　④ 臨界値と比べる　⑤ 文で結論を書く</span>
+      <span class="m">有意水準 5％・両側検定の臨界値は <span class="box">±1.96</span>。<b>|<i>Z</i>| ＞ 1.96 なら棄却</b>。</span>
+    </div>
+
+    <h3>(1)</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>H</i>₀ のもとで <i>X</i> ～ <i>B</i>(180, 1/6)</span>
+      <span class="m">μ = <i>n</i><i>p</i> = 180 × 1/6 = 30，　<i>V</i>(<i>X</i>) = <i>n</i><i>p</i>(1 − <i>p</i>) = 180 × 1/6 × 5/6 = 25，　σ = 5</span>
+      <span class="m"><i>Z</i> = (<i>X</i> − 30)/5</span>
+    </div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m"><i>X</i> ～ <i>B</i>(180, 1/6)，　<i>Z</i> = (<i>X</i> − 30)/5</span></span></div>
+
+    <h3>(2) 24 回のとき</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>z</i> = (24 − 30)/5 = −1.2</span>
+      <span class="m">|<i>z</i>| = 1.2 ＜ 1.96　⇒　<i>H</i>₀ は棄却できない</span>
+      <span class="m"><span class="box">1 の目が出る確率が 1/6 ではないとは判断できない</span></span>
+    </div>
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 340 200" role="img" aria-label="両側検定の棄却域と2つの観測値" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="200" fill="var(--panel)"/><path d="M 18.0,166.0 L 18.0,166.0 L 19.3,166.0 L 20.6,165.9 L 21.9,165.9 L 23.2,165.9 L 24.5,165.9 L 25.8,165.9 L 27.0,165.9 L 28.3,165.9 L 29.6,165.9 L 30.9,165.8 L 32.2,165.8 L 33.5,165.8 L 34.8,165.8 L 36.1,165.8 L 37.4,165.7 L 38.7,165.7 L 40.0,165.6 L 41.3,165.6 L 42.5,165.6 L 43.8,165.5 L 45.1,165.4 L 46.4,165.4 L 47.7,165.3 L 49.0,165.2 L 50.3,165.1 L 51.6,165.0 L 52.9,164.9 L 54.2,164.8 L 55.5,164.7 L 56.8,164.6 L 58.1,164.4 L 59.3,164.2 L 60.6,164.1 L 61.9,163.9 L 63.2,163.6 L 64.5,163.4 L 65.8,163.2 L 67.1,162.9 L 68.4,162.6 L 69.7,162.3 L 71.0,161.9 L 72.3,161.5 L 73.6,161.1 L 74.8,160.7 L 76.1,160.2 L 77.4,159.7 L 78.7,159.2 L 80.0,158.6 L 81.3,158.0 L 82.6,157.3 L 83.9,156.6 L 85.2,155.9 L 86.5,155.1 L 87.8,154.2 L 89.1,153.4 L 90.4,152.4 L 91.6,151.4 L 92.9,150.4 L 94.2,149.3 L 95.5,148.1 L 95.5,166.0 Z" fill="var(--red)" fill-opacity="0.5" stroke="none"/><path d="M 244.5,166.0 L 244.5,148.1 L 245.8,149.3 L 247.1,150.4 L 248.4,151.4 L 249.6,152.4 L 250.9,153.4 L 252.2,154.2 L 253.5,155.1 L 254.8,155.9 L 256.1,156.6 L 257.4,157.3 L 258.7,158.0 L 260.0,158.6 L 261.3,159.2 L 262.6,159.7 L 263.9,160.2 L 265.2,160.7 L 266.4,161.1 L 267.7,161.5 L 269.0,161.9 L 270.3,162.3 L 271.6,162.6 L 272.9,162.9 L 274.2,163.2 L 275.5,163.4 L 276.8,163.6 L 278.1,163.9 L 279.4,164.1 L 280.7,164.2 L 281.9,164.4 L 283.2,164.6 L 284.5,164.7 L 285.8,164.8 L 287.1,164.9 L 288.4,165.0 L 289.7,165.1 L 291.0,165.2 L 292.3,165.3 L 293.6,165.4 L 294.9,165.4 L 296.2,165.5 L 297.5,165.6 L 298.7,165.6 L 300.0,165.6 L 301.3,165.7 L 302.6,165.7 L 303.9,165.8 L 305.2,165.8 L 306.5,165.8 L 307.8,165.8 L 309.1,165.8 L 310.4,165.9 L 311.7,165.9 L 313.0,165.9 L 314.2,165.9 L 315.5,165.9 L 316.8,165.9 L 318.1,165.9 L 319.4,165.9 L 320.7,166.0 L 322.0,166.0 L 322.0,166.0 Z" fill="var(--red)" fill-opacity="0.5" stroke="none"/><polyline points="18.0,166.0 19.5,166.0 21.0,165.9 22.6,165.9 24.1,165.9 25.6,165.9 27.1,165.9 28.6,165.9 30.2,165.9 31.7,165.8 33.2,165.8 34.7,165.8 36.2,165.8 37.8,165.7 39.3,165.7 40.8,165.6 42.3,165.6 43.8,165.5 45.4,165.4 46.9,165.4 48.4,165.3 49.9,165.2 51.4,165.1 53.0,164.9 54.5,164.8 56.0,164.6 57.5,164.5 59.0,164.3 60.6,164.1 62.1,163.8 63.6,163.6 65.1,163.3 66.6,163.0 68.2,162.6 69.7,162.3 71.2,161.8 72.7,161.4 74.2,160.9 75.8,160.4 77.3,159.8 78.8,159.1 80.3,158.5 81.8,157.7 83.4,156.9 84.9,156.1 86.4,155.1 87.9,154.1 89.4,153.1 91.0,151.9 92.5,150.7 94.0,149.5 95.5,148.1 97.0,146.7 98.6,145.1 100.1,143.5 101.6,141.8 103.1,140.0 104.6,138.2 106.2,136.2 107.7,134.1 109.2,132.0 110.7,129.8 112.2,127.5 113.8,125.1 115.3,122.7 116.8,120.1 118.3,117.5 119.8,114.9 121.4,112.1 122.9,109.3 124.4,106.5 125.9,103.6 127.4,100.7 129.0,97.8 130.5,94.8 132.0,91.9 133.5,88.9 135.0,86.0 136.6,83.0 138.1,80.1 139.6,77.2 141.1,74.4 142.6,71.7 144.2,69.0 145.7,66.4 147.2,63.9 148.7,61.5 150.2,59.2 151.8,57.1 153.3,55.1 154.8,53.2 156.3,51.4 157.8,49.9 159.4,48.5 160.9,47.2 162.4,46.2 163.9,45.3 165.4,44.7 167.0,44.2 168.5,43.9 170.0,43.8 171.5,43.9 173.0,44.2 174.6,44.7 176.1,45.3 177.6,46.2 179.1,47.2 180.6,48.5 182.2,49.9 183.7,51.4 185.2,53.2 186.7,55.1 188.2,57.1 189.8,59.2 191.3,61.5 192.8,63.9 194.3,66.4 195.8,69.0 197.4,71.7 198.9,74.4 200.4,77.2 201.9,80.1 203.4,83.0 205.0,86.0 206.5,88.9 208.0,91.9 209.5,94.8 211.0,97.8 212.6,100.7 214.1,103.6 215.6,106.5 217.1,109.3 218.6,112.1 220.2,114.9 221.7,117.5 223.2,120.1 224.7,122.7 226.2,125.1 227.8,127.5 229.3,129.8 230.8,132.0 232.3,134.1 233.8,136.2 235.4,138.2 236.9,140.0 238.4,141.8 239.9,143.5 241.4,145.1 243.0,146.7 244.5,148.1 246.0,149.5 247.5,150.7 249.0,151.9 250.6,153.1 252.1,154.1 253.6,155.1 255.1,156.1 256.6,156.9 258.2,157.7 259.7,158.5 261.2,159.1 262.7,159.8 264.2,160.4 265.8,160.9 267.3,161.4 268.8,161.8 270.3,162.3 271.8,162.6 273.4,163.0 274.9,163.3 276.4,163.6 277.9,163.8 279.4,164.1 281.0,164.3 282.5,164.5 284.0,164.6 285.5,164.8 287.0,164.9 288.6,165.1 290.1,165.2 291.6,165.3 293.1,165.4 294.6,165.4 296.2,165.5 297.7,165.6 299.2,165.6 300.7,165.7 302.2,165.7 303.8,165.8 305.3,165.8 306.8,165.8 308.3,165.8 309.8,165.9 311.4,165.9 312.9,165.9 314.4,165.9 315.9,165.9 317.4,165.9 319.0,165.9 320.5,166.0 322.0,166.0" fill="none" stroke="var(--ink)" stroke-width="2.6"/><line x1="18.0" y1="166.0" x2="322.0" y2="166.0" stroke="var(--ink)" stroke-width="1.6"/><line x1="18.0" y1="166.0" x2="18.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="18.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−4</text><line x1="56.0" y1="166.0" x2="56.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="56.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−3</text><line x1="94.0" y1="166.0" x2="94.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="94.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−2</text><line x1="132.0" y1="166.0" x2="132.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="132.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−1</text><line x1="170.0" y1="166.0" x2="170.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="170.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">0</text><line x1="208.0" y1="166.0" x2="208.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="208.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">1</text><line x1="246.0" y1="166.0" x2="246.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="246.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">2</text><line x1="284.0" y1="166.0" x2="284.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="284.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">3</text><line x1="322.0" y1="166.0" x2="322.0" y2="171.0" stroke="var(--ink)" stroke-width="1.2"/><text x="322.0" y="184.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">4</text><line x1="95.5" y1="166.0" x2="95.5" y2="146.1" stroke="var(--red)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="95.5" y="24.0" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">−1.96</text><line x1="244.5" y1="166.0" x2="244.5" y2="146.1" stroke="var(--red)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="244.5" y="24.0" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">1.96</text><line x1="124.4" y1="166.0" x2="124.4" y2="104.5" stroke="var(--blue)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="135.8" y="40.0" font-size="11.5" font-weight="700" fill="var(--blue)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">24回：z＝−1.2</text><line x1="48.4" y1="166.0" x2="48.4" y2="163.3" stroke="var(--green)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="21.8" y="40.0" font-size="11.5" font-weight="700" fill="var(--green)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">14回：z＝−3.2</text></svg></div>
+      <figcaption>赤い部分が棄却域（|z| ＞ 1.96）。青の点線 z = −1.2 は棄却域の外、緑の点線 z = −3.2 は棄却域の中。</figcaption>
+    </figure>
+    <div class="check"><b>検算：</b>両側の確率は 2 × P(Z ≦ −1.2) = 2 × 0.1151 = 0.2302（約 23％）。有意水準 5％ より大きいので棄却しない ✓。</div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m">棄却できない（確率が 1/6 ではないとは判断できない）</span></span></div>
+
+    <h3>(3) 14 回のとき</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m"><i>z</i> = (14 − 30)/5 = −3.2</span>
+      <span class="m">|<i>z</i>| = 3.2 ＞ 1.96　⇒　<i>H</i>₀ を棄却する</span>
+      <span class="m"><span class="box">有意水準 5％ で、1 の目が出る確率は 1/6 ではないと判断してよい</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：なぜ24回と14回で結論が違う？</span>
+      <p>24 回は期待値 30 に近く（差 −6），14 回は 16 回も少ない（標準偏差 5 の 3.2 倍）。だから 14 回の方が「H₀ のもとでは起こりにくい」と判断できます。</p>
+    </div>
+    <div class="warning"><strong>結論の書き方：</strong>「棄却できない」は「H₀ が正しいと証明された」ではない。「1/6 ではないとはいえない」と書く。「棄却する」も「確率が必ず別の値」という意味ではなく、「H₀ と整合しにくい」と判断する。</div>
+    <div class="ans"><span class="al">答 (3)</span><span class="av"><span class="m"><i>H</i>₀ を棄却する（有意水準 5％ で 1/6 ではないと判断）</span></span></div>
+  </div>
+</section>
+
+<!-- ================= まとめ ================= -->
+<section class="prob" id="pfinal" data-key="pfinal">
+  <div class="ph"><span class="no">直前</span><div class="htext"><span class="tag">FINAL CHECK</span><h2>公式まとめ・直前チェック</h2></div><button class="done" type="button" aria-pressed="false">確認した</button></div>
+  <div class="body">
+    <div class="memo"><b>超重要・一言で覚える：</b>「期待値は値 × 確率の和」「独立なら E(XY) ＝ E(X)E(Y)、V(X + Y) ＝ V(X) + V(Y)」「二項分布は np と np(1 − p)」「標準化は (X − μ)/σ」「標本平均は σ/√n」「信頼区間は標本平均 ± 1.96 × 標準誤差」「検定は |Z| と 1.96 を比べる」。</div>
+
+    <ol class="sumlist">
+      <li><b>大問1：</b>E(XY) ＝ E(X)E(Y)（独立）。V(X) ＝ E(X²) − {E(X)}²。B(n, p) なら E ＝ np，V ＝ np(1 − p)。</li>
+      <li><b>大問2：</b>B(5, 1/3)。P(X ＝ r) ＝ ₅Cᵣ(1/3)ʳ(2/3)⁵⁻ʳ。2 ≦ X ≦ 4 は 3 つを足す。</li>
+      <li><b>大問3：</b>Z ＝ (X − 168)/5。右側は 0.5 から引く。上位 4％ は 0.46 を探す。区間は大きい方 − 小さい方。</li>
+      <li><b>大問4：</b>1 の個数で和が決まる（3，4，5，6）。標本平均の期待値は母平均 3/2。</li>
+      <li><b>大問5：</b>E(X̄) ＝ 50，σ(X̄) ＝ 20/√100 ＝ 2。P(X̄ ＞ 54) ＝ P(Z ＞ 2) ＝ 0.0228。</li>
+      <li><b>大問6：</b>標準誤差 ＝ 2.0/√400 ＝ 0.1。95％ 信頼区間 ＝ 98.8 ± 1.96 × 0.1 ＝ 98.604 〜 98.996。</li>
+      <li><b>大問7：</b>B(720, 1/6)，μ ＝ 120，σ ＝ 10。正規近似で 0.6826（連続補正なしの場合）。</li>
+      <li><b>大問8：</b>H₀：p ＝ 1/6，μ ＝ 30，σ ＝ 5。24 回は |z| ＝ 1.2 で棄却しない。14 回は |z| ＝ 3.2 で棄却する。</li>
+    </ol>
+
+    <h3>答えのまとめ</h3>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>大問</th><th>答え</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td class="left">(1) 5/3，18/5，6　(2) 7/2，91/6，35/12，35/6　(3) np，np(1−p)　(4) (X−m)/σ　(5) m，σ/√n</td></tr>
+          <tr><td>2</td><td class="left">(1) 80/243　(2) 130/243</td></tr>
+          <tr><td>3</td><td class="left">(1) N(0, 1)　(2) 約 11.5％　(3) 約 176.8 cm 以上　(4) 約 10.7％</td></tr>
+          <tr><td>4</td><td class="left">(1) 3，4，5，6　(2) 3/2</td></tr>
+          <tr><td>5</td><td class="left">(1) 50，2　(2) N(0, 1)　(3) 0.0228</td></tr>
+          <tr><td>6</td><td class="left">(1) N(0, 1)（近似）　(2) 98.604 ≦ μ ≦ 98.996</td></tr>
+          <tr><td>7</td><td class="left">(1) B(720, 1/6)，120，10　(2) 0.6826（連続補正なし）</td></tr>
+          <tr><td>8</td><td class="left">(1) B(180, 1/6)，Z ＝ (X − 30)/5　(2) 棄却しない　(3) 棄却する</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 </main>
+<footer>2学期中間テスト対策｜「答えをかくす」をオンにすると、答えがぼやけて表示されます。「できた」の記録はこの端末のブラウザに保存されます。</footer>
+
+<script>
+(function(){
+  var KEY='practice-1-5-done';
+  var done={};
+  function load(){try{var v=localStorage.getItem(KEY);done=v?JSON.parse(v)||{}:{};}catch(e){done={};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  var sections=[].slice.call(document.querySelectorAll('.prob[data-key]'));
+  var progress=document.getElementById('progress');
+  function refresh(){
+    var n=0;
+    sections.forEach(function(s){
+      var b=s.querySelector('.done');var k=s.getAttribute('data-key');
+      var on=!!done[k];if(on)n++;
+      if(b)b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    progress.textContent=n+' / '+sections.length;
+  }
+  load();refresh();
+  sections.forEach(function(s){
+    var b=s.querySelector('.done');if(!b)return;
+    b.addEventListener('click',function(){
+      var k=s.getAttribute('data-key');
+      if(done[k])delete done[k];else done[k]=1;
+      save();refresh();
+    });
+  });
+  var hideBtn=document.getElementById('hideBtn');
+  hideBtn.addEventListener('click',function(){
+    var on=hideBtn.getAttribute('aria-pressed')!=='true';
+    hideBtn.setAttribute('aria-pressed',on?'true':'false');
+    document.body.classList.toggle('hide',on);
+    if(!on){[].forEach.call(document.querySelectorAll('.ans.shown'),function(a){a.classList.remove('shown');});}
+  });
+  [].forEach.call(document.querySelectorAll('.ans'),function(a){
+    a.addEventListener('click',function(){if(document.body.classList.contains('hide'))a.classList.toggle('shown');});
+  });
+})();
+</script>
 </body>
 </html>
