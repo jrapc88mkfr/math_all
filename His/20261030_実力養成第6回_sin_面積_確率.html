@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>実力養成 第6回 三角比・図形の性質・場合の数</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f5fa; --panel:#ffffff; --ink:#16233b; --sub:#54627c; --line:#d3dce8;
+  --red:#d0212f; --red-bg:#fff1f2; --red-ink:#ffffff;
+  --blue:#1d5fa8; --blue-bg:#eaf3fc;
+  --mark:#ffe873; --mark-bg:#fff8d6; --mark-line:#e0b400;
+  --green:#2e7d4f; --green-bg:#eaf7ee;
+  --purp:#7b3fb0; --purp-bg:#f3ecfa;
+  --ans-bg:#16233b; --ans-ink:#ffffff;
+  --grid:rgba(29,95,168,.08);
+  --shadow:0 1px 0 rgba(22,35,59,.06), 0 8px 24px -14px rgba(22,35,59,.35);
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  --math:"STIX Two Text","Times New Roman","Noto Serif JP","Yu Mincho",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+    --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+    --blue:#82bbff; --blue-bg:#13263b;
+    --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+    --green:#7fd19f; --green-bg:#122a1c;
+    --purp:#c9a4ec; --purp-bg:#241a30;
+    --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+    --grid:rgba(130,187,255,.07);
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --panel:#151d2a; --ink:#e6ebf3; --sub:#9aa9c0; --line:#2a3648;
+  --red:#ff7f8b; --red-bg:#2b1519; --red-ink:#2b1519;
+  --blue:#82bbff; --blue-bg:#13263b;
+  --mark:#7a6500; --mark-bg:#2a2508; --mark-line:#c9a400;
+  --green:#7fd19f; --green-bg:#122a1c;
+  --purp:#c9a4ec; --purp-bg:#241a30;
+  --ans-bg:#e6ebf3; --ans-ink:#0d131c;
+  --grid:rgba(130,187,255,.07);
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:auto;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--sans);font-size:16px;line-height:1.85;
+}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.hero{max-width:960px;margin:0 auto;padding:34px 18px 8px}
+.hero h1{margin:0;font-size:clamp(1.5rem,5vw,2.3rem);font-weight:900;line-height:1.35;letter-spacing:.02em}
+.hero h1 span{display:inline-block;border:4px solid var(--red);border-radius:12px;padding:0 .35em;margin-right:.2em;color:var(--red);transform:rotate(-1.5deg)}
+.hero p{margin:12px 0 0;color:var(--sub);max-width:42em}
+.legend{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:22px 0 4px}
+.legend > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.86rem;line-height:1.6;box-shadow:var(--shadow)}
+.legend b{display:block;margin-bottom:4px;font-size:.9rem}
+.swatch{display:inline-block;width:1.6em;height:1em;vertical-align:-.15em;margin-right:.4em;border-radius:3px}
+.sw-red{border:2.5px solid var(--red);background:var(--red-bg)}
+.sw-blue{border-left:5px solid var(--blue);background:var(--blue-bg)}
+.sw-mark{border-left:5px solid var(--mark-line);background:var(--mark-bg)}
+.sw-purp{border-left:5px solid var(--purp);background:var(--purp-bg)}
+
+.notice{max-width:960px;margin:18px auto 0;padding:0 18px}
+.notice-in{background:var(--purp-bg);border:2px solid var(--purp);border-radius:12px;padding:14px 18px;font-size:.92rem}
+.notice-in b{color:var(--purp)}
+.notice-in ul{margin:8px 0 0;padding-left:1.3em}
+.notice-in li{margin:4px 0}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:960px;margin:0 auto;padding:8px 18px;display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:.85rem;border:1.5px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 12px;line-height:1.7}
+.nav a:hover{border-color:var(--red);color:var(--red)}
+.tools{margin-left:auto;display:flex;gap:8px;flex:none;padding-left:8px}
+.btn{font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--ink);background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;padding:3px 12px;line-height:1.7}
+.btn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.progress{font-size:.82rem;font-weight:700;color:var(--sub);white-space:nowrap;align-self:center}
+
+main{max-width:960px;margin:0 auto;padding:12px 18px 60px}
+.prob{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:26px 0;padding:0 0 18px;box-shadow:var(--shadow);overflow:hidden}
+.ph{display:flex;align-items:stretch;border-bottom:2px solid var(--ink);margin-bottom:16px}
+.ph .no{flex:none;min-width:4.6rem;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--panel);font-weight:900;font-size:1.2rem;padding:8px 10px;letter-spacing:.03em;text-align:center;line-height:1.3}
+.ph .htext{flex:1;align-self:center;padding:10px 16px}
+.ph .htext .tag{display:block;font-size:.74rem;font-weight:700;color:var(--red);letter-spacing:.06em;margin-bottom:1px}
+.ph h2{margin:0;font-size:1.05rem;font-weight:700;line-height:1.5}
+.ph .done{margin:8px 12px 8px 0;align-self:center}
+.body{padding:0 clamp(14px,3vw,24px)}
+h3{font-size:1rem;font-weight:900;margin:22px 0 6px;padding-bottom:3px;border-bottom:2px dotted var(--line)}
+p{margin:8px 0}
+.q{border:2px dashed var(--line);border-radius:10px;padding:10px 14px;margin:0 0 14px}
+.q::before{content:"問題";display:inline-block;font-weight:900;font-size:.8rem;background:var(--ink);color:var(--panel);border-radius:4px;padding:0 8px;margin-right:8px;line-height:1.6}
+.q .sub{display:block;margin-top:4px}
+
+/* math */
+.m{font-family:var(--math);font-size:1.12em;line-height:1.9}
+.m i{font-style:italic}
+sup,sub{line-height:0;font-size:.72em}
+.fr{display:inline-block;vertical-align:middle;text-align:center;line-height:1.25;margin:0 .18em;font-size:.95em}
+.fr > b{display:block;font-weight:inherit;padding:0 .25em}
+.fr > b:first-child{border-bottom:1.5px solid currentColor}
+.int{display:inline-block;vertical-align:middle;white-space:nowrap;margin:0 .1em}
+.int .sym{display:inline-block;vertical-align:middle;font-size:2.1em;line-height:1;font-weight:300;font-family:var(--math)}
+.lim{display:inline-block;vertical-align:middle;font-size:.62em;line-height:1.1;margin-left:.1em;text-align:left}
+.lim > span{display:block}
+.lim > span:first-child{margin-bottom:1.15em}
+.int .lim{margin-left:-.25em}
+.brk{font-size:2.2em;line-height:1;font-weight:300;vertical-align:middle;display:inline-block;margin:0 .02em;font-family:var(--math)}
+
+.fb{position:relative;margin:24px 0 14px;padding:16px 16px 10px;border:3px solid var(--red);border-radius:12px;background:var(--red-bg)}
+.fb::before{content:attr(data-label);position:absolute;top:-.95em;left:14px;background:var(--red);color:var(--red-ink);font-weight:900;font-size:.82rem;line-height:1.7;padding:0 12px;border-radius:999px}
+.fb .m{display:block;overflow-x:auto;padding:1px 0}
+.fb .m + .m{margin-top:2px}
+.fb.soft{border-style:dashed;border-width:2.5px}
+.box{font-family:var(--math);display:inline-block;border:2.5px solid var(--red);border-radius:6px;padding:0 .4em;background:var(--panel)}
+
+.easy{margin:14px 0;padding:12px 16px;background:var(--blue-bg);border-left:6px solid var(--blue);border-radius:0 10px 10px 0}
+.easy > .t{display:block;font-weight:900;color:var(--blue);font-size:.92rem;margin-bottom:2px}
+.easy > .t::before{content:"💡 "}
+.easy ul,.easy ol{margin:6px 0;padding-left:1.3em}
+.easy li{margin:3px 0}
+.pt{margin:14px 0;padding:10px 16px;background:var(--mark-bg);border-left:6px solid var(--mark-line);border-radius:0 10px 10px 0}
+.pt > .t{font-weight:900}
+.hl{background:linear-gradient(transparent 55%,var(--mark) 55%);font-weight:700}
+
+.ans{margin:16px 0 4px;background:var(--ans-bg);color:var(--ans-ink);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ans .al{flex:none;font-weight:900;font-size:.85rem;background:var(--red);color:var(--red-ink);border-radius:999px;padding:0 12px;line-height:1.7}
+.ans .av{font-weight:700;font-size:1.05rem;flex:1;min-width:0}
+body.hide .ans{cursor:pointer}
+body.hide .ans:not(.shown) .av{filter:blur(9px);user-select:none}
+body.hide .ans:not(.shown)::after{content:"タップで答えを見る";font-size:.78rem;opacity:.75;margin-left:auto}
+
+.check{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 12px;margin:10px 0;font-size:.92rem}
+.check b{color:var(--blue)}
+.check .chk-row{margin:2px 0;overflow-x:auto}
+.done{font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--panel);color:var(--sub);border-radius:999px;padding:0 12px;line-height:1.9}
+.done[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--panel)}
+.done[aria-pressed="true"]::before{content:"✓ "}
+.fig{margin:14px 0;text-align:center}
+.fig svg{width:100%;max-width:460px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.fig figcaption{font-size:.84rem;color:var(--sub);margin-top:4px;line-height:1.6}
+.tblwrap{overflow-x:auto;margin:12px 0}
+table.tbl{border-collapse:collapse;width:100%;min-width:420px;font-size:.95rem;text-align:center}
+.tbl th,.tbl td{border:1.5px solid var(--ink);padding:7px 10px}
+.tbl th{background:var(--ink);color:var(--panel);font-weight:700}
+.tbl td.left{text-align:left}
+.sumlist{list-style:none;margin:0;padding:0;counter-reset:s}
+.sumlist li{counter-increment:s;padding:8px 0 8px 44px;position:relative;border-bottom:1px dotted var(--line)}
+.sumlist li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--red);color:var(--red);font-weight:900;text-align:center;line-height:25px}
+.sumlist li:last-child{border-bottom:0}
+.memo{background:var(--green-bg);border:2px solid var(--green);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:.95rem}
+.memo b{color:var(--green)}
+footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-size:.82rem}
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .ph .no{min-width:3.6rem;font-size:1.05rem}
+  .ph h2{font-size:1rem}
+  .fb{padding:16px 12px 8px}
+  .tools{padding-left:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .nav,.done,.tools{display:none}
+  body{background:#fff;color:#000}
+  .prob{break-inside:avoid;box-shadow:none}
+}
+
+.figgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:14px 0}
+.figgrid figure{margin:0;text-align:center}
+.figgrid svg{width:100%;max-width:300px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.figgrid figcaption{font-size:.84rem;color:var(--sub);margin-top:4px;line-height:1.5}
+.ok{color:var(--green);font-weight:900}
+.ng{color:var(--red);font-weight:900}
+.tbl td.m,.tbl td .m{font-size:1.02em}
+.tbl th,.tbl td.nw{white-space:nowrap}
+
+.vec{text-decoration:overline}
+.grid16{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.gcell{border-radius:8px;padding:8px 6px;text-align:center;font-family:"STIX Two Text","Times New Roman",serif;font-weight:700;font-size:1.05rem;letter-spacing:.08em;border:1.5px solid var(--line)}
+.gcell small{display:block;font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;font-size:.72rem;font-weight:700;letter-spacing:0;color:var(--sub);margin-top:2px}
+.c-none{background:#efe8fb;border-color:#7b3fb0}
+.c-two{background:#e6f5ec;border-color:#2e7d4f}
+.c-three{background:#eaf3fc;border-color:#1d5fa8}
+.c-four{background:#fff4c4;border-color:#c9a400}
+.legend-row{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 4px;font-size:.9rem}
+.legend-row span{display:inline-flex;align-items:center;gap:6px}
+.legend-row i{display:inline-block;width:16px;height:12px;border-radius:3px;border:1.5px solid var(--line)}
+.figbox{display:flex;justify-content:center}
+.figbox svg{width:100%;max-width:420px;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+
+.dai-banner{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#172c4d,#2f5f9a);color:#fff;border-radius:14px;padding:16px 20px;margin:30px 0 6px;box-shadow:0 3px 12px #14233b22}
+.dai-banner .dai-no{font-size:1.6rem;font-weight:900;background:#fff;color:#172c4d;border-radius:10px;padding:4px 14px}
+.dai-banner .dai-field{font-size:.85rem;font-weight:700;opacity:.9}
+.dai-banner h2{margin:2px 0 0;font-size:1.35rem;border:0;padding:0;color:#fff}
+</style>
+</head><body>
+<div class="hero">
+  <h1><span>実力養成</span>第6回　三角比・図形の性質・場合の数</h1>
+  <p>大問ごとに分野を表示し、問題・解答・解説の順に並べました。第1問は三角比、第2問は図形の性質（線分の比と面積比）、第3問は場合の数です。赤枠の公式、青い解説、黄色いテストのポイントで整理しています。</p>
+  <div class="legend" aria-label="この資料の見かた">
+    <div><b><span class="swatch sw-red"></span>赤枠＝覚える公式・答案の形</b>テストで書く式です。</div>
+    <div><b><span class="swatch sw-blue"></span>青＝やさしい解説</b>中学〜高2の知識で説明します。</div>
+    <div><b><span class="swatch sw-mark"></span>黄＝テストでのポイント</b>書き忘れ・減点されやすいところ。</div>
+    <div><b><span class="swatch sw-purp"></span>紫＝資料の整理について</b>元の資料からの変更点の確認。</div>
+  </div>
+</div>
+<div class="notice">
+  <div class="notice-in">
+    <b>この回の構成</b>
+    <ul>
+      <li><b>大問1（三角比・数学I）：</b>スロープの傾斜角と三角比。</li>
+      <li><b>大問2（図形の性質・数学I・数学A）：</b>線分の比と面積比。</li>
+      <li><b>大問3（場合の数・数学A）：</b>道路の経路の数え方（組み合わせ・余事象）。</li>
+      <li>大問3 の答え（オ＝②，カ＝3，キクケ＝168，コサシ＝168，初めて P に着く経路 296）は、総当たりの計算でも確認済みです。</li>
+    </ul>
+  </div>
+</div>
+<nav class="nav" aria-label="目次">
+  <div class="nav-in">
+    <a href="#dai1">大問1 三角比</a><a href="#dai2">大問2 図形の性質</a><a href="#dai3">大問3 場合の数</a><a href="#jpfinal">まとめ</a>
+    <span class="tools">
+      <span class="progress" id="progress" aria-live="polite"></span>
+      <button class="btn" id="hideBtn" aria-pressed="false" type="button">答えをかくす</button>
+    </span>
+  </div>
+</nav>
+<main>
+<section class="dai-banner" id="dai1"><div class="dai-no">大問1</div><div class="dai-txt"><div class="dai-field">数学I ・ 三角比</div><h2>三角比とスロープ</h2></div></section>
+<section class="prob" id="j1-1" data-key="j1-1">
+  <div class="ph"><span class="no">大問1</span><div class="htext"><span class="tag">数学I・三角比</span><h2>三角比とスロープ</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">花子さんの家の玄関に通じるスロープは長さが 3 m で、傾斜角度が 10° になっている。花子さんはスロープを伸ばすことで傾斜を緩やかにしたいと考えている。
+      <span class="sub">図1のように、現在のスロープの始点を A、終点を B とし、B から地面に下ろした垂線を BH とする。</span>
+      <span class="sub">(1) 水平距離 AH と高さ BH を求めよ。（直角三角形 ABH で、AB ＝ 3 m，∠BAH ＝ 10°）</span>
+      <span class="sub">(2) 図2のように、新しく作るスロープの始点を P とし、AP ＝ a（m）とする。スロープの傾斜角度が 6° 以下になるとき、a が満たすべき必要十分条件を、6°，10° の三角比と a についての不等式で表せ。</span></p>
+
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 380 185" role="img" aria-label="現在のスロープ。直角三角形ABHで、AB = 3 m、∠BAH = 10°、∠AHB = 90°" xmlns="http://www.w3.org/2000/svg"><rect width="380" height="185" fill="var(--panel)"/><line x1="40.0" y1="130.0" x2="360.0" y2="130.0" stroke="var(--sub)" stroke-width="1.2"/><polygon points="152.7,130.0 330.0,130.0 330.0,98.7" fill="var(--blue-bg)" stroke="var(--ink)" stroke-width="2.4" stroke-linejoin="round"/><polyline points="318.0,130.0 318.0,118.0 330.0,118.0" fill="none" stroke="var(--ink)" stroke-width="1.5"/><path d="M 192.7,130.0 A 40 40 0 0 0 192.1,123.1" fill="none" stroke="var(--red)" stroke-width="2"/><text x="200.7" y="122.0" font-size="13" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">10°</text><circle cx="152.7" cy="130.0" r="5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="146.7" y="150.0" font-size="15" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">A</text><circle cx="330.0" cy="130.0" r="5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="336.0" y="150.0" font-size="15" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">H</text><circle cx="330.0" cy="98.7" r="5.5" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><text x="338.0" y="92.7" font-size="15" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">B</text><text x="225.4" y="106.4" font-size="13" font-weight="700" fill="var(--blue)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">3 m</text><text x="241.4" y="168.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">AH = 3 cos 10°</text><text x="320.0" y="118.4" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">BH = 3 sin 10°</text></svg></div>
+      <figcaption>図1　現在のスロープ（直角三角形 ABH）</figcaption>
+    </figure>
+
+    <div class="fb" data-label="問題（2）の空欄">
+      <span class="m">必要十分条件は、次の形の式で表される。空欄 ウ・エ・オ・カ に当てはまるものを、下の選択肢から選ぶ。</span>
+      <span class="m">　<span class="box">[ ウ ] ／ (<i>a</i> + [ エ ])　[ オ ]　[ カ ]</span></span>
+    </div>
+    <div class="fb soft" data-label="選択肢">
+      <span class="m">ウ・エ・カ の選択肢：⓪ 3 sin 10°　① 3 cos 10°　② 3 tan 10°　③ sin 6°　④ cos 6°　⑤ tan 6°</span>
+      <span class="m">オ の選択肢：⓪ ≦　① ≧　② ＜　③ ＞</span>
+    </div>
+
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 380 185" role="img" aria-label="延長したスロープ。点Pから点Bへの直線（赤）の傾斜角θが6°以下になる条件を考える" xmlns="http://www.w3.org/2000/svg"><rect width="380" height="185" fill="var(--panel)"/><line x1="10.0" y1="130.0" x2="370.0" y2="130.0" stroke="var(--sub)" stroke-width="1.2"/><line x1="32.7" y1="130.0" x2="330.0" y2="98.7" stroke="var(--red)" stroke-width="2.6"/><line x1="152.7" y1="130.0" x2="330.0" y2="98.7" stroke="var(--blue)" stroke-width="2.4"/><line x1="32.7" y1="148.0" x2="152.7" y2="148.0" stroke="var(--ink)" stroke-width="1.2" stroke-dasharray="3 3"/><text x="92.7" y="164.0" font-size="14" font-weight="400" fill="var(--ink)" text-anchor="middle" font-family="'STIX Two Text','Times New Roman',serif" font-style="italic" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">a</text><line x1="330.0" y1="98.7" x2="330.0" y2="130.0" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="4 3"/><path d="M 76.7,130.0 A 44 44 0 0 0 76.5,125.4" fill="none" stroke="var(--red)" stroke-width="2"/><text x="84.7" y="124.0" font-size="13" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">θ ≦ 6°</text><path d="M 186.7,130.0 A 34 34 0 0 0 186.2,124.1" fill="none" stroke="var(--blue)" stroke-width="2"/><circle cx="32.7" cy="130.0" r="5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="28.7" y="150.0" font-size="15" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">P</text><circle cx="152.7" cy="130.0" r="5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="156.7" y="150.0" font-size="15" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">A</text><circle cx="330.0" cy="130.0" r="5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="336.0" y="150.0" font-size="15" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">H</text><circle cx="330.0" cy="98.7" r="5.5" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><text x="338.0" y="92.7" font-size="15" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">B</text><text x="181.4" y="168.0" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">PH = a + 3 cos 10°</text><text x="320.0" y="118.4" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">BH = 3 sin 10°</text></svg></div>
+      <figcaption>図2　延長したスロープ。P から B へ向かう直線の傾斜角 θ が 6° 以下になる a の条件を求める。</figcaption>
+    </figure>
+
+    <h3>② 解答</h3>
+    <h4>(1) AH と BH</h4>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">水平距離　<i>A</i><i>H</i> ＝ <span class="box">3 cos 10°（<i>m</i>）</span>　（≒ 2.95 <i>m</i>）</span>
+      <span class="m">高さ　<i>B</i><i>H</i> ＝ <span class="box">3 sin 10°（<i>m</i>）</span>　（≒ 0.52 <i>m</i>）</span>
+    </div>
+    <h4>(2) 傾斜角度を 6° 以下にする条件</h4>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">空欄の答え：ウ ＝ ⓪，エ ＝ ①，オ ＝ ⓪，カ ＝ ⑤</span>
+      <span class="m"><span class="box"><span class="fr"><b>3 sin 10°</b><b><i>a</i> + 3 cos 10°</b></span> ≦ tan 6°</span></span>
+    </div>
+
+    <h3>③ 解説</h3>
+    <h4>(1) 三角比で辺の長さを求める</h4>
+    <div class="fb" data-label="sin・cos・tan の定義（直角三角形）">
+      <span class="m"><span class="box">cos θ ＝ 隣の辺 ÷ 斜辺</span></span>
+      <span class="m"><span class="box">sin θ ＝ 向かいの辺 ÷ 斜辺</span></span>
+      <span class="m"><span class="box">tan θ ＝ 向かいの辺 ÷ 隣の辺</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：斜辺 AB ＝ 3 m が基準</span>
+      <p>直角三角形 ABH では、AB が斜辺です。角 A は 10° で、AH は角 A の隣の辺、BH は角 A の向かいの辺です。</p>
+      <p>cos 10° ＝ AH ÷ AB = AH ÷ 3 より AH ＝ 3 cos 10°。sin 10° ＝ BH ÷ AB = BH ÷ 3 より BH ＝ 3 sin 10°。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span><span class="hl">cos は「隣の辺」、sin は「向かいの辺」、どちらも分母は斜辺</span>。図の中で角と辺を確認してから式を書く。</div>
+
+    <h4>(2) 延長しても高さは変わらない</h4>
+    <div class="fb" data-label="水平距離と傾斜角θ">
+      <span class="m">延長しても、終点 <i>B</i> の高さは変わらないので　<i>B</i><i>H</i> ＝ 3 sin 10°　のまま。</span>
+      <span class="m">水平距離は　<i>P</i><i>H</i> ＝ <i>P</i><i>A</i> ＋ <i>A</i><i>H</i> ＝ <i>a</i> ＋ 3 cos 10°</span>
+      <span class="m">新しい傾斜角を θ とすると　<span class="box">tan θ ＝ <i>B</i><i>H</i> / <i>P</i><i>H</i> ＝ 3 sin 10° / (<i>a</i> + 3 cos 10°)</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：傾きは「高さ ÷ 水平距離」</span>
+      <p>坂の傾きは、上に上がる量（高さ）を、横に進む量（水平距離）で割ったものです。tan θ がそれにあたります。a を大きくすると水平距離が伸びて、傾きは緩やかになります。</p>
+    </div>
+    <div class="fb" data-label="条件の言いかえ">
+      <span class="m">傾斜角 θ が 6° 以下 ⇔ θ ≦ 6°　（0° から 90° の範囲で、tan は角が大きいほど大きくなる）</span>
+      <span class="m">よって　tan θ ≦ tan 6°</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">必要十分条件は　<span class="box"><span class="fr"><b>3 sin 10°</b><b><i>a</i> + 3 cos 10°</b></span> ≦ tan 6°</span></span>
+      <span class="m">分母 <i>a</i> + 3 cos 10° ＞ 0 より、両辺に掛けて整理すると　<i>a</i> ≧ 3 sin 10° / tan 6° − 3 cos 10°　（≒ 2.00 <i>m</i>）</span>
+    </div>
+    <div class="check"><b>検算：</b>a ＝ 2.0 m のとき、tan θ ＝ 0.5209 / (2.0 + 2.9544) ≒ 0.1051。tan⁻¹(0.1051) ≒ 6.0° ✓（ちょうど 6° 付近）。a ＝ 1.5 m では約 6.7° で、6° を超えるので条件を満たさない ✓。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>角度の条件は、<span class="hl">tan を使うと「高さ ÷ 水平距離」の不等式</span>になる。「傾きが緩やかになる」＝ a が大きくなる、という向きも確認する。</div>
+    <div class="check"><b>確認ポイント：</b>延長しても高さ BH は変わらない。傾斜角度の条件は、正接 tan を使うと「高さ ÷ 水平距離」で表せる。</div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m"><i>A</i><i>H</i> ＝ 3 cos 10°（<i>m</i>），　<i>B</i><i>H</i> ＝ 3 sin 10°（<i>m</i>）</span></span></div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m">3 sin 10° / (<i>a</i> + 3 cos 10°) ≦ tan 6°（ウ＝⓪，エ＝①，オ＝⓪，カ＝⑤）</span></span></div>
+  </div>
+</section>
+<section class="dai-banner" id="dai2"><div class="dai-no">大問2</div><div class="dai-txt"><div class="dai-field">数学I ・ 数学A ・ 図形の性質</div><h2>線分の比と面積比</h2></div></section>
+<section class="prob" id="j1-2" data-key="j1-2">
+  <div class="ph"><span class="no">大問2</span><div class="htext"><span class="tag">数学I・数学A　線分比・面積比</span><h2>線分比と面積比</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">△ABC の辺 BC，CA 上にそれぞれ点 D，E を、BD：DC ＝ 2：3，CE：EA ＝ 2：3 となるようにとる。また、線分 AD と BE の交点を O とし、直線 CO と辺 AB の交点を F とする。
+      <span class="sub">(1) 次の比を求めよ。</span>
+      <span class="sub">　① AO ／ OD　　② AF ／ FB　　③ △OCE の面積 ／ △OAF の面積</span></p>
+
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 380 285" role="img" aria-label="△ABCの辺BC上の点D、辺CA上の点E、線分ADとBEの交点O、直線COと辺ABの交点F" xmlns="http://www.w3.org/2000/svg"><rect width="380" height="285" fill="var(--panel)"/><polygon points="150,40 50,250 340,230" fill="var(--blue-bg)" stroke="var(--ink)" stroke-width="2.4" stroke-linejoin="round"/><line x1="150.0" y1="40.0" x2="166.0" y2="242.0" stroke="var(--red)" stroke-width="2" stroke-dasharray="6 4"/><line x1="50.0" y1="250.0" x2="264.0" y2="154.0" stroke="var(--red)" stroke-width="2" stroke-dasharray="6 4"/><line x1="340.0" y1="230.0" x2="80.8" y2="185.4" stroke="var(--green)" stroke-width="2" stroke-dasharray="6 4"/><circle cx="150.0" cy="40.0" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="144.0" y="30.0" font-size="15" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">A</text><circle cx="50.0" cy="250.0" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="42.0" y="268.0" font-size="15" font-weight="700" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">B</text><circle cx="340.0" cy="230.0" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="350.0" y="236.0" font-size="15" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">C</text><circle cx="166.0" cy="242.0" r="4.5" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><text x="176.0" y="248.0" font-size="15" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">D</text><circle cx="264.0" cy="154.0" r="4.5" fill="var(--red)" stroke="var(--panel)" stroke-width="1.5"/><text x="276.0" y="148.0" font-size="15" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">E</text><circle cx="162.6" cy="199.5" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="1.5"/><text x="170.6" y="191.5" font-size="15" font-weight="700" fill="var(--ink)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">O</text><circle cx="80.8" cy="185.4" r="4.5" fill="var(--green)" stroke="var(--panel)" stroke-width="1.5"/><text x="72.8" y="177.4" font-size="15" font-weight="700" fill="var(--green)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">F</text><text x="102.0" y="264.0" font-size="12.5" font-weight="600" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">2</text><text x="261.0" y="244.0" font-size="12.5" font-weight="600" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">3</text><text x="312.0" y="198.0" font-size="12.5" font-weight="600" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">2</text><text x="221.0" y="99.0" font-size="12.5" font-weight="600" fill="var(--ink)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">3</text><text x="372.0" y="277.0" font-size="11.5" font-weight="600" fill="var(--ink)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">BD : DC = 2 : 3，CE : EA = 2 : 3</text></svg></div>
+      <figcaption>点 D，E，O，F の位置関係。AD，BE，CF は1点 O で交わります。</figcaption>
+    </figure>
+
+    <h3>② 解答</h3>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>求めたいもの</th><th>答え</th><th>比</th></tr></thead>
+        <tbody>
+          <tr><td>① AO ／ OD</td><td class="m">15 ／ 4</td><td class="left">AO ： OD ＝ 15 ： 4</td></tr>
+          <tr><td>② AF ／ FB</td><td class="m">9 ／ 4</td><td class="left">AF ： FB ＝ 9 ： 4</td></tr>
+          <tr><td>③ △OCE ／ △OAF</td><td class="m">13 ／ 15</td><td class="left">△OCE ： △OAF ＝ 13 ： 15</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>③ 解説</h3>
+    <h4>(1) AO ： OD を求める</h4>
+    <div class="fb" data-label="重み（質量）の考え方">
+      <span class="m"><i>B</i><i>D</i> ： <i>D</i><i>C</i> ＝ 2 ： 3 のとき、点 <i>D</i> は <i>B</i> と <i>C</i> の「重み」の比 3 ： 2 のつり合いの点。</span>
+      <span class="m"><i>C</i><i>E</i> ： <i>E</i><i>A</i> ＝ 2 ： 3 のとき、点 <i>E</i> は <i>C</i> と <i>A</i> の重みの比 3 ： 2 のつり合いの点。</span>
+      <span class="m">この2つをそろえると、<i>A</i>，<i>B</i>，<i>C</i> の重みは <span class="box">4 ： 9 ： 6</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：「比の向きは逆になる」</span>
+      <p>BD：DC ＝ 2：3 なら、点 D は B に近い。近い B の重みは大きく（3）、遠い C の重みは小さく（2）なります。</p>
+      <p>言いかえると、<b>線分の比と重みの比は逆になる</b>ので、「重みは 3：2」と書くのがコツです。</p>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">交点 <i>O</i> は、<i>A</i>，<i>B</i>，<i>C</i> の重みを 4 ： 9 ： 6 としたときの重心（つり合いの点）。</span>
+      <span class="m"><i>A</i><i>D</i> 上で考えると、<i>D</i> は <i>B</i> と <i>C</i> の重み（9 ＋ 6 ＝ 15）、<i>A</i> の重みは 4 なので</span>
+      <span class="m"><i>A</i><i>O</i> ： <i>O</i><i>D</i> ＝ 15 ： 4　⇒　<span class="box"><i>A</i><i>O</i> ／ <i>O</i><i>D</i> ＝ 15 ／ 4</span></span>
+    </div>
+    <div class="check"><b>検算（座標の考え方）：</b>交点 O の位置は、A，B，C の重みを 4 ：9 ：6 で合わせた点 (4A + 9B + 6C) / 19 になります。直線 AD 上で、A から O までの割合は 15/19、O から D までは 4/19 なので、AO ： OD ＝ 15 ： 4 ✓。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>「AO ／ OD」は、<span class="hl">A 側の重み（4）ではなく、D 側の重み（9 ＋ 6 ＝ 15）が A 側に対応する</span>。線分の両端の重みを足すところを間違えない。</div>
+
+    <h4>(2) AF ： FB を求める</h4>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">点 <i>O</i> は <i>A</i>，<i>B</i>，<i>C</i> の重み 4 ： 9 ： 6 のつり合いの点なので、直線 <i>C</i><i>O</i> と辺 <i>A</i><i>B</i> の交点 <i>F</i> は、<i>A</i> と <i>B</i> の重み（4 ： 9）のつり合いの点になる。</span>
+      <span class="m"><i>A</i><i>F</i> ： <i>F</i><i>B</i> ＝ 9 ： 4　⇒　<span class="box"><i>A</i><i>F</i> ／ <i>F</i><i>B</i> ＝ 9 ／ 4</span></span>
+    </div>
+    <div class="check"><b>検算：</b>F ＝ (4A + 9B) / 13 とすると、C，O，F が一直線上にあることを確かめられる（座標の計算で一致）✓。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>F は「C の重み」を消した点なので、A と B の重みの比（4 ： 9）から AF ： FB は <span class="hl">9 ： 4</span> と逆になる。</div>
+
+    <h4>(3) △OCE と △OAF の面積比</h4>
+    <div class="fb" data-label="面積比は △ABC を基準にする">
+      <span class="m">三角形の面積は、△<i>A</i><i>B</i><i>C</i> の面積に対する割合で表すと計算しやすい。</span>
+      <span class="m">△<i>O</i><i>C</i><i>E</i> ＝ 18/95 × △<i>A</i><i>B</i><i>C</i>，　△<i>O</i><i>A</i><i>F</i> ＝ 54/247 × △<i>A</i><i>B</i><i>C</i></span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">△<i>O</i><i>C</i><i>E</i> ／ △<i>O</i><i>A</i><i>F</i> ＝ (18/95) ÷ (54/247) ＝ (18 × 247) / (95 × 54) ＝ 247 / 285 ＝ <span class="box">13 / 15</span></span>
+      <span class="m">（247 ＝ 13 × 19，285 ＝ 15 × 19 で約分）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：面積比を「割合」にそろえる</span>
+      <p>△OCE と △OAF をそれぞれ △ABC の何割かで表すと、比の計算は分数どうしの割り算になります。最後は 19 で約分すると、13 ： 15 になります。</p>
+    </div>
+    <div class="check"><b>検算：</b>△OCE ＝ 18/95 ≒ 0.189，△OAF ＝ 54/247 ≒ 0.219。比は 0.189 ／ 0.219 ≒ 0.867 ≒ 13/15 ✓。</div>
+    <div class="pt"><span class="t">テストのポイント：</span>面積比は、<span class="hl">△ABC に対する割合にそろえてから割る</span>。分数のまま途中で約分すると計算ミスが減る。</div>
+
+    <div class="pt"><span class="t">比の注意：</span>内分点の「線分の比」と、頂点に割り当てる「重み」は逆になることがある。BD ： DC ＝ 2 ： 3 なら、対応する B，C の重みは 3 ： 2。</div>
+    <div class="check"><b>確認ポイント：</b>BD ： DC ＝ 2 ： 3 なら、B・C に対応する重みは 3 ： 2。線分比を求めるときは、比の向き（AO ／ OD など）を確認する。面積比は、いったん △ABC 全体に対する割合に直すと計算しやすい。</div>
+    <div class="ans"><span class="al">答 (1)①</span><span class="av"><span class="m"><i>A</i><i>O</i> ／ <i>O</i><i>D</i> ＝ 15 ／ 4</span></span></div>
+    <div class="ans"><span class="al">答 (1)②</span><span class="av"><span class="m"><i>A</i><i>F</i> ／ <i>F</i><i>B</i> ＝ 9 ／ 4</span></span></div>
+    <div class="ans"><span class="al">答 (1)③</span><span class="av"><span class="m">△<i>O</i><i>C</i><i>E</i> ： △<i>O</i><i>A</i><i>F</i> ＝ 13 ： 15</span></span></div>
+  </div>
+</section>
+<section class="dai-banner" id="dai3"><div class="dai-no">大問3</div><div class="dai-txt"><div class="dai-field">数学A ・ 場合の数（組み合わせ・余事象）</div><h2>道路の経路と場合の数</h2></div></section>
+<section class="prob" id="j1-3s0" data-key="j1-3s0">
+  <div class="ph"><span class="no">導入</span><div class="htext"><span class="tag">最短経路の数</span><h2>O から P までの最短経路の数</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">図1のように、東西・南北に作られた基盤の目状の道路がある。交差点と交差点の間の 1 区画の距離は 1 km である（曲がり角、T字路も交差点とみなす）。東へ 1 区画進むことを「→」、北へ 1 区画進むことを「↑」、西へ 1 区画進むことを「←」、南へ 1 区画進むことを「↓」と表す。
+      <span class="sub">地点 O から地点 P までの最短経路の総数を求めよ。</span></p>
+
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 260 240" role="img" aria-label="3区画×3区画の道路網。O は左下、P は右上の交差点" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="240" fill="var(--panel)"/><line x1="84.0" y1="190.0" x2="216.0" y2="190.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="84.0" y1="190.0" x2="84.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="84.0" y1="146.0" x2="216.0" y2="146.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="128.0" y1="190.0" x2="128.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="84.0" y1="102.0" x2="216.0" y2="102.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="172.0" y1="190.0" x2="172.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="84.0" y1="58.0" x2="216.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="216.0" y1="190.0" x2="216.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><circle cx="84.0" cy="190.0" r="3" fill="var(--ink)"/><circle cx="84.0" cy="146.0" r="3" fill="var(--ink)"/><circle cx="84.0" cy="102.0" r="3" fill="var(--ink)"/><circle cx="84.0" cy="58.0" r="3" fill="var(--ink)"/><circle cx="128.0" cy="190.0" r="3" fill="var(--ink)"/><circle cx="128.0" cy="146.0" r="3" fill="var(--ink)"/><circle cx="128.0" cy="102.0" r="3" fill="var(--ink)"/><circle cx="128.0" cy="58.0" r="3" fill="var(--ink)"/><circle cx="172.0" cy="190.0" r="3" fill="var(--ink)"/><circle cx="172.0" cy="146.0" r="3" fill="var(--ink)"/><circle cx="172.0" cy="102.0" r="3" fill="var(--ink)"/><circle cx="172.0" cy="58.0" r="3" fill="var(--ink)"/><circle cx="216.0" cy="190.0" r="3" fill="var(--ink)"/><circle cx="216.0" cy="146.0" r="3" fill="var(--ink)"/><circle cx="216.0" cy="102.0" r="3" fill="var(--ink)"/><circle cx="216.0" cy="58.0" r="3" fill="var(--ink)"/><circle cx="84.0" cy="190.0" r="6" fill="var(--blue)"/><text x="70.0" y="208.0" font-size="14" font-weight="700" fill="var(--blue)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">O</text><circle cx="216.0" cy="58.0" r="6" fill="var(--red)"/><text x="226.0" y="52.0" font-size="14" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">P</text></svg></div>
+      <figcaption>図1　道路網（3区画 × 3区画）。O は左下、P は右上の交差点。</figcaption>
+    </figure>
+
+    <div class="fb" data-label="最短経路（→3個，↑3個）">
+      <span class="m">最短経路は、東へ 3 区画・北へ 3 区画の 6 歩。</span>
+      <span class="m">6 歩の中で「→」を置く 3 か所を選ぶと、残りは「↑」になる。</span>
+      <span class="m"><span class="box">₆<i>C</i>₃ ＝ 6・5・4 / 3・2・1 ＝ 20（通り）</span></span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：「どこに→を置くか」を選ぶ</span>
+      <p>6 歩のうち、どの 3 歩が「→」かを選ぶだけで、経路が 1 つに決まります。順番に並べる（順列）のではなく、<b>選ぶ（組み合わせ）</b>で数えます。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>「→3個と↑3個の並べ方」は、<span class="hl">同じものを含む順列</span>。₆C₃ ＝ 6!/(3!3!) ＝ 20 と書いてもよい。</div>
+    <div class="ans"><span class="al">答 導入</span><span class="av"><span class="m">20 通り</span></span></div>
+  </div>
+</section>
+<section class="prob" id="j1-3s1" data-key="j1-3s1">
+  <div class="ph"><span class="no">(1)</span><div class="htext"><span class="tag">順列と道路の外</span><h2>道路の外へ出る順列を見つける</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">「→・←・↑・↓」の順列の中には、道路を通る経路に対応しないものがある。次の順列のうち、対応する経路がないものを 2 つ選べ（ただし、O から P へ向かい、道路上のみを進み、交差点以外で向きを変えないものとする）。
+      <span class="sub">⓪　↑ → → ↓ → ↑ ↑ ↑　　①　↑ ↑ ← ↑ → → → →</span>
+      <span class="sub">②　→ ↑ ↑ ↑ ↓ → → ↑　　③　→ → → ↑ → ↑ ← ↑</span></p>
+
+    <div class="fb" data-label="見方：左から順に、交差点の位置をたどる">
+      <span class="m"><i>O</i> を (0, 0)，東へ 1 区画で <i>x</i> ＋ 1，北へ 1 区画で <i>y</i> ＋ 1 とする。道路網は 0 ≦ <i>x</i> ≦ 3，0 ≦ <i>y</i> ≦ 3 の範囲。</span>
+      <span class="m">順列を左から読んで、<b>途中で範囲を出る</b>ものは対応する経路がない。</span>
+    </div>
+
+    <h3>順列ごとの確認</h3>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>順列</th><th>途中の位置（x, y）</th><th>判定</th></tr></thead>
+        <tbody>
+          <tr><td class="left">⓪ ↑→→↓→↑↑↑</td><td class="left">(0,1)(1,1)(2,1)(2,0)(3,0)(3,1)(3,2)(3,3)</td><td class="ok">経路あり</td></tr>
+          <tr><td class="left">① ↑↑←↑→→→→</td><td class="left">(0,1)(0,2)<b>(−1,2)</b>…</td><td class="ng">経路なし</td></tr>
+          <tr><td class="left">② →↑↑↑↓→→↑</td><td class="left">(1,0)(1,1)(1,2)(1,3)(1,2)(2,2)(3,2)(3,3)</td><td class="ok">経路あり</td></tr>
+          <tr><td class="left">③ →→→↑→↑←↑</td><td class="left">(1,0)(2,0)(3,0)(3,1)<b>(4,1)</b>…</td><td class="ng">経路なし</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 270 240" role="img" aria-label="↑↑← と進むと、西側の道路の外（x＝−1）へ出てしまう" xmlns="http://www.w3.org/2000/svg"><rect width="270" height="240" fill="var(--panel)"/><line x1="84.0" y1="190.0" x2="216.0" y2="190.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="84.0" y1="190.0" x2="84.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="84.0" y1="146.0" x2="216.0" y2="146.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="128.0" y1="190.0" x2="128.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="84.0" y1="102.0" x2="216.0" y2="102.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="172.0" y1="190.0" x2="172.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="84.0" y1="58.0" x2="216.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="216.0" y1="190.0" x2="216.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><circle cx="84.0" cy="190.0" r="3" fill="var(--ink)"/><circle cx="84.0" cy="146.0" r="3" fill="var(--ink)"/><circle cx="84.0" cy="102.0" r="3" fill="var(--ink)"/><circle cx="84.0" cy="58.0" r="3" fill="var(--ink)"/><circle cx="128.0" cy="190.0" r="3" fill="var(--ink)"/><circle cx="128.0" cy="146.0" r="3" fill="var(--ink)"/><circle cx="128.0" cy="102.0" r="3" fill="var(--ink)"/><circle cx="128.0" cy="58.0" r="3" fill="var(--ink)"/><circle cx="172.0" cy="190.0" r="3" fill="var(--ink)"/><circle cx="172.0" cy="146.0" r="3" fill="var(--ink)"/><circle cx="172.0" cy="102.0" r="3" fill="var(--ink)"/><circle cx="172.0" cy="58.0" r="3" fill="var(--ink)"/><circle cx="216.0" cy="190.0" r="3" fill="var(--ink)"/><circle cx="216.0" cy="146.0" r="3" fill="var(--ink)"/><circle cx="216.0" cy="102.0" r="3" fill="var(--ink)"/><circle cx="216.0" cy="58.0" r="3" fill="var(--ink)"/><circle cx="84.0" cy="190.0" r="6" fill="var(--blue)"/><text x="70.0" y="208.0" font-size="14" font-weight="700" fill="var(--blue)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">O</text><circle cx="216.0" cy="58.0" r="6" fill="var(--red)"/><text x="226.0" y="52.0" font-size="14" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">P</text><polyline points="84.0,190.0 84.0,146.0 84.0,102.0 40.0,102.0" fill="none" stroke="var(--green)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="7 5"/><circle cx="40.0" cy="102.0" r="9" fill="none" stroke="var(--red)" stroke-width="2.4"/><text x="26.0" y="88.0" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">外へ出る</text></svg></div>
+      <figcaption>① ↑↑← の場合：x ＝ 0 の西端で「←」を実行すると、x ＝ −1 で道路網の外へ出る。</figcaption>
+    </figure>
+    <figure class="fig">
+      <div class="figbox"><svg viewBox="0 0 270 240" role="img" aria-label="→→→→ と進むと、東側の道路の外（x＝4）へ出てしまう" xmlns="http://www.w3.org/2000/svg"><rect width="270" height="240" fill="var(--panel)"/><line x1="84.0" y1="190.0" x2="216.0" y2="190.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="84.0" y1="190.0" x2="84.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="84.0" y1="146.0" x2="216.0" y2="146.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="128.0" y1="190.0" x2="128.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="84.0" y1="102.0" x2="216.0" y2="102.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="172.0" y1="190.0" x2="172.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="84.0" y1="58.0" x2="216.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><line x1="216.0" y1="190.0" x2="216.0" y2="58.0" stroke="var(--ink)" stroke-width="2.4"/><circle cx="84.0" cy="190.0" r="3" fill="var(--ink)"/><circle cx="84.0" cy="146.0" r="3" fill="var(--ink)"/><circle cx="84.0" cy="102.0" r="3" fill="var(--ink)"/><circle cx="84.0" cy="58.0" r="3" fill="var(--ink)"/><circle cx="128.0" cy="190.0" r="3" fill="var(--ink)"/><circle cx="128.0" cy="146.0" r="3" fill="var(--ink)"/><circle cx="128.0" cy="102.0" r="3" fill="var(--ink)"/><circle cx="128.0" cy="58.0" r="3" fill="var(--ink)"/><circle cx="172.0" cy="190.0" r="3" fill="var(--ink)"/><circle cx="172.0" cy="146.0" r="3" fill="var(--ink)"/><circle cx="172.0" cy="102.0" r="3" fill="var(--ink)"/><circle cx="172.0" cy="58.0" r="3" fill="var(--ink)"/><circle cx="216.0" cy="190.0" r="3" fill="var(--ink)"/><circle cx="216.0" cy="146.0" r="3" fill="var(--ink)"/><circle cx="216.0" cy="102.0" r="3" fill="var(--ink)"/><circle cx="216.0" cy="58.0" r="3" fill="var(--ink)"/><circle cx="84.0" cy="190.0" r="6" fill="var(--blue)"/><text x="70.0" y="208.0" font-size="14" font-weight="700" fill="var(--blue)" text-anchor="end" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">O</text><circle cx="216.0" cy="58.0" r="6" fill="var(--red)"/><text x="226.0" y="52.0" font-size="14" font-weight="700" fill="var(--red)" text-anchor="start" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">P</text><polyline points="84.0,190.0 128.0,190.0 172.0,190.0 216.0,190.0 260.0,190.0" fill="none" stroke="var(--green)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="7 5"/><circle cx="260.0" cy="190.0" r="9" fill="none" stroke="var(--red)" stroke-width="2.4"/><text x="274.0" y="176.0" font-size="12.5" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">外へ出る</text></svg></div>
+      <figcaption>③ →→→→ の場合：x ＝ 3 の東端から「→」を実行すると、x ＝ 4 で道路網の外へ出る。</figcaption>
+    </figure>
+
+    <div class="easy"><span class="t">やさしい解説：端の外に出たら、その経路はない</span>
+      <p>①は、北へ 2 区画進んだ後、西へ進みます。西端（x ＝ 0）から西へ出るので、道路がありません。</p>
+      <p>③は、東へ 3 区画進んで東端（x ＝ 3）に着いた後、さらに東へ進みます。東端の外へ出るので、道路がありません。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>「←」「↓」を見たら、<span class="hl">その時点の位置が端（x ＝ 0 か y ＝ 0）かどうか</span>を確認する。途中で範囲を出る順列は、どれだけ後で戻ってきても経路にならない。</div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m">① と ③</span></span></div>
+  </div>
+</section>
+<section class="prob" id="j1-3s2" data-key="j1-3s2">
+  <div class="ph"><span class="no">8 km</span><div class="htext"><span class="tag">組み合わせ・余事象</span><h2>道のりが 8 km で、初めて P に到着する経路の総数</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">道のりが 8 km で、初めて地点 P に到着する経路の総数を求めよ。</p>
+
+    <h3>① 8 歩の内訳を考える</h3>
+    <div class="fb" data-label="なぜ「←」か「↓」が1回だけ入るのか">
+      <span class="m"><i>P</i> に着くには、東へ 3，北へ 3 進めばよい。8 歩なので、余分な 2 歩が必要。</span>
+      <span class="m">余分な 2 歩は「→」と「←」（東へ 4 回，西へ 1 回）か、「↑」と「↓」（北へ 4 回，南へ 1 回）のどちらか。</span>
+      <span class="m">よって、経路は次の 2 種類に分かれる。<br>　(ア) 「→」4，「←」1，「↑」3　の 8 歩<br>　(イ) 「→」3，「↑」4，「↓」1　の 8 歩</span>
+    </div>
+
+    <h3>② 「←」が入る場合（ア）</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">(<i>a</i>) 8 歩の中で「↑」3 個の位置を選ぶ：<span class="box">₈<i>C</i>₃ ＝ 56</span></span>
+      <span class="m">(<i>b</i>) 残りの 5 か所に「→」4 個と「←」1 個を置く。「←」の位置は、5 か所のうち左端（1 番目）と右端（5 番目）を除く 3 通り：<span class="box">₃<i>C</i>₁ ＝ 3</span></span>
+      <span class="m">(<i>a</i>)，(<i>b</i>) より　₈<i>C</i>₃ × ₃<i>C</i>₁ ＝ 56 × 3 ＝ 168（通り）</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：「←」の位置が端だと、道路の外へ出る</span>
+      <p>残りの 5 か所のうち、「←」が 1 番目なら、西端から西へ出てしまいます。5 番目なら、東へ 4 回進んで東端の外へ出てから戻ることになり、道路網の範囲を出ます。</p>
+      <p>だから、「←」は 2 番目・3 番目・4 番目の 3 か所に限られます。</p>
+    </div>
+
+    <h3>③ 途中で P に着く経路を除く</h3>
+    <div class="fb" data-label="初めて P に着く条件">
+      <span class="m">途中で <i>P</i> に着くのは、6 歩目に <i>P</i> へ着いた後、「←」と「→」（または「↓」と「↑」）の 2 歩で戻るとき。</span>
+      <span class="m">6 歩の最短経路は ₆<i>C</i>₃ ＝ 20 通り。<i>P</i> からの戻り方は、西へ行って東へ戻る（←→）の 1 通りだけ（東は <i>x</i> ＝ 4 で範囲外のため）。</span>
+      <span class="m">よって、途中で <i>P</i> に着く経路は 20 × 1 ＝ 20 通り。</span>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">(ア) 「←」が入る場合　168 − 20 ＝ <span class="box">148</span></span>
+    </div>
+    <div class="check"><b>検算（総当たり）：</b>8 歩で P に着く経路を全部数えると、「←」を含むもの 168 通り、「↓」を含むもの 168 通り。P に早く着くものを除くと、どちらも 148 通り ✓。</div>
+
+    <h3>④ 「↓」が入る場合（イ）</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">(<i>a</i>) 8 歩の中で「→」3 個の位置を選ぶ：<span class="box">₈<i>C</i>₃ ＝ 56</span></span>
+      <span class="m">(<i>b</i>) 残りの 5 か所に「↑」4 個と「↓」1 個を置く。「↓」は、1 番目（南端の外）と 5 番目（北端の外）を除く 3 通り：<span class="box">₃<i>C</i>₁ ＝ 3</span></span>
+      <span class="m">(<i>a</i>)，(<i>b</i>) より　₈<i>C</i>₃ × ₃<i>C</i>₁ ＝ 168（通り）。<i>P</i> に早く着く経路を除くと　168 − 20 ＝ 148（通り）</span>
+    </div>
+
+    <h3>⑤ 総数</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">(ア) ＋ (イ) ＝ 148 ＋ 148 ＝ <span class="box">296（通り）</span></span>
+    </div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th></th><th>「←」を含む</th><th>「↓」を含む</th></tr></thead>
+        <tbody>
+          <tr><td class="left">道路の中を通る 8 歩の経路</td><td class="m">168</td><td class="m">168</td></tr>
+          <tr><td class="left">途中で P に着く経路（除く）</td><td class="m">−20</td><td class="m">−20</td></tr>
+          <tr><td class="left"><b>初めて P に着く経路</b></td><td class="m"><b>148</b></td><td class="m"><b>148</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>「初めて」「途中で」という条件は、<span class="hl">途中で目的地に着く経路を引く（余事象的な考え方）</span>で処理する。数える順番は、①内訳 → ②組み合わせ → ③除く、の 3 段階。</div>
+    <div class="ans"><span class="al">答 8 km</span><span class="av"><span class="m">296 通り（「←」を含む 148 ＋「↓」を含む 148）</span></span></div>
+  </div>
+</section>
+<section class="prob" id="j1-3s3" data-key="j1-3s3">
+  <div class="ph"><span class="no">(2)</span><div class="htext"><span class="tag">組み合わせ</span><h2>P に着いた後で往復する経路も含めて数える</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+    <p class="q">道のりが 8 km になる経路で、図2のように「←」が含まれる道順の総数を考える。ただし、最短経路で地点 P に到達した後、1 km の区画を往復して再び地点 P に到達する経路も含めて考える。
+      <span class="sub">(a) 「→」4 個，「←」1 個の 5 個の順列について、「←」の位置の制約（オ）を選べ。また、その総数（カ）を求めよ。</span>
+      <span class="sub">(b) 「←」を加えた 8 個の順列の総数（キクケ）を求めよ。</span>
+      <span class="sub">(c) 同様に、図3のように「↓」が含まれる道順の総数（コサシ）を求めよ。</span></p>
+
+    <div class="fb" data-label="1つの経路と順列の対応">
+      <span class="m">1 つの経路には、「→」4 個，「←」1 個，「↑」3 個の 8 個の順列が 1 つ対応する。</span>
+      <span class="m"><i>P</i> に早く着いても、その後の往復を含めるので、(1) のような「初めて」の条件は付かない。</span>
+    </div>
+
+    <h3>(a) 5 個の順列（→4，←1）の制約</h3>
+    <div class="fb" data-label="「←」の位置の制約">
+      <span class="m">「←」が左端にあると西へ出る。右端にあると東端（<i>x</i> ＝ 4）の外へ出る。</span>
+      <span class="m">よって、「←」は左端にも右端にもない。</span>
+    </div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>「←」の位置（左から）</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+        <tbody>
+          <tr><td class="left">道路の中にあるか</td><td class="ng">×</td><td class="ok">○</td><td class="ok">○</td><td class="ok">○</td><td class="ng">×</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">オ ＝ <span class="box">②（「←」は左端にも右端にも並ばない）</span></span>
+      <span class="m">5 か所のうち「←」の位置は ₅<i>C</i>₁ ＝ 5 通りあるが、端の 2 通りを除くので、<br>カ ＝ ₃<i>C</i>₁ ＝ <span class="box">3</span> 通り</span>
+    </div>
+    <div class="easy"><span class="t">やさしい解説：5 か所から端を除く</span>
+      <p>「←」の場所を 5 か所から 1 つ選ぶと、5 通りあります。ここから、端（1 番目と 5 番目）の 2 通りを除くと、残りは 3 通りです。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>「左端にも右端にも並ばない」は、<span class="hl">両端を除く</span>こと。「左端にのみ」「右端にのみ」の選択肢と混同しない。</div>
+
+    <h3>(b) 8 個の順列（→4，←1，↑3）</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">(<i>i</i>) 8 か所のうち「↑」3 個の位置を選ぶ：<span class="box">₈<i>C</i>₃ ＝ 56</span></span>
+      <span class="m">(<i>i</i><i>i</i>) 残りの 5 か所に、(<i>a</i>) の制約を満たすように「→」4 個と「←」1 個を入れる：<span class="box">₃<i>C</i>₁ ＝ 3</span></span>
+      <span class="m">よって　₈<i>C</i>₃ × ₃<i>C</i>₁ ＝ 56 × 3 ＝ <span class="box">168</span>（通り）</span>
+    </div>
+    <div class="check"><b>検算：</b>総当たりで、P に着くまでの 8 km の経路のうち「←」を含むものは 168 通り。P に早く着くものも含めた数と一致 ✓。</div>
+    <div class="easy"><span class="t">やさしい解説：「↑」の位置と「←」の位置を別々に選ぶ</span>
+      <p>まず「↑」を置く場所を 8 か所から 3 つ選びます（₈C₃）。残りの 5 か所は、「→」と「←」の並べ方だけ決めればよく、(a) の制約から 3 通りです。</p>
+    </div>
+    <div class="pt"><span class="t">テストのポイント：</span>「全部並べる」と ₈!/(4!1!3!) ＝ 280 通りになるが、そのうち「←」が端にあるものを除くと 168 通り。<span class="hl">制約のある部分を先に数えてから掛ける</span>と計算がわかりやすい。</div>
+    <div class="ans"><span class="al">答 (b)</span><span class="av"><span class="m">キクケ ＝ 168 通り</span></span></div>
+
+    <h3>(c) 「↓」が含まれる道順（図3）</h3>
+    <div class="fb soft" data-label="答案（記述）">
+      <span class="m">8 歩の内訳は「→」3 個，「↑」4 個，「↓」1 個。</span>
+      <span class="m">(<i>i</i>) 「→」3 個の位置を選ぶ：<span class="box">₈<i>C</i>₃ ＝ 56</span></span>
+      <span class="m">(<i>i</i><i>i</i>) 残りの 5 か所の「↓」は、南端の外になる 1 番目と、北端の外になる 5 番目を除く：<span class="box">₃<i>C</i>₁ ＝ 3</span></span>
+      <span class="m">よって　₈<i>C</i>₃ × ₃<i>C</i>₁ ＝ <span class="box">168</span>（通り）</span>
+    </div>
+    <div class="ans"><span class="al">答 (c)</span><span class="av"><span class="m">コサシ ＝ 168 通り</span></span></div>
+    <div class="check"><b>検算：</b>「←」の場合と同じ構造（同じ 3 通り）なので、両方とも 168 ✓。総当たりでも、「↓」を含む 8 km の経路は 168 通り。</div>
+  </div>
+</section>
+<section class="prob" id="jpfinal" data-key="jpfinal">
+  <div class="ph"><span class="no">まとめ</span><div class="htext"><span class="tag">実力養成 第6回 FINAL CHECK</span><h2>大問ごとの答えと、覚えておきたいこと</h2></div><button class="done" type="button" aria-pressed="false">確認した</button></div>
+  <div class="body">
+    <div class="memo"><b>大問ごとの分野：</b>大問1＝三角比（数学I）／大問2＝図形の性質（線分の比と面積比）（数学I・数学A）／大問3＝場合の数（組み合わせ・余事象）（数学A）</div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead><tr><th>大問（分野）</th><th>設問</th><th>答え</th></tr></thead>
+        <tbody>
+          <tr><td class="left">大問1（三角比）</td><td>(1)</td><td class="left">AH ＝ 3 cos 10°（m），BH ＝ 3 sin 10°（m）</td></tr>
+          <tr><td class="left">大問1（三角比）</td><td>(2)</td><td class="left">ウ＝⓪，エ＝①，オ＝⓪，カ＝⑤　3 sin 10° / (a + 3 cos 10°) ≦ tan 6°</td></tr>
+          <tr><td class="left">大問2（図形の性質）</td><td>(1)</td><td class="left">AO ： OD ＝ 15 ： 4，AF ： FB ＝ 9 ： 4，△OCE ： △OAF ＝ 13 ： 15</td></tr>
+          <tr><td class="left">大問3（場合の数）</td><td>導入</td><td class="left">20 通り</td></tr>
+          <tr><td class="left">大問3（場合の数）</td><td>(1)</td><td class="left">① と ③</td></tr>
+          <tr><td class="left">大問3（場合の数）</td><td>8 km（初めて P に着く）</td><td class="left">296 通り（148 ＋ 148）</td></tr>
+          <tr><td class="left">大問3（場合の数）</td><td>(2)</td><td class="left">オ＝②，カ＝3，キクケ＝168，コサシ＝168</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="easy"><span class="t">この回で覚えたいこと</span>
+      <ul>
+        <li><b>三角比：</b>cos は隣の辺、sin は向かいの辺、分母は斜辺。角度の条件は tan に直すと不等式になる。</li>
+        <li><b>図形の性質：</b>線分の比と重みの比は逆になる。面積比は △ABC に対する割合にそろえると計算しやすい。</li>
+        <li><b>場合の数：</b>「選ぶ」は ₙCᵣ。端の外へ出る順列は除き、「初めて」の条件は途中で着く経路を引いて処理する。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+<footer>実力養成 第6回｜「答えをかくす」をオンにすると、答えがぼやけて表示されます。「できた」の記録はこの端末のブラウザに保存されます。</footer>
+<script>
+(function(){
+  var KEY='practice-1-5-done';
+  var done={};
+  function load(){try{var v=localStorage.getItem(KEY);done=v?JSON.parse(v)||{}:{};}catch(e){done={};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  var sections=[].slice.call(document.querySelectorAll('.prob[data-key]'));
+  var progress=document.getElementById('progress');
+  function refresh(){
+    var n=0;
+    sections.forEach(function(s){
+      var b=s.querySelector('.done');var k=s.getAttribute('data-key');
+      var on=!!done[k];if(on)n++;
+      if(b)b.setAttribute('aria-pressed',on?'true':'false');
+    });
+    progress.textContent=n+' / '+sections.length;
+  }
+  load();refresh();
+  sections.forEach(function(s){
+    var b=s.querySelector('.done');if(!b)return;
+    b.addEventListener('click',function(){
+      var k=s.getAttribute('data-key');
+      if(done[k])delete done[k];else done[k]=1;
+      save();refresh();
+    });
+  });
+  var hideBtn=document.getElementById('hideBtn');
+  hideBtn.addEventListener('click',function(){
+    var on=hideBtn.getAttribute('aria-pressed')!=='true';
+    hideBtn.setAttribute('aria-pressed',on?'true':'false');
+    document.body.classList.toggle('hide',on);
+    if(!on){[].forEach.call(document.querySelectorAll('.ans.shown'),function(a){a.classList.remove('shown');});}
+  });
+  [].forEach.call(document.querySelectorAll('.ans'),function(a){
+    a.addEventListener('click',function(){if(document.body.classList.contains('hide'))a.classList.toggle('shown');});
+  });
+})();
+</script>
+</body>
+</html>
