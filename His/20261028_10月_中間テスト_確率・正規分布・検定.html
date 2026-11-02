@@ -217,9 +217,13 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
   <div class="notice-in">
     <b>元の資料について（確認して修正した点）</b>
     <ul>
-      <li>8問すべての答えを計算し直して確認しました。</li>
+      <li>答案用紙の写真（7枚）と照合し、8問すべての答えを計算し直して確認しました。</li>
       <li><b>大問7 (2)：</b>連続補正を使った場合の近似値は、元の「約0.72」ではなく <span class="m">0.706</span> が正しいです（正確な二項分布の値は <span class="m">0.7064</span> で、ほぼ一致します）。</li>
-      <li><b>大問1 (1)②：</b>元の資料の「原本で確認」という注意書きは不要なので削除しました。<span class="m"><i>E</i>(<i>Y</i>) = 18/5</span> は正しい値です。</li>
+      <li><b>大問1 (1)：</b>写真では Y の分布は「値 2 に確率 4/5、値 4 に確率 1/5」でした。<span class="m"><i>E</i>(<i>Y</i>) = 12/5</span>、<span class="m"><i>E</i>(<i>X</i><i>Y</i>) = 4</span> が正しく、採点で正解になった値とも一致します。以前の版の 18/5 と 6 は、Y の確率の対応を取り違えたものでした。</li>
+      <li><b>大問1 (3)：</b>写真の問題には「A がちょうど r 回起こる確率」の式も含まれていたので、問題文と答えに追加しました。</li>
+      <li><b>大問4 (1)：</b>写真の問題にある「標本平均 X̄ のとりうる値（1，4/3，5/3，2）」が抜けていたので追加しました。</li>
+      <li><b>大問6 (2)：</b>信頼区間は、試験の指示どおり小数第2位を四捨五入した [98.6, 99.0] を答えの先頭にしました。</li>
+      <li><b>大問8 (3)：</b>写真の試験は (2) までで、(3) は追加問題です。その旨を明記しました。</li>
       <li>図は、正規分布の面積、二項分布の確率、信頼区間を、数式と対応させて作りました。</li>
     </ul>
   </div>
@@ -242,10 +246,10 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
   <div class="ph"><span class="no">大問1</span><div class="htext"><span class="tag">期待値・分散・二項分布</span><h2>独立な確率変数の期待値、さいころの分散、二項分布</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
   <div class="body">
     <p class="q">(1) 2つの確率変数 X，Y は互いに独立で、次の分布に従う。
-      <span class="sub">X：値 1，3 ／ 確率 2/3，1/3。　Y：値 2，4 ／ 確率 1/5，4/5。</span>
+      <span class="sub">X：値 1，3 ／ 確率 2/3，1/3。　Y：値 2，4 ／ 確率 4/5，1/5。</span>
       <span class="sub">① E(X)　② E(Y)　③ E(XY) を求めよ。</span>
       (2) 大小2個のさいころを投げ、出る目を X，Y とする。E(X)，E(X²)，V(X)，V(X+Y) を求めよ。
-      (3) 1回の試行で事象 A の起こる確率を p とし、n 回くり返して A の起こる回数を X とする。E(X)，V(X) を求めよ。
+      (3) 1回の試行で事象 A の起こる確率を p とする。この試行を n 回行う反復試行において、A がちょうど r 回起こる確率を求めよ。また、A の起こる回数を X とするとき、E(X)，V(X) を求めよ。
       (4) X が正規分布 N(m, σ²) に従うとき、標準化した Z を表せ。
       (5) 母平均 m、母標準偏差 σ の母集団から大きさ n の無作為標本を取り、標本平均を X̄ とする。E(X̄)，σ(X̄) を求めよ。</p>
 
@@ -255,8 +259,8 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
     </div>
     <div class="fb soft" data-label="答案（記述）">
       <span class="m">① <i>E</i>(<i>X</i>) = 1 × 2/3 + 3 × 1/3 = 2/3 + 1 = <span class="box">5/3</span></span>
-      <span class="m">② <i>E</i>(<i>Y</i>) = 2 × 1/5 + 4 × 4/5 = 2/5 + 16/5 = <span class="box">18/5</span></span>
-      <span class="m">③ <i>X</i>，<i>Y</i> は独立なので　<i>E</i>(<i>X</i><i>Y</i>) = <i>E</i>(<i>X</i>)<i>E</i>(<i>Y</i>) = 5/3 × 18/5 = <span class="box">6</span></span>
+      <span class="m">② <i>E</i>(<i>Y</i>) = 2 × 4/5 + 4 × 1/5 = 8/5 + 4/5 = <span class="box">12/5</span></span>
+      <span class="m">③ <i>X</i>，<i>Y</i> は独立なので　<i>E</i>(<i>X</i><i>Y</i>) = <i>E</i>(<i>X</i>)<i>E</i>(<i>Y</i>) = 5/3 × 12/5 = <span class="box">4</span></span>
     </div>
     <div class="easy"><span class="t">やさしい解説：独立とは</span>
       <p>「X が何になっても Y の確率は変わらない」という関係です。独立なら、積の期待値は期待値どうしの積になります。</p>
@@ -279,12 +283,13 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
 
     <h3>(3) 二項分布</h3>
     <div class="fb" data-label="二項分布 B(n, p) の期待値・分散">
+      <span class="m">A がちょうど <i>r</i> 回起こる確率 ＝ <span class="box">ₙ<i>C</i>ᵣ <i>p</i>ʳ (1 − <i>p</i>)ⁿ⁻ʳ</span></span>
       <span class="m"><i>X</i> ～ <i>B</i>(<i>n</i>, <i>p</i>) のとき　<span class="box"><i>E</i>(<i>X</i>) = <i>n</i><i>p</i></span>，　<span class="box"><i>V</i>(<i>X</i>) = <i>n</i><i>p</i>(1 − <i>p</i>)</span>，　σ = √{<i>n</i><i>p</i>(1 − <i>p</i>)}</span>
     </div>
     <div class="easy"><span class="t">やさしい解説：なぜ np なのか</span>
       <p>1回あたりの期待値は p。n 回くり返すので、全部で np です。分散は1回ごとの分散 p(1 − p) を n 回ぶん足します。</p>
     </div>
-    <div class="ans"><span class="al">答 (3)</span><span class="av"><span class="m"><i>E</i>(<i>X</i>) = <i>n</i><i>p</i>，　<i>V</i>(<i>X</i>) = <i>n</i><i>p</i>(1 − <i>p</i>)</span></span></div>
+    <div class="ans"><span class="al">答 (3)</span><span class="av"><span class="m"><i>P</i>(<i>X</i> = <i>r</i>) = ₙ<i>C</i>ᵣ <i>p</i>ʳ (1 − <i>p</i>)ⁿ⁻ʳ，　<i>E</i>(<i>X</i>) = <i>n</i><i>p</i>，　<i>V</i>(<i>X</i>) = <i>n</i><i>p</i>(1 − <i>p</i>)</span></span></div>
 
     <h3>(4) 標準化</h3>
     <div class="fb" data-label="標準化の式">
@@ -418,7 +423,7 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
   <div class="ph"><span class="no">大問4</span><div class="htext"><span class="tag">復元抽出・標本平均</span><h2>1と2のカードから3枚を取り出す</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
   <div class="body">
     <p class="q">1 と 2 の数字が書かれたカードが、それぞれ 50 枚ずつ合計 100 枚ある。復元抽出で大きさ 3 の無作為標本を取り、出た数字を順に X₁，X₂，X₃ とする。
-      <span class="sub">(1) X₁ + X₂ + X₃ のとりうる値を求めよ。</span>
+      <span class="sub">(1) X₁ + X₂ + X₃ のとりうる値と、標本平均 X̄ のとりうる値を求めよ。</span>
       <span class="sub">(2) 標本平均 X̄ の期待値を求めよ。</span></p>
 
     <h3>(1) 和のとりうる値</h3>
@@ -432,11 +437,12 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
       <span class="m">1 が1枚，2 が2枚　1 + 2 + 2 = 5</span>
       <span class="m">3枚とも 2 のとき　2 + 2 + 2 = 6（最大）</span>
       <span class="m">よって和のとりうる値は <span class="box">3，4，5，6</span>（4通り）</span>
+      <span class="m">標本平均 <i>X</i>̄ ＝ 和 ÷ 3 なので、<i>X</i>̄ のとりうる値は <span class="box">1，4/3，5/3，2</span></span>
     </div>
     <div class="easy"><span class="t">やさしい解説：「何枚が 1 か」で決まる</span>
       <p>3枚の中で 1 が何枚あるかだけで、和が決まります。1 が 0〜3 枚のとき、和は 6〜3 の 4 通りです。</p>
     </div>
-    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m">3，4，5，6</span></span></div>
+    <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m">和：3，4，5，6　／　標本平均 <i>X</i>̄：1，4/3，5/3，2</span></span></div>
 
     <h3>(2) 標本平均の期待値</h3>
     <div class="fb soft" data-label="答案（記述）">
@@ -464,6 +470,7 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
     <div class="fb soft" data-label="答案（記述）">
       <span class="m"><i>E</i>(<i>X</i>̄) = 50</span>
       <span class="m">σ(<i>X</i>̄) = 20/√100 = 20/10 = <span class="box">2</span></span>
+      <span class="m">よって <i>X</i>̄ は正規分布 <span class="box"><i>N</i>(50, 2²)</span> に従う</span>
     </div>
     <div class="ans"><span class="al">答 (1)</span><span class="av"><span class="m">期待値 50，標準偏差 2</span></span></div>
 
@@ -492,9 +499,9 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
 <section class="prob" id="p6" data-key="p6">
   <div class="ph"><span class="no">大問6</span><div class="htext"><span class="tag">母平均の信頼区間</span><h2>400個の重さの標本から、母平均の95％信頼区間を求める</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
   <div class="body">
-    <p class="q">製品から 400 個を無作為抽出して重さを測ったところ、標本平均は 98.8 g，標本標準偏差は 2.0 g であった。母平均を μ g とする。
-      <span class="sub">(1) Z = (98.8 − μ)/0.1 はどのような分布に従うか。</span>
-      <span class="sub">(2) 母平均 μ の 95％ 信頼区間を求めよ。</span></p>
+    <p class="q">製品から 400 個を無作為抽出して重さを測ったところ、標本平均は 98.8 g，標本標準偏差は 2.0 g であった。母平均を m g とする。
+      <span class="sub">(1) Z = (98.8 − m)/0.1 はどのような分布に従うか。</span>
+      <span class="sub">(2) 母平均 m の 95％ 信頼区間を求めよ。</span></p>
 
     <h3>(1)</h3>
     <div class="fb" data-label="標準誤差">
@@ -511,7 +518,7 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
     <div class="fb soft" data-label="答案（記述）">
       <span class="m">98.8 ± 1.96 × 0.1 = 98.8 ± 0.196</span>
       <span class="m">下限 98.8 − 0.196 = 98.604，上限 98.8 + 0.196 = 98.996</span>
-      <span class="m"><span class="box">98.604 ≦ μ ≦ 98.996</span>（小数第1位までなら 98.6 ≦ μ ≦ 99.0）</span>
+      <span class="m"><span class="box">98.6 ≦ m ≦ 99.0</span>（小数第2位を四捨五入。丸める前は 98.604 ≦ m ≦ 98.996）</span>
     </div>
     <figure class="fig">
       <div class="figbox"><svg viewBox="0 0 340 150" role="img" aria-label="母平均の95％信頼区間 98.604 から 98.996 の数直線" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="150" fill="var(--panel)"/><line x1="20.0" y1="100.0" x2="320.0" y2="100.0" stroke="var(--ink)" stroke-width="1.6"/><line x1="70.0" y1="100.0" x2="70.0" y2="105.0" stroke="var(--ink)" stroke-width="1.2"/><text x="70.0" y="120.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">98.6</text><line x1="120.0" y1="100.0" x2="120.0" y2="105.0" stroke="var(--ink)" stroke-width="1.2"/><text x="120.0" y="120.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">98.7</text><line x1="170.0" y1="100.0" x2="170.0" y2="105.0" stroke="var(--ink)" stroke-width="1.2"/><text x="170.0" y="120.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">98.8</text><line x1="220.0" y1="100.0" x2="220.0" y2="105.0" stroke="var(--ink)" stroke-width="1.2"/><text x="220.0" y="120.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">98.9</text><line x1="270.0" y1="100.0" x2="270.0" y2="105.0" stroke="var(--ink)" stroke-width="1.2"/><text x="270.0" y="120.0" font-size="11.5" font-weight="600" fill="var(--sub)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">99.0</text><rect x="72.0" y="60" width="196.0" height="20" rx="8" fill="var(--blue)" fill-opacity="0.22"/><line x1="72.0" y1="70.0" x2="268.0" y2="70.0" stroke="var(--blue)" stroke-width="3.5"/><line x1="170.0" y1="52.0" x2="170.0" y2="80.0" stroke="var(--red)" stroke-width="2"/><text x="170.0" y="44.0" font-size="12" font-weight="700" fill="var(--red)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">標本平均 98.8</text><text x="72.0" y="56.0" font-size="11.5" font-weight="700" fill="var(--blue)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">98.604</text><text x="268.0" y="56.0" font-size="11.5" font-weight="700" fill="var(--blue)" text-anchor="middle" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif" paint-order="stroke" stroke="var(--panel)" stroke-width="4" stroke-linejoin="round">98.996</text></svg></div>
@@ -521,7 +528,7 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
       <p>標本平均 98.8 は母平均の「ひとつの推定値」です。標本がずれることもあるので、±0.196 の幅で「母平均はこの範囲にある」と言います。</p>
     </div>
     <div class="pt"><span class="t">テストのポイント：</span>途中で丸めず、最後に指定された桁数に丸める。「±1.96 × 標準誤差」の式を正確に書く。</div>
-    <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m">98.604 ≦ μ ≦ 98.996（約 98.6 ≦ μ ≦ 99.0）</span></span></div>
+    <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m">98.6 ≦ m ≦ 99.0（丸める前：98.604 ≦ m ≦ 98.996）</span></span></div>
   </div>
 </section>
 
@@ -570,7 +577,9 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
     <p class="q">1個のさいころを 180 回投げたところ、1 の目が 24 回出た。「1 の目が出る確率が 1/6 ではない」といえるか、有意水準 5％ で両側検定を行う。
       <span class="sub">(1) 帰無仮説 H₀：p = 1/6 のもとで、1 の目の回数 X の分布と標準化 Z を求めよ。</span>
       <span class="sub">(2) 24 回出た場合、H₀ を棄却してよいか。</span>
-      <span class="sub">(3) 翌日さらに 180 回投げて 1 の目が 14 回出た。H₀ を棄却してよいか。</span></p>
+      <span class="sub">（追加問題）(3) さらに 180 回投げて 1 の目が 14 回出た。H₀ を棄却してよいか。</span></p>
+
+    <div class="note"><strong>注：</strong>写真の試験問題は (1) と (2)（24 回出た結果についての判定）までです。(3) は、回数が変わると結論がどう変わるかを確認するための追加問題です。</div>
 
     <div class="fb" data-label="検定の手順（5ステップ）">
       <span class="m">① 帰無仮説 <i>H</i>₀ を立てる　② <i>H</i>₀ のもとで μ，σ を求める　③ 標準化する　④ 臨界値と比べる　⑤ 文で結論を書く</span>
@@ -598,7 +607,7 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
     <div class="check"><b>検算：</b>両側の確率は 2 × P(Z ≦ −1.2) = 2 × 0.1151 = 0.2302（約 23％）。有意水準 5％ より大きいので棄却しない ✓。</div>
     <div class="ans"><span class="al">答 (2)</span><span class="av"><span class="m">棄却できない（確率が 1/6 ではないとは判断できない）</span></span></div>
 
-    <h3>(3) 14 回のとき</h3>
+    <h3>(3) 14 回のとき（追加問題）</h3>
     <div class="fb soft" data-label="答案（記述）">
       <span class="m"><i>z</i> = (14 − 30)/5 = −3.2</span>
       <span class="m">|<i>z</i>| = 3.2 ＞ 1.96　⇒　<i>H</i>₀ を棄却する</span>
@@ -624,9 +633,9 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
       <li><b>大問3：</b>Z ＝ (X − 168)/5。右側は 0.5 から引く。上位 4％ は 0.46 を探す。区間は大きい方 − 小さい方。</li>
       <li><b>大問4：</b>1 の個数で和が決まる（3，4，5，6）。標本平均の期待値は母平均 3/2。</li>
       <li><b>大問5：</b>E(X̄) ＝ 50，σ(X̄) ＝ 20/√100 ＝ 2。P(X̄ ＞ 54) ＝ P(Z ＞ 2) ＝ 0.0228。</li>
-      <li><b>大問6：</b>標準誤差 ＝ 2.0/√400 ＝ 0.1。95％ 信頼区間 ＝ 98.8 ± 1.96 × 0.1 ＝ 98.604 〜 98.996。</li>
+      <li><b>大問6：</b>標準誤差 ＝ 2.0/√400 ＝ 0.1。95％ 信頼区間 ＝ 98.8 ± 1.96 × 0.1 ＝ 98.604 〜 98.996（四捨五入して 98.6 〜 99.0）。</li>
       <li><b>大問7：</b>B(720, 1/6)，μ ＝ 120，σ ＝ 10。正規近似で 0.6826（連続補正なしの場合）。</li>
-      <li><b>大問8：</b>H₀：p ＝ 1/6，μ ＝ 30，σ ＝ 5。24 回は |z| ＝ 1.2 で棄却しない。14 回は |z| ＝ 3.2 で棄却する。</li>
+      <li><b>大問8：</b>H₀：p ＝ 1/6，μ ＝ 30，σ ＝ 5。24 回は |z| ＝ 1.2 で棄却しない。14 回（追加問題）は |z| ＝ 3.2 で棄却する。</li>
     </ol>
 
     <h3>答えのまとめ</h3>
@@ -634,14 +643,14 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
       <table class="tbl">
         <thead><tr><th>大問</th><th>答え</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td class="left">(1) 5/3，18/5，6　(2) 7/2，91/6，35/12，35/6　(3) np，np(1−p)　(4) (X−m)/σ　(5) m，σ/√n</td></tr>
+          <tr><td>1</td><td class="left">(1) 5/3，12/5，4　(2) 7/2，91/6，35/12，35/6　(3) ₙCᵣ pʳ(1−p)ⁿ⁻ʳ，np，np(1−p)　(4) (X−m)/σ　(5) m，σ/√n</td></tr>
           <tr><td>2</td><td class="left">(1) 80/243　(2) 130/243</td></tr>
           <tr><td>3</td><td class="left">(1) N(0, 1)　(2) 約 11.5％　(3) 約 176.8 cm 以上　(4) 約 10.7％</td></tr>
           <tr><td>4</td><td class="left">(1) 3，4，5，6　(2) 3/2</td></tr>
           <tr><td>5</td><td class="left">(1) 50，2　(2) N(0, 1)　(3) 0.0228</td></tr>
-          <tr><td>6</td><td class="left">(1) N(0, 1)（近似）　(2) 98.604 ≦ μ ≦ 98.996</td></tr>
+          <tr><td>6</td><td class="left">(1) N(0, 1)（近似）　(2) 98.6 ≦ m ≦ 99.0</td></tr>
           <tr><td>7</td><td class="left">(1) B(720, 1/6)，120，10　(2) 0.6826（連続補正なし）</td></tr>
-          <tr><td>8</td><td class="left">(1) B(180, 1/6)，Z ＝ (X − 30)/5　(2) 棄却しない　(3) 棄却する</td></tr>
+          <tr><td>8</td><td class="left">(1) B(180, 1/6)，Z ＝ (X − 30)/5　(2) 棄却しない　(3) 棄却する（追加問題）</td></tr>
         </tbody>
       </table>
     </div>
