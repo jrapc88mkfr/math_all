@@ -2132,7 +2132,7 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
 </div>
 
 <style>
-.source-info {{
+.source-info {
   background: var(--blue-bg);
   border-left: 4px solid var(--blue);
   padding: 12px 16px;
@@ -2140,16 +2140,25 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
   border-radius: 4px;
   font-size: 0.95rem;
   font-weight: 500;
-}}
+}
 
 .problem-tabs {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  overflow-x: auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.problem-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .problem-tabs button {
+  flex: none;
   padding: 10px 14px;
   border: 1px solid var(--line);
   background: var(--panel);
@@ -2179,6 +2188,20 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
 
 .problem-tab-content.active {
   display: block;
+}
+
+@media (max-width: 600px) {
+  .problem-tabs {
+    gap: 6px;
+  }
+  .problem-tabs button {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  .nav-in {
+    padding: 6px 10px;
+    gap: 6px;
+  }
 }
 </style>
 
