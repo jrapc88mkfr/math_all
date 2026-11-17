@@ -304,12 +304,12 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
 
     <div class="fb" data-label="使う公式 2つ">
       <span class="m">2点間の距離：A(<i>x</i><sub>1</sub>, <i>y</i><sub>1</sub>)，B(<i>x</i><sub>2</sub>, <i>y</i><sub>2</sub>) のとき　<span class="box">AB<sup>2</sup> ＝ (<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>)<sup>2</sup> ＋ (<i>y</i><sub>1</sub>−<i>y</i><sub>2</sub>)<sup>2</sup></span></span>
-      <span class="m">2次方程式 <i>ax</i><sup>2</sup>＋<i>bx</i>＋<i>c</i>＝0 の解の差：<span class="box">|<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>| ＝ √<i>D</i> / |<i>a</i>|</span>　（<i>D</i>＝<i>b</i><sup>2</sup>−4<i>ac</i>）</span>
+      <span class="m">2次方程式 <i>ax</i><sup>2</sup>＋<i>bx</i>＋<i>c</i>＝0 の解の公式：<span class="box"><i>x</i> ＝ <span class="fr"><b>−<i>b</i> ± √(<i>b</i><sup>2</sup>−4<i>ac</i>)</b><b>2<i>a</i></b></span></span></span>
     </div>
     <div class="easy"><span class="t">やさしい解説</span>
       <ul>
         <li>距離の公式は中3の<b>三平方の定理</b>そのもの。横の差と縦の差を2乗して足すと、斜めの距離の2乗になります。</li>
-        <li>解の差の公式は<b>解の公式</b>から出ます。解は <i>x</i>＝(−<i>b</i>±√<i>D</i>)/2<i>a</i>。＋とーの差をとると √<i>D</i> ÷ |<i>a</i>| だけ残ります。</li>
+        <li>2つの解の差は<b>解の公式</b>から出ます。解は <i>x</i>＝(−<i>b</i>±√(<i>b</i><sup>2</sup>−4<i>ac</i>))/2<i>a</i>。大きい方から小さい方を引くと −<i>b</i> の部分が消えて、√ の部分だけが残ります。</li>
       </ul>
     </div>
 
@@ -328,17 +328,20 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
     <div class="easy"><span class="t">なぜ 10 になる？</span>直線の傾きが 3 なので、横に 1 進むと縦に 3 進みます。斜めの長さは √(1²＋3²)＝√10。つまり<b>「横の差 × √10」</b>が距離です（<i>k</i> は消えます）。</div>
     <p>PQ＝5√10 より √10|<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>|＝5√10、よって <span class="m"><span class="box">|<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>| ＝ 5</span></span></p>
 
-    <h3>③ 判別式から k を求める</h3>
-    <div class="fb" data-label="判別式">
-      <span class="m"><i>D</i> ＝ (−9)<sup>2</sup> − 4(10−<i>k</i>) ＝ 81 − 40 ＋ 4<i>k</i> ＝ 41 ＋ 4<i>k</i></span>
-      <span class="m"><i>a</i>＝1 なので |<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>| ＝ √(41＋4<i>k</i>) ＝ 5</span>
-      <span class="m">両辺を2乗：41＋4<i>k</i> ＝ 25　⇒　4<i>k</i> ＝ −16</span>
+    <h3>③ 解の公式で x₁−x₂ を求める</h3>
+    <p>①で作った方程式 <i class="m">x</i><sup>2</sup> − 9<i>x</i> ＋ 10 − <i>k</i> ＝ 0 に、ふつうの解の公式を使います（<i>a</i>＝1，<i>b</i>＝−9，<i>c</i>＝10−<i>k</i>）。</p>
+    <div class="fb" data-label="解の公式">
+      <span class="m"><i>x</i> ＝ <span class="fr"><b>9 ± √((−9)<sup>2</sup> − 4·1·(10−<i>k</i>))</b><b>2</b></span> ＝ <span class="fr"><b>9 ± √(41＋4<i>k</i>)</b><b>2</b></span></span>
+      <span class="m">2つの解はこの ± の2つ。大きい方から小さい方を引くと 9 の部分が消えて、<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub> ＝ <span class="fr"><b>(9＋√(41＋4<i>k</i>)) − (9−√(41＋4<i>k</i>))</b><b>2</b></span> ＝ <span class="box">√(41＋4<i>k</i>)</span></span>
+      <span class="m">②で |<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>| ＝ 5 と求めたので、√(41＋4<i>k</i>) ＝ 5</span>
+      <span class="m">両辺を2乗：41＋4<i>k</i> ＝ 25　⇒　4<i>k</i> ＝ −16　⇒　<i>k</i> ＝ −4</span>
     </div>
+    <div class="easy"><span class="t">ポイント</span>解を最後まで求める必要はありません。「± の差をとると √ の中身だけが残る」のが解の公式の使い方のコツです。</div>
     <div class="ans"><span class="al">答え</span><span class="av m"><i>k</i> ＝ −4</span></div>
     <div class="check"><b>検算：</b><i>k</i>＝−4 なら <i>x</i>²−9<i>x</i>＋14＝0，(<i>x</i>−2)(<i>x</i>−7)＝0 で <i>x</i>＝2, 7。P(2, 2)，Q(7, 17)。PQ²＝5²＋15²＝250，PQ＝√250＝5√10 ✓。<br>
     また <i>D</i>＝25＞0 なので、たしかに異なる2点で交わっています。</div>
 
-    <div class="pt"><span class="t">テストでの流れ：</span>①交点の <i>x</i> 座標を <i>x</i>₁, <i>x</i>₂ とおく → ②P, Q の座標を書く → ③距離の公式で PQ を出す → ④|<i>x</i>₁−<i>x</i>₂|＝5 → ⑤判別式で |<i>x</i>₁−<i>x</i>₂|＝√(41＋4<i>k</i>) → ⑥<i>k</i>＝−4</div>
+    <div class="pt"><span class="t">テストでの流れ：</span>①交点の <i>x</i> 座標を <i>x</i>₁, <i>x</i>₂ とおく → ②P, Q の座標を書く → ③距離の公式で PQ を出す → ④|<i>x</i>₁−<i>x</i>₂|＝5 → ⑤解の公式で差をとると |<i>x</i>₁−<i>x</i>₂|＝√(41＋4<i>k</i>) → ⑥<i>k</i>＝−4</div>
     <div class="easy"><span class="t">別解：解と係数の関係</span>(<i>x</i><sub>1</sub>−<i>x</i><sub>2</sub>)<sup>2</sup> ＝ (<i>x</i><sub>1</sub>＋<i>x</i><sub>2</sub>)<sup>2</sup> − 4<i>x</i><sub>1</sub><i>x</i><sub>2</sub> ＝ 9² − 4(10−<i>k</i>) ＝ 41＋4<i>k</i>。同じ式になります。こちらで覚えている人はこちらでもOK。</div>
   </div>
 </section>
@@ -425,11 +428,13 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
 <section class="prob" id="prob-6" id="s320b" data-key="s320b">
   <div class="ph"><span class="no">320</span><h2>f(x) の最小値：t の範囲つき2次関数</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
   <div class="body">
-    <p class="q">上の <i class="m">t</i> を使って <i>f</i>(<i>x</i>) の最小値を求める。ここでも「<i>t</i> ≧ 2」を忘れない。<span style="color:var(--sub);font-size:.85rem">（<i>f</i>(<i>x</i>) の元の式は資料になく、<i>t</i> で表した式から解説しています）</span></p>
+    <p class="q"><i class="m">f</i>(<i>x</i>) ＝ 2<sup>2<i>x</i></sup> ＋ 2<sup>−2<i>x</i></sup> − 3√2(2<sup><i>x</i></sup> ＋ 2<sup>−<i>x</i></sup>) ＋ 4 の最小値と、そのときの <i>x</i> の値を求める。</p>
 
     <div class="fb" data-label="t で表す">
       <span class="m"><i>t</i><sup>2</sup> ＝ (2<sup><i>x</i></sup>＋2<sup>−<i>x</i></sup>)<sup>2</sup> ＝ 2<sup>2<i>x</i></sup> ＋ 2 ＋ 2<sup>−2<i>x</i></sup></span>
       <span class="m"><span class="box">2<sup>2<i>x</i></sup> ＋ 2<sup>−2<i>x</i></sup> ＝ <i>t</i><sup>2</sup> − 2</span></span>
+      <span class="m">また、真ん中の項 3√2(2<sup><i>x</i></sup> ＋ 2<sup>−<i>x</i></sup>) は 3√2 × <i>t</i> そのものです</span>
+      <span class="m">よって　<i>f</i>(<i>x</i>) ＝ (<i>t</i><sup>2</sup> − 2) − 3√2 <i>t</i> ＋ 4 ＝ <span class="box"><i>t</i><sup>2</sup> − 3√2 <i>t</i> ＋ 2</span></span>
     </div>
     <div class="easy"><span class="t">やさしい解説</span>(2<sup><i>x</i></sup>＋2<sup>−<i>x</i></sup>)² は (<i>A</i>＋<i>B</i>)² の展開。真ん中の 2·2<sup><i>x</i></sup>·2<sup>−<i>x</i></sup> は 2·1＝2 になるので「＋2」が出てきます。</div>
 
@@ -453,29 +458,35 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
 </section>
 
 <!-- ================= 341 ================= -->
-<section class="prob" id="prob-7" id="s341a" data-key="s341a">
-  <div class="ph"><span class="no">341①</span><h2>指数法則：2<sup>x</sup>・2<sup>−x</sup> は定数</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
+<section class="prob" id="prob-7" id="s341" data-key="s341">
+  <div class="ph"><span class="no">341</span><h2>g(x) の最小値：t ＝ 2<sup>x</sup> ＋ 2<sup>−x</sup> でそろえる</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
   <div class="body">
-    <p class="q"><i class="m">f</i>(<i>x</i>) ＝ 2<sup><i>x</i></sup>・2<sup>−<i>x</i></sup> の最小値と、そのときの <i>x</i>。</p>
-    <div class="fb" data-label="指数法則">
-      <span class="m"><i>a</i><sup><i>p</i></sup> · <i>a</i><sup><i>q</i></sup> ＝ <i>a</i><sup><i>p</i>＋<i>q</i></sup>　　<i>a</i><sup>0</sup> ＝ 1</span>
-      <span class="m">2<sup><i>x</i></sup>·2<sup>−<i>x</i></sup> ＝ 2<sup><i>x</i>＋(−<i>x</i>)</sup> ＝ 2<sup>0</sup> ＝ <span class="box">1</span></span>
-    </div>
-    <div class="easy"><span class="t">やさしい解説</span>かけ算では、2の右上の数（指数）が<b>足し算</b>になります。<i>x</i> と −<i>x</i> を足すと 0。どんな数でも0乗は 1 です。<i>x</i> がなくなるので、この関数はいつも 1 の<b>定数関数</b>です。</div>
-    <div class="ans"><span class="al">答え</span><span class="av m">最小値 1（すべての実数 <i>x</i> でこの値）</span></div>
-  </div>
-</section>
+    <p class="q"><i class="m">g</i>(<i>x</i>) ＝ 8<sup><i>x</i></sup> ＋ 8<sup>−<i>x</i></sup> − 4(4<sup><i>x</i></sup> ＋ 4<sup>−<i>x</i></sup>) は、<i>x</i> ＝ −1 ＋ log<sub>2</sub>( □ ± √□ ) のとき最小値 □ をとる。空欄を埋める。</p>
+    <div class="pt"><span class="t">方針：</span>8<sup><i>x</i></sup>＝(2<sup><i>x</i></sup>)<sup>3</sup>、4<sup><i>x</i></sup>＝(2<sup><i>x</i></sup>)<sup>2</sup> と見て、320 と同じ <i>t</i> ＝ 2<sup><i>x</i></sup> ＋ 2<sup>−<i>x</i></sup>（<i>t</i> ≧ 2）にそろえます。</div>
 
-<section class="prob" id="prob-8" id="s341b" data-key="s341b">
-  <div class="ph"><span class="no">341②</span><h2>2<sup>x</sup> ＋ 2<sup>−x</sup> の最小値（320と同じ形）</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
-  <div class="body">
-    <p class="q"><i class="m">f</i>(<i>x</i>) ＝ 2<sup><i>x</i></sup> ＋ 2<sup>−<i>x</i></sup> の最小値と、そのときの <i>x</i>。</p>
-    <div class="fb" data-label="相加相乗平均">
-      <span class="m"><i>a</i>＝2<sup><i>x</i></sup>＞0 とおくと <i>f</i>(<i>x</i>)＝<i>a</i>＋1/<i>a</i></span>
-      <span class="m"><span class="fr"><b><i>a</i>＋1/<i>a</i></b><b>2</b></span> ≧ 1　⇒　<span class="box"><i>f</i>(<i>x</i>) ≧ 2</span>　等号：<i>a</i>＝1/<i>a</i> ⇒ <i>a</i>＝1 ⇒ 2<sup><i>x</i></sup>＝1 ⇒ <i>x</i>＝0</span>
+    <h3>① t で表す</h3>
+    <div class="fb" data-label="t で表す">
+      <span class="m">4<sup><i>x</i></sup> ＋ 4<sup>−<i>x</i></sup> ＝ <i>t</i><sup>2</sup> − 2　（320 と同じ計算）</span>
+      <span class="m">8<sup><i>x</i></sup> ＋ 8<sup>−<i>x</i></sup> ＝ (2<sup><i>x</i></sup>)<sup>3</sup> ＋ (2<sup>−<i>x</i></sup>)<sup>3</sup> ＝ <i>t</i><sup>3</sup> − 3<i>t</i></span>
+      <span class="m"><i>g</i>(<i>x</i>) ＝ (<i>t</i><sup>3</sup> − 3<i>t</i>) − 4(<i>t</i><sup>2</sup> − 2) ＝ <span class="box"><i>t</i><sup>3</sup> − 4<i>t</i><sup>2</sup> − 3<i>t</i> ＋ 8</span></span>
     </div>
-    <div class="pt">①と②の違い：①は<b>かけ算</b>（＝定数 1）、②は<b>足し算</b>（＝相加相乗平均で最小値 2）。符号を見間違えないこと。</div>
-    <div class="ans"><span class="al">答え</span><span class="av m">最小値 2（そのとき <i>x</i>＝0）</span></div>
+    <div class="easy"><span class="t">3乗の変形</span><i>A</i><sup>3</sup>＋<i>B</i><sup>3</sup> ＝ (<i>A</i>＋<i>B</i>)<sup>3</sup> − 3<i>AB</i>(<i>A</i>＋<i>B</i>) という公式があります。<i>A</i>＝2<sup><i>x</i></sup>、<i>B</i>＝2<sup>−<i>x</i></sup> とすると <i>AB</i>＝2<sup>0</sup>＝1 なので、8<sup><i>x</i></sup>＋8<sup>−<i>x</i></sup> ＝ <i>t</i><sup>3</sup> − 3<i>t</i> になります。</div>
+
+    <h3>② 最小値を出す</h3>
+    <div class="fb" data-label="因数分解">
+      <span class="m"><i>t</i><sup>3</sup> − 4<i>t</i><sup>2</sup> − 3<i>t</i> ＋ 8 ＝ <span class="box">(<i>t</i>−3)<sup>2</sup>(<i>t</i>＋2) − 10</span></span>
+      <span class="m"><i>t</i> ≧ 2 では (<i>t</i>−3)<sup>2</sup> ≧ 0 かつ <i>t</i>＋2 ＞ 0 なので、<i>g</i>(<i>x</i>) ≧ −10</span>
+      <span class="m">等号は <i>t</i>＝3 のとき。よって最小値は −10</span>
+    </div>
+    <div class="easy"><span class="t">どうやって見つける？</span>微分すると (<i>t</i><sup>3</sup>−4<i>t</i><sup>2</sup>−3<i>t</i>＋8)' ＝ 3<i>t</i><sup>2</sup>−8<i>t</i>−3 ＝ (3<i>t</i>＋1)(<i>t</i>−3)。<i>t</i> ≧ 2 では <i>t</i>＝3 の前後で符号が − から ＋ に変わるので、最小は <i>t</i>＝3。だから「(<i>t</i>−3)<sup>2</sup> ×（正の式）＋ 定数」の形に組み直せば、微分なしでも最小値を示せます。</div>
+
+    <h3>③ t＝3 のときの x</h3>
+    <div class="fb soft" data-label="逆算">
+      <span class="m">2<sup><i>x</i></sup> ＋ 2<sup>−<i>x</i></sup> ＝ 3　両辺に 2<sup><i>x</i></sup> をかけると　(2<sup><i>x</i></sup>)<sup>2</sup> − 3·2<sup><i>x</i></sup> ＋ 1 ＝ 0</span>
+      <span class="m">解の公式より　2<sup><i>x</i></sup> ＝ <span class="fr"><b>3 ± √5</b><b>2</b></span></span>
+      <span class="m"><i>x</i> ＝ log<sub>2</sub><span class="fr"><b>3 ± √5</b><b>2</b></span> ＝ log<sub>2</sub>(3 ± √5) − log<sub>2</sub>2 ＝ <span class="box">−1 ＋ log<sub>2</sub>(3 ± √5)</span></span>
+    </div>
+    <div class="ans"><span class="al">答え</span><span class="av m">最小値 −10（そのとき <i>x</i> ＝ −1 ＋ log<sub>2</sub>(3 ± √5)）</span></div>
   </div>
 </section>
 
@@ -483,7 +494,7 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
 <section class="prob" id="prob-9" id="s355" data-key="s355">
   <div class="ph"><span class="no">355</span><h2>積分を含む関数：定積分を「文字A」とおく</h2><button class="done" type="button" aria-pressed="false">できた</button></div>
   <div class="body">
-    <p class="q">積分を含む関数 <i class="m">f</i>(<i>x</i>) について、<i>f</i>(0)，<i>f</i>(2)，<i>f</i>(<i>x</i>)，<i>f</i>(<i>x</i>)＝0 の解を求める。<span style="color:var(--sub);font-size:.85rem">（元の問題文は資料になく、資料にある式から先を解説しています）</span></p>
+    <p class="q">関数 <i class="m">f</i>(<i>x</i>) は　<i>f</i>(<i>x</i>) ＝ 4<i>x</i><sup>3</sup> − 32 ＋ <i>x</i>(<i>x</i>−2)∫<sub>−2</sub><sup>2</sup> <i>f</i>(<i>t</i>) <i>dt</i> − 2∫<sub>0</sub><sup><i>x</i></sup>(3<i>t</i><sup>2</sup>＋2<i>t</i>−6) <i>dt</i>　を満たす。<i>f</i>(0)，<i>f</i>(2)，<i>f</i>(<i>x</i>) と、方程式 <i>f</i>(<i>x</i>)＝0 の解を求める。</p>
 
     <div class="fb" data-label="定積分の考え方">
       <span class="m">上下の端が<b>数字</b>の定積分 ∫<sub>−2</sub><sup>2</sup> <i>f</i>(<i>t</i>) <i>dt</i> は<span class="box">ただの数（定数）</span>　⇒　<i>A</i> とおく</span>
@@ -492,6 +503,7 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
     <div class="easy"><span class="t">やさしい解説</span>積分は「<i>t</i> の式を <i>t</i> のべき乗ごとに1つ次数を上げる」計算（3<i>t</i>²→<i>t</i>³，2<i>t</i>→<i>t</i>²，−6→−6<i>t</i>）。上端が <i>x</i> なら答えは <i>x</i> の式、両端が数字なら答えはただの数になります。この「ただの数」を文字 <i>A</i> に置くと、<i>f</i>(<i>x</i>) が <i>A</i> を含む式で書けて、あとで <i>A</i> を決められます。</div>
 
     <div class="fb soft" data-label="f(x) の形">
+      <span class="m">元の式に <i>A</i> を入れて整理すると：<i>f</i>(<i>x</i>) ＝ 4<i>x</i><sup>3</sup> − 32 ＋ (<i>x</i><sup>2</sup>−2<i>x</i>)<i>A</i> − 2(<i>x</i><sup>3</sup>＋<i>x</i><sup>2</sup>−6<i>x</i>)</span>
       <span class="m"><i>f</i>(<i>x</i>) ＝ 2<i>x</i><sup>3</sup> ＋ (<i>A</i>−2)<i>x</i><sup>2</sup> ＋ (12−2<i>A</i>)<i>x</i> − 32</span>
       <span class="m">積分条件から <span class="box"><i>A</i> ＝ 32</span></span>
       <span class="m"><i>f</i>(<i>x</i>) ＝ 2<i>x</i><sup>3</sup> ＋ 30<i>x</i><sup>2</sup> − 52<i>x</i> − 32</span>
@@ -576,9 +588,9 @@ footer{max-width:920px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
       <li><b>相加相乗平均：</b><i>a</i>＞0 なら <span class="box"><i>a</i>＋1/<i>a</i> ≧ 2</span>。等号は <i>a</i>＝1。</li>
       <li><b>2<sup><i>x</i></sup>＋2<sup>−<i>x</i></sup>：</b><i>a</i>＝2<sup><i>x</i></sup>＞0 とおく。</li>
       <li><b>問題320：</b><i>t</i>≧2 を必ず書く。最小値 −5/2、そのとき <i>x</i>＝±1/2。</li>
-      <li><b>問題341：</b>①は定数 1。②は相加相乗平均で最小値 2、<i>x</i>＝0。</li>
+      <li><b>問題341：</b><i>t</i>＝2<sup><i>x</i></sup>＋2<sup>−<i>x</i></sup> とおくと <i>g</i>(<i>x</i>)＝(<i>t</i>−3)<sup>2</sup>(<i>t</i>＋2)−10。最小値 −10、そのとき <i>x</i>＝−1＋log<sub>2</sub>(3±√5)。</li>
       <li><b>問題204：</b><i>x</i>²＝2<i>x</i>＋4 で次数下げ。答え 30√5−35。</li>
-      <li><b>問題251：</b>PQ＝√10|<i>x</i>₁−<i>x</i>₂|、|<i>x</i>₁−<i>x</i>₂|＝√<i>D</i>。答え <i>k</i>＝−4。</li>
+      <li><b>問題251：</b>PQ＝√10|<i>x</i>₁−<i>x</i>₂|。|<i>x</i>₁−<i>x</i>₂| は解の公式で2解の差をとると √(41＋4<i>k</i>)。答え <i>k</i>＝−4。</li>
       <li><b>問題261（接線）：</b>中心から直線までの距離＝半径。<i>n</i>＝6<i>m</i>，−(2/3)<i>m</i>。共通接線は4本。</li>
       <li><b>問題229（複素数）：</b>実部と虚部をそれぞれ比較。</li>
       <li><b>問題355：</b>定積分は定数 <i>A</i> とおく。<i>f</i>(2)＝0 で因数分解。</li>
