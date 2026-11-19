@@ -2962,13 +2962,13 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
     </div>
     <div class="easy"><span class="t">3乗の変形</span><i>A</i><sup>3</sup>＋<i>B</i><sup>3</sup> ＝ (<i>A</i>＋<i>B</i>)<sup>3</sup> − 3<i>AB</i>(<i>A</i>＋<i>B</i>) という公式があります。<i>A</i>＝2<sup><i>x</i></sup>、<i>B</i>＝2<sup>−<i>x</i></sup> とすると <i>AB</i>＝2<sup>0</sup>＝1 なので、8<sup><i>x</i></sup>＋8<sup>−<i>x</i></sup> ＝ <i>t</i><sup>3</sup> − 3<i>t</i> になります。</div>
 
-    <h3>② 最小値を出す</h3>
-    <div class="fb" data-label="因数分解">
-      <span class="m"><i>t</i><sup>3</sup> − 4<i>t</i><sup>2</sup> − 3<i>t</i> ＋ 8 ＝ <span class="box">(<i>t</i>−3)<sup>2</sup>(<i>t</i>＋2) − 10</span></span>
-      <span class="m"><i>t</i> ≧ 2 では (<i>t</i>−3)<sup>2</sup> ≧ 0 かつ <i>t</i>＋2 ＞ 0 なので、<i>g</i>(<i>x</i>) ≧ −10</span>
-      <span class="m">等号は <i>t</i>＝3 のとき。よって最小値は −10</span>
+    <h3>② 最小値を出す（微分して極小値を探す）</h3>
+    <div class="fb" data-label="微分">
+      <span class="m"><i>h</i>(<i>t</i>) ＝ <i>t</i><sup>3</sup> − 4<i>t</i><sup>2</sup> − 3<i>t</i> ＋ 8（<i>t</i> ≧ 2）とおくと、<i>h</i>'(<i>t</i>) ＝ 3<i>t</i><sup>2</sup> − 8<i>t</i> − 3 ＝ <span class="box">(3<i>t</i>＋1)(<i>t</i>−3)</span></span>
+      <span class="m"><i>t</i> ≧ 2 では 3<i>t</i>＋1 ＞ 0 だから、<i>h</i>'(<i>t</i>) の符号は (<i>t</i>−3) で決まる：2 ≦ <i>t</i> ＜ 3 で −、<i>t</i> ＝ 3 で 0、<i>t</i> ＞ 3 で ＋</span>
+      <span class="m">よって <i>h</i>(<i>t</i>) は <i>t</i> ＝ 3 で極小となり、範囲 <i>t</i> ≧ 2 での最小値は <i>h</i>(3) ＝ 27 − 36 − 9 ＋ 8 ＝ <span class="box">−10</span></span>
     </div>
-    <div class="easy"><span class="t">どうやって見つける？</span>微分すると (<i>t</i><sup>3</sup>−4<i>t</i><sup>2</sup>−3<i>t</i>＋8)' ＝ 3<i>t</i><sup>2</sup>−8<i>t</i>−3 ＝ (3<i>t</i>＋1)(<i>t</i>−3)。<i>t</i> ≧ 2 では <i>t</i>＝3 の前後で符号が − から ＋ に変わるので、最小は <i>t</i>＝3。だから「(<i>t</i>−3)<sup>2</sup> ×（正の式）＋ 定数」の形に組み直せば、微分なしでも最小値を示せます。</div>
+    <div class="easy"><span class="t">因数分解でも確かめられる</span><i>t</i><sup>3</sup> − 4<i>t</i><sup>2</sup> − 3<i>t</i> ＋ 8 ＝ (<i>t</i>−3)<sup>2</sup>(<i>t</i>＋2) − 10 とも変形できます。(<i>t</i>−3)<sup>2</sup> ≧ 0 かつ <i>t</i>＋2 ＞ 0 なので <i>g</i>(<i>x</i>) ≧ −10、等号は <i>t</i>＝3 のとき。微分で見つけた答えと一致します。</div>
 
     <h3>③ t＝3 のときの x</h3>
     <div class="fb soft" data-label="逆算">
@@ -4664,6 +4664,70 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
     <div class="check"><b>検算：</b><i>n</i>＝1 のとき (3²−4−3)/2＝(9−7)/2＝1 ✓。<i>n</i>＝2 のとき (3³−8−3)/2＝(27−11)/2＝8 ✓（<i>a</i>₂＝8 と一致）。</div>
     <div class="ans"><span class="al">答</span><span class="av m">b₁＝7，bₙ₊₁＝3bₙ＋4，bₙ＝9×3ⁿ⁻¹−2，aₙ＝(3ⁿ⁺¹−4n−3)/2</span></div>
     <div class="pt"><span class="t">覚え方：</span>階差数列は「① b₁ → ② bの漸化式 → ③ bの一般項 → ④ aの一般項」の順番。</div>
+  </div>
+</section>
+<section class="prob" id="m2-100" data-key="m2-100">
+  <div class="ph"><span class="no">教科書</span><div class="htext"><span class="tag">数列</span><h2>自然数に関する和の公式（Σの基本）</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+
+    <p class="q">自然数の和、自然数の累乗の和は、Σ を用いて次のように表される（教科書 数学B 第1章 数列）。
+      <span class="sub">Σ<sub><i>k</i>=1</sub><sup><i>n</i></sup> <i>c</i> ＝ <i>nc</i>（とくに Σ 1 ＝ <i>n</i>）</span>
+      <span class="sub">Σ<sub><i>k</i>=1</sub><sup><i>n</i></sup> <i>k</i> ＝ (1/2)<i>n</i>(<i>n</i>＋1)</span>
+      <span class="sub">Σ<sub><i>k</i>=1</sub><sup><i>n</i></sup> <i>k</i>² ＝ (1/6)<i>n</i>(<i>n</i>＋1)(2<i>n</i>＋1)</span>
+      <span class="sub">Σ<sub><i>k</i>=1</sub><sup><i>n</i></sup> <i>k</i>³ ＝ {(1/2)<i>n</i>(<i>n</i>＋1)}²</span>
+      <span class="sub">練習27　次の和を求めよ。(1) Σ<sub><i>k</i>=1</sub><sup>15</sup> 2　(2) Σ<sub><i>k</i>=1</sub><sup>50</sup> <i>k</i>　(3) Σ<sub><i>k</i>=1</sub><sup>12</sup> <i>k</i>²　(4) Σ<sub><i>k</i>=1</sub><sup>7</sup> <i>k</i>³</span></p>
+    <div class="fb" data-label="練習27の計算">
+      <span class="m">(1) 2 を15個足す ＝ 15・2 ＝ <span class="box">30</span></span>
+      <span class="m">(2) (1/2)・50・51 ＝ <span class="box">1275</span></span>
+      <span class="m">(3) (1/6)・12・13・25 ＝ <span class="box">650</span></span>
+      <span class="m">(4) {(1/2)・7・8}² ＝ 28² ＝ <span class="box">784</span></span>
+    </div>
+    <div class="easy"><span class="t">覚え方</span>Σ<i>k</i>³ は「Σ<i>k</i> の2乗」。公式を別々に覚えるのではなく、(1/2)<i>n</i>(<i>n</i>＋1) を2乗する、と覚えると楽です。</div>
+    <div class="ans"><span class="al">答え</span><span class="av m">(1) 30　(2) 1275　(3) 650　(4) 784</span></div>
+  </div>
+</section>
+
+<section class="prob" id="m2-101" data-key="m2-101">
+  <div class="ph"><span class="no">教科書</span><div class="htext"><span class="tag">数列</span><h2>Σの性質と和の計算（例13・練習28）</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+
+    <p class="q">2つの数列 {<i>a<sub>n</sub></i>}, {<i>b<sub>n</sub></i>} と定数 <i>p</i> に対して、Σ には次の性質がある。
+      <span class="sub">Σ(<i>a<sub>k</sub></i> ＋ <i>b<sub>k</sub></i>) ＝ Σ<i>a<sub>k</sub></i> ＋ Σ<i>b<sub>k</sub></i>、　Σ <i>p a<sub>k</sub></i> ＝ <i>p</i> Σ<i>a<sub>k</sub></i></span>
+      <span class="sub">例13　Σ<sub><i>k</i>=1</sub><sup><i>n</i></sup> (<i>k</i>² − 3<i>k</i> ＋ 2) を求めよ。</span>
+      <span class="sub">練習28　次の和を求めよ。(1) Σ(4<i>k</i> − 5)　(2) Σ(3<i>k</i>² − 7<i>k</i> ＋ 4)　(3) Σ(<i>k</i>³ ＋ <i>k</i>)　(4) Σ<sub><i>k</i>=1</sub><sup><i>n</i>−1</sup> 2<i>k</i></span></p>
+    <h3>例13：項ごとに分けて公式を使う</h3>
+    <div class="fb" data-label="例13">
+      <span class="m">Σ(<i>k</i>² − 3<i>k</i> ＋ 2) ＝ Σ<i>k</i>² − 3Σ<i>k</i> ＋ Σ2</span>
+      <span class="m">＝ (1/6)<i>n</i>(<i>n</i>＋1)(2<i>n</i>＋1) − 3・(1/2)<i>n</i>(<i>n</i>＋1) ＋ 2<i>n</i></span>
+      <span class="m">＝ (1/6)<i>n</i>{(<i>n</i>＋1)(2<i>n</i>＋1) − 9(<i>n</i>＋1) ＋ 12} ＝ (1/6)<i>n</i>(2<i>n</i>² − 6<i>n</i> ＋ 4)</span>
+      <span class="m">＝ <span class="box">(1/3)<i>n</i>(<i>n</i>−1)(<i>n</i>−2)</span></span>
+    </div>
+    <h3>練習28</h3>
+    <div class="fb" data-label="練習28の答え">
+      <span class="m">(1) 4・(1/2)<i>n</i>(<i>n</i>＋1) − 5<i>n</i> ＝ <span class="box"><i>n</i>(2<i>n</i> − 3)</span></span>
+      <span class="m">(2) 3・(1/6)<i>n</i>(<i>n</i>＋1)(2<i>n</i>＋1) − 7・(1/2)<i>n</i>(<i>n</i>＋1) ＋ 4<i>n</i> ＝ <span class="box"><i>n</i>(<i>n</i>−1)²</span></span>
+      <span class="m">(3) {(1/2)<i>n</i>(<i>n</i>＋1)}² ＋ (1/2)<i>n</i>(<i>n</i>＋1) ＝ <span class="box">(1/4)<i>n</i>(<i>n</i>＋1)(<i>n</i>²＋<i>n</i>＋2)</span></span>
+      <span class="m">(4) 2・(1/2)(<i>n</i>−1)<i>n</i> ＝ <span class="box"><i>n</i>(<i>n</i>−1)</span>（Σ の上が <i>n</i>−1 だから、公式の <i>n</i> を <i>n</i>−1 に置き換える）</span>
+    </div>
+    <div class="check"><b>検算：</b>(2) は <i>n</i> ＝ 1 のとき元の式が 3 − 7 ＋ 4 ＝ 0、答えの式も 1・0² ＝ 0。<i>n</i> ＝ 2 では 0 ＋ (12 − 14 ＋ 4) ＝ 2、答えは 2・1² ＝ 2。一致します。</div>
+    <div class="ans"><span class="al">答え</span><span class="av m">例13：(1/3)<i>n</i>(<i>n</i>−1)(<i>n</i>−2)。練習28：(1) <i>n</i>(2<i>n</i>−3)　(2) <i>n</i>(<i>n</i>−1)²　(3) (1/4)<i>n</i>(<i>n</i>＋1)(<i>n</i>²＋<i>n</i>＋2)　(4) <i>n</i>(<i>n</i>−1)</span></div>
+  </div>
+</section>
+
+<section class="prob" id="m2-102" data-key="m2-102">
+  <div class="ph"><span class="no">教科書</span><div class="htext"><span class="tag">数列</span><h2>積の形の和：1·3 ＋ 2·4 ＋ … ＋ n(n＋2)（例題8）</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+
+    <p class="q">次の和を求めよ。
+      <span class="sub">1·3 ＋ 2·4 ＋ 3·5 ＋ …… ＋ <i>n</i>(<i>n</i>＋2)</span></p>
+    <div class="fb" data-label="解き方">
+      <span class="m">第 <i>k</i> 項は <i>k</i>(<i>k</i>＋2) ＝ <i>k</i>² ＋ 2<i>k</i> と表せる</span>
+      <span class="m">求める和 ＝ Σ<i>k</i>² ＋ 2Σ<i>k</i> ＝ (1/6)<i>n</i>(<i>n</i>＋1)(2<i>n</i>＋1) ＋ 2・(1/2)<i>n</i>(<i>n</i>＋1)</span>
+      <span class="m">＝ (1/6)<i>n</i>(<i>n</i>＋1){(2<i>n</i>＋1) ＋ 6} ＝ <span class="box">(1/6)<i>n</i>(<i>n</i>＋1)(2<i>n</i>＋7)</span></span>
+    </div>
+    <div class="easy"><span class="t">ポイント</span>「……」で書かれた和は、まず第 <i>k</i> 項を <i>k</i> の式で表して Σ に直すのが第一歩です。あとは和の公式に帰着させます。</div>
+    <div class="check"><b>検算：</b><i>n</i> ＝ 2 のとき元の和は 1·3 ＋ 2·4 ＝ 11。答えの式は (1/6)・2・3・11 ＝ 11。一致します。</div>
+    <div class="ans"><span class="al">答え</span><span class="av m">(1/6)<i>n</i>(<i>n</i>＋1)(2<i>n</i>＋7)</span></div>
   </div>
 </section>
 </main>
@@ -6538,6 +6602,65 @@ footer{max-width:960px;margin:0 auto;padding:0 18px 40px;color:var(--sub);font-s
       </svg>
       <figcaption>黄＝△APQ。PとQのy座標がそろっているので、底辺PQ・高さ（Aからの垂直距離）で面積が確認できます。</figcaption>
     </figure>
+  </div>
+</section>
+<section class="prob" id="m2-97" data-key="m2-97">
+  <div class="ph"><span class="no">第3問</span><div class="htext"><span class="tag">ベクトル</span><h2>角の二等分線とベクトル（数学II・数学B・数学C 第3問）</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+
+    <p class="q">座標平面上の原点を <i>O</i> とし、直線 <i>ℓ</i> : <i>y</i> ＝ (1/7)<i>x</i> と直線 <i>m</i> : <i>y</i> ＝ <i>x</i> のなす鋭角の二等分線を <i>n</i> とする。
+      <span class="sub">(1) ベクトルを用いて、直線 <i>n</i> の傾きを求めよう。ひし形の対角線が内角を二等分することに注意すると、第1象限において、直線 <i>ℓ</i> 上の点 <i>A</i>、直線 <i>m</i> 上の点 <i>B</i> が |<i>OA</i>| ＝ |<i>OB</i>| を満たすならば、<i>OA</i>⃗ ＋ <i>OB</i>⃗ ＝ <i>OC</i>⃗ となる点 <i>C</i> について、点 <i>C</i> は直線 <i>n</i> 上にある。そのような2点として、<i>A</i>（<b>ア</b>, 1）, <i>B</i>（<b>イ</b>, <b>イ</b>）があるから、直線 <i>n</i> の傾きは 1/<b>ウ</b> である。</span>
+      <span class="sub">(2) 直線 <i>ℓ</i> 上に点 <i>L</i>、直線 <i>m</i> 上に点 <i>M</i>、直線 <i>n</i> 上に点 <i>N</i> をとり、四角形 <i>OMLN</i> をつくる。ただし、<i>L</i> は第1象限内の点、<i>M</i> は第3象限内の点とする。この四角形 <i>OMLN</i> が平行四辺形となるような3点 <i>L</i>, <i>M</i>, <i>N</i> について考えよう。点 <i>L</i> は直線 <i>ℓ</i> 上の第1象限内の点であるから、正の実数 <i>s</i> を用いて、<i>OL</i>⃗ ＝ <i>s</i>（<b>エ</b>, 1）とおくことができる。このとき、<i>OL</i>⃗ ＝ <i>OM</i>⃗ ＋ <i>ON</i>⃗ が成り立つから、<i>OM</i>⃗, <i>ON</i>⃗ はそれぞれ <i>s</i> を用いて <i>OM</i>⃗ ＝ <b>オカ</b> <i>s</i>(1, 1), <i>ON</i>⃗ ＝ <b>キ</b> <i>s</i>（<b>ク</b>, 1）と表すことができる。</span></p>
+    <svg viewBox="0 0 300 190" width="300" role="img" aria-label="直線エル、エムと二等分線エヌ" style="max-width:100%;height:auto;display:block;margin:8px auto">
+      <line x1="30" y1="170" x2="292" y2="170" stroke="currentColor" opacity=".5"/>
+      <line x1="40" y1="186" x2="40" y2="6" stroke="currentColor" opacity=".5"/>
+      <line x1="40" y1="170" x2="215" y2="145" stroke="currentColor"/>
+      <line x1="40" y1="170" x2="150" y2="60" stroke="currentColor"/>
+      <line x1="40" y1="170" x2="256" y2="62" stroke="currentColor"/>
+      <circle cx="166" cy="152" r="3" fill="currentColor"/>
+      <circle cx="130" cy="80" r="3" fill="currentColor"/>
+      <circle cx="256" cy="62" r="3" fill="currentColor"/>
+      <text x="170" y="146" font-size="13" fill="currentColor">A(7, 1)</text>
+      <text x="118" y="72" font-size="13" fill="currentColor">B(5, 5)</text>
+      <text x="248" y="52" font-size="13" fill="currentColor">C</text>
+      <text x="218" y="142" font-size="13" fill="currentColor">ℓ</text>
+      <text x="152" y="56" font-size="13" fill="currentColor">m</text>
+      <text x="238" y="76" font-size="13" fill="currentColor">n</text>
+      <text x="28" y="184" font-size="13" fill="currentColor">O</text>
+    </svg>
+    <div class="easy"><span class="t">考え方の核</span>長さの等しい2つのベクトルの和は、2方向のちょうど真ん中（角の二等分線）の方向を向きます。これが (1) の仕掛けで、(2) はその応用です。出典：数学II，数学B，数学C 第3問（選択問題・配点 16）。</div>
+  </div>
+</section>
+
+<section class="prob" id="m2-98" data-key="m2-98">
+  <div class="ph"><span class="no">(1)</span><div class="htext"><span class="tag">ベクトル</span><h2>二等分線の傾きをベクトルの和で求める</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+
+    <p class="q">(1) <i>A</i>（<b>ア</b>, 1）, <i>B</i>（<b>イ</b>, <b>イ</b>）を求め、直線 <i>n</i> の傾き 1/<b>ウ</b> を求めよ。</p>
+    <div class="fb" data-label="計算">
+      <span class="m">点 <i>A</i>：<i>y</i> ＝ 1 を <i>y</i> ＝ (1/7)<i>x</i> に代入 ⇒ <i>x</i> ＝ 7 ⇒ <i>A</i>(7, 1)、|<i>OA</i>| ＝ √50</span>
+      <span class="m">点 <i>B</i>：<i>m</i> 上の点だから <i>B</i>(<i>t</i>, <i>t</i>) とおくと |<i>OB</i>| ＝ √2 <i>t</i>。√2 <i>t</i> ＝ √50 ⇒ <i>t</i> ＝ 5 ⇒ <i>B</i>(5, 5)</span>
+      <span class="m"><i>OC</i>⃗ ＝ <i>OA</i>⃗ ＋ <i>OB</i>⃗ ＝ (7, 1) ＋ (5, 5) ＝ (12, 6)</span>
+      <span class="m">点 <i>C</i> は <i>n</i> 上にあるから、<i>n</i> の傾き ＝ 6/12 ＝ <span class="box">1/2</span></span>
+    </div>
+    <div class="ans"><span class="al">答え</span><span class="av m">ア ＝ 7、イ ＝ 5、ウ ＝ 2</span></div>
+  </div>
+</section>
+
+<section class="prob" id="m2-99" data-key="m2-99">
+  <div class="ph"><span class="no">(2)</span><div class="htext"><span class="tag">ベクトル</span><h2>平行四辺形の条件を成分で解く</h2></div><button class="done" type="button" aria-pressed="false">できた</button></div>
+  <div class="body">
+
+    <p class="q">(2) <i>OL</i>⃗ ＝ <i>s</i>（<b>エ</b>, 1）, <i>OM</i>⃗ ＝ <b>オカ</b> <i>s</i>(1, 1), <i>ON</i>⃗ ＝ <b>キ</b> <i>s</i>（<b>ク</b>, 1）の各空欄を求めよ。</p>
+    <div class="fb" data-label="成分計算">
+      <span class="m">直線 <i>ℓ</i> の方向ベクトルは (7, 1) ⇒ <i>OL</i>⃗ ＝ <i>s</i>(7, 1)（エ ＝ 7）</span>
+      <span class="m"><i>OM</i>⃗ ＝ <i>t</i>(1, 1)（<i>m</i> の方向）、<i>ON</i>⃗ ＝ <i>u</i>(2, 1)（<i>n</i> の方向は (1) より傾き 1/2 だから (2, 1)）とおく</span>
+      <span class="m"><i>OL</i>⃗ ＝ <i>OM</i>⃗ ＋ <i>ON</i>⃗ の成分比較：7<i>s</i> ＝ <i>t</i> ＋ 2<i>u</i>,　<i>s</i> ＝ <i>t</i> ＋ <i>u</i></span>
+      <span class="m">2式の差をとると 6<i>s</i> ＝ <i>u</i> ⇒ <i>ON</i>⃗ ＝ 6<i>s</i>(2, 1)（キ ＝ 6、ク ＝ 2）</span>
+      <span class="m"><i>t</i> ＝ <i>s</i> − <i>u</i> ＝ −5<i>s</i> ⇒ <i>OM</i>⃗ ＝ −5<i>s</i>(1, 1)（オカ ＝ −5）</span>
+    </div>
+    <div class="easy"><span class="t">符号の確認</span><i>t</i> ＝ −5<i>s</i> ＜ 0 だから、点 <i>M</i> は原点をはさんで反対側（第3象限）にあります。問題の条件と合っています。</div>
+    <div class="ans"><span class="al">答え</span><span class="av m">エ ＝ 7、オカ ＝ −5、キ ＝ 6、ク ＝ 2</span></div>
   </div>
 </section>
 </main>

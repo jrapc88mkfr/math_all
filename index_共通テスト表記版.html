@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Lab | ホーム</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", "Noto Sans JP", sans-serif;
+    background: radial-gradient(circle at top, #001a33, #000000 60%);
+    color: #fff;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/cubes.png');
+    opacity: 0.08;
+    animation: bgMove 20s linear infinite;
+    z-index: -1;
+  }
+  @keyframes bgMove {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-1000px); }
+  }
+  header {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #00aaff, #0066ff);
+    color: white;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 20px rgba(0,150,255,0.5);
+  }
+  nav.pc-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    background: #0d0d0d;
+    padding: 1rem;
+    border-bottom: 1px solid #222;
+  }
+  nav.pc-tabs a {
+    color: #00aaff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  nav.mobile-tabs {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 100%;
+    background: #0d0d0d;
+    padding: 0.5rem 0;
+    border-top: 1px solid #222;
+  }
+  nav.mobile-tabs a {
+    color: #00aaff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    nav.pc-tabs    { display: none; }
+    nav.mobile-tabs { display: flex; justify-content: space-around; }
+  }
+  .container {
+    width: 90%;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding-bottom: 80px;
+  }
+  .card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 20px rgba(0,150,255,0.25);
+    transition: 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0,150,255,0.45);
+  }
+  .card h2 {
+    color: #00aaff;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .card p { font-size: 1rem; margin-bottom: 1rem; }
+  .card > a {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background: #00aaff;
+    color: #000;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 4px 4px 4px 0;
+  }
+  .card > a:hover { background: #33bbff; }
+  .label {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .label-30  { background: #ff4444; color: #fff; }
+  .label-hit { background: #00ffcc; color: #000; }
+  .label-5   { background: #ffaa00; color: #000; }
+
+  /* 出典別リンク */
+  .source-block {
+    margin: 1rem 0;
+    line-height: 2;
+  }
+  .source-block .src-label {
+    color: #aef;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .source-block a {
+    display: inline-block;
+    background: #00aaff;
+    color: #000 !important;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 5px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 3px 3px;
+  }
+  .source-block a:hover { background: #33bbff; }
+</style>
+</head>
+<body>
+
+<header>Math Lab | ホーム</header>
+
+<nav class="pc-tabs">
+  <a href="index.html">🏠 ホーム</a>
+  <a href="大学入試対策_数学I.html">📐 数学①（数学I・数学A）</a>
+  <a href="大学入試対策_数学II.html">📊 数学②（数学II・数学B・数学C）</a>
+  <a href="Math_I.html">📝 公式 I</a>
+  <a href="Math_II.html">📝 公式 II</a>
+</nav>
+<nav class="mobile-tabs">
+  <a href="index.html">🏠<br>ホーム</a>
+  <a href="大学入試対策_数学I.html">📐<br>数学①</a>
+  <a href="大学入試対策_数学II.html">📊<br>数学②</a>
+  <a href="Math_I.html">📝<br>公式I</a>
+  <a href="Math_II.html">📝<br>公式II</a>
+</nav>
+
+<div class="container">
+
+  <!-- 数学①（数学I・数学A） -->
+  <div class="card">
+    <span class="label label-30">⏱ 試験前30分</span>
+    <h2>📐 数学①（数学I・数学A）</h2>
+    <p>中間テスト対策と8月実力考査から、数学①（数学I・数学A）頻出問題を34問網羅。</p>
+
+    <div class="source-block">
+      <span class="src-label">📚 中間テスト対策（3問）</span>
+      <a href="大学入試対策_数学II.html?tab=0&id=m2-01">相加相乗平均</a>
+      <a href="大学入試対策_数学I.html?tab=2&id=m1-04">2次関数と共有点①</a>
+      <a href="大学入試対策_数学I.html?tab=2&id=m1-04">2次関数と共有点②</a>
+    </div>
+    <div class="source-block">
+      <span class="src-label">📚 8月実力考査①（5問）</span>
+      <a href="大学入試対策_数学I.html?tab=0&id=m1-02">因数分解</a>
+      <a href="大学入試対策_数学I.html?tab=2&id=m1-10">平行移動</a>
+      <a href="大学入試対策_数学II.html?tab=2&id=m2-18">加法定理</a>
+      <a href="大学入試対策_数学I.html?tab=3&id=m1-11">余弦定理</a>
+      <a href="大学入試対策_数学I.html?tab=4&id=m1-12">分散</a>
+    </div>
+
+    <a href="大学入試対策_数学I.html">▶ 数学① 全問を見る</a>
+  </div>
+
+  <!-- 数学②（数学II・数学B・数学C） -->
+  <div class="card">
+    <span class="label label-hit">🔥 頻出（過去10年）</span>
+    <h2>📊 数学②（数学II・数学B・数学C）</h2>
+    <p>統合学習と模試・実力テストから、数学②（数学II・数学B・数学C）頻出問題を102問＋大問1セット網羅。</p>
+
+    <div class="source-block">
+      <span class="src-label">📚 数学② 統合学習（6問）</span>
+      <a href="大学入試対策_数学II.html?tab=2&id=m2-12">三角関数</a>
+      <a href="大学入試対策_数学II.html?tab=3&id=m2-23">対数</a>
+      <a href="大学入試対策_数学II.html?tab=4&id=m2-31">積分</a>
+      <a href="大学入試対策_数学II.html?tab=5&id=m2-40">漸化式</a>
+      <a href="大学入試対策_数学II.html?tab=6&id=m2-46">仮説検定</a>
+      <a href="大学入試対策_数学II.html?tab=7&id=m2-52">ベクトル</a>
+    </div>
+    <div class="source-block">
+      <span class="src-label">📚 8月実力考査①（2問）</span>
+      <a href="大学入試対策_数学II.html?tab=2&id=m2-18">加法定理の応用</a>
+      <a href="大学入試対策_数学II.html?tab=7&id=m2-91">内積と条件式</a>
+    </div>
+    <div class="source-block">
+      <span class="src-label">📚 10月記述模試（1問）</span>
+      <a href="大学入試対策_数学II.html?tab=1&id=m2-06">円と接線・対数不等式</a>
+    </div>
+    <div class="source-block">
+      <span class="src-label">📚 10月実力テスト（1問）</span>
+      <a href="大学入試対策_数学I.html?tab=5&id=m1-13">確率・対数・ベクトル・数列・円と領域</a>
+      <a href="His/20261028_10月_中間テスト_確率・正規分布・検定.html">確率・正規分布・検定</a>
+    </div>
+
+    <a href="大学入試対策_数学II.html">▶ 数学② 全問を見る</a>
+  </div>
+
+  <!-- 公式集 -->
+  <div class="card">
+    <span class="label label-5">⚡ 5分で確認</span>
+    <h2>📝 公式集（Math Lab）</h2>
+    <p>出題頻度バッジ付き。試験直前の確認に！</p>
+    <a href="Math_I.html">▶ Math Lab I（数学I公式）</a>
+    <a href="Math_II.html">▶ Math Lab II（数学II公式）</a>
+  </div>
+
+  <!-- アーカイブ -->
+  <div class="card" style="background: rgba(255,255,255,0.04);">
+    <span class="label" style="background:#666;color:#fff;">📂 アーカイブ</span>
+    <h2>過去のテスト問題集</h2>
+    <div class="source-block">
+      <span class="src-label">中間テスト対策</span>
+      <a href="His/20260928_High3_2_med.html">中間テスト01</a>
+      <a href="His/20260928_High3_2_med_no2.html">中間テスト02</a>
+      <a href="His/20260928_High3_2_med_no3.html">中間テスト03</a>
+      <a href="His/20260928_High3_2_med_no4.html">中間テスト04</a>
+      <a href="His/20260928_High3_2_med_Binomial.html">二項分布</a>
+      <a href="His/20260928_High3_2_med_hypothesis.html">仮説検定</a>
+    </div>
+    <div class="source-block">
+      <span class="src-label">実力テスト・模試</span>
+      <a href="His/20261019_8月実力テスト_math.html">8月実力テスト</a>
+      <a href="His/20261023_10月実力テスト_math_II.html">10月実力テスト</a>
+      <a href="His/20261021_10月記述模試_math_II_円_log.html">10月記述模試</a>
+      <a href="His/20261028_10月_中間テスト_確率・正規分布・検定.html">10月中間テスト_確率・正規分布・検定</a>
+      <a href="His/20261030_実力養成第6回_sin_面積_確率_修正.html">数学I_実力養成第6回</a>
+    </div>
+  </div>
+
+  <!-- 情報 -->
+  <div class="card">
+    <span class="label label-hit">🔥 頻出（過去10年）</span>
+    <h2>📊 情報（大学入試対策版）</h2>
+    <p>模試・実力テストから、抜粋</p>
+
+    <div class="source-block">
+      <a href="Info/20261103_模試_情報I_問題と解説.html">11月模試</a>
+    </div>
+
+</div>
+</body>
+</html>
